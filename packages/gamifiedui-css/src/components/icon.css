@@ -67,6 +67,31 @@
     --gx-icon-color: var(--color-gx-legendary);
   }
 
+  /* Animated icons (gx-ia-*) loop by default. Pause them, or play only on hover / focus of the
+     icon's parent (a button, card or tile); they rest on frame 0 until first played. */
+  .gx-icon-paused {
+    animation-play-state: paused;
+  }
+
+  .gx-icon-hover-play {
+    animation-play-state: paused;
+  }
+
+  @media (hover: hover) {
+    :hover > .gx-icon-hover-play {
+      animation-play-state: running;
+    }
+  }
+
+  :focus-visible > .gx-icon-hover-play {
+    animation-play-state: running;
+  }
+
+  /* Stop every animated icon inside a container (a settings toggle, an inactive panel). */
+  .gx-icons-paused :is([class*="gx-ia-"], [class*="gx-im-"]) {
+    animation-play-state: paused;
+  }
+
   .gx-icon-shadow {
     filter: drop-shadow(calc(var(--gx-px) / 2) calc(var(--gx-px) / 2) 0 var(--color-gx-ink));
   }

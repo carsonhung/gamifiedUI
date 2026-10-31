@@ -1,0 +1,85 @@
+/* Date picker: a text field plus a toggle that opens a popover calendar.
+   <div class="gx-datepicker"><input class="gx-input" ...>
+   <button class="gx-datepicker-toggle" popovertarget="p" aria-label="Choose date">icon</button>
+   <div id="p" popover class="gx-datepicker-panel"><div class="gx-calendar"></div></div></div>
+   The panel sits under the field where CSS anchor positioning exists (gamifiedui-utils
+   datePicker() wires the anchor) and is centred on screen elsewhere. */
+@layer components {
+  .gx-datepicker {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .gx-datepicker > .gx-input {
+    flex: 1;
+    min-width: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .gx-datepicker-toggle {
+    --gx-toggle-lift: var(--gx-depth);
+
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) + var(--gx-depth));
+    padding: 0;
+    border: 0;
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    cursor: pointer;
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
+      0 calc(var(--gx-px) + var(--gx-toggle-lift)) 0 0 var(--color-gx-ink);
+    transition: translate var(--gx-motion-fast) steps(2, end);
+  }
+
+  @media (hover: hover) {
+    .gx-datepicker-toggle:hover {
+      color: var(--color-gx-accent);
+    }
+  }
+
+  .gx-datepicker-toggle:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * 2);
+  }
+
+  .gx-datepicker-toggle:active,
+  .gx-datepicker-toggle[aria-expanded="true"] {
+    --gx-toggle-lift: 0px;
+    translate: 0 var(--gx-depth);
+  }
+
+  .gx-datepicker-panel {
+    margin: auto;
+    padding: 0;
+    border: 0;
+    overflow: visible;
+    color: inherit;
+    background: transparent;
+  }
+
+  .gx-datepicker-panel::backdrop {
+    background: transparent;
+  }
+
+  .gx-datepicker-panel:popover-open {
+    animation: gx-pop var(--gx-motion-fast) steps(3, end) both;
+  }
+
+  @supports (position-area: block-end) {
+    .gx-datepicker-panel[data-anchored] {
+      inset: auto;
+      margin: calc(var(--gx-px) * 2) 0 0;
+      position-area: block-end span-inline-end;
+      position-try-fallbacks: flip-block, flip-inline;
+    }
+  }
+}

@@ -27,7 +27,13 @@
 - Game UI: `gx-rating` (hearts or stars), `gx-counter`, `gx-reward` (level-up / loot modal),
   `gx-quest` / `gx-objective`, `gx-skill` (cooldown sweep), `gx-float` (damage and heal numbers).
 - `gx-icon` sizes snap to the 16px icon grid (16 / 32 / 48 / 64px), plus tones,
-  `gx-icon-shadow` and `gx-icon-tile`. Icons themselves come from `gamifiedui-icons`.
+  `gx-icon-shadow` and `gx-icon-tile`, and `gx-icon-paused`, `gx-icon-hover-play` and `gx-icons-paused`
+  to stop animated icons. Icons themselves come from `gamifiedui-icons`.
+- Time and dates: `gx-timer` (countdown / stopwatch readout with warning, critical and done
+  states), `gx-calendar` (today, selection, ranges, events, daily-login stamps) and
+  `gx-datepicker` (popover calendar for a date or a date range).
+- Upload: `gx-dropzone` (works as a plain file picker, marching-ants border while dragging),
+  `gx-file-list` / `gx-file` with progress and error states.
 - Particles: `gx-burst` / `gx-particle` bursts and CSS-only `gx-ambient` snow, rain, embers and petals.
 - Prebuilt CDN stylesheets in `dist/` (`gamifiedui.min.css`, `gamifiedui-core.min.css`) that
   need no Tailwind.

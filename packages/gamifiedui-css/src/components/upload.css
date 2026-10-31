@@ -1,0 +1,218 @@
+/* File upload.
+   Drop area: <label class="gx-dropzone"><input type="file"> icon .gx-dropzone-title .gx-dropzone-hint</label>.
+   The input stays focusable (visually hidden), so click and keyboard work without script;
+   gamifiedui-utils dropzone() adds drag and drop and sets data-dragging / data-invalid.
+   Button: <label class="gx-btn">Choose file<input type="file" class="sr-only"></label>.
+   List: <ul class="gx-file-list"><li class="gx-file" data-state="uploading|done|error"> icon
+   .gx-file-name .gx-file-size .gx-file-remove + a .gx-bar.gx-file-progress</li></ul>. */
+@layer components {
+  .gx-dropzone {
+    --gx-dropzone-color: color-mix(in oklab, var(--color-gx-on-surface) 55%, transparent);
+    --gx-dropzone-dash: calc(var(--gx-px) * 2);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 10rem;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--color-gx-on-surface);
+    cursor: pointer;
+    background:
+      repeating-linear-gradient(90deg, var(--gx-dropzone-color) 0 var(--gx-dropzone-dash), transparent 0 calc(var(--gx-dropzone-dash) * 2))
+        0 0 / 100% var(--gx-px) repeat-x,
+      repeating-linear-gradient(90deg, var(--gx-dropzone-color) 0 var(--gx-dropzone-dash), transparent 0 calc(var(--gx-dropzone-dash) * 2))
+        0 100% / 100% var(--gx-px) repeat-x,
+      repeating-linear-gradient(0deg, var(--gx-dropzone-color) 0 var(--gx-dropzone-dash), transparent 0 calc(var(--gx-dropzone-dash) * 2))
+        0 0 / var(--gx-px) 100% repeat-y,
+      repeating-linear-gradient(0deg, var(--gx-dropzone-color) 0 var(--gx-dropzone-dash), transparent 0 calc(var(--gx-dropzone-dash) * 2))
+        100% 0 / var(--gx-px) 100% repeat-y,
+      color-mix(in oklab, var(--color-gx-surface) 75%, var(--color-gx-ink));
+  }
+
+  .gx-dropzone > input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .gx-dropzone:focus-within:has(> input:focus-visible) {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * 2);
+  }
+
+  @media (hover: hover) {
+    .gx-dropzone:hover {
+      --gx-dropzone-color: var(--color-gx-accent);
+    }
+  }
+
+  .gx-dropzone-title {
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-md);
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  .gx-dropzone-hint {
+    font-size: 0.875rem;
+    opacity: 0.8;
+  }
+
+  .gx-dropzone[data-dragging] {
+    --gx-dropzone-color: var(--color-gx-accent);
+
+    background-color: color-mix(in oklab, var(--color-gx-accent) 14%, var(--color-gx-surface));
+    animation: gx-dropzone-march 400ms steps(2, end) infinite;
+  }
+
+  .gx-dropzone[data-dragging] > .gx-icon {
+    animation: gx-dropzone-bob 500ms steps(2, end) infinite alternate;
+  }
+
+  .gx-dropzone[data-invalid] {
+    --gx-dropzone-color: var(--color-gx-danger);
+  }
+
+  .gx-dropzone:has(> input:disabled) {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .gx-btn:has(> input[type="file"]:focus-visible) {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * 2);
+  }
+
+  .gx-file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .gx-file {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 0.25rem 0.75rem;
+    margin: var(--gx-px);
+    padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+  }
+
+  .gx-file-name {
+    overflow: hidden;
+    font-size: 0.875rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .gx-file-size {
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    font-variant-numeric: tabular-nums;
+    opacity: 0.75;
+  }
+
+  .gx-file-remove {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    color: var(--color-gx-on-surface);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  @media (hover: hover) {
+    .gx-file-remove:hover {
+      color: var(--color-gx-danger);
+    }
+  }
+
+  .gx-file-remove:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * -1);
+  }
+
+  .gx-file > .gx-file-progress,
+  .gx-file > .gx-file-status {
+    grid-column: 1 / -1;
+  }
+
+  .gx-file-status {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+
+  .gx-file[data-state="done"] {
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-success),
+      0 var(--gx-px) 0 0 var(--color-gx-success),
+      var(--gx-px) 0 0 0 var(--color-gx-success),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-success);
+  }
+
+  .gx-file[data-state="error"] {
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-danger),
+      0 var(--gx-px) 0 0 var(--color-gx-danger),
+      var(--gx-px) 0 0 0 var(--color-gx-danger),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-danger);
+  }
+
+  .gx-file[data-state="error"] .gx-file-status::before {
+    content: "! ";
+    font-family: var(--font-gx);
+    color: var(--color-gx-danger);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-dropzone[data-dragging],
+    .gx-dropzone[data-dragging] > .gx-icon {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-dropzone[data-dragging],
+  [data-gx-motion="reduce"] .gx-dropzone[data-dragging] > .gx-icon {
+    animation: none;
+  }
+}
+
+@keyframes gx-dropzone-march {
+  to {
+    background-position:
+      calc(var(--gx-dropzone-dash) * 2) 0,
+      calc(var(--gx-dropzone-dash) * -2) 100%,
+      0 calc(var(--gx-dropzone-dash) * -2),
+      100% calc(var(--gx-dropzone-dash) * 2),
+      0 0;
+  }
+}
+
+@keyframes gx-dropzone-bob {
+  to {
+    translate: 0 calc(var(--gx-px) * -2);
+  }
+}

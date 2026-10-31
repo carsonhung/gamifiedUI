@@ -5,3 +5,5 @@
 - First release, under the Apache License 2.0.
 - `toast`, `typewriter`, `graphemes`, `rollNumber`, `cooldown`, `isCoolingDown`, `floatText`,
   `burst`, `tabs`, `sliderFill`, `videoPlayOverlay`, `prefersReducedMotion`, `replay`.
+- `timer` / `formatDuration`, `calendar` and `datePicker` (single date or range),
+  `toISODate` / `parseISODate`, `dropzone`, `formatBytes`, `matchesAccept`.

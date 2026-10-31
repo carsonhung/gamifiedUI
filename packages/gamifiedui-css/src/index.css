@@ -31,5 +31,9 @@
 @import "./components/quest.css";
 @import "./components/skill.css";
 @import "./components/float.css";
+@import "./components/timer.css";
+@import "./components/calendar.css";
+@import "./components/datepicker.css";
+@import "./components/upload.css";
 @import "./components/icon.css";
 @import "./components/particles.css";

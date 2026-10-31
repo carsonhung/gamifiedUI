@@ -408,6 +408,93 @@
         </div>
       </section>
 
+      <section class="gx-panel" aria-labelledby="time-title">
+        <h2 id="time-title" class="gx-panel-title" data-i18n="timeTitle">Time and dates</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="flex flex-col gap-5">
+            <div class="flex flex-col items-start gap-2">
+              <div class="gx-timer gx-timer-lg" id="raid-timer" role="timer" aria-label="Raid starts in" data-i18n-label="raidTimer">
+                <span class="gx-icon gx-icon-sm gx-i-hourglass" aria-hidden="true"></span>
+                <span class="gx-timer-label" data-i18n="raidLabel">Raid</span>
+                <time class="gx-timer-value">00:15</time>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button class="gx-btn gx-btn-primary gx-btn-sm" id="raid-start" data-i18n="timerStart">Start</button>
+                <button class="gx-btn gx-btn-sm" id="raid-pause" data-i18n="timerPause">Pause</button>
+                <button class="gx-btn gx-btn-ghost gx-btn-sm" id="raid-reset" data-i18n="timerReset">Reset</button>
+              </div>
+              <p class="sr-only" aria-live="polite" id="raid-status"></p>
+            </div>
+            <div class="flex flex-col items-start gap-2">
+              <div class="gx-timer" id="run-timer" role="timer" aria-label="Speedrun time" data-i18n-label="runTimer">
+                <span class="gx-timer-label" data-i18n="runLabel">Run</span>
+                <time class="gx-timer-value">00:00</time>
+              </div>
+              <button class="gx-btn gx-btn-sm" id="run-toggle" aria-pressed="false" data-i18n="stopwatch">Stopwatch</button>
+            </div>
+            <div class="gx-field">
+              <label class="gx-field-label" for="event-date" data-i18n="eventDate">Event date</label>
+              <div class="gx-datepicker">
+                <input class="gx-input" id="event-date" inputmode="numeric" autocomplete="off" placeholder="YYYY-MM-DD" aria-describedby="event-date-hint" />
+                <button class="gx-datepicker-toggle" type="button" id="event-date-toggle" aria-label="Choose event date" data-i18n-label="chooseDate">
+                  <span class="gx-icon gx-icon-sm gx-i-calendar" aria-hidden="true"></span>
+                </button>
+                <div class="gx-datepicker-panel" id="event-date-panel"><div class="gx-calendar"></div></div>
+              </div>
+              <p class="gx-field-hint" id="event-date-hint" data-i18n="dateHint">Type YYYY-MM-DD or pick from the calendar.</p>
+            </div>
+            <div class="gx-field">
+              <label class="gx-field-label" for="trip-range" data-i18n="tripRange">Holiday</label>
+              <div class="gx-datepicker">
+                <input class="gx-input" id="trip-range" autocomplete="off" placeholder="YYYY-MM-DD – YYYY-MM-DD" aria-describedby="trip-range-hint" />
+                <button class="gx-datepicker-toggle" type="button" id="trip-range-toggle" aria-label="Choose dates" data-i18n-label="chooseRange">
+                  <span class="gx-icon gx-icon-sm gx-i-calendar" aria-hidden="true"></span>
+                </button>
+                <div class="gx-datepicker-panel" id="trip-range-panel"><div class="gx-calendar"></div></div>
+              </div>
+              <p class="gx-field-hint" id="trip-range-hint" data-i18n="rangeHint">Pick the first day, then the last.</p>
+            </div>
+          </div>
+          <div class="flex flex-col items-start gap-3">
+            <h3 class="font-gx text-sm uppercase" id="login-title" data-i18n="loginTitle">Daily login</h3>
+            <div id="login-calendar" aria-labelledby="login-title"></div>
+            <div class="flex flex-wrap items-center gap-3">
+              <button class="gx-btn gx-btn-success gx-btn-sm" id="claim-today" data-i18n="claimToday">Claim today</button>
+              <span class="flex items-center gap-2 text-sm"><span class="inline-block size-2 bg-gx-legendary" aria-hidden="true"></span><span data-i18n="eventDay">Bonus day</span></span>
+            </div>
+            <p class="sr-only" aria-live="polite" id="claim-status"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="gx-panel" aria-labelledby="upload-title">
+        <h2 id="upload-title" class="gx-panel-title" data-i18n="uploadTitle">File upload</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="flex flex-col gap-4">
+            <label class="gx-dropzone" id="dropzone">
+              <input type="file" multiple accept="image/*,.json,.txt" aria-describedby="drop-hint" />
+              <span class="gx-icon gx-icon-lg gx-icon-accent gx-i-upload" aria-hidden="true"></span>
+              <span class="gx-dropzone-title" data-i18n="dropTitle">Drop files or browse</span>
+              <span class="gx-dropzone-hint" id="drop-hint" data-i18n="dropHint">Images, JSON or text, up to 2 MB each</span>
+            </label>
+            <div class="flex flex-wrap items-center gap-3">
+              <label class="gx-btn gx-btn-sm">
+                <span class="gx-icon gx-icon-sm gx-i-image" aria-hidden="true"></span>
+                <span data-i18n="chooseAvatar">Choose avatar</span>
+                <input type="file" class="sr-only" accept="image/*" id="avatar-input" />
+              </label>
+              <span class="text-sm" id="avatar-name" data-i18n="noFile">No file chosen</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-gx text-sm uppercase" id="files-title" data-i18n="filesTitle">Uploads</h3>
+            <ul class="gx-file-list" id="file-list" aria-labelledby="files-title"></ul>
+            <p class="text-sm" id="files-empty" data-i18n="filesEmpty">Nothing uploaded yet.</p>
+            <p class="sr-only" aria-live="polite" id="upload-status"></p>
+          </div>
+        </div>
+      </section>
+
       <section class="gx-panel" aria-labelledby="fx-title">
         <h2 id="fx-title" class="gx-panel-title" data-i18n="fxTitle">Particles</h2>
         <div class="grid gap-6 md:grid-cols-2">
@@ -445,7 +532,23 @@
 
       <section class="gx-panel" aria-labelledby="icons-title">
         <h2 id="icons-title" class="gx-panel-title" data-i18n="iconsTitle">Icons</h2>
-        <p class="mb-4 text-sm" data-i18n="iconsIntro">56 pixel icons on a 16px grid, including a Hong Kong set. Each one is a single CSS class.</p>
+        <p class="mb-4 text-sm" data-i18n="iconsIntro">97 pixel icons on a 16px grid, including emoji and a Hong Kong set. Each one is a single CSS class.</p>
+        <h3 class="mb-2 font-gx text-sm uppercase" data-i18n="animatedIcons">Animated</h3>
+        <p class="mb-3 text-sm" data-i18n="animatedIntro">Frame strips played with steps(). They hold still under reduced motion.</p>
+        <ul id="icon-gallery-animated" class="mb-4 grid grid-cols-[repeat(auto-fill,minmax(5.5rem,1fr))] gap-2"></ul>
+        <div class="mb-6 flex flex-wrap gap-3">
+          <button class="gx-btn gx-btn-sm"><span class="gx-icon gx-icon-sm gx-icon-hover-play gx-ia-write" aria-hidden="true"></span><span data-i18n="hoverWrite">Hover to write</span></button>
+          <button class="gx-btn gx-btn-warning gx-btn-sm"><span class="gx-icon gx-icon-sm gx-icon-hover-play gx-ia-bell-ring" aria-hidden="true"></span><span data-i18n="hoverBell">Hover to ring</span></button>
+          <span class="flex items-center gap-2 text-sm" role="status"><span class="gx-icon gx-icon-sm gx-icon-accent gx-ia-loading" aria-hidden="true"></span><span data-i18n="loadingText">Loading</span></span>
+          <button class="gx-btn gx-btn-sm" data-reaction="up" aria-pressed="false"><span class="gx-icon gx-icon-sm gx-icon-hover-play gx-ia-thumb-up" aria-hidden="true"></span><span data-i18n="like">Like</span> <span data-count>12</span></button>
+          <button class="gx-btn gx-btn-sm" data-reaction="down" aria-pressed="false"><span class="gx-icon gx-icon-sm gx-icon-hover-play gx-ia-thumb-down" aria-hidden="true"></span><span data-i18n="dislike">Dislike</span> <span data-count>1</span></button>
+        </div>
+        <h3 class="mb-2 font-gx text-sm uppercase" data-i18n="staticIcons">All icons</h3>
+        <p class="mb-3 text-sm" data-i18n="allAnimatedIntro">Every icon has an animated twin: swap gx-i-NAME for gx-ia-NAME. Stop them with gx-icon-paused, gx-icon-hover-play, or gx-icons-paused on a container.</p>
+        <div class="mb-3 flex flex-wrap gap-2">
+          <button class="gx-chip" id="icons-animate" data-icons aria-pressed="false" data-i18n="animateAll">Animate all</button>
+          <button class="gx-chip" id="icons-pause" data-icons aria-pressed="false" data-i18n="pauseAll">Pause</button>
+        </div>
         <ul id="icon-gallery" class="grid grid-cols-[repeat(auto-fill,minmax(5.5rem,1fr))] gap-2"></ul>
       </section>
 

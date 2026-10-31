@@ -5,3 +5,31 @@ export { rollNumber, type RollOptions } from './counter.js';
 export { cooldown, isCoolingDown, type CooldownHandle, type CooldownOptions } from './cooldown.js';
 export { burst, floatText, type BurstKind, type BurstOptions, type FloatKind, type FloatOptions } from './effects.js';
 export { sliderFill, tabs, videoPlayOverlay, type TabsHandle } from './controls.js';
+export {
+  formatDuration,
+  timer,
+  type TimerHandle,
+  type TimerMode,
+  type TimerOptions,
+  type TimerState,
+} from './timer.js';
+export {
+  calendar,
+  datePicker,
+  parseISODate,
+  toISODate,
+  type CalendarHandle,
+  type CalendarMode,
+  type CalendarOptions,
+  type DatePickerHandle,
+  type DatePickerOptions,
+  type DateRange,
+} from './calendar.js';
+export {
+  dropzone,
+  formatBytes,
+  matchesAccept,
+  type DropzoneHandle,
+  type DropzoneOptions,
+  type FileRejection,
+} from './upload.js';

@@ -1,0 +1,178 @@
+/* Month calendar. <div class="gx-calendar"> > .gx-calendar-header (prev .gx-calendar-nav,
+   .gx-calendar-title, next) + <table class="gx-calendar-grid"> with weekday <th> and a
+   <button class="gx-day" aria-label="full date"> per cell. gamifiedui-utils calendar() renders it.
+   Day state: aria-current="date" (today), aria-pressed="true" (selected, or inside a range),
+   data-range="start|middle|end|preview", data-outside (other month), aria-disabled="true" (kept
+   focusable so arrow keys can cross it), data-event (dot,
+   coloured by gx-rarity-*), data-claimed (daily-login stamp). */
+@layer components {
+  .gx-calendar {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) + var(--gx-depth));
+    padding: 0.75rem;
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
+      0 calc(var(--gx-px) + var(--gx-depth)) 0 0 var(--color-gx-ink);
+  }
+
+  .gx-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .gx-calendar-title {
+    margin: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--color-gx-accent);
+  }
+
+  .gx-calendar-nav {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    color: var(--color-gx-on-surface);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  @media (hover: hover) {
+    .gx-calendar-nav:hover:not(:disabled) {
+      color: var(--color-gx-accent);
+    }
+  }
+
+  .gx-calendar-nav:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * -1);
+  }
+
+  .gx-calendar-nav:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+  }
+
+  .gx-calendar-grid {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .gx-calendar-grid th {
+    padding: 0 0 0.25rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    font-weight: normal;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  .gx-calendar-grid td {
+    padding: 0;
+  }
+
+  .gx-day {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-gx-on-surface);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  @media (hover: hover) {
+    .gx-day:hover:not(:disabled, [aria-disabled="true"]) {
+      color: var(--color-gx-accent);
+    }
+  }
+
+  .gx-day:focus-visible {
+    z-index: 1;
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * -1);
+  }
+
+  .gx-day[data-outside] {
+    opacity: 0.4;
+  }
+
+  .gx-day:disabled,
+  .gx-day[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.3;
+    text-decoration: line-through;
+  }
+
+  .gx-day[aria-current="date"] {
+    box-shadow: inset 0 0 0 var(--gx-px) var(--color-gx-accent);
+  }
+
+  .gx-day[data-range="middle"] {
+    background: color-mix(in oklab, var(--color-gx-primary) 35%, transparent);
+  }
+
+  .gx-day[data-range="preview"] {
+    background: color-mix(in oklab, var(--color-gx-primary) 18%, transparent);
+  }
+
+  .gx-day[aria-pressed="true"]:not([data-range="middle"]) {
+    color: var(--color-gx-on-primary);
+    background: var(--color-gx-primary);
+    box-shadow: inset var(--gx-px) var(--gx-px) 0 0 color-mix(in oklab, var(--color-gx-ink) 45%, transparent);
+  }
+
+  .gx-day[aria-pressed="true"][aria-current="date"]:not([data-range="middle"]) {
+    box-shadow:
+      inset 0 0 0 var(--gx-px) var(--color-gx-accent),
+      inset calc(var(--gx-px) * 2) calc(var(--gx-px) * 2) 0 0 color-mix(in oklab, var(--color-gx-ink) 45%, transparent);
+  }
+
+  .gx-day[data-event]::after {
+    content: "";
+    position: absolute;
+    inset-block-end: calc(var(--gx-px) * 1.5);
+    inset-inline-start: calc(50% - var(--gx-px) * 0.75);
+    width: calc(var(--gx-px) * 1.5);
+    height: calc(var(--gx-px) * 1.5);
+    background: var(--gx-rarity, var(--color-gx-accent));
+  }
+
+  .gx-day[data-claimed] {
+    color: color-mix(in oklab, var(--color-gx-on-surface) 45%, transparent);
+  }
+
+  .gx-day[data-claimed]::before {
+    content: "";
+    position: absolute;
+    inset: calc(50% - var(--gx-px) * 4);
+    background: var(--color-gx-success);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13 3h2v1H13zM12 4h3v1H12zM11 5h3v1H11zM10 6h3v1H10zM1 7h2v1H1zM9 7h3v1H9zM1 8h3v1H1zM8 8h3v1H8zM2 9h3v1H2zM7 9h3v1H7zM3 10h6v1H3zM4 11h4v1H4zM5 12h2v1H5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  .gx-day[data-claimed][data-claimed-now]::before {
+    animation: gx-bump var(--gx-motion-base) steps(2, end);
+  }
+}

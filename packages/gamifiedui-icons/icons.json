@@ -4,391 +4,845 @@
     "set": "common",
     "en": "Heart",
     "hant": "心",
-    "hans": "心"
+    "hans": "心",
+    "motion": "beat"
   },
   {
     "name": "star",
     "set": "common",
     "en": "Star",
     "hant": "星",
-    "hans": "星"
+    "hans": "星",
+    "motion": "pop"
   },
   {
     "name": "coin",
     "set": "common",
     "en": "Coin",
     "hant": "金幣",
-    "hans": "金币"
+    "hans": "金币",
+    "motion": "flip"
   },
   {
     "name": "check",
     "set": "common",
     "en": "Check",
     "hant": "完成",
-    "hans": "完成"
+    "hans": "完成",
+    "motion": "pop"
   },
   {
     "name": "close",
     "set": "common",
     "en": "Close",
     "hant": "關閉",
-    "hans": "关闭"
+    "hans": "关闭",
+    "motion": "shake"
   },
   {
     "name": "plus",
     "set": "common",
     "en": "Plus",
     "hant": "加",
-    "hans": "加"
+    "hans": "加",
+    "motion": "pulse"
   },
   {
     "name": "minus",
     "set": "common",
     "en": "Minus",
     "hant": "減",
-    "hans": "减"
+    "hans": "减",
+    "motion": "pulse"
   },
   {
     "name": "chevron-right",
     "set": "common",
     "en": "Chevron right",
     "hant": "向右",
-    "hans": "向右"
+    "hans": "向右",
+    "motion": "nudge-right"
   },
   {
     "name": "chevron-left",
     "set": "common",
     "en": "Chevron left",
     "hant": "向左",
-    "hans": "向左"
+    "hans": "向左",
+    "motion": "nudge-left"
   },
   {
     "name": "chevron-down",
     "set": "common",
     "en": "Chevron down",
     "hant": "向下",
-    "hans": "向下"
+    "hans": "向下",
+    "motion": "nudge-down"
   },
   {
     "name": "chevron-up",
     "set": "common",
     "en": "Chevron up",
     "hant": "向上",
-    "hans": "向上"
+    "hans": "向上",
+    "motion": "nudge-up"
   },
   {
     "name": "menu",
     "set": "common",
     "en": "Menu",
     "hant": "選單",
-    "hans": "菜单"
+    "hans": "菜单",
+    "motion": "pulse"
   },
   {
     "name": "search",
     "set": "common",
     "en": "Search",
     "hant": "搜尋",
-    "hans": "搜索"
+    "hans": "搜索",
+    "motion": "wiggle"
   },
   {
     "name": "home",
     "set": "common",
     "en": "Home",
     "hant": "主頁",
-    "hans": "主页"
+    "hans": "主页",
+    "motion": "bob"
   },
   {
     "name": "gear",
     "set": "common",
     "en": "Settings",
     "hant": "設定",
-    "hans": "设置"
+    "hans": "设置",
+    "motion": "spin-slow"
   },
   {
     "name": "user",
     "set": "common",
     "en": "Player",
     "hant": "玩家",
-    "hans": "玩家"
+    "hans": "玩家",
+    "motion": "bob"
   },
   {
     "name": "lock",
     "set": "common",
     "en": "Locked",
     "hant": "鎖定",
-    "hans": "锁定"
+    "hans": "锁定",
+    "motion": "shake"
   },
   {
     "name": "bell",
     "set": "common",
     "en": "Notifications",
     "hant": "通知",
-    "hans": "通知"
+    "hans": "通知",
+    "motion": "ring"
   },
   {
     "name": "mail",
     "set": "common",
     "en": "Mail",
     "hant": "郵件",
-    "hans": "邮件"
+    "hans": "邮件",
+    "motion": "bob"
   },
   {
     "name": "play",
     "set": "common",
     "en": "Play",
     "hant": "播放",
-    "hans": "播放"
+    "hans": "播放",
+    "motion": "pulse"
   },
   {
     "name": "pause",
     "set": "common",
     "en": "Pause",
     "hant": "暫停",
-    "hans": "暂停"
+    "hans": "暂停",
+    "motion": "blink"
   },
   {
     "name": "sound",
     "set": "common",
     "en": "Sound",
     "hant": "聲音",
-    "hans": "声音"
+    "hans": "声音",
+    "motion": "pulse"
   },
   {
     "name": "info",
     "set": "common",
     "en": "Info",
     "hant": "資訊",
-    "hans": "信息"
+    "hans": "信息",
+    "motion": "blink"
   },
   {
     "name": "warning",
     "set": "common",
     "en": "Warning",
     "hant": "警告",
-    "hans": "警告"
+    "hans": "警告",
+    "motion": "blink"
   },
   {
     "name": "sword",
     "set": "common",
     "en": "Sword",
     "hant": "劍",
-    "hans": "剑"
+    "hans": "剑",
+    "motion": "swing"
   },
   {
     "name": "shield",
     "set": "common",
     "en": "Shield",
     "hant": "盾",
-    "hans": "盾"
+    "hans": "盾",
+    "motion": "bob"
   },
   {
     "name": "potion",
     "set": "common",
     "en": "Potion",
     "hant": "藥水",
-    "hans": "药水"
+    "hans": "药水",
+    "motion": "wiggle"
   },
   {
     "name": "key",
     "set": "common",
     "en": "Key",
     "hant": "鑰匙",
-    "hans": "钥匙"
+    "hans": "钥匙",
+    "motion": "wiggle"
   },
   {
     "name": "gift",
     "set": "common",
     "en": "Gift",
     "hant": "禮物",
-    "hans": "礼物"
+    "hans": "礼物",
+    "motion": "shake"
   },
   {
     "name": "trophy",
     "set": "common",
     "en": "Trophy",
     "hant": "獎盃",
-    "hans": "奖杯"
+    "hans": "奖杯",
+    "motion": "pop"
   },
   {
     "name": "clock",
     "set": "common",
     "en": "Time",
     "hant": "時間",
-    "hans": "时间"
+    "hans": "时间",
+    "motion": "tick"
   },
   {
     "name": "chat",
     "set": "common",
     "en": "Chat",
     "hant": "對話",
-    "hans": "对话"
+    "hans": "对话",
+    "motion": "bob"
   },
   {
     "name": "reload",
     "set": "common",
     "en": "Reload",
     "hant": "重新載入",
-    "hans": "重新加载"
+    "hans": "重新加载",
+    "motion": "spin"
   },
   {
     "name": "fire",
     "set": "common",
     "en": "Fire",
     "hant": "火",
-    "hans": "火"
+    "hans": "火",
+    "motion": "frames"
   },
   {
     "name": "bolt",
     "set": "common",
     "en": "Energy",
     "hant": "能量",
-    "hans": "能量"
+    "hans": "能量",
+    "motion": "blink"
   },
   {
     "name": "sparkle",
     "set": "common",
     "en": "Sparkle",
     "hant": "閃光",
-    "hans": "闪光"
+    "hans": "闪光",
+    "motion": "pop"
+  },
+  {
+    "name": "calendar",
+    "set": "common",
+    "en": "Calendar",
+    "hant": "日曆",
+    "hans": "日历",
+    "motion": "bob"
+  },
+  {
+    "name": "hourglass",
+    "set": "common",
+    "en": "Timer",
+    "hant": "計時",
+    "hans": "计时",
+    "motion": "spin-slow"
+  },
+  {
+    "name": "arrow-right",
+    "set": "common",
+    "en": "Arrow right",
+    "hant": "向右箭頭",
+    "hans": "向右箭头",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "arrow-left",
+    "set": "common",
+    "en": "Arrow left",
+    "hant": "向左箭頭",
+    "hans": "向左箭头",
+    "motion": "nudge-left"
+  },
+  {
+    "name": "arrow-down",
+    "set": "common",
+    "en": "Arrow down",
+    "hant": "向下箭頭",
+    "hans": "向下箭头",
+    "motion": "nudge-down"
+  },
+  {
+    "name": "arrow-up",
+    "set": "common",
+    "en": "Arrow up",
+    "hant": "向上箭頭",
+    "hans": "向上箭头",
+    "motion": "nudge-up"
+  },
+  {
+    "name": "upload",
+    "set": "common",
+    "en": "Upload",
+    "hant": "上載",
+    "hans": "上传",
+    "motion": "nudge-up"
+  },
+  {
+    "name": "download",
+    "set": "common",
+    "en": "Download",
+    "hant": "下載",
+    "hans": "下载",
+    "motion": "nudge-down"
+  },
+  {
+    "name": "file",
+    "set": "common",
+    "en": "File",
+    "hant": "檔案",
+    "hans": "文件",
+    "motion": "bob"
+  },
+  {
+    "name": "folder",
+    "set": "common",
+    "en": "Folder",
+    "hant": "資料夾",
+    "hans": "文件夹",
+    "motion": "bob"
+  },
+  {
+    "name": "image",
+    "set": "common",
+    "en": "Image",
+    "hant": "圖片",
+    "hans": "图片",
+    "motion": "float"
+  },
+  {
+    "name": "trash",
+    "set": "common",
+    "en": "Delete",
+    "hant": "刪除",
+    "hans": "删除",
+    "motion": "shake"
+  },
+  {
+    "name": "edit",
+    "set": "common",
+    "en": "Edit",
+    "hant": "編輯",
+    "hans": "编辑",
+    "motion": "wiggle"
+  },
+  {
+    "name": "copy",
+    "set": "common",
+    "en": "Copy",
+    "hant": "複製",
+    "hans": "复制",
+    "motion": "bob"
+  },
+  {
+    "name": "link",
+    "set": "common",
+    "en": "Link",
+    "hant": "連結",
+    "hans": "链接",
+    "motion": "pulse"
+  },
+  {
+    "name": "share",
+    "set": "common",
+    "en": "Share",
+    "hant": "分享",
+    "hans": "分享",
+    "motion": "pulse"
+  },
+  {
+    "name": "eye",
+    "set": "common",
+    "en": "Show",
+    "hant": "顯示",
+    "hans": "显示",
+    "motion": "squint"
+  },
+  {
+    "name": "filter",
+    "set": "common",
+    "en": "Filter",
+    "hant": "篩選",
+    "hans": "筛选",
+    "motion": "bob"
+  },
+  {
+    "name": "logout",
+    "set": "common",
+    "en": "Log out",
+    "hant": "登出",
+    "hans": "退出",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "cart",
+    "set": "common",
+    "en": "Cart",
+    "hant": "購物車",
+    "hans": "购物车",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "pin",
+    "set": "common",
+    "en": "Location",
+    "hant": "地點",
+    "hans": "地点",
+    "motion": "float"
+  },
+  {
+    "name": "flag",
+    "set": "common",
+    "en": "Flag",
+    "hant": "旗幟",
+    "hans": "旗帜",
+    "motion": "wiggle"
+  },
+  {
+    "name": "bookmark",
+    "set": "common",
+    "en": "Bookmark",
+    "hant": "書籤",
+    "hans": "书签",
+    "motion": "bob"
+  },
+  {
+    "name": "camera",
+    "set": "common",
+    "en": "Camera",
+    "hant": "相機",
+    "hans": "相机",
+    "motion": "blink"
+  },
+  {
+    "name": "globe",
+    "set": "common",
+    "en": "Language",
+    "hant": "語言",
+    "hans": "语言",
+    "motion": "flip"
+  },
+  {
+    "name": "cloud",
+    "set": "common",
+    "en": "Cloud",
+    "hant": "雲端",
+    "hans": "云端",
+    "motion": "float"
+  },
+  {
+    "name": "sun",
+    "set": "common",
+    "en": "Light mode",
+    "hant": "淺色模式",
+    "hans": "浅色模式",
+    "motion": "spin-slow"
+  },
+  {
+    "name": "moon",
+    "set": "common",
+    "en": "Dark mode",
+    "hant": "深色模式",
+    "hans": "深色模式",
+    "motion": "wiggle"
+  },
+  {
+    "name": "thumb-up",
+    "set": "common",
+    "en": "Like",
+    "hant": "讚好",
+    "hans": "点赞",
+    "motion": "pop"
+  },
+  {
+    "name": "thumb-down",
+    "set": "common",
+    "en": "Dislike",
+    "hant": "不喜歡",
+    "hans": "不喜欢",
+    "motion": "nudge-down"
+  },
+  {
+    "name": "music",
+    "set": "common",
+    "en": "Music",
+    "hant": "音樂",
+    "hans": "音乐",
+    "motion": "wiggle"
+  },
+  {
+    "name": "smile",
+    "set": "emoji",
+    "en": "Smile",
+    "hant": "微笑",
+    "hans": "微笑",
+    "motion": "bob"
+  },
+  {
+    "name": "laugh",
+    "set": "emoji",
+    "en": "Laugh",
+    "hant": "大笑",
+    "hans": "大笑",
+    "motion": "frames"
+  },
+  {
+    "name": "wink",
+    "set": "emoji",
+    "en": "Wink",
+    "hant": "眨眼",
+    "hans": "眨眼",
+    "motion": "frames"
+  },
+  {
+    "name": "sad",
+    "set": "emoji",
+    "en": "Sad",
+    "hant": "傷心",
+    "hans": "伤心",
+    "motion": "nudge-down"
+  },
+  {
+    "name": "cry",
+    "set": "emoji",
+    "en": "Cry",
+    "hant": "哭泣",
+    "hans": "哭泣",
+    "motion": "shake"
+  },
+  {
+    "name": "angry",
+    "set": "emoji",
+    "en": "Angry",
+    "hant": "生氣",
+    "hans": "生气",
+    "motion": "shake"
+  },
+  {
+    "name": "surprised",
+    "set": "emoji",
+    "en": "Surprised",
+    "hant": "驚訝",
+    "hans": "惊讶",
+    "motion": "pop"
+  },
+  {
+    "name": "love",
+    "set": "emoji",
+    "en": "Love",
+    "hant": "喜愛",
+    "hans": "喜爱",
+    "motion": "beat"
+  },
+  {
+    "name": "cool",
+    "set": "emoji",
+    "en": "Cool",
+    "hant": "型",
+    "hans": "酷",
+    "motion": "wiggle"
+  },
+  {
+    "name": "neutral",
+    "set": "emoji",
+    "en": "Neutral",
+    "hant": "無表情",
+    "hans": "无表情",
+    "motion": "bob"
   },
   {
     "name": "egg-tart",
     "set": "hk",
     "en": "Egg tart",
     "hant": "蛋撻",
-    "hans": "蛋挞"
+    "hans": "蛋挞",
+    "motion": "bob"
   },
   {
     "name": "milk-tea",
     "set": "hk",
     "en": "Milk tea",
     "hant": "奶茶",
-    "hans": "奶茶"
+    "hans": "奶茶",
+    "motion": "wiggle"
   },
   {
     "name": "pineapple-bun",
     "set": "hk",
     "en": "Pineapple bun",
     "hant": "菠蘿包",
-    "hans": "菠萝包"
+    "hans": "菠萝包",
+    "motion": "bob"
   },
   {
     "name": "dim-sum",
     "set": "hk",
     "en": "Dim sum steamer",
     "hant": "點心",
-    "hans": "点心"
+    "hans": "点心",
+    "motion": "float"
   },
   {
     "name": "egg-waffle",
     "set": "hk",
     "en": "Egg waffle",
     "hant": "雞蛋仔",
-    "hans": "鸡蛋仔"
+    "hans": "鸡蛋仔",
+    "motion": "bob"
   },
   {
     "name": "fishball",
     "set": "hk",
     "en": "Fish balls",
     "hant": "魚蛋",
-    "hans": "鱼蛋"
+    "hans": "鱼蛋",
+    "motion": "bob"
   },
   {
     "name": "tram",
     "set": "hk",
     "en": "Tram",
     "hant": "電車",
-    "hans": "电车"
+    "hans": "电车",
+    "motion": "drive"
   },
   {
     "name": "minibus",
     "set": "hk",
     "en": "Red minibus",
     "hant": "小巴",
-    "hans": "小巴"
+    "hans": "小巴",
+    "motion": "drive"
   },
   {
     "name": "ferry",
     "set": "hk",
     "en": "Star Ferry",
     "hant": "天星小輪",
-    "hans": "天星小轮"
+    "hans": "天星小轮",
+    "motion": "float"
   },
   {
     "name": "junk-boat",
     "set": "hk",
     "en": "Junk boat",
     "hant": "帆船",
-    "hans": "帆船"
+    "hans": "帆船",
+    "motion": "float"
   },
   {
     "name": "bauhinia",
     "set": "hk",
     "en": "Bauhinia",
     "hant": "洋紫荊",
-    "hans": "洋紫荆"
+    "hans": "洋紫荆",
+    "motion": "spin-slow"
   },
   {
     "name": "mahjong",
     "set": "hk",
     "en": "Mahjong tile",
     "hant": "麻雀",
-    "hans": "麻将"
+    "hans": "麻将",
+    "motion": "flip"
   },
   {
     "name": "lai-see",
     "set": "hk",
     "en": "Lai see packet",
     "hant": "利是",
-    "hans": "红包"
+    "hans": "红包",
+    "motion": "wiggle"
   },
   {
     "name": "signal-1",
     "set": "hk",
     "en": "Typhoon signal 1",
     "hant": "一號風球",
-    "hans": "一号风球"
+    "hans": "一号风球",
+    "motion": "blink"
   },
   {
     "name": "signal-3",
     "set": "hk",
     "en": "Typhoon signal 3",
     "hant": "三號風球",
-    "hans": "三号风球"
+    "hans": "三号风球",
+    "motion": "blink"
   },
   {
     "name": "signal-8",
     "set": "hk",
     "en": "Typhoon signal 8",
     "hant": "八號風球",
-    "hans": "八号风球"
+    "hans": "八号风球",
+    "motion": "blink"
   },
   {
     "name": "lantern",
     "set": "hk",
     "en": "Lantern",
     "hant": "燈籠",
-    "hans": "灯笼"
+    "hans": "灯笼",
+    "motion": "ring"
   },
   {
     "name": "mooncake",
     "set": "hk",
     "en": "Mooncake",
     "hant": "月餅",
-    "hans": "月饼"
+    "hans": "月饼",
+    "motion": "pulse"
   },
   {
     "name": "lion-rock",
     "set": "hk",
     "en": "Lion Rock",
     "hant": "獅子山",
-    "hans": "狮子山"
+    "hans": "狮子山",
+    "motion": "float"
   },
   {
     "name": "rice-bowl",
     "set": "hk",
     "en": "Rice bowl",
     "hant": "飯碗",
-    "hans": "饭碗"
+    "hans": "饭碗",
+    "motion": "bob"
+  },
+  {
+    "name": "write",
+    "set": "animated",
+    "en": "Writing",
+    "hant": "書寫",
+    "hans": "书写",
+    "fps": 6,
+    "frames": 6,
+    "motion": "frames"
+  },
+  {
+    "name": "tablet",
+    "set": "animated",
+    "en": "Using a tablet",
+    "hant": "使用平板",
+    "hans": "使用平板",
+    "fps": 3,
+    "frames": 4,
+    "motion": "frames"
+  },
+  {
+    "name": "heartbeat",
+    "set": "animated",
+    "en": "Heartbeat",
+    "hant": "心跳",
+    "hans": "心跳",
+    "fps": 4,
+    "frames": 4,
+    "motion": "frames"
+  },
+  {
+    "name": "coin-spin",
+    "set": "animated",
+    "en": "Spinning coin",
+    "hant": "旋轉金幣",
+    "hans": "旋转金币",
+    "fps": 8,
+    "frames": 4,
+    "motion": "frames"
+  },
+  {
+    "name": "bell-ring",
+    "set": "animated",
+    "en": "Ringing bell",
+    "hant": "響鈴",
+    "hans": "响铃",
+    "fps": 8,
+    "frames": 4,
+    "motion": "frames"
+  },
+  {
+    "name": "typing",
+    "set": "animated",
+    "en": "Typing",
+    "hant": "輸入中",
+    "hans": "输入中",
+    "fps": 4,
+    "frames": 4,
+    "motion": "frames"
+  },
+  {
+    "name": "loading",
+    "set": "animated",
+    "en": "Loading",
+    "hant": "載入中",
+    "hans": "加载中",
+    "fps": 10,
+    "frames": 8,
+    "motion": "frames"
   }
 ]

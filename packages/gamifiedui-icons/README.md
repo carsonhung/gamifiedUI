@@ -1,8 +1,9 @@
 # gamifiedui-icons
 
-56 pixel icons drawn on a 16×16 grid for [gamifiedui-css](../gamifiedui-css): 36 common UI and
-game icons plus 20 Hong Kong icons. Each icon is one CSS class. It is a mask filled with
-`currentColor`, so it takes the text colour and any `gx-icon` tone.
+97 pixel icons drawn on a 16×16 grid for [gamifiedui-css](../gamifiedui-css): 67 common UI and
+game icons, 10 emoji faces and 20 Hong Kong icons. Every icon also has an animated version.
+Each icon is one CSS class. It is a mask filled with `currentColor`, so it takes the text
+colour and any `gx-icon` tone.
 
 ```bash
 npm i gamifiedui-icons
@@ -31,14 +32,50 @@ Icons are decorative, so mark them `aria-hidden="true"` and put the meaning in t
 
 Also shipped:
 
-- `svg/<name>.svg` files using `fill="currentColor"`.
-- `icons.json`, with the name, set and English / 繁體 / 简体 labels for each icon.
+- `svg/<name>.svg` files using `fill="currentColor"`, and `svg/ia-<name>.svg` frame strips.
+- `icons.json`, with the name, set, motion and English / 繁體 / 简体 labels for each icon.
+
+## Animated icons
+
+Swap `gx-i-NAME` for `gx-ia-NAME` to animate any icon:
+
+```html
+<span class="gx-icon gx-ia-heart" aria-hidden="true"></span>      <!-- beats -->
+<span class="gx-icon gx-ia-gear" aria-hidden="true"></span>       <!-- turns -->
+<span class="gx-icon gx-ia-thumb-up" aria-hidden="true"></span>   <!-- pops -->
+```
+
+Most icons move with a **motion preset** that snaps in whole icon pixels: `bob`, `float`,
+`pulse`, `beat`, `pop`, `spin`, `spin-slow`, `wiggle`, `ring`, `swing`, `shake`,
+`nudge-{right,left,up,down}`, `drive`, `blink`, `squint`, `flip` and `tick`. Each icon has a
+default in `icons/motion.mjs`; to choose another, pair the static class with a preset
+class: `gx-i-coin gx-im-spin`.
+
+Some icons are redrawn **frame by frame** instead: `fire`, `laugh`, `wink`, plus these extras
+that have no static version: `write`, `tablet`, `heartbeat`, `coin-spin`, `bell-ring`, `typing`
+and `loading`.
+
+**Stopping them** (needs `gamifiedui-css`):
+
+| Class | Effect |
+|---|---|
+| `gx-icon-paused` | Pauses one icon. |
+| `gx-icon-hover-play` | Plays only while the parent (a button, card or tile) is hovered or focused. |
+| `gx-icons-paused` | On any container: pauses every animated icon inside it. |
+
+Animations also stop under `prefers-reduced-motion: reduce` and inside
+`[data-gx-motion="reduce"]`, where frame icons rest on frame 0.
 
 ## Icons
 
 **Common:** heart, star, coin, check, close, plus, minus, chevron-{right,left,down,up}, menu,
 search, home, gear, user, lock, bell, mail, play, pause, sound, info, warning, sword, shield,
-potion, key, gift, trophy, clock, chat, reload, fire, bolt, sparkle.
+potion, key, gift, trophy, clock, chat, reload, fire, bolt, sparkle, calendar, hourglass,
+arrow-{right,left,down,up}, upload, download, file, folder, image, trash, edit, copy, link,
+share, eye, filter, logout, cart, pin, flag, bookmark, camera, globe, cloud, sun, moon, music,
+thumb-up, thumb-down.
+
+**Emoji:** smile, laugh, wink, sad, cry, angry, surprised, love, cool, neutral.
 
 **Hong Kong:**
 
@@ -65,11 +102,13 @@ potion, key, gift, trophy, clock, chat, reload, fire, bolt, sparkle.
 
 ## Adding an icon
 
-Icons are ASCII grids in `icons/common.mjs` and `icons/hk.mjs`: `#` is a solid pixel, `+` is
-50% alpha, and `.` is empty. A symmetric icon can list only its left 8 columns and set
-`mirror: true`. A variant can reuse another icon with `from` and a transform (`flipX`,
-`rot90` or `rot270`). Run `npm run build` to regenerate the CSS, SVGs and `icons.json`.
-`npm test` fails if any of them are stale.
+Icons are ASCII grids in `icons/common.mjs`, `icons/emoji.mjs` and `icons/hk.mjs`: `#` is a
+solid pixel, `+` is 50% alpha, and `.` is empty. A symmetric icon can list only its left 8
+columns and set `mirror: true`. A variant can reuse another icon with `from` and a transform
+(`flipX`, `flipY`, `rot90`, `rot180` or `rot270`). Give it a motion in `icons/motion.mjs`
+(otherwise it bobs), or add frames to `icons/animated.mjs`; frame 0 is the reduced-motion pose.
+Run `npm run build` to regenerate the CSS, SVGs and `icons.json`. `npm test` fails if any of
+them are stale.
 
 ## License
 

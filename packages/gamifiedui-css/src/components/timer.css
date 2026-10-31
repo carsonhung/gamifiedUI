@@ -1,0 +1,87 @@
+/* HUD timer: <div class="gx-timer" role="timer" aria-label="Raid starts in">
+   <span class="gx-timer-label">Raid</span><time class="gx-timer-value" datetime="PT1M30S">01:30</time></div>.
+   role="timer" is not announced each tick; announce milestones in a separate live region.
+   --gx-value (1..0, remaining) drains the strip under the readout. data-state="warning|critical|done"
+   recolours it; critical blinks the digits and done pops once. */
+@layer components {
+  .gx-timer {
+    --gx-value: 1;
+    --gx-timer-color: var(--color-gx-accent);
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) * 2);
+    padding: 0.5rem 0.75rem 0.75rem;
+    font-family: var(--font-gx);
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-ink);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+  }
+
+  .gx-timer::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: var(--gx-px);
+    background: var(--gx-timer-color);
+    transform-origin: left;
+    scale: clamp(0, var(--gx-value), 1) 1;
+    transition: scale var(--gx-motion-base) steps(4, end);
+  }
+
+  .gx-timer:dir(rtl)::after {
+    transform-origin: right;
+  }
+
+  .gx-timer-label {
+    font-size: var(--gx-text-sm);
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .gx-timer-value {
+    font-size: var(--gx-text-lg);
+    font-variant-numeric: tabular-nums;
+    color: var(--gx-timer-color);
+  }
+
+  .gx-timer-lg .gx-timer-value {
+    font-size: calc(var(--gx-text-lg) * 2);
+  }
+
+  .gx-timer[data-state="warning"] {
+    --gx-timer-color: var(--color-gx-warning);
+  }
+
+  .gx-timer[data-state="critical"] {
+    --gx-timer-color: var(--color-gx-hp);
+  }
+
+  .gx-timer[data-state="critical"] .gx-timer-value {
+    animation: gx-blink 1s steps(1, end) infinite;
+  }
+
+  .gx-timer[data-state="done"] {
+    --gx-timer-color: var(--color-gx-success);
+  }
+
+  .gx-timer[data-state="done"] .gx-timer-value {
+    animation: gx-bump var(--gx-motion-base) steps(2, end);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-timer[data-state="critical"] .gx-timer-value {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-timer[data-state="critical"] .gx-timer-value {
+    animation: none;
+  }
+}

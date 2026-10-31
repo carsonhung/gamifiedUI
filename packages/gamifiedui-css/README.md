@@ -84,7 +84,12 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 | `gx-quest` / `gx-objective` | HUD quest tracker; `data-done` ticks an objective | `gx-quest-{title,list}`, `gx-objective-{text,count}` |
 | `gx-skill` | `<button>`; `--gx-cooldown` (1..0) sweeps, `aria-disabled` while cooling | `gx-skill-key`, `gx-skill-timer`, `data-ready` |
 | `gx-float` | short text in a `gx-float-layer`; rises and fades once | `gx-float-{damage,heal,xp,crit}` |
-| `gx-icon` | `<span aria-hidden="true">` + an icon class from `gamifiedui-icons` | `gx-icon-{sm,lg,xl}` (16/48/64px; default 32), tones, `gx-icon-shadow`, `gx-icon-tile` |
+| `gx-timer` | `role="timer"` with `gx-timer-label` + `<time class="gx-timer-value">`; `--gx-value` (1..0) drains the strip | `data-state="warning\|critical\|done"`, `gx-timer-lg` |
+| `gx-calendar` | month grid of `<button class="gx-day">`; rendered by `calendar()` in `gamifiedui-utils` | day: `aria-current="date"`, `aria-pressed`, `data-range="start\|middle\|end\|preview"`, `data-outside`, `aria-disabled`, `data-event` + `gx-rarity-*`, `data-claimed` |
+| `gx-datepicker` | `.gx-input` + `gx-datepicker-toggle` + `[popover].gx-datepicker-panel` holding a `gx-calendar` | single date or a range; anchored under the field where CSS anchor positioning exists |
+| `gx-dropzone` | `<label>` wrapping `<input type="file">` (click and keyboard work without JS) | `gx-dropzone-{title,hint}`, `data-dragging`, `data-invalid` |
+| `gx-file-list` / `gx-file` | `<ul>` of uploads | `gx-file-{name,size,remove,status}`, `gx-bar gx-file-progress`, `data-state="uploading\|done\|error"` |
+| `gx-icon` | `<span aria-hidden="true">` + an icon class from `gamifiedui-icons` | `gx-icon-{sm,lg,xl}` (16/48/64px; default 32), tones, `gx-icon-shadow`, `gx-icon-tile`; stop animated `gx-ia-*` icons with `gx-icon-paused`, `gx-icon-hover-play` or `gx-icons-paused` on a container |
 
 ## Particles
 
@@ -102,7 +107,10 @@ Both are hidden under reduced motion, since they are decoration.
 
 Every component works without script. A few effects only make sense when driven, so
 [`gamifiedui-utils`](../gamifiedui-utils) ships small optional helpers for them: toasts,
-typewriter, number roll, skill cooldown, floating text, bursts, tabs and the slider fill.
+typewriter, number roll, skill cooldown, floating text, bursts, tabs, the slider fill, timers,
+calendars and date (range) pickers, and drag-and-drop upload.
+
+A file button needs no script: `<label class="gx-btn">Choose file<input type="file" class="sr-only"></label>`.
 
 ## Utilities
 

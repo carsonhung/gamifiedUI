@@ -65,6 +65,14 @@ const COMPONENT_SELECTORS = [
   '.gx-burst',
   '.gx-particle',
   '.gx-ambient',
+  '.gx-timer',
+  '.gx-calendar',
+  '.gx-day',
+  '.gx-datepicker-toggle',
+  '.gx-datepicker-panel',
+  '.gx-dropzone',
+  '.gx-file',
+  '.gx-file-remove',
 ];
 const UTILITY_CASES = {
   'gx-depth-2': '--gx-depth: calc(var(--gx-px) * 2)',

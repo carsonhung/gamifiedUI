@@ -106,7 +106,7 @@ function setupMenus(): void {
 
 function setupSettings(): void {
   sliderFill();
-  document.querySelectorAll<HTMLButtonElement>('button.gx-chip:not([data-ambient])').forEach((chip) => {
+  document.querySelectorAll<HTMLButtonElement>('button.gx-chip:not([data-ambient], [data-icons])').forEach((chip) => {
     chip.addEventListener('click', () => {
       chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
     });
@@ -220,17 +220,32 @@ function setupParticles(): void {
   });
 }
 
+const TILE_CLASSES: Record<string, string> = {
+  common: 'gx-icon-tile',
+  emoji: 'gx-icon-tile gx-rarity-rare',
+  hk: 'gx-icon-tile gx-rarity-epic',
+  animated: 'gx-icon-tile gx-rarity-legendary',
+};
+
 function setupIconGallery(): void {
-  const gallery = byId('icon-gallery');
+  const animateChip = byId<HTMLButtonElement>('icons-animate');
+  const pauseChip = byId<HTMLButtonElement>('icons-pause');
+  const allList = byId('icon-gallery');
+  const galleries = [
+    { list: allList, icons: icons.filter((icon) => icon.set !== 'animated'), all: true },
+    { list: byId('icon-gallery-animated'), icons: icons.filter((icon) => icon.motion === 'frames'), all: false },
+  ];
   const render = (): void => {
-    gallery.replaceChildren(
-      ...icons.map((icon) => {
+    const animateAll = animateChip.getAttribute('aria-pressed') === 'true';
+    galleries.forEach(({ list, icons: subset, all }) => list.replaceChildren(
+      ...subset.map((icon) => {
+        const moving = !all || animateAll;
         const item = document.createElement('li');
         item.className = 'flex flex-col items-center gap-1 text-center';
         const tile = document.createElement('span');
-        tile.className = icon.set === 'hk' ? 'gx-icon-tile gx-rarity-epic' : 'gx-icon-tile';
+        tile.className = TILE_CLASSES[all ? icon.set : 'animated'] ?? 'gx-icon-tile';
         const glyph = document.createElement('span');
-        glyph.className = `gx-icon gx-i-${icon.name}`;
+        glyph.className = `gx-icon ${moving ? 'gx-ia-' : 'gx-i-'}${icon.name}`;
         glyph.setAttribute('aria-hidden', 'true');
         tile.append(glyph);
         const label = document.createElement('span');
@@ -238,12 +253,40 @@ function setupIconGallery(): void {
         label.textContent = locale === 'zh-Hant' ? icon.hant : locale === 'zh-Hans' ? icon.hans : icon.en;
         const code = document.createElement('code');
         code.className = 'text-[0.625rem] opacity-60';
-        code.textContent = icon.name;
+        code.textContent = moving ? `ia-${icon.name}` : icon.name;
         item.append(tile, label, code);
         return item;
       }),
-    );
+    ));
   };
+  const toggle = (chip: HTMLButtonElement): boolean => {
+    const on = chip.getAttribute('aria-pressed') !== 'true';
+    chip.setAttribute('aria-pressed', String(on));
+    return on;
+  };
+  animateChip.addEventListener('click', () => {
+    toggle(animateChip);
+    render();
+  });
+  pauseChip.addEventListener('click', () => {
+    const paused = toggle(pauseChip);
+    galleries.forEach(({ list }) => list.classList.toggle('gx-icons-paused', paused));
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-reaction]').forEach((button, _, all) => {
+    button.addEventListener('click', () => {
+      all.forEach((other) => {
+        const wasOn = other.getAttribute('aria-pressed') === 'true';
+        const on = other === button ? !wasOn : false;
+        if (on === wasOn) return;
+        other.setAttribute('aria-pressed', String(on));
+        const count = other.querySelector<HTMLElement>('[data-count]');
+        if (count) count.textContent = String(Number(count.textContent) + (on ? 1 : -1));
+        if (on && other.dataset.reaction === 'up') burst(other, { kind: 'spark', count: 8 });
+      });
+    });
+  });
+
   onLocaleChange(render);
   render();
 }

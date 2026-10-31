@@ -40,6 +40,12 @@ motion, text appears at once, numbers jump, and decorative bursts are skipped.
 | `tabs(tablist)` | Wires up `role="tablist"`: click, the arrow keys, Home and End, roving `tabindex`, and showing the panel. Returns `{ select, destroy }`. |
 | `sliderFill(root?)` | Keeps `--gx-value` in sync on every `gx-slider` (for the WebKit fill). Returns a cleanup function. |
 | `videoPlayOverlay(video, button)` | Shows a `gx-video-play` button until the video starts, then hands over to native controls. |
+| `timer(el, seconds, { mode?, warnAt?, criticalAt?, autoStart?, onDone? })` | Runs a `gx-timer` countdown (`mode: 'up'` for a stopwatch). It measures elapsed time, so a throttled background tab doesn't drift. Returns `{ start, pause, reset, seconds, running }`. `formatDuration(90)` gives `"01:30"`. |
+| `calendar(el, { mode?, value?, range?, min?, max?, isDisabled?, locale?, firstDay?, decorate?, onSelect?, onRangeSelect? })` | Renders a `gx-calendar`. Month and weekday names come from `Intl`, and the week starts on the locale's first day. Keys: the arrows, Home and End, PageUp and PageDown (add Shift for a year). In `mode: 'range'`, the second pick ends the range, and hovering shows a preview. |
+| `datePicker(input, toggle, panel, { mode?, endInput?, format?, parse?, onChange?, ...calendar })` | Wires a `gx-datepicker`. Typing a date updates the calendar, and picking one fills the field (YYYY-MM-DD by default) and returns focus to the toggle. |
+| `toISODate(date)`, `parseISODate(text)` | Local YYYY-MM-DD with no time-zone shift. |
+| `dropzone(zone, { onFiles, onReject?, accept?, maxSize?, multiple? })` | Adds drag and drop to a `gx-dropzone`. Dropped and picked files go through the same type, size and count checks. |
+| `formatBytes(n, locale?)`, `matchesAccept(file, accept)` | Upload helpers. |
 | `prefersReducedMotion(el?)`, `replay(el, attribute)` | Low-level motion helpers. `replay` restarts a `data-*` animation such as `data-bump`. |
 
 ## License

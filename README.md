@@ -48,7 +48,7 @@ The [live demo](https://carsonhung.github.io/gamifiedUI/) shows all of them in E
 | Package | Status |
 |---|---|
 | [`gamifiedui-css`](packages/gamifiedui-css) | 0.1.0: tokens, themes, 40+ components, particles, sprite and iso utilities, CDN build |
-| [`gamifiedui-icons`](packages/gamifiedui-icons) | 0.1.0: 56 pixel icons on a 16px grid, including a Hong Kong set |
+| [`gamifiedui-icons`](packages/gamifiedui-icons) | 0.1.0: 97 pixel icons on a 16px grid, including emoji and a Hong Kong set, each with an animated version |
 | [`gamifiedui-utils`](packages/gamifiedui-utils) | 0.1.0: optional JS for toasts, typewriter, counters, cooldowns, floating text, bursts, tabs |
 | `gamifiedui-sfx` | Planned: procedural UI sounds, no audio files |
 | `gamifiedui-vue`, `gamifiedui-react` | Planned: component wrappers |
