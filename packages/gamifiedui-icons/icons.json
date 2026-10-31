@@ -1004,7 +1004,7 @@
     "en": "Dress",
     "hant": "裙",
     "hans": "裙子",
-    "category": "living",
+    "category": "clothing",
     "motion": "wiggle"
   },
   {
@@ -1737,6 +1737,762 @@
     "motion": "bob"
   },
   {
+    "name": "fighter",
+    "set": "common",
+    "en": "Fighter",
+    "hant": "格鬥家",
+    "hans": "格斗家",
+    "category": "classes",
+    "motion": "shake"
+  },
+  {
+    "name": "warrior",
+    "set": "common",
+    "en": "Warrior",
+    "hant": "戰士",
+    "hans": "战士",
+    "category": "classes",
+    "motion": "bob"
+  },
+  {
+    "name": "wizard",
+    "set": "common",
+    "en": "Wizard",
+    "hant": "魔法師",
+    "hans": "魔法师",
+    "category": "classes",
+    "motion": "wiggle"
+  },
+  {
+    "name": "priest",
+    "set": "common",
+    "en": "Priest",
+    "hant": "神官",
+    "hans": "神官",
+    "category": "classes",
+    "motion": "bob"
+  },
+  {
+    "name": "train",
+    "set": "common",
+    "en": "Train",
+    "hant": "火車",
+    "hans": "火车",
+    "category": "transport",
+    "motion": "drive"
+  },
+  {
+    "name": "airplane",
+    "set": "common",
+    "en": "Airplane",
+    "hant": "飛機",
+    "hans": "飞机",
+    "category": "transport",
+    "motion": "float"
+  },
+  {
+    "name": "balloon",
+    "set": "common",
+    "en": "Balloon",
+    "hant": "氣球",
+    "hans": "气球",
+    "category": "awards",
+    "motion": "float"
+  },
+  {
+    "name": "skateboard",
+    "set": "common",
+    "en": "Skateboard",
+    "hant": "滑板",
+    "hans": "滑板",
+    "category": "transport",
+    "motion": "drive"
+  },
+  {
+    "name": "university",
+    "set": "common",
+    "en": "University",
+    "hant": "大學",
+    "hans": "大学",
+    "category": "school",
+    "motion": "bob"
+  },
+  {
+    "name": "flag-hk",
+    "set": "common",
+    "en": "Hong Kong flag",
+    "hant": "香港區旗",
+    "hans": "香港区旗",
+    "category": "flags",
+    "motion": "wiggle"
+  },
+  {
+    "name": "flag-cn",
+    "set": "common",
+    "en": "China flag",
+    "hant": "中國國旗",
+    "hans": "中国国旗",
+    "category": "flags",
+    "motion": "wiggle"
+  },
+  {
+    "name": "flag-jp",
+    "set": "common",
+    "en": "Japan flag",
+    "hant": "日本國旗",
+    "hans": "日本国旗",
+    "category": "flags",
+    "motion": "wiggle"
+  },
+  {
+    "name": "flag-kr",
+    "set": "common",
+    "en": "Korea flag",
+    "hant": "韓國國旗",
+    "hans": "韩国国旗",
+    "category": "flags",
+    "motion": "wiggle"
+  },
+  {
+    "name": "flag-us",
+    "set": "common",
+    "en": "US flag",
+    "hant": "美國國旗",
+    "hans": "美国国旗",
+    "category": "flags",
+    "motion": "wiggle"
+  },
+  {
+    "name": "flag-uk",
+    "set": "common",
+    "en": "UK flag",
+    "hant": "英國國旗",
+    "hans": "英国国旗",
+    "category": "flags",
+    "motion": "wiggle"
+  },
+  {
+    "name": "bank",
+    "set": "common",
+    "en": "Bank",
+    "hant": "銀行",
+    "hans": "银行",
+    "category": "places",
+    "motion": "ring"
+  },
+  {
+    "name": "crosswalk",
+    "set": "common",
+    "en": "Pedestrian crossing",
+    "hant": "行人過路處",
+    "hans": "人行横道",
+    "category": "places",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "rain",
+    "set": "common",
+    "en": "Rain",
+    "hant": "下雨",
+    "hans": "下雨",
+    "category": "weather",
+    "motion": "bob"
+  },
+  {
+    "name": "thunderstorm",
+    "set": "common",
+    "en": "Thunderstorm",
+    "hant": "雷暴",
+    "hans": "雷暴",
+    "category": "weather",
+    "motion": "blink"
+  },
+  {
+    "name": "snow",
+    "set": "common",
+    "en": "Snow",
+    "hant": "下雪",
+    "hans": "下雪",
+    "category": "weather",
+    "motion": "float"
+  },
+  {
+    "name": "wind",
+    "set": "common",
+    "en": "Wind",
+    "hant": "大風",
+    "hans": "大风",
+    "category": "weather",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "cloudy",
+    "set": "common",
+    "en": "Cloudy",
+    "hant": "多雲",
+    "hans": "多云",
+    "category": "weather",
+    "motion": "float"
+  },
+  {
+    "name": "wing",
+    "set": "common",
+    "en": "Wing",
+    "hant": "翅膀",
+    "hans": "翅膀",
+    "category": "creatures",
+    "motion": "swing"
+  },
+  {
+    "name": "angel",
+    "set": "common",
+    "en": "Angel",
+    "hant": "天使",
+    "hans": "天使",
+    "category": "creatures",
+    "motion": "float"
+  },
+  {
+    "name": "god",
+    "set": "common",
+    "en": "God",
+    "hant": "神",
+    "hans": "神",
+    "category": "classes",
+    "motion": "pulse"
+  },
+  {
+    "name": "cross",
+    "set": "common",
+    "en": "Cross",
+    "hant": "十字架",
+    "hans": "十字架",
+    "category": "classes",
+    "motion": "pulse"
+  },
+  {
+    "name": "hat",
+    "set": "common",
+    "en": "Hat",
+    "hant": "帽",
+    "hans": "帽子",
+    "category": "clothing",
+    "motion": "bob"
+  },
+  {
+    "name": "shirt",
+    "set": "common",
+    "en": "Shirt",
+    "hant": "恤衫",
+    "hans": "衬衫",
+    "category": "clothing",
+    "motion": "wiggle"
+  },
+  {
+    "name": "shorts",
+    "set": "common",
+    "en": "Shorts",
+    "hant": "短褲",
+    "hans": "短裤",
+    "category": "clothing",
+    "motion": "wiggle"
+  },
+  {
+    "name": "gown",
+    "set": "common",
+    "en": "Formal dress",
+    "hant": "晚裝",
+    "hans": "晚礼服",
+    "category": "clothing",
+    "motion": "wiggle"
+  },
+  {
+    "name": "suit",
+    "set": "common",
+    "en": "Suit",
+    "hant": "西裝",
+    "hans": "西装",
+    "category": "clothing",
+    "motion": "wiggle"
+  },
+  {
+    "name": "leaflet",
+    "set": "common",
+    "en": "Leaflet",
+    "hant": "單張",
+    "hans": "传单",
+    "category": "stationery",
+    "motion": "wiggle"
+  },
+  {
+    "name": "homework",
+    "set": "common",
+    "en": "Homework",
+    "hant": "功課",
+    "hans": "作业",
+    "category": "school",
+    "motion": "wiggle"
+  },
+  {
+    "name": "library",
+    "set": "common",
+    "en": "Library",
+    "hant": "圖書館",
+    "hans": "图书馆",
+    "category": "places",
+    "motion": "bob"
+  },
+  {
+    "name": "park",
+    "set": "common",
+    "en": "Park",
+    "hant": "公園",
+    "hans": "公园",
+    "category": "places",
+    "motion": "bob"
+  },
+  {
+    "name": "fountain",
+    "set": "common",
+    "en": "Fountain",
+    "hant": "噴水池",
+    "hans": "喷泉",
+    "category": "places",
+    "motion": "pulse"
+  },
+  {
+    "name": "swimming-pool",
+    "set": "common",
+    "en": "Swimming pool",
+    "hant": "游泳池",
+    "hans": "游泳池",
+    "category": "sports",
+    "motion": "bob"
+  },
+  {
+    "name": "badminton",
+    "set": "common",
+    "en": "Badminton",
+    "hant": "羽毛球",
+    "hans": "羽毛球",
+    "category": "sports",
+    "motion": "swing"
+  },
+  {
+    "name": "basketball",
+    "set": "common",
+    "en": "Basketball",
+    "hant": "籃球",
+    "hans": "篮球",
+    "category": "sports",
+    "motion": "bob"
+  },
+  {
+    "name": "football",
+    "set": "common",
+    "en": "Football",
+    "hant": "足球",
+    "hans": "足球",
+    "category": "sports",
+    "motion": "spin"
+  },
+  {
+    "name": "walking",
+    "set": "common",
+    "en": "Walking",
+    "hant": "步行",
+    "hans": "步行",
+    "category": "sports",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "running",
+    "set": "common",
+    "en": "Running",
+    "hant": "跑步",
+    "hans": "跑步",
+    "category": "sports",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "swimming",
+    "set": "common",
+    "en": "Swimming",
+    "hant": "游泳",
+    "hans": "游泳",
+    "category": "sports",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "hiking",
+    "set": "common",
+    "en": "Hiking",
+    "hant": "行山",
+    "hans": "徒步",
+    "category": "sports",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "mountain",
+    "set": "common",
+    "en": "Mountain",
+    "hant": "山",
+    "hans": "山",
+    "category": "nature",
+    "motion": "bob"
+  },
+  {
+    "name": "bridge",
+    "set": "common",
+    "en": "Bridge",
+    "hant": "橋",
+    "hans": "桥",
+    "category": "places",
+    "motion": "bob"
+  },
+  {
+    "name": "gas-station",
+    "set": "common",
+    "en": "Gas station",
+    "hant": "油站",
+    "hans": "加油站",
+    "category": "places",
+    "motion": "pulse"
+  },
+  {
+    "name": "convenience-store",
+    "set": "common",
+    "en": "Convenience store",
+    "hant": "便利店",
+    "hans": "便利店",
+    "category": "places",
+    "motion": "bob"
+  },
+  {
+    "name": "market",
+    "set": "common",
+    "en": "Market",
+    "hant": "街市",
+    "hans": "市场",
+    "category": "places",
+    "motion": "bob"
+  },
+  {
+    "name": "drugstore",
+    "set": "common",
+    "en": "Drugstore",
+    "hant": "藥房",
+    "hans": "药店",
+    "category": "places",
+    "motion": "bob"
+  },
+  {
+    "name": "plant",
+    "set": "common",
+    "en": "Plant",
+    "hant": "盆栽",
+    "hans": "盆栽",
+    "category": "nature",
+    "motion": "wiggle"
+  },
+  {
+    "name": "printer",
+    "set": "common",
+    "en": "Printer",
+    "hant": "打印機",
+    "hans": "打印机",
+    "category": "devices",
+    "motion": "shake"
+  },
+  {
+    "name": "cup",
+    "set": "common",
+    "en": "Takeaway cup",
+    "hant": "外賣杯",
+    "hans": "外卖杯",
+    "category": "food",
+    "motion": "bob"
+  },
+  {
+    "name": "door",
+    "set": "common",
+    "en": "Door",
+    "hant": "門",
+    "hans": "门",
+    "category": "living",
+    "motion": "swing"
+  },
+  {
+    "name": "monster",
+    "set": "common",
+    "en": "Monster",
+    "hant": "怪獸",
+    "hans": "怪兽",
+    "category": "creatures",
+    "motion": "shake"
+  },
+  {
+    "name": "court",
+    "set": "common",
+    "en": "Court",
+    "hant": "法院",
+    "hans": "法院",
+    "category": "places",
+    "motion": "swing"
+  },
+  {
+    "name": "fire-station",
+    "set": "common",
+    "en": "Fire station",
+    "hant": "消防局",
+    "hans": "消防局",
+    "category": "places",
+    "motion": "pulse"
+  },
+  {
+    "name": "hospital",
+    "set": "common",
+    "en": "Hospital",
+    "hant": "醫院",
+    "hans": "医院",
+    "category": "places",
+    "motion": "pulse"
+  },
+  {
+    "name": "clinic",
+    "set": "common",
+    "en": "Clinic",
+    "hant": "診所",
+    "hans": "诊所",
+    "category": "places",
+    "motion": "pulse"
+  },
+  {
+    "name": "police-station",
+    "set": "common",
+    "en": "Police station",
+    "hant": "警署",
+    "hans": "警察局",
+    "category": "places",
+    "motion": "blink"
+  },
+  {
+    "name": "post-office",
+    "set": "common",
+    "en": "Post office",
+    "hant": "郵政局",
+    "hans": "邮局",
+    "category": "places",
+    "motion": "bob"
+  },
+  {
+    "name": "kite",
+    "set": "common",
+    "en": "Kite",
+    "hant": "風箏",
+    "hans": "风筝",
+    "category": "awards",
+    "motion": "float"
+  },
+  {
+    "name": "drone",
+    "set": "common",
+    "en": "Drone",
+    "hant": "無人機",
+    "hans": "无人机",
+    "category": "devices",
+    "motion": "float"
+  },
+  {
+    "name": "bot",
+    "set": "common",
+    "en": "Bot",
+    "hant": "機械人",
+    "hans": "机器人",
+    "category": "devices",
+    "motion": "wiggle"
+  },
+  {
+    "name": "glove",
+    "set": "common",
+    "en": "Glove",
+    "hant": "手套",
+    "hans": "手套",
+    "category": "equipment",
+    "motion": "shake"
+  },
+  {
+    "name": "grave",
+    "set": "common",
+    "en": "Grave",
+    "hant": "墳墓",
+    "hans": "坟墓",
+    "category": "status",
+    "motion": "wiggle"
+  },
+  {
+    "name": "pdf",
+    "set": "common",
+    "en": "PDF file",
+    "hant": "PDF 檔案",
+    "hans": "PDF 文件",
+    "category": "files",
+    "motion": "bob"
+  },
+  {
+    "name": "pptx",
+    "set": "common",
+    "en": "PowerPoint file",
+    "hant": "PowerPoint 檔案",
+    "hans": "PowerPoint 文件",
+    "category": "files",
+    "motion": "bob"
+  },
+  {
+    "name": "html",
+    "set": "common",
+    "en": "HTML file",
+    "hant": "HTML 檔案",
+    "hans": "HTML 文件",
+    "category": "files",
+    "motion": "bob"
+  },
+  {
+    "name": "knight",
+    "set": "common",
+    "en": "Knight",
+    "hant": "騎士",
+    "hans": "骑士",
+    "category": "classes",
+    "motion": "bob"
+  },
+  {
+    "name": "paladin",
+    "set": "common",
+    "en": "Paladin",
+    "hant": "聖騎士",
+    "hans": "圣骑士",
+    "category": "classes",
+    "motion": "bob"
+  },
+  {
+    "name": "archer",
+    "set": "common",
+    "en": "Archer",
+    "hant": "弓箭手",
+    "hans": "弓箭手",
+    "category": "classes",
+    "motion": "bob"
+  },
+  {
+    "name": "thief",
+    "set": "common",
+    "en": "Thief",
+    "hant": "盜賊",
+    "hans": "盗贼",
+    "category": "classes",
+    "motion": "nudge-left"
+  },
+  {
+    "name": "ninja",
+    "set": "common",
+    "en": "Ninja",
+    "hant": "忍者",
+    "hans": "忍者",
+    "category": "classes",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "bard",
+    "set": "common",
+    "en": "Bard",
+    "hant": "吟遊詩人",
+    "hans": "吟游诗人",
+    "category": "classes",
+    "motion": "wiggle"
+  },
+  {
+    "name": "monk",
+    "set": "common",
+    "en": "Monk",
+    "hant": "武僧",
+    "hans": "武僧",
+    "category": "classes",
+    "motion": "bob"
+  },
+  {
+    "name": "necromancer",
+    "set": "common",
+    "en": "Necromancer",
+    "hant": "死靈法師",
+    "hans": "死灵法师",
+    "category": "classes",
+    "motion": "pulse"
+  },
+  {
+    "name": "chef",
+    "set": "common",
+    "en": "Chef",
+    "hant": "廚師",
+    "hans": "厨师",
+    "category": "people",
+    "motion": "bob"
+  },
+  {
+    "name": "doctor",
+    "set": "common",
+    "en": "Doctor",
+    "hant": "醫生",
+    "hans": "医生",
+    "category": "people",
+    "motion": "bob"
+  },
+  {
+    "name": "nurse",
+    "set": "common",
+    "en": "Nurse",
+    "hant": "護士",
+    "hans": "护士",
+    "category": "people",
+    "motion": "bob"
+  },
+  {
+    "name": "blacksmith",
+    "set": "common",
+    "en": "Blacksmith",
+    "hant": "鐵匠",
+    "hans": "铁匠",
+    "category": "people",
+    "motion": "bob"
+  },
+  {
+    "name": "pirate",
+    "set": "common",
+    "en": "Pirate",
+    "hant": "海盜",
+    "hans": "海盗",
+    "category": "people",
+    "motion": "bob"
+  },
+  {
+    "name": "black-magic",
+    "set": "common",
+    "en": "Black magic",
+    "hant": "黑魔法",
+    "hans": "黑魔法",
+    "category": "classes",
+    "motion": "pulse"
+  },
+  {
+    "name": "white-magic",
+    "set": "common",
+    "en": "White magic",
+    "hant": "白魔法",
+    "hans": "白魔法",
+    "category": "classes",
+    "motion": "spin-slow"
+  },
+  {
     "name": "stop",
     "set": "common",
     "en": "Stop",
@@ -1832,7 +2588,7 @@
     "en": "Cloud",
     "hant": "雲端",
     "hans": "云端",
-    "category": "nature",
+    "category": "weather",
     "motion": "float"
   },
   {
@@ -1841,7 +2597,7 @@
     "en": "Light mode",
     "hant": "淺色模式",
     "hans": "浅色模式",
-    "category": "nature",
+    "category": "weather",
     "motion": "spin-slow"
   },
   {
@@ -1850,7 +2606,7 @@
     "en": "Dark mode",
     "hant": "深色模式",
     "hans": "深色模式",
-    "category": "nature",
+    "category": "weather",
     "motion": "wiggle"
   },
   {
@@ -2140,6 +2896,24 @@
     "hans": "狮子山",
     "category": "hong-kong",
     "motion": "float"
+  },
+  {
+    "name": "hku",
+    "set": "hk",
+    "en": "HKU Main Building",
+    "hant": "港大本部大樓",
+    "hans": "港大本部大楼",
+    "category": "hong-kong",
+    "motion": "bob"
+  },
+  {
+    "name": "mtr",
+    "set": "hk",
+    "en": "MTR train",
+    "hant": "港鐵列車",
+    "hans": "港铁列车",
+    "category": "hong-kong",
+    "motion": "drive"
   },
   {
     "name": "rice-bowl",

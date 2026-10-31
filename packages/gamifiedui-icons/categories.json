@@ -78,16 +78,40 @@
     "hans": "家居"
   },
   {
+    "id": "clothing",
+    "en": "Clothing",
+    "hant": "服飾",
+    "hans": "服饰"
+  },
+  {
     "id": "people",
     "en": "People",
     "hant": "人物",
     "hans": "人物"
   },
   {
+    "id": "classes",
+    "en": "Classes and magic",
+    "hant": "職業與魔法",
+    "hans": "职业与魔法"
+  },
+  {
     "id": "places",
     "en": "Places",
     "hant": "地點",
     "hans": "地点"
+  },
+  {
+    "id": "sports",
+    "en": "Sports and activities",
+    "hant": "運動與活動",
+    "hans": "运动与活动"
+  },
+  {
+    "id": "flags",
+    "en": "Flags",
+    "hant": "旗幟",
+    "hans": "旗帜"
   },
   {
     "id": "transport",
@@ -100,6 +124,12 @@
     "en": "School",
     "hant": "學校",
     "hans": "学校"
+  },
+  {
+    "id": "weather",
+    "en": "Weather",
+    "hant": "天氣",
+    "hans": "天气"
   },
   {
     "id": "nature",
