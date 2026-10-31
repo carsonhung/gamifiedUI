@@ -15,7 +15,7 @@
     padding: 0.5rem 0.75rem;
     border: 0;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
+    font-size: 0.75rem;
     white-space: nowrap;
     text-transform: uppercase;
     color: var(--color-gx-on-surface);

@@ -23,7 +23,7 @@
   .gx-textbox-speaker {
     margin: 0 0 0.5rem;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
+    font-size: 0.75rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--color-gx-accent);
@@ -39,7 +39,7 @@
     right: 1rem;
     bottom: 0.5rem;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
+    font-size: 0.75rem;
     color: var(--color-gx-accent);
     animation: gx-nudge calc(var(--gx-motion-slow) * 2) steps(2, end) infinite;
   }

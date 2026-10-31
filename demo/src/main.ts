@@ -313,6 +313,35 @@ function setupDialog(): void {
   byId('open-dialog').addEventListener('click', () => dialog.showModal());
 }
 
+function setupToc(): void {
+  const pairs = Array.from(document.querySelectorAll<HTMLAnchorElement>('#toc a[href^="#"]')).flatMap((link) => {
+    const target = document.getElementById(link.hash.slice(1));
+    if (!target) return [];
+    const isGroup = target.classList.contains('demo-group');
+    return [{ link, isGroup, watched: isGroup ? target : (target.closest('section') ?? target) }];
+  });
+  const visible = new Set<Element>();
+
+  const mark = (): void => {
+    const panel = pairs.find((p) => !p.isGroup && visible.has(p.watched));
+    const group = panel ? panel.watched.closest('.demo-group') : pairs.find((p) => p.isGroup && visible.has(p.watched))?.watched;
+    pairs.forEach(({ link, watched }) => {
+      if (watched === panel?.watched || watched === group) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => (entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target)));
+      mark();
+    },
+    { rootMargin: '0px 0px -70% 0px' },
+  );
+  pairs.forEach(({ watched }) => observer.observe(watched));
+}
+
+setupToc();
 setupThemeAndMotion();
 setupHealth();
 setupSpriteAndIso();

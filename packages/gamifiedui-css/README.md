@@ -89,7 +89,7 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 | `gx-datepicker` | `.gx-input` + `gx-datepicker-toggle` + `[popover].gx-datepicker-panel` holding a `gx-calendar` | single date or a range; anchored under the field where CSS anchor positioning exists |
 | `gx-dropzone` | `<label>` wrapping `<input type="file">` (click and keyboard work without JS) | `gx-dropzone-{title,hint}`, `data-dragging`, `data-invalid` |
 | `gx-file-list` / `gx-file` | `<ul>` of uploads | `gx-file-{name,size,remove,status}`, `gx-bar gx-file-progress`, `data-state="uploading\|done\|error"` |
-| `gx-icon` | `<span aria-hidden="true">` + an icon class from `gamifiedui-icons` | `gx-icon-{sm,lg,xl}` (16/48/64px; default 32), tones, `gx-icon-shadow`, `gx-icon-tile`; stop animated `gx-ia-*` icons with `gx-icon-paused`, `gx-icon-hover-play` or `gx-icons-paused` on a container |
+| `gx-icon` | `<span aria-hidden="true">` + an icon class from `gamifiedui-icons` | `gx-icon-{sm,lg,xl}` (16/48/64px; default 32), tones, `gx-icon-shadow`, `gx-icon-tile` |
 
 ## Particles
 

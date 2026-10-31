@@ -1,3 +1,41 @@
 @import "tailwindcss";
 @import "gamifiedui-css";
 @import "gamifiedui-icons/all.css";
+
+@layer components {
+  .demo-group {
+    @apply flex scroll-mt-20 flex-col gap-8 lg:scroll-mt-6;
+  }
+
+  .demo-group-title {
+    @apply border-b-4 border-gx-accent pb-2 font-gx text-lg text-gx-accent uppercase;
+  }
+
+  .demo-group [id$="-title"] {
+    @apply scroll-mt-20 lg:scroll-mt-6;
+  }
+
+  .demo-toc {
+    @apply sticky top-0 z-10 -mx-4 mb-8 bg-gx-ink px-4 py-2 sm:-mx-8 sm:px-8 lg:top-6 lg:mx-0 lg:mb-0 lg:max-h-[calc(100dvh-3rem)] lg:self-start lg:overflow-y-auto lg:bg-transparent lg:p-0;
+  }
+
+  .demo-toc > ul {
+    @apply flex gap-5 overflow-x-auto py-1 [scrollbar-width:none] lg:flex-col lg:gap-4 lg:overflow-visible;
+  }
+
+  .demo-toc ul ul {
+    @apply mt-2 hidden flex-col gap-1 border-l-4 border-gx-surface pl-3 lg:flex;
+  }
+
+  .demo-toc a {
+    @apply block text-sm whitespace-nowrap text-gx-on-surface/70 hover:text-gx-on-surface focus-visible:outline-4 focus-visible:outline-gx-focus lg:whitespace-normal;
+  }
+
+  .demo-toc a.demo-toc-group {
+    @apply font-gx text-xs text-gx-on-surface uppercase;
+  }
+
+  .demo-toc a[aria-current="true"] {
+    @apply text-gx-accent;
+  }
+}

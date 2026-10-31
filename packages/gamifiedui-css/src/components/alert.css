@@ -33,7 +33,7 @@
     width: 2rem;
     height: 2rem;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-md);
+    font-size: 0.875rem;
     color: var(--gx-alert-on-tone);
     background: var(--gx-alert-tone);
   }
@@ -41,7 +41,7 @@
   .gx-alert-title {
     margin: 0;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
+    font-size: 0.75rem;
     line-height: 1.6;
     text-transform: uppercase;
   }

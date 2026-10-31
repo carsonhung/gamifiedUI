@@ -46,7 +46,7 @@
   .gx-card-title {
     margin: 0;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
+    font-size: 0.75rem;
     line-height: 1.6;
     text-transform: uppercase;
   }
@@ -131,7 +131,7 @@
     right: calc(var(--gx-px) / 2);
     bottom: 0;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
+    font-size: 0.75rem;
     line-height: 1.4;
     color: var(--color-gx-on-surface);
     text-shadow:
@@ -148,7 +148,7 @@
     padding: 0 0.375rem;
     box-sizing: border-box;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
+    font-size: 0.75rem;
     line-height: 1;
     color: var(--color-gx-on-surface);
     background: color-mix(in oklab, var(--color-gx-surface) 80%, white);

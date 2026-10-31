@@ -70,7 +70,7 @@
     width: 2rem;
     height: 2rem;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-md);
+    font-size: 0.875rem;
     color: var(--gx-toast-on-tone);
     background: var(--gx-toast-tone);
   }
@@ -78,7 +78,7 @@
   .gx-toast-title {
     margin: 0;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
+    font-size: 0.75rem;
     line-height: 1.6;
     text-transform: uppercase;
   }
@@ -100,7 +100,7 @@
     padding: 0;
     border: 0;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
+    font-size: 0.75rem;
     color: inherit;
     background: transparent;
     cursor: pointer;

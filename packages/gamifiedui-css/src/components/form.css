@@ -9,7 +9,7 @@
 
   .gx-field-label {
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
+    font-size: 0.75rem;
     line-height: 1.6;
     text-transform: uppercase;
   }
