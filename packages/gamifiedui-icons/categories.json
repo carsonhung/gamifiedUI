@@ -1,0 +1,122 @@
+[
+  {
+    "id": "interface",
+    "en": "Interface",
+    "hant": "介面",
+    "hans": "界面"
+  },
+  {
+    "id": "media",
+    "en": "Media",
+    "hant": "媒體",
+    "hans": "媒体"
+  },
+  {
+    "id": "files",
+    "en": "Files",
+    "hant": "檔案",
+    "hans": "文件"
+  },
+  {
+    "id": "stationery",
+    "en": "Stationery and art",
+    "hant": "文具與美術",
+    "hans": "文具与美术"
+  },
+  {
+    "id": "communication",
+    "en": "Communication",
+    "hant": "通訊",
+    "hans": "通讯"
+  },
+  {
+    "id": "devices",
+    "en": "Devices",
+    "hant": "裝置",
+    "hans": "设备"
+  },
+  {
+    "id": "shopping",
+    "en": "Shopping",
+    "hant": "購物",
+    "hans": "购物"
+  },
+  {
+    "id": "equipment",
+    "en": "Equipment",
+    "hant": "裝備",
+    "hans": "装备"
+  },
+  {
+    "id": "status",
+    "en": "Stats and status",
+    "hant": "屬性與狀態",
+    "hans": "属性与状态"
+  },
+  {
+    "id": "awards",
+    "en": "Awards",
+    "hant": "獎勵",
+    "hans": "奖励"
+  },
+  {
+    "id": "creatures",
+    "en": "Creatures",
+    "hant": "生物",
+    "hans": "生物"
+  },
+  {
+    "id": "food",
+    "en": "Food and drink",
+    "hant": "飲食",
+    "hans": "饮食"
+  },
+  {
+    "id": "living",
+    "en": "Home",
+    "hant": "家居",
+    "hans": "家居"
+  },
+  {
+    "id": "people",
+    "en": "People",
+    "hant": "人物",
+    "hans": "人物"
+  },
+  {
+    "id": "places",
+    "en": "Places",
+    "hant": "地點",
+    "hans": "地点"
+  },
+  {
+    "id": "transport",
+    "en": "Transport",
+    "hant": "交通",
+    "hans": "交通"
+  },
+  {
+    "id": "school",
+    "en": "School",
+    "hant": "學校",
+    "hans": "学校"
+  },
+  {
+    "id": "nature",
+    "en": "Nature and materials",
+    "hant": "自然與材料",
+    "hans": "自然与材料"
+  },
+  {
+    "id": "emoji",
+    "en": "Emoji and reactions",
+    "hant": "表情與反應",
+    "hans": "表情与反应"
+  },
+  {
+    "id": "hong-kong",
+    "en": "Hong Kong",
+    "hant": "香港",
+    "hans": "香港"
+  }
+]

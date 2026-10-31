@@ -8,6 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import animated from '../icons/animated.mjs';
+import categories from '../icons/categories.mjs';
 import common from '../icons/common.mjs';
 import emoji from '../icons/emoji.mjs';
 import hk from '../icons/hk.mjs';
@@ -184,16 +185,42 @@ outputs.set(
     '\n' +
     REDUCED_PLAIN,
 );
+const SET_CATEGORY = { emoji: 'emoji', hk: 'hong-kong' };
+const categoryOf = new Map();
+for (const category of categories) {
+  for (const name of category.icons) {
+    if (categoryOf.has(name)) throw new Error(`"${name}" is in both ${categoryOf.get(name)} and ${category.id}`);
+    categoryOf.set(name, category.id);
+  }
+}
+const allNames = new Set([...icons, ...moving].map((i) => i.name));
+for (const name of categoryOf.keys()) if (!allNames.has(name)) throw new Error(`category lists unknown icon "${name}"`);
+const categorise = (icon) => {
+  const id = categoryOf.get(icon.name) ?? SET_CATEGORY[icon.set];
+  if (!id) throw new Error(`"${icon.name}" has no category: add it to icons/categories.mjs`);
+  return id;
+};
+
 outputs.set(
   'icons.json',
   `${JSON.stringify(
     [
-      ...icons.map(({ svg, ...meta }) => ({ ...meta, motion: framed.has(meta.name) ? 'frames' : DEFAULTS[meta.name] ?? FALLBACK })),
-      ...moving.filter((i) => !icons.some((s) => s.name === i.name)).map(({ svg, ...meta }) => ({ ...meta, motion: 'frames' })),
+      ...icons.map(({ svg, ...meta }) => ({
+        ...meta,
+        category: categorise(meta),
+        motion: framed.has(meta.name) ? 'frames' : DEFAULTS[meta.name] ?? FALLBACK,
+      })),
+      ...moving
+        .filter((i) => !icons.some((s) => s.name === i.name))
+        .map(({ svg, ...meta }) => ({ ...meta, category: categorise(meta), motion: 'frames' })),
     ],
     null,
     2,
   )}\n`,
+);
+outputs.set(
+  'categories.json',
+  `${JSON.stringify(categories.map(({ icons: _, ...meta }) => meta), null, 2)}\n`,
 );
 for (const icon of icons) outputs.set(`svg/${icon.name}.svg`, `${icon.svg}\n`);
 for (const icon of moving) outputs.set(`svg/ia-${icon.name}.svg`, `${icon.svg}\n`);

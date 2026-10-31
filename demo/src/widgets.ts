@@ -1,3 +1,4 @@
+import categories from 'gamifiedui-icons/categories.json';
 import icons from 'gamifiedui-icons/icons.json';
 import {
   burst,
@@ -227,37 +228,73 @@ const TILE_CLASSES: Record<string, string> = {
   animated: 'gx-icon-tile gx-rarity-legendary',
 };
 
+type Labelled = { en: string; hant: string; hans: string };
+type IconMeta = (typeof icons)[number];
+
+const labelOf = (item: Labelled): string => (locale === 'zh-Hant' ? item.hant : locale === 'zh-Hans' ? item.hans : item.en);
+const GRID_CLASS = 'grid grid-cols-[repeat(auto-fill,minmax(5.5rem,1fr))] gap-2';
+
+function iconTile(icon: IconMeta, moving: boolean, tileClass: string): HTMLLIElement {
+  const item = document.createElement('li');
+  item.className = 'flex flex-col items-center gap-1 text-center';
+  const tile = document.createElement('span');
+  tile.className = tileClass;
+  const glyph = document.createElement('span');
+  glyph.className = `gx-icon ${moving ? 'gx-ia-' : 'gx-i-'}${icon.name}`;
+  glyph.setAttribute('aria-hidden', 'true');
+  tile.append(glyph);
+  const label = document.createElement('span');
+  label.className = 'text-xs leading-tight';
+  label.textContent = labelOf(icon);
+  const code = document.createElement('code');
+  code.className = 'text-[0.625rem] opacity-60';
+  code.textContent = moving ? `ia-${icon.name}` : icon.name;
+  item.append(tile, label, code);
+  return item;
+}
+
 function setupIconGallery(): void {
   const animateChip = byId<HTMLButtonElement>('icons-animate');
   const pauseChip = byId<HTMLButtonElement>('icons-pause');
   const allList = byId('icon-gallery');
-  const galleries = [
-    { list: allList, icons: icons.filter((icon) => icon.set !== 'animated'), all: true },
-    { list: byId('icon-gallery-animated'), icons: icons.filter((icon) => icon.motion === 'frames'), all: false },
-  ];
+  const framedList = byId('icon-gallery-animated');
+  const nav = byId('icon-categories');
+  const galleries = [{ list: allList }, { list: framedList }];
   const render = (): void => {
     const animateAll = animateChip.getAttribute('aria-pressed') === 'true';
-    galleries.forEach(({ list, icons: subset, all }) => list.replaceChildren(
-      ...subset.map((icon) => {
-        const moving = !all || animateAll;
-        const item = document.createElement('li');
-        item.className = 'flex flex-col items-center gap-1 text-center';
-        const tile = document.createElement('span');
-        tile.className = TILE_CLASSES[all ? icon.set : 'animated'] ?? 'gx-icon-tile';
-        const glyph = document.createElement('span');
-        glyph.className = `gx-icon ${moving ? 'gx-ia-' : 'gx-i-'}${icon.name}`;
-        glyph.setAttribute('aria-hidden', 'true');
-        tile.append(glyph);
-        const label = document.createElement('span');
-        label.className = 'text-xs leading-tight';
-        label.textContent = locale === 'zh-Hant' ? icon.hant : locale === 'zh-Hans' ? icon.hans : icon.en;
-        const code = document.createElement('code');
-        code.className = 'text-[0.625rem] opacity-60';
-        code.textContent = moving ? `ia-${icon.name}` : icon.name;
-        item.append(tile, label, code);
-        return item;
+    const shown = icons.filter((icon) => animateAll || icon.set !== 'animated');
+    const groups = categories
+      .map((category) => ({ category, members: shown.filter((icon) => icon.category === category.id) }))
+      .filter(({ members }) => members.length > 0);
+
+    nav.replaceChildren(
+      ...groups.map(({ category, members }) => {
+        const link = document.createElement('a');
+        link.className = 'gx-chip';
+        link.href = `#icons-cat-${category.id}`;
+        link.textContent = `${labelOf(category)} ${members.length}`;
+        return link;
       }),
-    ));
+    );
+    allList.replaceChildren(
+      ...groups.map(({ category, members }) => {
+        const section = document.createElement('section');
+        section.className = 'mb-4';
+        section.setAttribute('aria-labelledby', `icons-cat-${category.id}`);
+        const heading = document.createElement('h4');
+        heading.id = `icons-cat-${category.id}`;
+        heading.className = 'mb-2 scroll-mt-4 font-gx text-xs uppercase';
+        heading.textContent = labelOf(category);
+        const list = document.createElement('ul');
+        list.className = GRID_CLASS;
+        list.append(...members.map((icon) => iconTile(icon, animateAll, TILE_CLASSES[icon.set] ?? 'gx-icon-tile')));
+        section.append(heading, list);
+        return section;
+      }),
+    );
+    framedList.replaceChildren(
+      ...icons.filter((icon) => icon.motion === 'frames').map((icon) => iconTile(icon, true, TILE_CLASSES.animated ?? 'gx-icon-tile')),
+    );
   };
   const toggle = (chip: HTMLButtonElement): boolean => {
     const on = chip.getAttribute('aria-pressed') !== 'true';

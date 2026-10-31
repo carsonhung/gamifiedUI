@@ -21,9 +21,10 @@
     },
     "./all.css": "./src/all.css",
     "./icons.json": "./icons.json",
+    "./categories.json": "./categories.json",
     "./svg/*": "./svg/*"
   },
-  "files": ["src", "svg", "icons.json", "LICENSE", "NOTICE"],
+  "files": ["src", "svg", "icons.json", "categories.json", "LICENSE", "NOTICE"],
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/build.mjs --check"

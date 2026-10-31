@@ -29,6 +29,10 @@
     --color-gx-rare: #3b82f6;
     --color-gx-epic: #a855f7;
     --color-gx-legendary: #f59e0b;
+    --color-gx-gold: #f5c542;
+    --color-gx-silver: #c0c7d1;
+    --color-gx-bronze: #c47a3f;
+    --color-gx-diamond: #7dd3fc;
     --font-gx: "Press Start 2P", "Fusion Pixel 12px Proportional TC", ui-monospace, monospace;
     --font-gx-body: ui-sans-serif, system-ui, sans-serif;
   }
@@ -3443,6 +3447,22 @@
 
   .gx-icon-legendary {
     --gx-icon-color: var(--color-gx-legendary);
+  }
+
+  .gx-icon-gold {
+    --gx-icon-color: var(--color-gx-gold);
+  }
+
+  .gx-icon-silver {
+    --gx-icon-color: var(--color-gx-silver);
+  }
+
+  .gx-icon-bronze {
+    --gx-icon-color: var(--color-gx-bronze);
+  }
+
+  .gx-icon-diamond {
+    --gx-icon-color: var(--color-gx-diamond);
   }
 
   .gx-icon-paused, .gx-icon-hover-play {

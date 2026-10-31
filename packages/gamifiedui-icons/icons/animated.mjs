@@ -1,7 +1,7 @@
 /* Animated 16x16 icons: each entry is a list of frames played with steps() at `fps`.
    Same characters as the static sets ("#" solid, "+" half-tone, "." empty). Frame 0 is what
    reduced-motion users see, so make it a complete, meaningful pose. */
-import common from './common.mjs';
+import common, { ORNAMENTS, christmasTree, waves } from './common.mjs';
 import { EYES, GRIN, GRIN_CLOSED, HAPPY_EYES, LEFT_EYE, SMILE, WINK_RIGHT, face } from './emoji.mjs';
 
 const SIZE = 16;
@@ -129,6 +129,30 @@ const heart = rowsOf('heart');
 const CLAPPER_FROM = 13;
 const swing = (dx) => [...shiftX(bell.slice(0, CLAPPER_FROM), dx), ...shiftX(bell.slice(CLAPPER_FROM), -dx)];
 
+const slime = rowsOf('slime');
+const SLIME_SQUASH = [
+  '................', '................', '................', '................',
+  '................', '................', '................', '.....######.....',
+  '..############..', '.##+##.##.#####.', '.#+###.##.#####.', '################',
+  '################', '.##############.', '................', '................',
+];
+const SLIME_HOP = [
+  '................', '................', '................', '......####......',
+  '.....######.....', '....########....', '...##+#######...', '...#+#.##.###...',
+  '...###.##.###...', '...##########...', '...##########...', '....########....',
+  '................', '.....++++++.....', '................', '................',
+];
+
+/* Microphone on the left with an eighth note rising on the right. */
+const mic = shiftX(rowsOf('microphone'), -3);
+const NOTE = ['.##', '.#.', '##.', '##.'];
+const singing = (f) => {
+  const top = 8 - 2 * f;
+  return mic.map((row, y) =>
+    [...row].map((c, x) => (NOTE[y - top]?.[x - 11] === '#' ? '#' : c)).join(''),
+  );
+};
+
 const smileFace = face([...EYES, ...SMILE]);
 const winkFace = face([...LEFT_EYE, ...WINK_RIGHT, ...SMILE]);
 const laughFace = face([...HAPPY_EYES, ...GRIN]);
@@ -145,4 +169,14 @@ export default [
   { name: 'loading', en: 'Loading', hant: '載入中', hans: '加载中', fps: 10, frames: Array.from({ length: 8 }, (_, f) => spinner(f)) },
   { name: 'wink', en: 'Wink', hant: '眨眼', hans: '眨眼', fps: 3, frames: [winkFace, winkFace, smileFace, smileFace] },
   { name: 'laugh', en: 'Laugh', hant: '大笑', hans: '大笑', fps: 6, frames: [laughFace, laughClosed] },
+  {
+    name: 'christmas-tree', en: 'Christmas tree', hant: '聖誕樹', hans: '圣诞树', fps: 3,
+    frames: [0, 1].map((f) => {
+      const on = ORNAMENTS.filter((_, i) => i % 2 === f);
+      return christmasTree(ORNAMENTS.filter((o) => !on.includes(o)), on);
+    }),
+  },
+  { name: 'sea', en: 'Sea', hant: '海', hans: '海', fps: 4, frames: [0, 2, 4, 6].map(waves) },
+  { name: 'sing', en: 'Singing', hant: '唱歌', hans: '唱歌', fps: 4, frames: [0, 1, 2, 3].map(singing) },
+  { name: 'slime', en: 'Slime', hant: '史萊姆', hans: '史莱姆', fps: 5, frames: [slime, SLIME_SQUASH, SLIME_HOP, slime] },
 ];
