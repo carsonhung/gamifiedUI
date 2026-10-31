@@ -1,0 +1,74 @@
+/* RPG dialogue box. Typewriter text goes in an aria-hidden .gx-textbox-text; put the full line
+   in a visually hidden aria-live="polite" element next to it so screen readers get it once. */
+@layer components {
+  .gx-textbox {
+    position: relative;
+    display: block;
+    margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) + var(--gx-depth));
+    padding: 1rem 1.25rem 1.5rem;
+    font-family: var(--font-gx-body);
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      inset 0 0 0 var(--gx-px) color-mix(in oklab, var(--color-gx-surface) 80%, white),
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
+      0 calc(var(--gx-px) + var(--gx-depth)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+  }
+
+  .gx-textbox-speaker {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-gx-accent);
+  }
+
+  .gx-textbox-text {
+    min-height: 3em;
+    margin: 0;
+  }
+
+  .gx-textbox-next {
+    position: absolute;
+    right: 1rem;
+    bottom: 0.5rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    color: var(--color-gx-accent);
+    animation: gx-nudge calc(var(--gx-motion-slow) * 2) steps(2, end) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-textbox-next {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-textbox-next {
+    animation: none;
+  }
+
+  .gx-textbox-choices {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .gx-textbox-choices {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+@keyframes gx-nudge {
+  50% {
+    translate: 0 calc(var(--gx-px) * -1);
+  }
+}

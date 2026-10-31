@@ -1,0 +1,187 @@
+/* Fields: .gx-field > label.gx-field-label + .gx-input + .gx-field-hint / .gx-field-error.
+   Mark invalid inputs with aria-invalid="true" and aria-describedby pointing at the error. */
+@layer components {
+  .gx-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .gx-field-label {
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  .gx-field-hint {
+    font-size: 0.875rem;
+    color: color-mix(in oklab, var(--color-gx-on-surface) 80%, var(--color-gx-surface));
+  }
+
+  .gx-field-error {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .gx-field-error::before {
+    content: "! ";
+    font-family: var(--font-gx);
+    color: var(--color-gx-accent);
+  }
+
+  .gx-input {
+    --gx-input-frame: var(--color-gx-ink);
+
+    display: block;
+    box-sizing: border-box;
+    width: calc(100% - var(--gx-px) * 2);
+    min-height: 2.75rem;
+    margin: var(--gx-px);
+    padding: 0.5rem 0.75rem;
+    border: 0;
+    border-radius: 0;
+    font-family: var(--font-gx-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-gx-on-surface);
+    background: color-mix(in oklab, var(--color-gx-surface) 75%, var(--color-gx-ink));
+    appearance: none;
+    box-shadow:
+      inset var(--gx-px) var(--gx-px) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent),
+      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-input-frame),
+      0 var(--gx-px) 0 0 var(--gx-input-frame),
+      var(--gx-px) 0 0 0 var(--gx-input-frame),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-input-frame);
+  }
+
+  .gx-input::placeholder {
+    color: color-mix(in oklab, var(--color-gx-on-surface) 60%, transparent);
+  }
+
+  .gx-input:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * 2);
+  }
+
+  .gx-input[aria-invalid="true"] {
+    --gx-input-frame: var(--color-gx-danger);
+  }
+
+  .gx-input:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  textarea.gx-input {
+    min-height: 6rem;
+    resize: vertical;
+  }
+
+  select.gx-input {
+    appearance: auto;
+  }
+
+  /* label.gx-choice wraps a checkbox, radio or switch plus its text; it is the 44px target. */
+  .gx-choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-height: 2.75rem;
+    cursor: pointer;
+  }
+
+  .gx-checkbox,
+  .gx-radio,
+  .gx-switch {
+    position: relative;
+    flex: none;
+    margin: var(--gx-px);
+    border: 0;
+    border-radius: 0;
+    appearance: none;
+    cursor: pointer;
+    background: color-mix(in oklab, var(--color-gx-surface) 75%, var(--color-gx-ink));
+    box-shadow:
+      inset var(--gx-px) var(--gx-px) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent),
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+  }
+
+  .gx-checkbox,
+  .gx-radio {
+    width: calc(var(--gx-px) * 5);
+    height: calc(var(--gx-px) * 5);
+  }
+
+  .gx-checkbox:checked,
+  .gx-checkbox:indeterminate {
+    background: var(--color-gx-primary);
+  }
+
+  .gx-checkbox:checked::before,
+  .gx-checkbox:indeterminate::before {
+    content: "";
+    position: absolute;
+    inset: var(--gx-px);
+    background: var(--color-gx-on-primary);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' shape-rendering='crispEdges'%3E%3Cpath d='M0 2h1v2H0zM1 3h1v2H1zM2 4h1v2H2zM3 3h1v2H3zM4 2h1v2H4zM5 1h1v2H5z'/%3E%3C/svg%3E")
+      center / 100% 100% no-repeat;
+  }
+
+  .gx-checkbox:indeterminate::before {
+    mask: none;
+    inset: calc(var(--gx-px) * 2) var(--gx-px);
+  }
+
+  .gx-radio:checked::before {
+    content: "";
+    position: absolute;
+    inset: var(--gx-px);
+    background: var(--color-gx-primary);
+  }
+
+  .gx-switch {
+    width: calc(var(--gx-px) * 12);
+    height: calc(var(--gx-px) * 6);
+    background: var(--color-gx-track);
+  }
+
+  .gx-switch::before {
+    content: "";
+    position: absolute;
+    top: var(--gx-px);
+    left: var(--gx-px);
+    width: calc(var(--gx-px) * 4);
+    height: calc(var(--gx-px) * 4);
+    background: var(--color-gx-on-surface);
+    box-shadow: inset calc(-1 * var(--gx-px) / 2) calc(-1 * var(--gx-px) / 2) 0 0
+      color-mix(in oklab, var(--color-gx-ink) 40%, transparent);
+    transition: translate var(--gx-motion-fast) steps(3, end);
+  }
+
+  .gx-switch:checked {
+    background: var(--color-gx-success);
+  }
+
+  .gx-switch:checked::before {
+    background: var(--color-gx-on-success);
+    translate: calc(var(--gx-px) * 6) 0;
+  }
+
+  .gx-checkbox:focus-visible,
+  .gx-radio:focus-visible,
+  .gx-switch:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * 2);
+  }
+
+  .gx-checkbox:disabled,
+  .gx-radio:disabled,
+  .gx-switch:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}

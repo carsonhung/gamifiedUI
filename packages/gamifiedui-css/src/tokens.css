@@ -1,0 +1,62 @@
+/* Theme tokens. `--color-gx-*` and `--font-gx*` generate utilities (bg-gx-primary, font-gx). */
+@theme {
+  --color-gx-ink: #0d0d1a;
+  --color-gx-surface: #24244a;
+  --color-gx-on-surface: #f4efe2;
+  --color-gx-accent: #f5c542;
+  --color-gx-focus: #f5c542;
+  --color-gx-primary: #2563eb;
+  --color-gx-on-primary: #ffffff;
+  --color-gx-danger: #c62828;
+  --color-gx-on-danger: #ffffff;
+  --color-gx-success: #2e7d32;
+  --color-gx-on-success: #ffffff;
+  --color-gx-warning: #f5a524;
+  --color-gx-on-warning: #0d0d1a;
+  --color-gx-hp: #e5484d;
+  --color-gx-mp: #3b82f6;
+  --color-gx-xp: #a3e635;
+  --color-gx-track: #3a3a5c;
+  --color-gx-common: #9ca3af;
+  --color-gx-rare: #3b82f6;
+  --color-gx-epic: #a855f7;
+  --color-gx-legendary: #f59e0b;
+
+  --font-gx: "Press Start 2P", "Fusion Pixel 12px Proportional TC", ui-monospace, monospace;
+  --font-gx-body: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Internal tokens: no utilities, overridable per element. */
+@layer base {
+  :root {
+    --gx-px: 4px;
+    --gx-depth: 4px;
+
+    --gx-text-sm: 0.75rem;
+    --gx-text-md: 0.875rem;
+    --gx-text-lg: 1rem;
+
+    --gx-motion-fast: 120ms;
+    --gx-motion-base: 200ms;
+    --gx-motion-slow: 360ms;
+
+    --gx-z-hud: 500;
+    --gx-z-hud-raised: 510;
+    --gx-z-modal: 1000;
+    --gx-z-toast: 1100;
+  }
+
+  [data-gx-motion="reduce"] {
+    --gx-motion-fast: 0ms;
+    --gx-motion-base: 0ms;
+    --gx-motion-slow: 0ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --gx-motion-fast: 0ms;
+      --gx-motion-base: 0ms;
+      --gx-motion-slow: 0ms;
+    }
+  }
+}

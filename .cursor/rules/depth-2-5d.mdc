@@ -1,0 +1,39 @@
+---
+description: Pixel art, sprite sheets, depth and isometric rendering in CSS
+globs: packages/**/*.css,demo/**
+alwaysApply: false
+---
+
+# Pixel art, sprites and 2.5D
+
+## Pixel art
+
+- One pixel unit, `--gx-px` (4px). Borders, depth, offsets and notches are whole multiples.
+- Hard edges only: offset `box-shadow` with zero blur, no `border-radius` on pixel surfaces.
+  Notched corners come from four offset shadows (see `gx-pixel-frame`).
+- Images and sprites use `image-rendering: pixelated` and scale by whole numbers only
+  (`gx-sprite-scale-4`, never 1.5). Fractional device pixel ratios still distort; that is a
+  browser limit, not a bug to patch.
+
+## Sprite sheets
+
+- Horizontal strips, one frame per cell, no spacing. Element = one frame; `background-size` =
+  frames x cell; animate `background-position-x` to minus the full strip width with
+  `steps(frames, end)`. Frames, endpoint and cell size must agree or frames slice.
+- Assets without a licence file never enter the repo (see `asset-licensing`).
+
+## Depth (2.5D)
+
+- Raised parts draw a solid slab below the face (`0 calc(px + depth) 0 0 ink`). Pressing sets
+  the slab to 0 and translates the face down by `--gx-depth`, so the footprint never moves.
+- Depth is set with `gx-depth-*`; components read `--gx-depth`, never a literal.
+
+## Isometric
+
+- `gx-iso` = `rotateX(54.7356deg) rotateZ(-45deg) scale3d(1.22474, ...)`: true isometric and
+  orthographic. Do not add `perspective-*` to an iso scene.
+- `transform-style: preserve-3d` (`transform-3d`) on every wrapper between the iso root and any
+  face that uses `translate-z-*`; one flat ancestor collapses the scene. `overflow` other than
+  `visible` on an element flattens it.
+- The rotated scene is larger than its layout box: give the parent fixed height,
+  `min-w-0` and `overflow-hidden`, or it causes page-wide horizontal scroll.

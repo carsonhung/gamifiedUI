@@ -1,0 +1,23 @@
+{
+  "name": "gamifiedui-monorepo",
+  "private": true,
+  "description": "Game-style 2D / 2.5D UI components for Tailwind CSS v4: pixel frames, depth, sprites, isometric and animation.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carsonhung/gamifiedUI.git"
+  },
+  "workspaces": [
+    "packages/*",
+    "demo"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=gamifiedui-demo",
+    "test": "node scripts/check-css.mjs",
+    "demo": "npm run dev --workspace=gamifiedui-demo"
+  },
+  "devDependencies": {
+    "@tailwindcss/node": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  }
+}

@@ -1,0 +1,50 @@
+/* Era themes. Apply with data-gx-theme on any element; themes nest. The default (no attribute) is "arcade". */
+@layer base {
+  [data-gx-theme="gameboy"] {
+    --color-gx-ink: #0f380f;
+    --color-gx-surface: #9bbc0f;
+    --color-gx-on-surface: #0f380f;
+    --color-gx-accent: #306230;
+    --color-gx-focus: #0f380f;
+    --color-gx-primary: #306230;
+    --color-gx-on-primary: #e0f8d0;
+    --color-gx-danger: #0f380f;
+    --color-gx-on-danger: #e0f8d0;
+    --color-gx-success: #306230;
+    --color-gx-on-success: #e0f8d0;
+    --color-gx-warning: #8bac0f;
+    --color-gx-on-warning: #0f380f;
+    --color-gx-hp: #0f380f;
+    --color-gx-mp: #306230;
+    --color-gx-xp: #5f7f0f;
+    --color-gx-track: #c5d86d;
+    --color-gx-common: #8bac0f;
+    --color-gx-rare: #306230;
+    --color-gx-epic: #0f380f;
+    --color-gx-legendary: #0f380f;
+  }
+
+  [data-gx-theme="parchment"] {
+    --color-gx-ink: #3b2414;
+    --color-gx-surface: #f4e4c1;
+    --color-gx-on-surface: #3b2414;
+    --color-gx-accent: #8b2e16;
+    --color-gx-focus: #8b2e16;
+    --color-gx-primary: #8b2e16;
+    --color-gx-on-primary: #fff8e7;
+    --color-gx-danger: #9b1c1c;
+    --color-gx-on-danger: #fff8e7;
+    --color-gx-success: #3f6212;
+    --color-gx-on-success: #fff8e7;
+    --color-gx-warning: #b45309;
+    --color-gx-on-warning: #fff8e7;
+    --color-gx-hp: #b91c1c;
+    --color-gx-mp: #1d4ed8;
+    --color-gx-xp: #4d7c0f;
+    --color-gx-track: #d9c49a;
+    --color-gx-common: #8a7a5c;
+    --color-gx-rare: #1d4ed8;
+    --color-gx-epic: #7e22ce;
+    --color-gx-legendary: #b45309;
+  }
+}

@@ -1,0 +1,19 @@
+---
+description: Licensing for fonts, sprites, tiles and sounds used by the package or demo
+globs: demo/public/**,packages/**/assets/**,docs/ASSETS.md
+alwaysApply: false
+---
+
+# Asset licensing
+
+- The package ships no third-party art. Demo art is drawn in code or is CC0.
+- Default to CC0 packs (Kenney, Ninja Adventure, CC0 OpenGameArt). Each pack lives in
+  `demo/public/assets/<publisher>/<pack>/` with its original `License.txt` and gets a row in
+  `docs/ASSETS.md` (source URL, licence, date fetched).
+- CC-BY / OGA-BY: allowed in the demo only, with a credit line in the demo footer.
+- CC-BY-SA, GPL (most LPC art), "personal use only" and Mixamo clips: never add.
+- Fonts: SIL OFL via `@fontsource/*` as a demo or user dependency, never bundled into the
+  package. Press Start 2P is the default pixel font; Fusion Pixel 12px (TC / SC, OFL) covers CJK.
+- Demo video is generated (ffmpeg filter graphs) or CC0, kept under 100 KB per clip, with WebM +
+  MP4 sources, a poster, and captions. Never stock footage or ripped game clips.
+- Sounds for `gamifiedui-sfx` are synthesised in code; no sample files.

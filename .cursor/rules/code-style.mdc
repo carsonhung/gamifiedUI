@@ -1,0 +1,18 @@
+---
+description: Code style and naming for CSS, TypeScript and docs
+alwaysApply: true
+---
+
+# Code style
+
+- 2-space indent, single quotes and semicolons in TS, double quotes in CSS strings.
+- Comment WHY, not WHAT. Reserve comments for constraints the code can't show (browser quirks,
+  maths constants, accessibility contracts).
+- TS: `PascalCase` types, `camelCase` verb-first functions, `UPPER_SNAKE_CASE` constants,
+  boolean names start with `is` / `has` / `should` / `can`. No `any`. No magic numbers in logic:
+  name them as constants at the top of the module.
+- CSS: every public class, utility, token and data attribute is prefixed `gx-` (`.gx-btn`,
+  `gx-depth-*`, `--gx-px`, `--color-gx-primary`, `data-gx-theme`). Internal per-component
+  custom properties are `--gx-<component>-<name>` (`--gx-btn-bg`).
+- Never swallow errors; throw with a `[module]` prefix.
+- Docs and READMEs: plain sentences, tables only for short facts.

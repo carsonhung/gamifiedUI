@@ -1,0 +1,31 @@
+---
+description: What gamifiedUI is, repo layout and commands
+alwaysApply: true
+---
+
+# gamifiedUI overview
+
+Game-style 2D / 2.5D UI for Tailwind CSS v4: common components (button, panel, bar, dialog,
+dialogue box) rendered as pixel-framed, raised game parts with stepped animation. CSS first and
+framework-agnostic; framework wrappers are thin and optional.
+
+## Layout (npm workspaces)
+
+- `packages/gamifiedui-css/src/` - the product. `index.css` imports `tokens.css`, `themes.css`,
+  `utilities.css` and `components/*.css`. Consumers write `@import "tailwindcss"; @import "gamifiedui-css";`.
+- `demo/` - Vite + `@tailwindcss/vite` playground, deployed to GitHub Pages. Every component and
+  utility must appear here.
+- `scripts/check-css.mjs` - compiles the package through Tailwind and enforces the motion and
+  theming rules. `npm test` runs it.
+
+## Commands (PowerShell; no `&&` chaining in docs)
+
+- `npm install`, `npm test`, `npm run build` (demo), `npm run demo` (dev server).
+
+## Planned packages
+
+- `gamifiedui-sfx` - procedural UI sounds (no audio files), ported from spatial/StoryTelling.
+- `gamifiedui-utils` - framework-free helpers: whole-number zoom, sprite frame style, label fit, CJK wrap.
+- `gamifiedui-vue` / `gamifiedui-react` - typewriter dialogue, focus helpers; props only, no stores.
+
+Related: 3D/XR runtime modules (three.js) live in a separate repo, never here.

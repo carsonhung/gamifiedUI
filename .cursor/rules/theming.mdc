@@ -1,0 +1,20 @@
+---
+description: Design tokens and themes - no raw colours, z-index or sizes outside the token files
+globs: packages/gamifiedui-css/src/**,demo/**
+alwaysApply: false
+---
+
+# Theming and tokens
+
+- Raw hex colours live only in `tokens.css` (defaults) and `themes.css` (era themes).
+  Components use `var(--color-gx-*)` and derive shades with `color-mix(in oklab, ...)`.
+  `check-css.mjs` fails on hex elsewhere in the package.
+- Every surface colour has an `on-` partner for text (`--color-gx-primary` /
+  `--color-gx-on-primary`). A theme overrides the whole set, not a single colour.
+- Themes are `[data-gx-theme="<name>"]` blocks in `@layer base` and nest. The default (no
+  attribute) is `arcade`.
+- Z-index uses the scale (`--gx-z-hud`, `--gx-z-hud-raised`, `--gx-z-modal`, `--gx-z-toast`),
+  never a bare number.
+- Sizes that define the look (`--gx-px`, `--gx-depth`) are tokens; components never hard-code
+  4px.
+- Demo-only colours (sprite pixels drawn in code) may be literal.

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>gamifiedUI demo</title>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body class="min-h-dvh bg-gx-ink font-gx-body text-gx-on-surface">
+    <main id="app" class="mx-auto flex max-w-5xl flex-col gap-8 p-4 sm:p-8">
+      <header class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 class="font-gx text-xl leading-relaxed text-gx-accent sm:text-2xl">gamifiedUI</h1>
+          <p class="mt-2 max-w-prose" data-i18n="subtitle">Game-style 2D / 2.5D components for Tailwind CSS v4.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Language">
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-lang-option="en" aria-pressed="true" lang="en">EN</button>
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-lang-option="zh-Hant" aria-pressed="false" lang="zh-Hant">繁中</button>
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-lang-option="zh-Hans" aria-pressed="false" lang="zh-Hans">简中</button>
+        </div>
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Theme">
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="" aria-pressed="true">Arcade</button>
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="gameboy" aria-pressed="false">Game Boy</button>
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="parchment" aria-pressed="false">Parchment</button>
+          <button id="motion-toggle" class="gx-btn gx-btn-ghost gx-btn-sm" aria-pressed="false">Reduce motion</button>
+        </div>
+      </header>
+
+      <section class="gx-panel" aria-labelledby="buttons-title">
+        <h2 id="buttons-title" class="gx-panel-title" data-i18n="buttonsTitle">Buttons</h2>
+        <div class="flex flex-wrap items-center gap-3">
+          <button class="gx-btn" data-i18n="start">Start</button>
+          <button class="gx-btn gx-btn-success" data-i18n="save">Save</button>
+          <button class="gx-btn gx-btn-warning" data-i18n="shop">Shop</button>
+          <button class="gx-btn gx-btn-danger" data-i18n="quit">Quit</button>
+          <button class="gx-btn gx-btn-ghost" data-i18n="options">Options</button>
+          <button class="gx-btn gx-btn-lg gx-depth-2" data-i18n="bigPress">Big press</button>
+          <button class="gx-btn" disabled data-i18n="locked">Locked</button>
+        </div>
+      </section>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <section class="gx-panel" aria-labelledby="party-title">
+          <h2 id="party-title" class="gx-panel-title" data-i18n="partyTitle">Party</h2>
+          <div class="flex items-center gap-2">
+            <span class="font-gx text-xs">Hero</span>
+            <span class="gx-badge">Lv 7</span>
+            <span id="status-badge" class="gx-badge gx-badge-success">OK</span>
+          </div>
+          <dl class="mt-4 grid grid-cols-[3rem_1fr_5rem] items-center gap-x-3 gap-y-2 text-sm">
+            <dt class="font-gx text-xs">HP</dt>
+            <dd><div id="hp-bar" class="gx-bar gx-bar-hp" role="meter" aria-label="HP" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="--gx-value: 1"></div></dd>
+            <dd id="hp-label" class="text-right tabular-nums">100 / 100</dd>
+            <dt class="font-gx text-xs">MP</dt>
+            <dd><div class="gx-bar gx-bar-mp" role="meter" aria-label="MP" aria-valuemin="0" aria-valuemax="40" aria-valuenow="26" style="--gx-value: 0.65"></div></dd>
+            <dd class="text-right tabular-nums">26 / 40</dd>
+            <dt class="font-gx text-xs">XP</dt>
+            <dd><div class="gx-bar gx-bar-xp gx-bar-smooth" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="42" style="--gx-value: 0.42"></div></dd>
+            <dd class="text-right tabular-nums">42%</dd>
+          </dl>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <button id="hit" class="gx-btn gx-btn-danger gx-btn-sm" data-i18n="hit">Take hit</button>
+            <button id="heal" class="gx-btn gx-btn-success gx-btn-sm" data-i18n="heal">Heal</button>
+          </div>
+        </section>
+
+        <section class="gx-panel" aria-labelledby="sprite-title">
+          <h2 id="sprite-title" class="gx-panel-title" data-i18n="spriteTitle">Sprite and isometric</h2>
+          <div class="flex flex-wrap items-center gap-6">
+            <div id="slime" class="gx-sprite gx-sprite-w-16 gx-sprite-frames-8 gx-sprite-scale-4 gx-sprite-ms-800" role="img" aria-label="Bouncing slime"></div>
+            <div class="flex h-56 min-w-0 flex-1 items-center justify-center overflow-hidden">
+              <div id="iso-grid" class="gx-iso grid grid-cols-4 gap-1" role="group" aria-label="Isometric tiles"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="gx-panel" aria-labelledby="media-title">
+        <h2 id="media-title" class="gx-panel-title" data-i18n="mediaTitle">Images and video</h2>
+        <div class="grid gap-6 md:grid-cols-[1fr_1.4fr]">
+          <div class="flex flex-col gap-4">
+            <figure class="gx-frame gx-frame-pixelated gx-rarity-legendary">
+              <img id="landscape" width="320" height="180" alt="Pixel art of a castle on a hill at sunset" data-i18n-alt="landscapeAlt" />
+              <figcaption class="gx-frame-caption" data-i18n="landscapeCaption">Castle Hill, drawn in code.</figcaption>
+            </figure>
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="gx-avatar gx-avatar-sm" role="img" aria-label="Ayla">AY</span>
+              <span class="gx-avatar gx-rarity-rare" role="img" aria-label="Bob">B</span>
+              <span class="gx-avatar gx-avatar-lg gx-rarity-epic"><img id="avatar-slime" alt="Slime" /></span>
+            </div>
+          </div>
+          <figure class="gx-frame gx-video">
+            <div class="gx-video-screen">
+              <video id="cutscene" controls preload="metadata" playsinline poster="/media/cutscene-poster.png">
+                <source src="/media/cutscene.webm" type="video/webm" />
+                <source src="/media/cutscene.mp4" type="video/mp4" />
+                <track kind="captions" src="/media/cutscene.en.vtt" srclang="en" label="English" default />
+                <track kind="captions" src="/media/cutscene.zh-Hant.vtt" srclang="zh-Hant" label="繁體中文" />
+              </video>
+              <button class="gx-video-play" id="cutscene-play" aria-label="Play cutscene" data-i18n-label="playLabel"><span aria-hidden="true">▶</span></button>
+            </div>
+            <figcaption class="gx-frame-caption" data-i18n="cutsceneCaption">Cutscene with captions in English and Traditional Chinese.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="gx-panel" aria-labelledby="feedback-title">
+        <h2 id="feedback-title" class="gx-panel-title" data-i18n="feedbackTitle">Alerts and notifications</h2>
+        <div class="grid gap-3 md:grid-cols-2">
+          <div class="gx-alert gx-alert-info">
+            <span class="gx-alert-icon" aria-hidden="true">i</span>
+            <p class="gx-alert-title" data-i18n="alertQuestTitle">New quest</p>
+            <p class="gx-alert-body" data-i18n="alertQuestBody">The blacksmith wants 3 iron ore.</p>
+          </div>
+          <div class="gx-alert gx-alert-success">
+            <span class="gx-alert-icon" aria-hidden="true">+</span>
+            <p class="gx-alert-title" data-i18n="alertSavedTitle">Saved</p>
+            <p class="gx-alert-body" data-i18n="alertSavedBody">Progress written to slot 1.</p>
+          </div>
+          <div class="gx-alert gx-alert-warning">
+            <span class="gx-alert-icon" aria-hidden="true">!</span>
+            <p class="gx-alert-title" data-i18n="alertBagTitle">Bag almost full</p>
+            <p class="gx-alert-body" data-i18n="alertBagBody">18 of 20 slots used.</p>
+          </div>
+          <div class="gx-alert gx-alert-danger" role="alert">
+            <span class="gx-alert-icon" aria-hidden="true">x</span>
+            <p class="gx-alert-title" data-i18n="alertLostTitle">Connection lost</p>
+            <p class="gx-alert-body" data-i18n="alertLostBody">Reconnecting to the server.</p>
+          </div>
+        </div>
+        <div class="mt-4 flex flex-wrap items-center gap-3">
+          <button class="gx-btn gx-btn-sm" data-toast="info" data-i18n="toastInfoBtn">Info toast</button>
+          <button class="gx-btn gx-btn-success gx-btn-sm" data-toast="success" data-i18n="toastSuccessBtn">Success toast</button>
+          <button class="gx-btn gx-btn-danger gx-btn-sm" data-toast="danger" data-i18n="toastDangerBtn">Error toast</button>
+          <button class="gx-btn gx-btn-warning gx-btn-sm" data-toast="achievement" data-i18n="toastAchievementBtn">Achievement</button>
+          <span class="inline-flex items-center gap-3" role="status">
+            <span class="gx-spinner" aria-hidden="true"></span>
+            <span class="text-sm" data-i18n="loading">Loading world…</span>
+          </span>
+        </div>
+      </section>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <section class="gx-panel" aria-labelledby="form-title">
+          <h2 id="form-title" class="gx-panel-title" data-i18n="formTitle">New character</h2>
+          <form class="flex flex-col gap-4" onsubmit="return false">
+            <div class="gx-field">
+              <label class="gx-field-label" for="hero-name" data-i18n="nameLabel">Name</label>
+              <input id="hero-name" class="gx-input" placeholder="Enter a name" value="Ayla" />
+              <span class="gx-field-hint" data-i18n="nameHint">Shown above your character.</span>
+            </div>
+            <div class="gx-field">
+              <label class="gx-field-label" for="hero-guild" data-i18n="guildLabel">Guild tag</label>
+              <input id="hero-guild" class="gx-input" value="toolongtag" aria-invalid="true" aria-describedby="guild-error" />
+              <span id="guild-error" class="gx-field-error" data-i18n="guildError">Use 2 to 5 letters.</span>
+            </div>
+            <fieldset class="flex flex-wrap gap-x-4">
+              <legend class="gx-field-label mb-1" data-i18n="classLegend">Class</legend>
+              <label class="gx-choice"><input type="radio" class="gx-radio" name="class" checked /> <span data-i18n="knight">Knight</span></label>
+              <label class="gx-choice"><input type="radio" class="gx-radio" name="class" /> <span data-i18n="mage">Mage</span></label>
+              <label class="gx-choice"><input type="radio" class="gx-radio" name="class" /> <span data-i18n="rogue">Rogue</span></label>
+            </fieldset>
+            <div class="flex flex-wrap gap-x-6">
+              <label class="gx-choice"><input type="checkbox" class="gx-checkbox" checked /> <span data-i18n="hardcore">Hardcore mode</span></label>
+              <label class="gx-choice"><input type="checkbox" role="switch" class="gx-switch" checked /> <span data-i18n="music">Music</span></label>
+            </div>
+            <div class="flex items-center gap-3">
+              <button class="gx-btn gx-btn-success" data-i18n="create">Create</button>
+              <span class="gx-tooltip">
+                <button type="button" class="gx-btn gx-btn-ghost gx-btn-sm" aria-describedby="hardcore-tip" aria-label="About hardcore mode">?</button>
+                <span id="hardcore-tip" class="gx-tooltip-content" role="tooltip" data-i18n="hardcoreTip">Hardcore: one life, no saves.</span>
+              </span>
+            </div>
+          </form>
+        </section>
+
+        <section aria-labelledby="bag-title">
+          <h2 id="bag-title" class="sr-only">Bag</h2>
+          <div class="gx-tabs" role="tablist" aria-label="Bag">
+            <button class="gx-tab" role="tab" id="tab-items" aria-controls="panel-items" aria-selected="true" data-i18n="tabItems">Items</button>
+            <button class="gx-tab" role="tab" id="tab-gear" aria-controls="panel-gear" aria-selected="false" tabindex="-1" data-i18n="tabGear">Gear</button>
+            <button class="gx-tab" role="tab" id="tab-keys" aria-controls="panel-keys" aria-selected="false" tabindex="-1" data-i18n="tabKeys">Controls</button>
+          </div>
+          <div class="gx-panel gx-tab-panel" role="tabpanel" id="panel-items" aria-labelledby="tab-items">
+            <div class="flex flex-wrap gap-2">
+              <button class="gx-slot gx-rarity-common" aria-pressed="true" aria-label="Apple, 12, common">🍎<span class="gx-slot-count" aria-hidden="true">12</span></button>
+              <button class="gx-slot gx-rarity-rare" aria-pressed="false" aria-label="Mana potion, 3, rare">🧪<span class="gx-slot-count" aria-hidden="true">3</span></button>
+              <button class="gx-slot gx-rarity-epic" aria-pressed="false" aria-label="Crystal, epic">💎</button>
+              <button class="gx-slot gx-rarity-legendary" aria-pressed="false" aria-label="Crown, legendary">👑</button>
+              <span class="gx-slot" aria-label="Empty slot" role="img"></span>
+            </div>
+          </div>
+          <div class="gx-panel gx-tab-panel" role="tabpanel" id="panel-gear" aria-labelledby="tab-gear" hidden>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <button class="gx-card gx-rarity-rare">
+                <span class="gx-card-title">Iron sword</span>
+                <span class="gx-card-meta">Rare · ATK +8</span>
+              </button>
+              <button class="gx-card gx-rarity-legendary">
+                <span class="gx-card-title">Sun shield</span>
+                <span class="gx-card-meta">Legendary · DEF +20</span>
+              </button>
+            </div>
+          </div>
+          <div class="gx-panel gx-tab-panel" role="tabpanel" id="panel-keys" aria-labelledby="tab-keys" hidden>
+            <ul class="flex flex-col gap-1">
+              <li>Move <kbd class="gx-kbd">W</kbd><kbd class="gx-kbd">A</kbd><kbd class="gx-kbd">S</kbd><kbd class="gx-kbd">D</kbd></li>
+              <li>Interact <kbd class="gx-kbd">E</kbd></li>
+              <li>Menu <kbd class="gx-kbd">Esc</kbd></li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <section aria-labelledby="dialogue-title">
+        <h2 id="dialogue-title" class="sr-only">Dialogue</h2>
+        <div class="gx-textbox" id="textbox">
+          <p class="gx-textbox-speaker" id="speaker"></p>
+          <p class="sr-only" aria-live="polite" id="line-full"></p>
+          <p class="gx-textbox-text" aria-hidden="true" id="line-shown"></p>
+          <div class="gx-textbox-choices" id="choices" hidden></div>
+          <span class="gx-textbox-next" id="next" aria-hidden="true" hidden>▼</span>
+        </div>
+        <div class="mt-2 flex flex-wrap gap-3">
+          <button id="advance" class="gx-btn gx-btn-sm" data-i18n="advance">Next (Enter)</button>
+          <button id="open-dialog" class="gx-btn gx-btn-ghost gx-btn-sm" data-i18n="openDialog">Open dialog</button>
+        </div>
+      </section>
+
+      <dialog id="dialog" class="gx-dialog" aria-labelledby="dialog-title">
+        <h2 id="dialog-title" class="gx-panel-title" data-i18n="dialogTitle">Save game?</h2>
+        <p data-i18n="dialogBody">Your progress will be written to slot 1.</p>
+        <form method="dialog" class="mt-4 flex flex-wrap justify-end gap-3">
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" value="cancel" data-i18n="cancel">Cancel</button>
+          <button class="gx-btn gx-btn-success gx-btn-sm" value="save" data-i18n="save">Save</button>
+        </form>
+      </dialog>
+    </main>
+    <div class="gx-toast-stack" id="toasts" role="region" aria-label="Notifications"></div>
+  </body>
+</html>

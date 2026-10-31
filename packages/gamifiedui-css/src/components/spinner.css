@@ -1,0 +1,50 @@
+/* Pixel loading ring. Wrap in role="status" with visible or sr-only text ("Loading"). */
+@layer components {
+  .gx-spinner {
+    position: relative;
+    display: inline-block;
+    flex: none;
+    width: calc(var(--gx-px) * 6);
+    height: calc(var(--gx-px) * 6);
+    color: var(--color-gx-accent);
+  }
+
+  .gx-spinner::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - var(--gx-px) / 2);
+    left: calc(50% - var(--gx-px) / 2);
+    width: var(--gx-px);
+    height: var(--gx-px);
+    box-shadow:
+      0 calc(var(--gx-px) * -2) 0 0 currentColor,
+      calc(var(--gx-px) * 2) calc(var(--gx-px) * -2) 0 0 color-mix(in oklab, currentColor 85%, transparent),
+      calc(var(--gx-px) * 2) 0 0 0 color-mix(in oklab, currentColor 70%, transparent),
+      calc(var(--gx-px) * 2) calc(var(--gx-px) * 2) 0 0 color-mix(in oklab, currentColor 55%, transparent),
+      0 calc(var(--gx-px) * 2) 0 0 color-mix(in oklab, currentColor 40%, transparent),
+      calc(var(--gx-px) * -2) calc(var(--gx-px) * 2) 0 0 color-mix(in oklab, currentColor 30%, transparent),
+      calc(var(--gx-px) * -2) 0 0 0 color-mix(in oklab, currentColor 20%, transparent),
+      calc(var(--gx-px) * -2) calc(var(--gx-px) * -2) 0 0 color-mix(in oklab, currentColor 12%, transparent);
+    animation: gx-spin 640ms steps(4, end) infinite;
+  }
+
+  .gx-spinner-lg {
+    --gx-px: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-spinner::before {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-spinner::before {
+    animation: none;
+  }
+}
+
+@keyframes gx-spin {
+  to {
+    rotate: 1turn;
+  }
+}

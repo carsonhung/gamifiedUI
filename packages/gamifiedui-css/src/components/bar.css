@@ -1,0 +1,83 @@
+/* HP / MP / XP bar. Markup: role="meter" (or "progressbar") with aria-value* attributes and
+   style="--gx-value: 0.64" (0..1). The fill scales, so changes animate on the compositor. */
+@layer components {
+  .gx-bar {
+    --gx-bar-fill: var(--color-gx-primary);
+    --gx-bar-segments: 10;
+
+    position: relative;
+    display: block;
+    height: calc(var(--gx-px) * 4);
+    margin: var(--gx-px);
+    overflow: hidden;
+    background: var(--color-gx-track);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+  }
+
+  .gx-bar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--gx-bar-fill);
+    box-shadow:
+      inset 0 calc(-1 * var(--gx-px)) 0 0 color-mix(in oklab, var(--gx-bar-fill) 70%, black),
+      inset 0 var(--gx-px) 0 0 color-mix(in oklab, var(--gx-bar-fill) 70%, white);
+    transform-origin: left center;
+    scale: clamp(0, var(--gx-value, 1), 1) 1;
+    transition: scale var(--gx-motion-base) steps(6, end);
+  }
+
+  .gx-bar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc(100% / var(--gx-bar-segments) - var(--gx-px) / 2),
+      color-mix(in oklab, var(--color-gx-ink) 45%, transparent) 0,
+      color-mix(in oklab, var(--color-gx-ink) 45%, transparent) calc(100% / var(--gx-bar-segments))
+    );
+  }
+
+  .gx-bar-hp {
+    --gx-bar-fill: var(--color-gx-hp);
+  }
+
+  .gx-bar-mp {
+    --gx-bar-fill: var(--color-gx-mp);
+  }
+
+  .gx-bar-xp {
+    --gx-bar-fill: var(--color-gx-xp);
+  }
+
+  .gx-bar-smooth::after {
+    content: none;
+  }
+
+  /* Low-value warning; the text label must still carry the state. */
+  .gx-bar-critical::before {
+    animation: gx-blink calc(var(--gx-motion-slow) * 2) steps(1, end) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-bar-critical::before {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-bar-critical::before {
+    animation: none;
+  }
+}
+
+@keyframes gx-blink {
+  50% {
+    opacity: 0.35;
+  }
+}

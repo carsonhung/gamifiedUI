@@ -1,0 +1,19 @@
+/* CJK. Press Start 2P has Latin only, so Chinese glyphs fall through to Fusion Pixel (12px
+   grid, Traditional by default). Glyphs drawn on a 12px grid blur at other sizes, so pixel-font
+   text under a CJK lang snaps to 12px / 24px. */
+@layer base {
+  :lang(zh-Hans),
+  :lang(zh-CN),
+  :lang(zh-SG) {
+    --font-gx: "Press Start 2P", "Fusion Pixel 12px Proportional SC", ui-monospace, monospace;
+  }
+
+  :lang(zh),
+  :lang(ja),
+  :lang(ko) {
+    --gx-text-sm: 0.75rem;
+    --gx-text-md: 0.75rem;
+    --gx-text-lg: 1.5rem;
+    line-break: strict;
+  }
+}

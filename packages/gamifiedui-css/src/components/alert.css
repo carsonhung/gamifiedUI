@@ -1,0 +1,72 @@
+/* Inline message. Use role="alert" only for urgent errors; otherwise role="status" or none. */
+@layer components {
+  .gx-alert {
+    --gx-alert-tone: var(--color-gx-primary);
+    --gx-alert-on-tone: var(--color-gx-on-primary);
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-content: start;
+    align-items: start;
+    gap: 0.25rem 0.875rem;
+    margin: var(--gx-px);
+    padding: 0.875rem 1rem 0.875rem calc(1rem + var(--gx-px) * 2);
+    font-family: var(--font-gx-body);
+    color: var(--color-gx-on-surface);
+    background: color-mix(in oklab, var(--color-gx-surface) 85%, var(--gx-alert-tone));
+    box-shadow:
+      inset calc(var(--gx-px) * 2) 0 0 0 var(--gx-alert-tone),
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+  }
+
+  .gx-alert:not(:has(.gx-alert-icon)) {
+    grid-template-columns: 1fr;
+  }
+
+  .gx-alert-icon {
+    grid-row: span 2;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-md);
+    color: var(--gx-alert-on-tone);
+    background: var(--gx-alert-tone);
+  }
+
+  .gx-alert-title {
+    margin: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  .gx-alert-body {
+    margin: 0;
+  }
+
+  .gx-alert-info {
+    --gx-alert-tone: var(--color-gx-primary);
+    --gx-alert-on-tone: var(--color-gx-on-primary);
+  }
+
+  .gx-alert-success {
+    --gx-alert-tone: var(--color-gx-success);
+    --gx-alert-on-tone: var(--color-gx-on-success);
+  }
+
+  .gx-alert-warning {
+    --gx-alert-tone: var(--color-gx-warning);
+    --gx-alert-on-tone: var(--color-gx-on-warning);
+  }
+
+  .gx-alert-danger {
+    --gx-alert-tone: var(--color-gx-danger);
+    --gx-alert-on-tone: var(--color-gx-on-danger);
+  }
+}

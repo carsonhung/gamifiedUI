@@ -1,0 +1,23 @@
+---
+description: Animation rules - motion tokens, compositor-only properties, stepped timing, reduced motion
+globs: packages/**/*.css,demo/**
+alwaysApply: false
+---
+
+# Motion
+
+- Durations come from tokens only: `--gx-motion-fast` (120ms), `--gx-motion-base` (200ms),
+  `--gx-motion-slow` (360ms). In Tailwind: `duration-(--gx-motion-fast)`. Never `duration-300`.
+- Transition or animate only `translate`, `scale`, `rotate`, `transform`, `opacity`. Name the
+  property (`transition: translate ...`); never `transition: all` or `transition-all`. Change
+  box-shadow, filter and colours instantly instead. `check-css.mjs` enforces this.
+- Game feel = stepped timing: `steps(n, end)` for presses, fills and pops; smooth easing only
+  where a component is explicitly `-smooth`.
+- Reduced motion has two switches and both must work:
+  - `@media (prefers-reduced-motion: reduce)` zeroes the motion tokens.
+  - `data-gx-motion="reduce"` on any ancestor does the same (for an in-app setting).
+- Token-timed one-shot animations stop automatically. Infinite animations (sprites, blinking,
+  nudging) need an explicit `animation: none` under both switches.
+- Motion never carries meaning alone: a blinking critical bar also changes its text label.
+- Typewriter text: instant when reduced motion is on; first interact completes the line,
+  the next advances.

@@ -1,0 +1,183 @@
+/* Images and video.
+   <figure class="gx-frame"><img alt="..."><figcaption class="gx-frame-caption">...</figcaption></figure>
+   Videos keep native controls (keyboard, captions menu, fullscreen) and need a <track kind="captions">. */
+@layer components {
+  .gx-frame {
+    --gx-frame-color: var(--gx-rarity, var(--color-gx-ink));
+    --gx-frame-matte: var(--color-gx-surface);
+
+    position: relative;
+    display: block;
+    align-self: start;
+    margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) + var(--gx-depth));
+    padding: var(--gx-px);
+    background: var(--gx-frame-matte);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-frame-color),
+      0 var(--gx-px) 0 0 var(--gx-frame-color),
+      var(--gx-px) 0 0 0 var(--gx-frame-color),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-frame-color),
+      0 calc(var(--gx-px) + var(--gx-depth)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+  }
+
+  .gx-frame > img,
+  .gx-frame > video,
+  .gx-frame > canvas,
+  .gx-frame > picture,
+  .gx-frame > picture > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--color-gx-ink);
+  }
+
+  .gx-frame-cover > img,
+  .gx-frame-cover > video,
+  .gx-frame-cover > picture > img {
+    height: 100%;
+    aspect-ratio: var(--gx-frame-ratio, 16 / 9);
+    object-fit: cover;
+  }
+
+  .gx-frame-square {
+    --gx-frame-ratio: 1;
+  }
+
+  .gx-frame-wide {
+    --gx-frame-ratio: 16 / 9;
+  }
+
+  .gx-frame-portrait {
+    --gx-frame-ratio: 3 / 4;
+  }
+
+  /* Nearest-neighbour scaling for pixel art and screenshots of pixel games. */
+  .gx-frame-pixelated > img,
+  .gx-frame-pixelated > canvas,
+  .gx-frame-pixelated > picture > img,
+  .gx-frame-pixelated > video {
+    image-rendering: pixelated;
+  }
+
+  .gx-frame-caption {
+    margin: 0;
+    padding: 0.5rem 0.25rem 0.25rem;
+    font-family: var(--font-gx-body);
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--color-gx-on-surface);
+  }
+
+  /* Character portrait: square, pixelated, sits next to dialogue or in a party list. */
+  .gx-avatar {
+    --gx-avatar-size: calc(var(--gx-px) * 16);
+    --gx-avatar-frame: var(--gx-rarity, var(--color-gx-ink));
+
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: var(--gx-avatar-size);
+    aspect-ratio: 1;
+    margin: var(--gx-px);
+    overflow: hidden;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-md);
+    color: var(--color-gx-on-primary);
+    background: var(--color-gx-primary);
+    box-shadow:
+      inset 0 0 0 var(--gx-px) var(--color-gx-surface),
+      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-avatar-frame),
+      0 var(--gx-px) 0 0 var(--gx-avatar-frame),
+      var(--gx-px) 0 0 0 var(--gx-avatar-frame),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-avatar-frame);
+  }
+
+  .gx-avatar > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+  }
+
+  .gx-avatar-sm {
+    --gx-avatar-size: calc(var(--gx-px) * 10);
+    font-size: var(--gx-text-sm);
+  }
+
+  .gx-avatar-lg {
+    --gx-avatar-size: calc(var(--gx-px) * 24);
+  }
+
+  /* Cutscene player: <figure class="gx-frame gx-video"><div class="gx-video-screen">
+     <video controls>...</video><button class="gx-video-play">...</button></div>...</figure> */
+  .gx-video-screen {
+    position: relative;
+  }
+
+  .gx-video-screen > video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--gx-frame-ratio, 16 / 9);
+    object-fit: contain;
+    background: var(--color-gx-ink);
+  }
+
+  .gx-video-play {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    border: 0;
+    padding: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-lg);
+    color: var(--color-gx-on-surface);
+    background: color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+    cursor: pointer;
+  }
+
+  .gx-video-play > span {
+    display: inline-grid;
+    place-items: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0.75rem 1.25rem;
+    color: var(--color-gx-on-primary);
+    background: var(--color-gx-primary);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
+      0 calc(var(--gx-px) + var(--gx-depth)) 0 0 var(--color-gx-ink);
+    transition: translate var(--gx-motion-fast) steps(2, end);
+  }
+
+  @media (hover: hover) {
+    .gx-video-play:hover > span {
+      translate: 0 calc(var(--gx-px) * -1);
+    }
+  }
+
+  .gx-video-play:active > span {
+    translate: 0 var(--gx-depth);
+  }
+
+  .gx-video-play:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * -2);
+  }
+
+  .gx-video-play[hidden] {
+    display: none;
+  }
+
+  /* Native caption cues in the pixel look where the browser allows styling them. */
+  .gx-video-screen > video::cue {
+    font-family: var(--font-gx-body);
+    color: var(--color-gx-on-surface);
+    background: color-mix(in oklab, var(--color-gx-ink) 80%, transparent);
+  }
+}

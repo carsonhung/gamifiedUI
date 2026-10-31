@@ -1,0 +1,49 @@
+/* Styles the native <dialog> opened with showModal(): the browser provides the focus trap,
+   Escape to close and focus return. Never build a dialog from a <div>. */
+@layer components {
+  .gx-dialog {
+    max-width: min(32rem, calc(100vw - 2rem));
+    margin: auto;
+    padding: 1.25rem 1.5rem;
+    border: 0;
+    font-family: var(--font-gx-body);
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      inset 0 0 0 var(--gx-px) color-mix(in oklab, var(--color-gx-surface) 80%, white),
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
+      0 calc(var(--gx-px) * 3) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+  }
+
+  .gx-dialog[open] {
+    animation: gx-pop var(--gx-motion-base) steps(4, end) both;
+  }
+
+  .gx-dialog::backdrop {
+    background: color-mix(in oklab, var(--color-gx-ink) 70%, transparent);
+  }
+
+  /* Bottom sheet on phones. */
+  @media (max-width: 639px) {
+    .gx-dialog {
+      width: 100%;
+      max-width: none;
+      margin: auto 0 0;
+      padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    }
+  }
+}
+
+@keyframes gx-pop {
+  from {
+    opacity: 0;
+    scale: 0.85;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}

@@ -1,0 +1,23 @@
+---
+description: Tailwind CSS v4 authoring rules for the gamifiedui-css package and demo
+globs: packages/**/*.css,demo/**/*.{css,html,ts}
+alwaysApply: false
+---
+
+# Tailwind CSS v4
+
+- CSS-first config only. No `tailwind.config.js`, no JS `@plugin` for our own code.
+- `@theme` only for tokens that should create utilities (`--color-gx-*`, `--font-gx*`).
+  Everything else (`--gx-px`, `--gx-depth`, motion, z-index) is a plain custom property in
+  `@layer base` `:root`. `@theme` blocks must be top level.
+- Components go in `@layer components` as plain CSS reading custom properties, so a user's
+  utilities override them (`gx-btn px-10`). Do not `@apply` our own utilities inside components.
+- New utilities use `@utility`. Value-driven ones use `--value(integer)`
+  (`@utility gx-depth-* { --gx-depth: calc(var(--gx-px) * --value(integer)); }`).
+- New states use `@custom-variant`, prefixed `gx-`.
+- `@keyframes` live at the top level of the file that uses them and are named `gx-*`.
+- Class names must be complete strings in source (`'gx-btn gx-btn-danger'`), never built at
+  runtime (`'gx-btn-' + tone`); Tailwind cannot detect fragments.
+- Prefer Tailwind's own 3D utilities (`transform-3d`, `perspective-*`, `rotate-x-*`,
+  `translate-z-*`) over re-implementing them; only add what Tailwind lacks (`gx-iso`).
+- Reference docs: tailwindcss.com/docs/adding-custom-styles and /docs/theme.

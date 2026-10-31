@@ -1,0 +1,37 @@
+{
+  "name": "gamifiedui-css",
+  "version": "0.1.0",
+  "description": "Tailwind CSS v4 game UI: pixel-framed 2.5D buttons, panels, HP/MP/XP bars, dialogs, sprite and isometric utilities.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carsonhung/gamifiedUI.git",
+    "directory": "packages/gamifiedui-css"
+  },
+  "keywords": [
+    "tailwindcss",
+    "tailwind-v4",
+    "game-ui",
+    "pixel-art",
+    "8bit",
+    "rpg",
+    "isometric",
+    "sprite"
+  ],
+  "style": "./src/index.css",
+  "exports": {
+    ".": {
+      "style": "./src/index.css",
+      "default": "./src/index.css"
+    },
+    "./*.css": "./src/*.css"
+  },
+  "files": [
+    "src",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "peerDependencies": {
+    "tailwindcss": "^4.1.0"
+  }
+}

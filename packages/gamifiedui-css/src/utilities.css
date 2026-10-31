@@ -1,0 +1,75 @@
+@utility gx-pixelated {
+  image-rendering: pixelated;
+}
+
+/* Depth in pixel units: gx-depth-2 = 2 * --gx-px. Read by every raised component. */
+@utility gx-depth-* {
+  --gx-depth: calc(var(--gx-px) * --value(integer));
+}
+
+/* Notched pixel border drawn outside the box; leave --gx-px of margin around it. */
+@utility gx-pixel-frame {
+  box-shadow:
+    0 calc(-1 * var(--gx-px)) 0 0 var(--gx-frame-color, var(--color-gx-ink)),
+    0 var(--gx-px) 0 0 var(--gx-frame-color, var(--color-gx-ink)),
+    var(--gx-px) 0 0 0 var(--gx-frame-color, var(--color-gx-ink)),
+    calc(-1 * var(--gx-px)) 0 0 0 var(--gx-frame-color, var(--color-gx-ink));
+}
+
+/* True isometric camera. Orthographic: do not combine with perspective-*. Children that
+   hold 3D faces need transform-3d (preserve-3d) on every wrapper in between. */
+@utility gx-iso {
+  transform-style: preserve-3d;
+  transform: rotateX(54.7356deg) rotateZ(-45deg) scale3d(1.22474, 1.22474, 1.22474);
+}
+
+/* Horizontal sprite strip. Set the sheet with bg-[url(...)] and the geometry with
+   gx-sprite-w-*, gx-sprite-h-*, gx-sprite-frames-*, gx-sprite-scale-*, gx-sprite-ms-*. */
+@utility gx-sprite {
+  --gx-sprite-cell: calc(var(--gx-sprite-w, 16px) * var(--gx-sprite-scale, 1));
+  width: var(--gx-sprite-cell);
+  height: calc(var(--gx-sprite-h, var(--gx-sprite-w, 16px)) * var(--gx-sprite-scale, 1));
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: calc(var(--gx-sprite-cell) * var(--gx-sprite-frames, 1)) 100%;
+  image-rendering: pixelated;
+  animation: gx-sprite var(--gx-sprite-duration, 800ms) steps(var(--gx-sprite-frames, 1), end) infinite;
+
+  [data-gx-motion="reduce"] & {
+    animation: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility gx-sprite-w-* {
+  --gx-sprite-w: calc(--value(integer) * 1px);
+}
+
+@utility gx-sprite-h-* {
+  --gx-sprite-h: calc(--value(integer) * 1px);
+}
+
+@utility gx-sprite-frames-* {
+  --gx-sprite-frames: --value(integer);
+}
+
+@utility gx-sprite-scale-* {
+  --gx-sprite-scale: --value(integer);
+}
+
+@utility gx-sprite-ms-* {
+  --gx-sprite-duration: calc(--value(integer) * 1ms);
+}
+
+@utility gx-sprite-paused {
+  animation-play-state: paused;
+}
+
+@keyframes gx-sprite {
+  to {
+    background-position-x: calc(var(--gx-sprite-cell) * var(--gx-sprite-frames, 1) * -1);
+  }
+}

@@ -1,0 +1,192 @@
+/* Notifications. One .gx-toast-stack per page (role="region" aria-label="Notifications");
+   each toast is role="status", or role="alert" for errors. Set data-leaving before removal to
+   play the exit; remove on animationend. */
+@layer components {
+  .gx-toast-stack {
+    position: fixed;
+    z-index: var(--gx-z-toast);
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    width: min(22rem, calc(100vw - 2rem));
+    pointer-events: none;
+  }
+
+  .gx-toast-stack > * {
+    pointer-events: auto;
+  }
+
+  @media (max-width: 639px) {
+    .gx-toast-stack {
+      left: max(1rem, env(safe-area-inset-left));
+      width: auto;
+      align-items: stretch;
+    }
+  }
+
+  .gx-toast {
+    --gx-toast-tone: var(--color-gx-primary);
+    --gx-toast-on-tone: var(--color-gx-on-primary);
+
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-content: start;
+    align-items: start;
+    gap: 0.125rem 0.75rem;
+    box-sizing: border-box;
+    width: calc(100% - var(--gx-px) * 2);
+    margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) + var(--gx-depth));
+    padding: 0.75rem 0.5rem 0.75rem calc(0.75rem + var(--gx-px) * 2);
+    overflow: hidden;
+    font-family: var(--font-gx-body);
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      inset calc(var(--gx-px) * 2) 0 0 0 var(--gx-toast-tone),
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
+      0 calc(var(--gx-px) + var(--gx-depth)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+    animation: gx-toast-in var(--gx-motion-base) steps(4, end) both;
+  }
+
+  .gx-toast:not(:has(.gx-toast-icon)) {
+    grid-template-columns: 1fr auto;
+  }
+
+  .gx-toast[data-leaving] {
+    animation: gx-toast-out var(--gx-motion-fast) steps(3, end) both;
+  }
+
+  .gx-toast-icon {
+    grid-row: span 2;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-md);
+    color: var(--gx-toast-on-tone);
+    background: var(--gx-toast-tone);
+  }
+
+  .gx-toast-title {
+    margin: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  .gx-toast-body {
+    grid-column: -3 / -2;
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .gx-toast-close {
+    grid-row: 1 / span 2;
+    grid-column: -2;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: -0.5rem 0 0;
+    padding: 0;
+    border: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    color: inherit;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  @media (hover: hover) {
+    .gx-toast-close:hover {
+      background: color-mix(in oklab, var(--color-gx-on-surface) 12%, transparent);
+    }
+  }
+
+  .gx-toast-close:active {
+    background: color-mix(in oklab, var(--color-gx-on-surface) 20%, transparent);
+  }
+
+  .gx-toast-close:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * -1);
+  }
+
+  .gx-toast-info {
+    --gx-toast-tone: var(--color-gx-primary);
+    --gx-toast-on-tone: var(--color-gx-on-primary);
+  }
+
+  .gx-toast-success {
+    --gx-toast-tone: var(--color-gx-success);
+    --gx-toast-on-tone: var(--color-gx-on-success);
+  }
+
+  .gx-toast-warning {
+    --gx-toast-tone: var(--color-gx-warning);
+    --gx-toast-on-tone: var(--color-gx-on-warning);
+  }
+
+  .gx-toast-danger {
+    --gx-toast-tone: var(--color-gx-danger);
+    --gx-toast-on-tone: var(--color-gx-on-danger);
+  }
+
+  /* "Achievement unlocked": gold tone plus one light sweep after it lands. */
+  .gx-toast-achievement {
+    --gx-toast-tone: var(--color-gx-accent);
+    --gx-toast-on-tone: var(--color-gx-ink);
+  }
+
+  .gx-toast-achievement .gx-toast-title {
+    color: var(--color-gx-accent);
+  }
+
+  .gx-toast-achievement::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      100deg,
+      transparent 35%,
+      color-mix(in oklab, var(--color-gx-accent) 45%, transparent) 50%,
+      transparent 65%
+    );
+    translate: -100% 0;
+    animation: gx-shine calc(var(--gx-motion-slow) * 3) steps(8, end) var(--gx-motion-base) both;
+  }
+}
+
+@keyframes gx-toast-in {
+  from {
+    opacity: 0;
+    translate: calc(var(--gx-px) * 8) 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes gx-toast-out {
+  to {
+    opacity: 0;
+    translate: calc(var(--gx-px) * 8) 0;
+  }
+}
+
+@keyframes gx-shine {
+  to {
+    translate: 100% 0;
+  }
+}

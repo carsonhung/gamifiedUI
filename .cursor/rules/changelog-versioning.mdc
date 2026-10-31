@@ -1,0 +1,16 @@
+---
+description: Per-package changelog and SemVer release steps
+globs: packages/*/CHANGELOG.md,packages/*/package.json
+alwaysApply: false
+---
+
+# Changelog and versioning
+
+- Each package is versioned independently (SemVer; pre-1.0 a MINOR bump is a new feature, a
+  breaking class/token rename is also MINOR but must be called out as **Breaking**).
+- `packages/<pkg>/CHANGELOG.md` has a `## X.Y.Z` heading per release, newest first, with
+  bullets written for users: the class, token or utility name and what it now does.
+- Bump with `npm version X.Y.Z --no-git-tag-version --workspace=<pkg>` so the lockfile stays
+  in sync; changelog and version change in the same commit `release: <pkg> X.Y.Z`.
+- Renaming or removing a public class, utility, token or data attribute is breaking. Prefer
+  keeping the old name as an alias for one MINOR release.

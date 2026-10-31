@@ -1,0 +1,44 @@
+---
+description: Class naming and markup contract for every gamifiedUI component
+globs: packages/gamifiedui-css/src/components/**,demo/**
+alwaysApply: false
+---
+
+# Component API
+
+Every component is CSS on semantic HTML. JavaScript, if any, only sets attributes.
+
+## Class taxonomy (daisyUI-style)
+
+| Kind | Pattern | Example |
+|---|---|---|
+| component | `gx-<name>` | `gx-btn` |
+| part | `gx-<name>-<part>` | `gx-panel-title`, `gx-textbox-speaker` |
+| tone | `gx-<name>-<tone>` | `gx-btn-danger`, `gx-bar-hp` |
+| size | `gx-<name>-{sm,lg}` | `gx-btn-lg` |
+| modifier | `gx-<name>-<modifier>` | `gx-bar-critical`, `gx-panel-flat` |
+
+Tones are `primary`, `danger`, `success`, `warning`, `ghost`; messages (alert, toast) use
+`info` for the primary tone. Game tones where they mean something: `hp`, `mp`, `xp`, and the
+shared rarity modifier `gx-rarity-{common,rare,epic,legendary}` that cards and slots read via
+`--gx-rarity`. Use the same names across components.
+
+## State comes from the DOM, not extra classes
+
+- Pressed: `:active`, `aria-pressed="true"`, `[data-pressed]`.
+- Disabled: `:disabled`, `aria-disabled="true"`.
+- Values: custom properties on the element (`style="--gx-value: 0.6"`) mirrored by ARIA
+  (`aria-valuenow`). Open: native `[open]`.
+
+## Structure of a component file
+
+1. Component custom properties first (`--gx-btn-bg`), derived colours via `color-mix()`.
+2. Base rule, then hover (inside `@media (hover: hover)`), `:focus-visible`, pressed,
+   disabled, tones, sizes.
+3. Raised parts reserve their own footprint with margin (`--gx-px` around,
+   `--gx-px + --gx-depth` below) so pixel frames and depth never overlap neighbours.
+
+## Definition of done
+
+Component CSS in `components/`, imported by `index.css`, shown in `demo/` in every tone and
+state, added to the `check-css.mjs` selector list, README table row, CHANGELOG entry.

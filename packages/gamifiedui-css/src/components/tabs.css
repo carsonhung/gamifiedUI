@@ -1,0 +1,58 @@
+/* role="tablist" > role="tab" buttons with aria-selected, followed by a
+   <div class="gx-panel gx-tab-panel" role="tabpanel">. Arrow-key movement is the app's job. */
+@layer components {
+  .gx-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gx-px) calc(var(--gx-px) * 2);
+    margin: 0 var(--gx-px);
+    padding: var(--gx-px) var(--gx-px) 0;
+  }
+
+  .gx-tab {
+    position: relative;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.75rem;
+    border: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    white-space: nowrap;
+    text-transform: uppercase;
+    color: var(--color-gx-on-surface);
+    background: color-mix(in oklab, var(--color-gx-surface) 70%, var(--color-gx-ink));
+    cursor: pointer;
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+    translate: 0 var(--gx-px);
+    transition: translate var(--gx-motion-fast) steps(2, end);
+  }
+
+  .gx-tab[aria-selected="true"] {
+    z-index: 1;
+    color: var(--color-gx-accent);
+    background: var(--color-gx-surface);
+    translate: 0 0;
+  }
+
+  @media (hover: hover) {
+    .gx-tab:not([aria-selected="true"]):hover {
+      translate: 0 calc(var(--gx-px) / 2);
+    }
+  }
+
+  .gx-tab:not([aria-selected="true"]):active {
+    translate: 0 0;
+  }
+
+  .gx-tab:focus-visible {
+    z-index: 2;
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: var(--gx-px);
+  }
+
+  .gx-tab-panel {
+    margin-top: 0;
+  }
+}

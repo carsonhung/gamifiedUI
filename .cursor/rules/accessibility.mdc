@@ -1,0 +1,47 @@
+---
+description: Accessibility and cross-device rules for every component and the demo
+globs: packages/**/*.css,demo/**
+alwaysApply: false
+---
+
+# Accessibility and devices
+
+## Semantics
+
+- Buttons are `<button>`, dialogs are native `<dialog>` opened with `showModal()` (focus trap,
+  Escape, focus return for free). Never a clickable `<div>`.
+- Bars use `role="meter"` (HP, MP) or `role="progressbar"` (XP, loading) with `aria-label` and
+  `aria-valuemin/max/now`, plus a visible text value.
+- Dialogue boxes: typewriter text is `aria-hidden`; the full line goes once into a visually
+  hidden `aria-live="polite"` element; speaker name on every line; at most 2-3 lines per box.
+  Choices are real buttons, the first is focused when shown, arrow keys move between them.
+- Icon-only controls get `aria-label`. Sprites that carry meaning get `role="img"` + label.
+- Images always have `alt` (empty only when decorative). Videos keep native `controls`, ship a
+  `<track kind="captions">` per language, and never autoplay with sound; playback starts from a
+  user gesture.
+
+## Languages
+
+- Set `lang` on `<html>` and on any element in another language, so `:lang()` picks the right
+  glyphs (`zh-Hant` / `zh-Hans`) and screen readers pick the right voice.
+- Pixel-font sizes come from `--gx-text-{sm,md,lg}`, never raw `rem`; CJK snaps them to 12px / 24px.
+- Count and slice text by grapheme (`Intl.Segmenter`), never by UTF-16 code unit. Leave room for
+  translations: no fixed widths on labels.
+
+## Visibility
+
+- Text contrast WCAG AA (4.5:1) against its own surface in every theme. Check `--color-gx-on-*`
+  pairs when adding or editing a theme.
+- The pixel font (`--font-gx`) is for labels and titles, minimum 12px (`0.75rem`). Body text uses
+  `--font-gx-body`.
+- Every `:hover` style has a pressed/`:active` equivalent and a `:focus-visible` outline
+  (`--gx-px` solid `--color-gx-focus`). Never convey state by colour alone.
+
+## Devices
+
+- Touch targets at least 44px (`min-height: 2.75rem`), gaps of `0.5rem` between controls.
+- Hover styles only inside `@media (hover: hover)`.
+- Fixed and bottom UI respects `env(safe-area-inset-*)`; dialogs become bottom sheets under 640px.
+- Full-height layouts use `dvh`, never `100vh`.
+- Keyboard alone and pointer alone must both complete every demo flow. No required holds or
+  simultaneous keys.
