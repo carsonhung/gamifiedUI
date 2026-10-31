@@ -38,6 +38,8 @@ export const PRESETS = {
 export const DEFAULTS = {
   'thumb-up': 'pop', 'thumb-down': 'nudge-down',
   'zoom-in': 'pulse', 'zoom-out': 'pulse', photos: 'float', phone: 'shake', mobile: 'shake', mute: 'blink',
+  money: 'wiggle', 'money-bag': 'bob', pouch: 'bob', backpack: 'bob', helmet: 'pop', armor: 'pulse', bow: 'pulse',
+  wand: 'swing', spellbook: 'float', stamina: 'nudge-right', mana: 'float', poison: 'pulse',
   stop: 'pulse', go: 'nudge-right', 'volume-up': 'pulse', 'volume-down': 'pulse',
   smile: 'bob', sad: 'nudge-down', cry: 'shake', angry: 'shake', surprised: 'pop', love: 'beat', cool: 'wiggle', neutral: 'bob',
   heart: 'beat', star: 'pop', coin: 'flip', check: 'pop', close: 'shake', plus: 'pulse', minus: 'pulse',

@@ -488,6 +488,102 @@
     "motion": "pulse"
   },
   {
+    "name": "money",
+    "set": "common",
+    "en": "Money",
+    "hant": "錢",
+    "hans": "钱",
+    "motion": "wiggle"
+  },
+  {
+    "name": "money-bag",
+    "set": "common",
+    "en": "Money bag",
+    "hant": "錢袋",
+    "hans": "钱袋",
+    "motion": "bob"
+  },
+  {
+    "name": "pouch",
+    "set": "common",
+    "en": "Pouch",
+    "hant": "荷包",
+    "hans": "荷包",
+    "motion": "bob"
+  },
+  {
+    "name": "backpack",
+    "set": "common",
+    "en": "Backpack",
+    "hant": "背包",
+    "hans": "背包",
+    "motion": "bob"
+  },
+  {
+    "name": "helmet",
+    "set": "common",
+    "en": "Helmet",
+    "hant": "頭盔",
+    "hans": "头盔",
+    "motion": "pop"
+  },
+  {
+    "name": "armor",
+    "set": "common",
+    "en": "Armour",
+    "hant": "盔甲",
+    "hans": "盔甲",
+    "motion": "pulse"
+  },
+  {
+    "name": "bow",
+    "set": "common",
+    "en": "Bow",
+    "hant": "弓",
+    "hans": "弓",
+    "motion": "pulse"
+  },
+  {
+    "name": "wand",
+    "set": "common",
+    "en": "Magic wand",
+    "hant": "魔法棒",
+    "hans": "魔法棒",
+    "motion": "swing"
+  },
+  {
+    "name": "spellbook",
+    "set": "common",
+    "en": "Spellbook",
+    "hant": "魔法書",
+    "hans": "魔法书",
+    "motion": "float"
+  },
+  {
+    "name": "stamina",
+    "set": "common",
+    "en": "Stamina",
+    "hant": "體力",
+    "hans": "体力",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "mana",
+    "set": "common",
+    "en": "Mana (MP)",
+    "hant": "魔力",
+    "hans": "魔力",
+    "motion": "float"
+  },
+  {
+    "name": "poison",
+    "set": "common",
+    "en": "Poison",
+    "hant": "毒",
+    "hans": "毒",
+    "motion": "pulse"
+  },
+  {
     "name": "stop",
     "set": "common",
     "en": "Stop",
