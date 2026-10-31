@@ -1530,6 +1530,51 @@
     "motion": "drive"
   },
   {
+    "name": "pointer",
+    "set": "common",
+    "en": "Pointer",
+    "hant": "游標",
+    "hans": "光标",
+    "category": "interface",
+    "motion": "nudge-up"
+  },
+  {
+    "name": "chalk",
+    "set": "common",
+    "en": "Chalk",
+    "hant": "粉筆",
+    "hans": "粉笔",
+    "category": "school",
+    "motion": "wiggle"
+  },
+  {
+    "name": "pointer-stick",
+    "set": "common",
+    "en": "Teacher pointer",
+    "hant": "教鞭",
+    "hans": "教鞭",
+    "category": "school",
+    "motion": "tick"
+  },
+  {
+    "name": "bus",
+    "set": "common",
+    "en": "Bus",
+    "hant": "巴士",
+    "hans": "公交车",
+    "category": "transport",
+    "motion": "drive"
+  },
+  {
+    "name": "boat",
+    "set": "common",
+    "en": "Boat",
+    "hant": "小艇",
+    "hans": "小艇",
+    "category": "transport",
+    "motion": "float"
+  },
+  {
     "name": "scooter",
     "set": "common",
     "en": "Scooter",
@@ -1645,6 +1690,24 @@
     "hans": "哥布林",
     "category": "creatures",
     "motion": "wiggle"
+  },
+  {
+    "name": "zombie",
+    "set": "common",
+    "en": "Zombie",
+    "hant": "殭屍",
+    "hans": "僵尸",
+    "category": "creatures",
+    "motion": "wiggle"
+  },
+  {
+    "name": "dinosaur",
+    "set": "common",
+    "en": "Dinosaur",
+    "hant": "恐龍",
+    "hans": "恐龙",
+    "category": "creatures",
+    "motion": "bob"
   },
   {
     "name": "chick",
@@ -2223,6 +2286,60 @@
     "motion": "swing"
   },
   {
+    "name": "door-open",
+    "set": "common",
+    "en": "Open door",
+    "hant": "開門",
+    "hans": "开门",
+    "category": "living",
+    "motion": "pulse"
+  },
+  {
+    "name": "game-console",
+    "set": "common",
+    "en": "Game console",
+    "hant": "遊戲機",
+    "hans": "游戏机",
+    "category": "devices",
+    "motion": "shake"
+  },
+  {
+    "name": "ball",
+    "set": "common",
+    "en": "Ball",
+    "hant": "球",
+    "hans": "球",
+    "category": "sports",
+    "motion": "bob"
+  },
+  {
+    "name": "slippers",
+    "set": "common",
+    "en": "Slippers",
+    "hant": "拖鞋",
+    "hans": "拖鞋",
+    "category": "clothing",
+    "motion": "wiggle"
+  },
+  {
+    "name": "contract",
+    "set": "common",
+    "en": "Contract",
+    "hant": "合約",
+    "hans": "合同",
+    "category": "stationery",
+    "motion": "wiggle"
+  },
+  {
+    "name": "umbrella",
+    "set": "common",
+    "en": "Umbrella",
+    "hant": "雨傘",
+    "hans": "雨伞",
+    "category": "weather",
+    "motion": "swing"
+  },
+  {
     "name": "monster",
     "set": "common",
     "en": "Monster",
@@ -2331,6 +2448,15 @@
     "motion": "wiggle"
   },
   {
+    "name": "remote",
+    "set": "common",
+    "en": "Remote control",
+    "hant": "遙控器",
+    "hans": "遥控器",
+    "category": "devices",
+    "motion": "shake"
+  },
+  {
     "name": "pdf",
     "set": "common",
     "en": "PDF file",
@@ -2345,6 +2471,15 @@
     "en": "PowerPoint file",
     "hant": "PowerPoint 檔案",
     "hans": "PowerPoint 文件",
+    "category": "files",
+    "motion": "bob"
+  },
+  {
+    "name": "docx",
+    "set": "common",
+    "en": "Word file",
+    "hant": "Word 檔案",
+    "hans": "Word 文件",
     "category": "files",
     "motion": "bob"
   },
@@ -2480,6 +2615,15 @@
     "en": "Black magic",
     "hant": "黑魔法",
     "hans": "黑魔法",
+    "category": "classes",
+    "motion": "pulse"
+  },
+  {
+    "name": "cure",
+    "set": "common",
+    "en": "Cure",
+    "hant": "治癒",
+    "hans": "治愈",
     "category": "classes",
     "motion": "pulse"
   },
