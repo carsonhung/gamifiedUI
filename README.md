@@ -1,5 +1,9 @@
 # gamifiedUI
 
+[![Live demo](https://img.shields.io/badge/demo-live-f7c948)](https://carsonhung.github.io/gamifiedUI/)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8)](https://tailwindcss.com)
+
 **Game-style 2D / 2.5D UI for Tailwind CSS v4. Free and open source.**
 
 Turn everyday components into game parts:
@@ -10,8 +14,9 @@ Turn everyday components into game parts:
 - dialogue boxes, quest logs and loot cards
 - sprite animation and isometric scenes
 - 341 pixel icons, each with a stoppable animated version
+- optional chiptune sound effects, generated live with no audio files
 
-It is CSS only, so it works with Vue, React, Svelte or plain HTML.
+The core is CSS only, so it works with Vue, React, Svelte or plain HTML.
 
 **[Live demo](https://carsonhung.github.io/gamifiedUI/)**, in English, 繁中 and 简中.
 
@@ -69,6 +74,14 @@ There are **341 pixel icons** on a 16×16 grid, sorted into 24 categories. Each 
 
 The categories are interface, media, files, stationery, communication, devices, shopping, equipment, stats, awards, creatures, classes and magic, flags, sports, food, home, clothing, people, places, transport, school, weather, nature, and emoji / Hong Kong.
 
+Some highlights:
+
+- **RPG:** 17 classes and spells, such as knight, wizard, necromancer, white magic and cure, plus monsters from slime and goblin to zombie, dinosaur and boss.
+- **Everyday life:** shops, a bank, a hospital and a post office, plus buses, trains, boats, weather, clothing and sports.
+- **Files:** PDF, PPT, DOC and HTML badges, folders and contracts.
+- **Flags:** Hong Kong, China, Japan, Korea, the US and the UK.
+- **Hong Kong:** 22 local icons, including the MTR, the tram, the Star Ferry, red minibuses and HKU's Main Building.
+
 Every icon also has an animated version, `gx-ia-*`:
 
 - **Motion presets:** 20 of them, such as bob, pop, spin, ring, shake and drive.
@@ -89,7 +102,21 @@ The machine-readable lists are `icons.json` and `categories.json`, with English,
 
 ### Sound effects (optional)
 
-`gamifiedui-sfx` is a separate package. It generates 22 chiptune sounds live with Web Audio, such as click, coin, hit, heal and levelUp, so it ships no audio files. Add `data-gx-sfx="coin"` to any button, or call `sfx.play('coin')`. See the [gamifiedui-sfx README](packages/gamifiedui-sfx/README.md).
+`gamifiedui-sfx` is a separate package. It generates 22 chiptune sounds live with Web Audio, such as click, coin, hit, heal and levelUp, so it ships no audio files. Nothing plays until you ask it to.
+
+```ts
+import { createSfx } from 'gamifiedui-sfx';
+
+const sfx = createSfx({ volume: 0.5, storageKey: 'my-game-sfx' }); // remembers volume and mute
+sfx.bind(); // every [data-gx-sfx] element now plays its sound on click
+sfx.play('levelUp');
+```
+
+```html
+<button class="gx-btn" data-gx-sfx="coin">Buy</button>
+```
+
+See the [gamifiedui-sfx README](packages/gamifiedui-sfx/README.md) for the sound list and for defining your own.
 
 ## Principles
 
@@ -113,15 +140,19 @@ The machine-readable lists are `icons.json` and `categories.json`, with English,
 
 ```bash
 npm install
-npm test               # Tailwind compile, CSS rule checks, and freshness checks for icons, CDN CSS and utils dist
-npm run build:packages # rebuild icons, CDN CSS and utils dist (commit the results)
+npm test               # Tailwind compile, CSS rule checks, and freshness checks for icons, CDN CSS, utils and sfx dist
+npm run build:packages # rebuild icons, CDN CSS, utils and sfx dist (commit the results)
 npm run demo           # playground at http://localhost:5173
 npm run build          # packages, then the demo
 ```
 
-Icons are drawn as ASCII grids in [`packages/gamifiedui-icons/icons/`](packages/gamifiedui-icons/icons). The build turns them into CSS masks, SVGs and frame strips, and it fails if any icon is missing a category.
+Icons are drawn as ASCII grids in [`packages/gamifiedui-icons/icons/`](packages/gamifiedui-icons/icons): `#` is a solid pixel, `+` is half-tone and `.` is empty. To add one, draw it in `common.mjs`, list it in a category in `categories.mjs`, and optionally give it a default motion in `motion.mjs`. The build turns it into CSS masks, SVGs and frame strips, and it fails if an icon is missing a category or is listed twice.
 
-The `dist/` folders are committed so that jsDelivr's GitHub mirror can serve them from any tag.
+The `dist/` folders are committed so that jsDelivr's GitHub mirror can serve them from any tag. The demo is deployed to GitHub Pages on every push to `master`.
+
+## Support
+
+gamifiedUI is free. If it helps your project, you can [sponsor the work on GitHub](https://github.com/sponsors/carsonhung). Bug reports, icon requests and pull requests are welcome too.
 
 ## License
 
