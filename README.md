@@ -87,6 +87,10 @@ The machine-readable lists are `icons.json` and `categories.json`, with English,
 - floating text and particle bursts
 - tabs, calendars and uploads
 
+### Sound effects (optional)
+
+`gamifiedui-sfx` is a separate package. It generates 22 chiptune sounds live with Web Audio, such as click, coin, hit, heal and levelUp, so it ships no audio files. Add `data-gx-sfx="coin"` to any button, or call `sfx.play('coin')`. See the [gamifiedui-sfx README](packages/gamifiedui-sfx/README.md).
+
 ## Principles
 
 - **Plain HTML first.** Components use real `<button>`s and native `<dialog>`s. State comes from `aria-*` and `data-*` attributes, so no JavaScript is required.
@@ -102,7 +106,7 @@ The machine-readable lists are `icons.json` and `categories.json`, with English,
 | [`gamifiedui-css`](packages/gamifiedui-css) | 0.1.0 | Tokens, themes, components, particles, sprite and iso utilities, CDN build |
 | [`gamifiedui-icons`](packages/gamifiedui-icons) | 0.1.0 | 239 pixel icons in 19 categories, animated versions, SVGs, JSON metadata |
 | [`gamifiedui-utils`](packages/gamifiedui-utils) | 0.1.0 | Optional JavaScript helpers |
-| `gamifiedui-sfx` | Planned | Procedural UI sounds, no audio files |
+| [`gamifiedui-sfx`](packages/gamifiedui-sfx) | 0.1.0 | Optional chiptune sound effects made with Web Audio, no audio files |
 | `gamifiedui-vue`, `gamifiedui-react` | Planned | Component wrappers |
 
 ## Development

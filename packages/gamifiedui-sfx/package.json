@@ -1,0 +1,34 @@
+{
+  "name": "gamifiedui-sfx",
+  "version": "0.1.0",
+  "description": "Procedural chiptune UI sound effects for gamifiedUI. Web Audio only: no audio files, no dependencies.",
+  "license": "Apache-2.0",
+  "author": "Carson Hung (https://github.com/carsonhung)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carsonhung/gamifiedUI.git",
+    "directory": "packages/gamifiedui-sfx"
+  },
+  "keywords": ["game-ui", "sound-effects", "sfx", "web-audio", "chiptune", "8bit"],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "jsdelivr": "./dist/index.js",
+  "unpkg": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": ["dist", "LICENSE", "NOTICE"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "node scripts/check-dist.mjs"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3"
+  }
+}

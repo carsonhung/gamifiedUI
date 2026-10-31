@@ -402,7 +402,6 @@
     min-height: 2.75rem;
     margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) + var(--gx-depth));
     font-family: var(--font-gx);
-    font-size: var(--gx-text-md);
     text-transform: uppercase;
     color: var(--gx-btn-fg);
     background: var(--gx-btn-bg);
@@ -417,6 +416,7 @@
     align-items: center;
     gap: .5rem;
     padding: .625rem 1.25rem;
+    font-size: .875rem;
     line-height: 1.25;
     display: inline-flex;
     position: relative;
@@ -480,13 +480,13 @@
   }
 
   .gx-btn-sm {
-    font-size: var(--gx-text-sm);
     padding: .5rem .875rem;
+    font-size: .75rem;
   }
 
   .gx-btn-lg {
-    font-size: var(--gx-text-lg);
     padding: .875rem 1.75rem;
+    font-size: 1rem;
   }
 
   .gx-panel {
@@ -520,11 +520,11 @@
 
   .gx-panel-title {
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     letter-spacing: .05em;
     text-transform: uppercase;
     color: var(--color-gx-accent);
     margin: 0 0 .75rem;
+    font-size: .75rem;
     line-height: 1.5;
   }
 
@@ -613,7 +613,6 @@
     --gx-badge-fg: var(--color-gx-ink);
     margin: var(--gx-px);
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     text-transform: uppercase;
     color: var(--gx-badge-fg);
     background: var(--gx-badge-bg);
@@ -621,6 +620,7 @@
     align-items: center;
     gap: .375rem;
     padding: .25rem .5rem;
+    font-size: .75rem;
     line-height: 1.25;
     display: inline-flex;
   }
@@ -701,11 +701,11 @@
 
   .gx-textbox-speaker {
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     letter-spacing: .05em;
     text-transform: uppercase;
     color: var(--color-gx-accent);
     margin: 0 0 .5rem;
+    font-size: .75rem;
   }
 
   .gx-textbox-text {
@@ -715,9 +715,9 @@
 
   .gx-textbox-next {
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     color: var(--color-gx-accent);
     animation: gx-nudge calc(var(--gx-motion-slow) * 2) steps(2, end) infinite;
+    font-size: .75rem;
     position: absolute;
     bottom: .5rem;
     right: 1rem;
@@ -778,19 +778,19 @@
     width: 2rem;
     height: 2rem;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-md);
     color: var(--gx-alert-on-tone);
     background: var(--gx-alert-tone);
     grid-row: span 2;
     place-items: center;
+    font-size: .875rem;
     display: grid;
   }
 
   .gx-alert-title {
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     text-transform: uppercase;
     margin: 0;
+    font-size: .75rem;
     line-height: 1.6;
   }
 
@@ -885,19 +885,19 @@
     width: 2rem;
     height: 2rem;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-md);
     color: var(--gx-toast-on-tone);
     background: var(--gx-toast-tone);
     grid-row: span 2;
     place-items: center;
+    font-size: .875rem;
     display: grid;
   }
 
   .gx-toast-title {
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     text-transform: uppercase;
     margin: 0;
+    font-size: .75rem;
     line-height: 1.6;
   }
 
@@ -911,7 +911,6 @@
     width: 2.75rem;
     height: 2.75rem;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     color: inherit;
     cursor: pointer;
     background: none;
@@ -920,6 +919,7 @@
     place-items: center;
     margin: -.5rem 0 0;
     padding: 0;
+    font-size: .75rem;
     display: grid;
   }
 
@@ -1095,13 +1095,13 @@
   .gx-tab {
     min-height: 2.75rem;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     white-space: nowrap;
     text-transform: uppercase;
     color: var(--color-gx-on-surface);
     background: #1d1d3c;
     border: 0;
     padding: .5rem .75rem;
+    font-size: .75rem;
     position: relative;
   }
 
@@ -1153,8 +1153,8 @@
 
   .gx-field-label {
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     text-transform: uppercase;
+    font-size: .75rem;
     line-height: 1.6;
   }
 
@@ -1405,9 +1405,9 @@
 
   .gx-card-title {
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     text-transform: uppercase;
     margin: 0;
+    font-size: .75rem;
     line-height: 1.6;
   }
 
@@ -1503,9 +1503,9 @@
   .gx-slot-count {
     right: calc(var(--gx-px) / 2);
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     color: var(--color-gx-on-surface);
     text-shadow: calc(var(--gx-px) / 2) calc(var(--gx-px) / 2) 0 var(--color-gx-ink), calc(var(--gx-px) / -2) calc(var(--gx-px) / -2) 0 var(--color-gx-ink);
+    font-size: .75rem;
     line-height: 1.4;
     position: absolute;
     bottom: 0;
@@ -1517,11 +1517,11 @@
     margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) * 2);
     box-sizing: border-box;
     font-family: var(--font-gx);
-    font-size: var(--gx-text-sm);
     color: var(--color-gx-on-surface);
     background: #50506e;
     place-items: center;
     padding: 0 .375rem;
+    font-size: .75rem;
     line-height: 1;
     display: inline-grid;
   }

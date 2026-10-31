@@ -24,6 +24,7 @@
           <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="gameboy" aria-pressed="false">Game Boy</button>
           <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="parchment" aria-pressed="false">Parchment</button>
           <button id="motion-toggle" class="gx-btn gx-btn-ghost gx-btn-sm" aria-pressed="false">Reduce motion</button>
+          <button id="sound-toggle" class="gx-btn gx-btn-ghost gx-btn-sm" aria-pressed="true" data-i18n="soundToggle">Sound</button>
           <a class="gx-btn gx-btn-ghost gx-btn-sm" href="https://github.com/carsonhung/gamifiedUI">GitHub</a>
         </div>
         </div>
@@ -61,6 +62,7 @@
                 <li><a href="#feedback-title" data-i18n="feedbackTitle">Alerts and notifications</a></li>
                 <li><a href="#dialogue-title" data-i18n="dialogueTitle">Dialogue</a></li>
                 <li><a href="#fx-title" data-i18n="fxTitle">Particles</a></li>
+              <li><a href="#sfx-title" data-i18n="sfxTitle">Sound effects</a></li>
               </ul>
             </li>
             <li>
@@ -95,12 +97,12 @@
           <section class="gx-panel" aria-labelledby="buttons-title">
             <h3 id="buttons-title" class="gx-panel-title" data-i18n="buttonsTitle">Buttons</h3>
             <div class="flex flex-wrap items-center gap-3">
-              <button class="gx-btn" data-i18n="start">Start</button>
-              <button class="gx-btn gx-btn-success" data-i18n="save">Save</button>
-              <button class="gx-btn gx-btn-warning" data-i18n="shop">Shop</button>
-              <button class="gx-btn gx-btn-danger" data-i18n="quit">Quit</button>
-              <button class="gx-btn gx-btn-ghost" data-i18n="options">Options</button>
-              <button class="gx-btn gx-btn-lg gx-depth-2" data-i18n="bigPress">Big press</button>
+              <button class="gx-btn" data-gx-sfx="confirm" data-i18n="start">Start</button>
+              <button class="gx-btn gx-btn-success" data-gx-sfx="confirm" data-i18n="save">Save</button>
+              <button class="gx-btn gx-btn-warning" data-gx-sfx="coin" data-i18n="shop">Shop</button>
+              <button class="gx-btn gx-btn-danger" data-gx-sfx="cancel" data-i18n="quit">Quit</button>
+              <button class="gx-btn gx-btn-ghost" data-gx-sfx="select" data-i18n="options">Options</button>
+              <button class="gx-btn gx-btn-lg gx-depth-2" data-gx-sfx="powerUp" data-i18n="bigPress">Big press</button>
               <button class="gx-btn" disabled data-i18n="locked">Locked</button>
             </div>
           </section>
@@ -129,7 +131,7 @@
                   <label class="gx-choice"><input type="checkbox" role="switch" class="gx-switch" checked /> <span data-i18n="music">Music</span></label>
                 </div>
                 <div class="flex items-center gap-3">
-                  <button class="gx-btn gx-btn-success" data-i18n="create">Create</button>
+                  <button class="gx-btn gx-btn-success" data-gx-sfx="levelUp" data-i18n="create">Create</button>
                   <span class="gx-tooltip">
                     <button type="button" class="gx-btn gx-btn-ghost gx-btn-sm" aria-describedby="hardcore-tip" aria-label="About hardcore mode">?</button>
                     <span id="hardcore-tip" class="gx-tooltip-content" role="tooltip" data-i18n="hardcoreTip">Hardcore: one life, no saves.</span>
@@ -180,7 +182,7 @@
               </ol>
             </nav>
             <nav aria-label="Main menu" class="max-w-xs">
-              <ul class="gx-menu">
+              <ul class="gx-menu" data-gx-sfx-hover="hover">
                 <li>
                   <button class="gx-menu-item" aria-current="true"><span data-i18n="continue">Continue</span><span class="gx-menu-hint">Lv 12</span></button>
                 </li>
@@ -192,7 +194,7 @@
             <details class="gx-dropdown mt-2" id="sort-dropdown">
               <summary class="gx-btn gx-btn-ghost gx-btn-sm"><span data-i18n="sortBy">Sort by</span> ▼</summary>
               <div class="gx-dropdown-panel">
-                <ul class="gx-menu">
+                <ul class="gx-menu" data-gx-sfx-hover="hover">
                   <li><button class="gx-menu-item" data-sort aria-current="true" data-i18n="sortScore">Score</button></li>
                   <li><button class="gx-menu-item" data-sort data-i18n="sortLevel">Level</button></li>
                   <li><button class="gx-menu-item" data-sort data-i18n="sortName">Name</button></li>
@@ -327,13 +329,13 @@
                 <dd class="text-right tabular-nums">42%</dd>
               </dl>
               <div class="mt-4 flex flex-wrap gap-3">
-                <button id="hit" class="gx-btn gx-btn-danger gx-btn-sm" data-i18n="hit">Take hit</button>
-                <button id="heal" class="gx-btn gx-btn-success gx-btn-sm" data-i18n="heal">Heal</button>
+                <button id="hit" data-gx-sfx="hit" class="gx-btn gx-btn-danger gx-btn-sm" data-i18n="hit">Take hit</button>
+                <button id="heal" data-gx-sfx="heal" class="gx-btn gx-btn-success gx-btn-sm" data-i18n="heal">Heal</button>
               </div>
             </section>
             <section aria-labelledby="bag-title">
               <h3 id="bag-title" class="sr-only" data-i18n="bagTitle">Bag</h3>
-              <div class="gx-tabs" role="tablist" aria-label="Bag">
+              <div class="gx-tabs" role="tablist" aria-label="Bag" data-gx-sfx-hover="hover">
                 <button class="gx-tab" role="tab" id="tab-items" aria-controls="panel-items" aria-selected="true" data-i18n="tabItems">Items</button>
                 <button class="gx-tab" role="tab" id="tab-gear" aria-controls="panel-gear" aria-selected="false" tabindex="-1" data-i18n="tabGear">Gear</button>
                 <button class="gx-tab" role="tab" id="tab-keys" aria-controls="panel-keys" aria-selected="false" tabindex="-1" data-i18n="tabKeys">Controls</button>
@@ -381,7 +383,7 @@
                     <span class="gx-counter-icon"><span class="gx-icon gx-icon-sm gx-i-bolt" aria-hidden="true"></span></span>
                     <span class="gx-counter-value">340</span>
                   </span>
-                  <button id="earn-gold" class="gx-btn gx-btn-warning gx-btn-sm" data-i18n="earnGold">+250 gold</button>
+                  <button id="earn-gold" data-gx-sfx="coin" class="gx-btn gx-btn-warning gx-btn-sm" data-i18n="earnGold">+250 gold</button>
                 </div>
                 <div class="flex flex-wrap items-center gap-4">
                   <span class="gx-rating" id="hearts" role="img" aria-label="5 of 5 hearts" style="--gx-value: 5"></span>
@@ -402,8 +404,8 @@
                   </ul>
                 </section>
                 <div class="flex flex-wrap gap-3">
-                  <button id="mine" class="gx-btn gx-btn-sm" data-i18n="mine">Mine ore</button>
-                  <button id="open-reward" class="gx-btn gx-btn-success gx-btn-sm" data-i18n="openReward">Open chest</button>
+                  <button id="mine" data-gx-sfx="step" class="gx-btn gx-btn-sm" data-i18n="mine">Mine ore</button>
+                  <button id="open-reward" data-gx-sfx="open" class="gx-btn gx-btn-success gx-btn-sm" data-i18n="openReward">Open chest</button>
                 </div>
               </div>
               <div class="flex flex-col gap-4">
@@ -411,7 +413,7 @@
                   <span class="gx-avatar gx-avatar-lg gx-rarity-epic"><img id="target-slime" alt="Slime, the training target" /></span>
                 </div>
                 <div class="flex flex-wrap justify-center gap-2" role="group" aria-label="Skills">
-                  <button class="gx-skill" data-skill="slash" aria-label="Slash, key 1">
+                  <button class="gx-skill" data-gx-sfx="laser" data-skill="slash" aria-label="Slash, key 1">
                     <span class="gx-skill-key" aria-hidden="true">1</span>
                     <span class="gx-icon gx-i-sword" aria-hidden="true"></span>
                     <span class="gx-skill-timer" aria-hidden="true"></span>
@@ -507,10 +509,10 @@
               </div>
             </div>
             <div class="mt-4 flex flex-wrap items-center gap-3">
-              <button class="gx-btn gx-btn-sm" data-toast="info" data-i18n="toastInfoBtn">Info toast</button>
-              <button class="gx-btn gx-btn-success gx-btn-sm" data-toast="success" data-i18n="toastSuccessBtn">Success toast</button>
-              <button class="gx-btn gx-btn-danger gx-btn-sm" data-toast="danger" data-i18n="toastDangerBtn">Error toast</button>
-              <button class="gx-btn gx-btn-warning gx-btn-sm" data-toast="achievement" data-i18n="toastAchievementBtn">Achievement</button>
+              <button class="gx-btn gx-btn-sm" data-toast="info" data-gx-sfx="notify" data-i18n="toastInfoBtn">Info toast</button>
+              <button class="gx-btn gx-btn-success gx-btn-sm" data-toast="success" data-gx-sfx="confirm" data-i18n="toastSuccessBtn">Success toast</button>
+              <button class="gx-btn gx-btn-danger gx-btn-sm" data-toast="danger" data-gx-sfx="error" data-i18n="toastDangerBtn">Error toast</button>
+              <button class="gx-btn gx-btn-warning gx-btn-sm" data-toast="achievement" data-gx-sfx="achievement" data-i18n="toastAchievementBtn">Achievement</button>
               <span class="inline-flex items-center gap-3" role="status">
                 <span class="gx-spinner" aria-hidden="true"></span>
                 <span class="text-sm" data-i18n="loading">Loading world…</span>
@@ -527,7 +529,7 @@
               <span class="gx-textbox-next" id="next" aria-hidden="true" hidden>▼</span>
             </div>
             <div class="mt-2 flex flex-wrap gap-3">
-              <button id="advance" class="gx-btn gx-btn-sm" data-i18n="advance">Next (Enter)</button>
+              <button id="advance" data-gx-sfx="blip" class="gx-btn gx-btn-sm" data-i18n="advance">Next (Enter)</button>
               <button id="open-dialog" class="gx-btn gx-btn-ghost gx-btn-sm" data-i18n="openDialog">Open dialog</button>
             </div>
           </section>
@@ -539,10 +541,10 @@
                   <span class="gx-icon gx-icon-xl gx-icon-legendary gx-icon-shadow gx-i-gift" aria-hidden="true"></span>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                  <button class="gx-btn gx-btn-sm" data-burst="spark" data-i18n="burstSpark">Sparkles</button>
-                  <button class="gx-btn gx-btn-warning gx-btn-sm" data-burst="coin" data-i18n="burstCoin">Coins</button>
-                  <button class="gx-btn gx-btn-danger gx-btn-sm" data-burst="heart" data-i18n="burstHeart">Hearts</button>
-                  <button class="gx-btn gx-btn-ghost gx-btn-sm" data-burst="petal" data-i18n="burstPetal">Bauhinia</button>
+                  <button class="gx-btn gx-btn-sm" data-gx-sfx="pickup" data-burst="spark" data-i18n="burstSpark">Sparkles</button>
+                  <button class="gx-btn gx-btn-warning gx-btn-sm" data-gx-sfx="pickup" data-burst="coin" data-i18n="burstCoin">Coins</button>
+                  <button class="gx-btn gx-btn-danger gx-btn-sm" data-gx-sfx="pickup" data-burst="heart" data-i18n="burstHeart">Hearts</button>
+                  <button class="gx-btn gx-btn-ghost gx-btn-sm" data-gx-sfx="pickup" data-burst="petal" data-i18n="burstPetal">Bauhinia</button>
                 </div>
               </div>
               <div class="flex flex-col gap-3">
@@ -565,6 +567,11 @@
               </div>
             </div>
           </section>
+            <section class="gx-panel" aria-labelledby="sfx-title">
+              <h3 id="sfx-title" class="gx-panel-title" data-i18n="sfxTitle">Sound effects</h3>
+              <p class="mb-3 text-sm" data-i18n="sfxIntro">gamifiedui-sfx makes chiptune sounds with Web Audio, so there are no audio files. Add data-gx-sfx="coin" to any button. Most buttons on this page already have one.</p>
+              <div id="sfx-board" class="flex flex-wrap gap-2"></div>
+            </section>
         </section>
 
         <section id="group-media" class="demo-group" aria-labelledby="group-media-title">
@@ -646,7 +653,7 @@
           <dialog id="drawer" class="gx-drawer" aria-labelledby="drawer-title">
             <h2 id="drawer-title" class="gx-panel-title" data-i18n="paused">Paused</h2>
             <form method="dialog">
-              <ul class="gx-menu">
+              <ul class="gx-menu" data-gx-sfx-hover="hover">
                 <li><button class="gx-menu-item" aria-current="true" data-i18n="resume">Resume</button></li>
                 <li><button class="gx-menu-item" data-i18n="options">Options</button></li>
                 <li><button class="gx-menu-item" data-i18n="save">Save</button></li>
@@ -663,7 +670,7 @@
             <p class="gx-reward-name gx-rarity-legendary" data-i18n="rewardName">Sun trophy</p>
             <p class="text-sm" data-i18n="rewardBody">Legendary. Added to your bag.</p>
             <form method="dialog" class="mt-4">
-              <button class="gx-btn gx-btn-success" data-i18n="claim">Claim</button>
+              <button class="gx-btn gx-btn-success" data-gx-sfx="achievement" data-i18n="claim">Claim</button>
             </form>
           </dialog>
         </main>

@@ -7,6 +7,7 @@ import { tabs, toast, typewriter, videoPlayOverlay, type TypewriterHandle } from
 import './style.css';
 import { byId, locale, notifyLocaleChange, onLocaleChange, setLocale, t } from './core';
 import { isLocale, MESSAGES, type Line, type ToastKind } from './i18n';
+import { setupSound } from './sound';
 import { setupTime } from './time';
 import { setupUpload } from './upload';
 import { setupGameWidgets } from './widgets';
@@ -353,4 +354,5 @@ setupTabs();
 setupGameWidgets(byId<HTMLImageElement>('avatar-slime').src);
 setupTime();
 setupUpload();
+setupSound();
 setupLanguage();
