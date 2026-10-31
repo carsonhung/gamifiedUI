@@ -19,18 +19,26 @@
     "sprite"
   ],
   "style": "./src/index.css",
+  "unpkg": "./dist/gamifiedui.min.css",
+  "jsdelivr": "./dist/gamifiedui.min.css",
   "exports": {
     ".": {
       "style": "./src/index.css",
       "default": "./src/index.css"
     },
+    "./dist/*": "./dist/*",
     "./*.css": "./src/*.css"
   },
   "files": [
     "src",
+    "dist",
     "LICENSE",
     "NOTICE"
   ],
+  "scripts": {
+    "build": "node scripts/build-cdn.mjs",
+    "check": "node scripts/build-cdn.mjs --check"
+  },
   "peerDependencies": {
     "tailwindcss": "^4.1.0"
   }

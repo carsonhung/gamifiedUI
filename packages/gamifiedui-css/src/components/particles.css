@@ -1,0 +1,176 @@
+/* Particle effects. Purely decorative: always aria-hidden, never the only feedback, hidden under
+   reduced motion.
+   Burst: <div class="gx-burst" style="--gx-burst-x: 50%; --gx-burst-y: 40%"> with N
+   <i class="gx-particle" style="--gx-dx: 3rem; --gx-dy: -4rem; --gx-rot: 180deg; --gx-delay: 40ms">
+   spawned by script inside a positioned parent; remove the burst on its last animationend.
+   Add any gx-i-* icon class to a particle to use that icon as its shape.
+   Ambient: <div class="gx-ambient gx-ambient-snow" aria-hidden="true"> with 12 empty <i>, no script. */
+@layer components {
+  .gx-burst {
+    position: absolute;
+    z-index: var(--gx-z-hud-raised);
+    inset-inline-start: var(--gx-burst-x, 50%);
+    inset-block-start: var(--gx-burst-y, 50%);
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .gx-particle {
+    --gx-particle-size: calc(var(--gx-px) * 2);
+
+    position: absolute;
+    inset-inline-start: calc(var(--gx-particle-size) / -2);
+    inset-block-start: calc(var(--gx-particle-size) / -2);
+    width: var(--gx-particle-size);
+    height: var(--gx-particle-size);
+    color: var(--gx-particle-color, var(--color-gx-accent));
+    background-color: currentColor;
+    opacity: 0;
+    animation: gx-particle var(--gx-particle-ms, 720ms) steps(8, end) var(--gx-delay, 0ms) forwards;
+  }
+
+  .gx-particle[class*="gx-i-"] {
+    --gx-particle-size: calc(var(--gx-px) * 4);
+  }
+
+  .gx-particle-lg {
+    --gx-particle-size: calc(var(--gx-px) * 3);
+  }
+
+  .gx-particle-lg[class*="gx-i-"] {
+    --gx-particle-size: calc(var(--gx-px) * 8);
+  }
+
+  .gx-particle-coin {
+    --gx-particle-color: var(--color-gx-legendary);
+  }
+
+  .gx-particle-heart {
+    --gx-particle-color: var(--color-gx-hp);
+  }
+
+  .gx-particle-xp {
+    --gx-particle-color: var(--color-gx-xp);
+  }
+
+  .gx-particle-petal {
+    --gx-particle-color: color-mix(in oklab, var(--color-gx-danger) 55%, white);
+  }
+
+  .gx-particle-rarity {
+    --gx-particle-color: var(--gx-rarity, var(--color-gx-accent));
+  }
+
+  .gx-ambient {
+    position: absolute;
+    inset: 0;
+    container-type: size;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .gx-ambient > i {
+    --gx-ambient-size: var(--gx-px);
+    position: absolute;
+    inset-block-start: -1rem;
+    inset-inline-start: var(--gx-x);
+    width: var(--gx-ambient-size);
+    height: var(--gx-ambient-size);
+    color: var(--gx-ambient-color, var(--color-gx-on-surface));
+    background-color: currentColor;
+    animation: gx-ambient-fall var(--gx-ambient-ms, 6s) steps(48, end) var(--gx-delay, 0s) infinite;
+  }
+
+  .gx-ambient > i:nth-child(12n + 1) { --gx-x: 4%; --gx-delay: -0.4s; }
+  .gx-ambient > i:nth-child(12n + 2) { --gx-x: 13%; --gx-delay: -3.1s; }
+  .gx-ambient > i:nth-child(12n + 3) { --gx-x: 21%; --gx-delay: -1.7s; }
+  .gx-ambient > i:nth-child(12n + 4) { --gx-x: 30%; --gx-delay: -4.6s; }
+  .gx-ambient > i:nth-child(12n + 5) { --gx-x: 38%; --gx-delay: -2.2s; }
+  .gx-ambient > i:nth-child(12n + 6) { --gx-x: 47%; --gx-delay: -5.3s; }
+  .gx-ambient > i:nth-child(12n + 7) { --gx-x: 55%; --gx-delay: -0.9s; }
+  .gx-ambient > i:nth-child(12n + 8) { --gx-x: 63%; --gx-delay: -3.8s; }
+  .gx-ambient > i:nth-child(12n + 9) { --gx-x: 71%; --gx-delay: -2.7s; }
+  .gx-ambient > i:nth-child(12n + 10) { --gx-x: 80%; --gx-delay: -5.9s; }
+  .gx-ambient > i:nth-child(12n + 11) { --gx-x: 88%; --gx-delay: -1.2s; }
+  .gx-ambient > i:nth-child(12n + 12) { --gx-x: 95%; --gx-delay: -4.2s; }
+
+  .gx-ambient-snow > i:nth-child(3n) {
+    --gx-ambient-size: calc(var(--gx-px) * 2);
+  }
+
+  .gx-ambient-rain > i {
+    --gx-ambient-color: color-mix(in oklab, var(--color-gx-mp) 70%, white);
+    --gx-ambient-ms: 1.1s;
+    height: calc(var(--gx-px) * 3);
+    animation-timing-function: steps(10, end);
+  }
+
+  .gx-ambient-embers > i {
+    --gx-ambient-color: var(--color-gx-accent);
+    --gx-ambient-ms: 4s;
+    inset-block: auto -1rem;
+    animation-name: gx-ambient-rise;
+  }
+
+  .gx-ambient-embers > i:nth-child(2n) {
+    --gx-ambient-color: var(--color-gx-danger);
+  }
+
+  .gx-ambient-petals > i {
+    --gx-ambient-color: color-mix(in oklab, var(--color-gx-danger) 55%, white);
+    --gx-ambient-size: calc(var(--gx-px) * 4);
+    --gx-ambient-ms: 8s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-particle,
+    .gx-ambient {
+      display: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-particle,
+  [data-gx-motion="reduce"] .gx-ambient {
+    display: none;
+  }
+}
+
+@keyframes gx-particle {
+  from {
+    translate: 0 0;
+    rotate: 0deg;
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    translate: var(--gx-dx, 0) calc(var(--gx-dy, 0) + var(--gx-fall, 1.5rem));
+    rotate: var(--gx-rot, 0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes gx-ambient-fall {
+  from {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0.75rem 50cqh;
+  }
+  to {
+    translate: 0 calc(100cqh + 2rem);
+  }
+}
+
+@keyframes gx-ambient-rise {
+  from {
+    translate: 0 0;
+    opacity: 1;
+  }
+  to {
+    translate: -0.75rem calc(-100cqh - 2rem);
+    opacity: 0;
+  }
+}

@@ -12,20 +12,27 @@ framework-agnostic; framework wrappers are thin and optional.
 ## Layout (npm workspaces)
 
 - `packages/gamifiedui-css/src/` - the product. `index.css` imports `tokens.css`, `themes.css`,
-  `utilities.css` and `components/*.css`. Consumers write `@import "tailwindcss"; @import "gamifiedui-css";`.
+  `i18n.css`, `utilities.css` and `components/*.css`. Consumers write
+  `@import "tailwindcss"; @import "gamifiedui-css";`. `scripts/build-cdn.mjs` prebuilds
+  `dist/gamifiedui(-core)(.min).css` for `<link>` use; extend its `CANDIDATES` when adding a `@utility`.
+- `packages/gamifiedui-icons/` - 16×16 ASCII-grid icons in `icons/*.mjs`; `scripts/build.mjs`
+  generates `src/index.css` (`@utility`), `src/all.css`, `svg/` and `icons.json`. Never hand-edit outputs.
+- `packages/gamifiedui-utils/src/` - optional, dependency-free TS helpers (toast, typewriter,
+  counter, cooldown, effects, controls). The demo consumes them; components must still work without JS.
 - `demo/` - Vite + `@tailwindcss/vite` playground, deployed to GitHub Pages. Every component and
   utility must appear here.
 - `scripts/check-css.mjs` - compiles the package through Tailwind and enforces the motion and
-  theming rules. `npm test` runs it.
+  theming rules.
 
 ## Commands (PowerShell; no `&&` chaining in docs)
 
-- `npm install`, `npm test`, `npm run build` (demo), `npm run demo` (dev server).
+- `npm install`, `npm test` (CSS rules + stale-output checks), `npm run build:packages`
+  (icons, CDN CSS, utils dist), `npm run build` (packages + demo), `npm run demo`.
+- Every `dist/` is committed (jsDelivr GitHub CDN); rebuild and commit it with source changes.
 
 ## Planned packages
 
 - `gamifiedui-sfx` - procedural UI sounds (no audio files), ported from spatial/StoryTelling.
-- `gamifiedui-utils` - framework-free helpers: whole-number zoom, sprite frame style, label fit, CJK wrap.
-- `gamifiedui-vue` / `gamifiedui-react` - typewriter dialogue, focus helpers; props only, no stores.
+- `gamifiedui-vue` / `gamifiedui-react` - thin wrappers; props only, no stores.
 
 Related: 3D/XR runtime modules (three.js) live in a separate repo, never here.

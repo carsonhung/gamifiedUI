@@ -1,0 +1,49 @@
+/* Hearts or stars. <span class="gx-rating" role="img" aria-label="3.5 of 5 hearts"
+   style="--gx-value: 3.5; --gx-rating-max: 5"></span>. Half values fill part of a heart.
+   Icons sit on an 8px grid; sizes are multiples of 8px so cells stay square. */
+@layer components {
+  .gx-rating {
+    --gx-rating-max: 5;
+    --gx-rating-size: calc(var(--gx-px) * 6);
+    --gx-rating-color: var(--color-gx-hp);
+    --gx-rating-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M1 1h2v1H1zM4 1h2v1H4zM0 2h7v2H0zM1 4h5v1H1zM2 5h3v1H2zM3 6h1v1H3z'/%3E%3C/svg%3E");
+
+    position: relative;
+    display: inline-block;
+    width: calc(var(--gx-rating-max) * var(--gx-rating-size));
+    height: var(--gx-rating-size);
+    vertical-align: middle;
+  }
+
+  .gx-rating::before,
+  .gx-rating::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    mask: var(--gx-rating-icon) 0 0 / var(--gx-rating-size) var(--gx-rating-size) repeat-x;
+  }
+
+  .gx-rating::before {
+    background: var(--color-gx-track);
+  }
+
+  .gx-rating::after {
+    background: var(--gx-rating-color);
+    clip-path: inset(
+      0 calc((1 - clamp(0, var(--gx-value, 0), var(--gx-rating-max)) / var(--gx-rating-max)) * 100%) 0 0
+    );
+  }
+
+  .gx-rating-stars {
+    --gx-rating-color: var(--color-gx-legendary);
+    --gx-rating-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v2H3zM0 2h7v1H0zM1 3h5v1H1zM2 4h3v1H2zM1 5h2v1H1zM4 5h2v1H4zM1 6h1v1H1zM5 6h1v1H5z'/%3E%3C/svg%3E");
+  }
+
+  .gx-rating-sm {
+    --gx-rating-size: calc(var(--gx-px) * 4);
+  }
+
+  .gx-rating-lg {
+    --gx-rating-size: calc(var(--gx-px) * 8);
+  }
+}

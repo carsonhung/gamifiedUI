@@ -212,6 +212,243 @@
         </section>
       </div>
 
+      <div class="grid gap-8 md:grid-cols-2">
+        <section class="gx-panel" aria-labelledby="menu-title">
+          <h2 id="menu-title" class="gx-panel-title" data-i18n="menuTitle">Menus and navigation</h2>
+          <nav class="gx-breadcrumb mb-4" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="#menu-title" data-i18n="crumbWorld">World</a></li>
+              <li><a href="#menu-title" data-i18n="crumbForest">Forest</a></li>
+              <li><span aria-current="page" data-i18n="crumbCave">Cave</span></li>
+            </ol>
+          </nav>
+          <nav aria-label="Main menu" class="max-w-xs">
+            <ul class="gx-menu">
+              <li>
+                <button class="gx-menu-item" aria-current="true"><span data-i18n="continue">Continue</span><span class="gx-menu-hint">Lv 12</span></button>
+              </li>
+              <li><button class="gx-menu-item" data-i18n="newGame">New game</button></li>
+              <li><button class="gx-menu-item" id="open-drawer" data-i18n="openDrawer">Pause menu</button></li>
+              <li><button class="gx-menu-item" aria-disabled="true" data-i18n="online">Online</button></li>
+            </ul>
+          </nav>
+          <details class="gx-dropdown mt-2" id="sort-dropdown">
+            <summary class="gx-btn gx-btn-ghost gx-btn-sm"><span data-i18n="sortBy">Sort by</span> ▼</summary>
+            <div class="gx-dropdown-panel">
+              <ul class="gx-menu">
+                <li><button class="gx-menu-item" data-sort aria-current="true" data-i18n="sortScore">Score</button></li>
+                <li><button class="gx-menu-item" data-sort data-i18n="sortLevel">Level</button></li>
+                <li><button class="gx-menu-item" data-sort data-i18n="sortName">Name</button></li>
+              </ul>
+            </div>
+          </details>
+          <h3 class="gx-field-label mt-6 mb-2" id="levels-title" data-i18n="levelsTitle">Level select</h3>
+          <ol class="gx-stepper" aria-labelledby="levels-title">
+            <li class="gx-step" data-state="cleared">
+              <button class="gx-step-node" aria-label="Level 1, cleared"><span class="gx-icon gx-i-check" aria-hidden="true"></span></button>
+            </li>
+            <li class="gx-step" data-state="cleared">
+              <button class="gx-step-node" aria-label="Level 2, cleared"><span class="gx-icon gx-i-check" aria-hidden="true"></span></button>
+            </li>
+            <li class="gx-step" data-state="current">
+              <button class="gx-step-node" aria-current="step" aria-label="Level 3, current">3</button>
+            </li>
+            <li class="gx-step" data-state="locked">
+              <span class="gx-step-node" role="img" aria-label="Level 4, locked"><span class="gx-icon gx-i-lock" aria-hidden="true"></span></span>
+            </li>
+            <li class="gx-step" data-state="locked">
+              <span class="gx-step-node" role="img" aria-label="Level 5, locked"><span class="gx-icon gx-i-lock" aria-hidden="true"></span></span>
+            </li>
+          </ol>
+        </section>
+
+        <section class="gx-panel" aria-labelledby="log-title">
+          <h2 id="log-title" class="gx-panel-title" data-i18n="logTitle">Quest log and settings</h2>
+          <details class="gx-accordion" name="quests" open>
+            <summary><span data-i18n="q1Title">The iron ore</span><span class="gx-accordion-meta" id="q1-meta">1/3</span></summary>
+            <div class="gx-accordion-body" data-i18n="q1Body">Bring 3 iron ore to the blacksmith in the village.</div>
+          </details>
+          <details class="gx-accordion" name="quests">
+            <summary><span data-i18n="q2Title">Lost cat</span><span class="gx-accordion-meta">0/1</span></summary>
+            <div class="gx-accordion-body" data-i18n="q2Body">Someone heard meowing near the old tree.</div>
+          </details>
+          <details class="gx-accordion" name="quests">
+            <summary><span data-i18n="q3Title">Dragon's den</span><span class="gx-accordion-meta">Lv 20</span></summary>
+            <div class="gx-accordion-body" data-i18n="q3Body">Come back when you are stronger.</div>
+          </details>
+          <hr class="gx-divider" />
+          <div class="gx-field">
+            <label class="gx-field-label" for="music-volume" data-i18n="musicVolume">Music volume</label>
+            <input id="music-volume" type="range" class="gx-slider" min="0" max="100" value="70" style="--gx-value: 0.7" />
+          </div>
+          <div class="gx-field mt-2">
+            <label class="gx-field-label" for="sfx-volume" data-i18n="sfxVolume">Sound effects</label>
+            <input id="sfx-volume" type="range" class="gx-slider gx-slider-xp" min="0" max="100" value="40" style="--gx-value: 0.4" />
+          </div>
+          <div class="gx-divider-text" role="separator" data-i18n="filters">Filters</div>
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Quest filters">
+            <button class="gx-chip" aria-pressed="true" data-i18n="chipMain">Main</button>
+            <button class="gx-chip" aria-pressed="false" data-i18n="chipSide">Side</button>
+            <button class="gx-chip" aria-pressed="false" data-i18n="chipDaily">Daily</button>
+            <span class="gx-chip gx-chip-warning self-center" data-i18n="chipNew">New</span>
+            <span class="gx-chip gx-rarity-epic self-center" data-i18n="chipEpic">Epic</span>
+          </div>
+        </section>
+      </div>
+
+      <section class="gx-panel" aria-labelledby="board-title">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <h2 id="board-title" class="gx-panel-title" data-i18n="boardTitle">Leaderboard</h2>
+          <button id="board-reload" class="gx-btn gx-btn-ghost gx-btn-sm">
+            <span class="gx-icon gx-icon-sm gx-i-reload" aria-hidden="true"></span><span data-i18n="reload">Reload</span>
+          </button>
+        </div>
+        <div id="board" class="gx-table-wrap">
+          <table class="gx-table" id="board-table">
+            <caption data-i18n="boardCaption">Weekly top scores</caption>
+            <thead>
+              <tr>
+                <th scope="col" data-i18n="rank">Rank</th>
+                <th scope="col" data-i18n="player">Player</th>
+                <th scope="col" class="gx-table-num" data-i18n="level">Level</th>
+                <th scope="col" class="gx-table-num" data-i18n="score">Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="gx-rank gx-rank-1">1</span></td><td>Ayla</td><td class="gx-table-num">42</td><td class="gx-table-num">98,120</td></tr>
+              <tr><td><span class="gx-rank gx-rank-2">2</span></td><td>Bob</td><td class="gx-table-num">39</td><td class="gx-table-num">87,400</td></tr>
+              <tr><td><span class="gx-rank gx-rank-3">3</span></td><td>Chen</td><td class="gx-table-num">37</td><td class="gx-table-num">80,050</td></tr>
+              <tr aria-current="true"><td><span class="gx-rank">4</span></td><td data-i18n="you">You</td><td class="gx-table-num">12</td><td class="gx-table-num">12,300</td></tr>
+              <tr><td><span class="gx-rank">5</span></td><td>Dee</td><td class="gx-table-num">11</td><td class="gx-table-num">9,870</td></tr>
+            </tbody>
+          </table>
+          <div id="board-skeleton" class="py-2" aria-hidden="true" hidden>
+            <span class="gx-skeleton gx-skeleton-text" style="--gx-skeleton-w: 40%"></span>
+            <span class="gx-skeleton gx-skeleton-text"></span>
+            <span class="gx-skeleton gx-skeleton-text" style="--gx-skeleton-w: 92%"></span>
+            <span class="gx-skeleton gx-skeleton-text" style="--gx-skeleton-w: 96%"></span>
+            <span class="gx-skeleton gx-skeleton-text" style="--gx-skeleton-w: 88%"></span>
+            <span class="gx-skeleton gx-skeleton-text" style="--gx-skeleton-w: 94%"></span>
+          </div>
+          <p class="sr-only" aria-live="polite" id="board-status"></p>
+        </div>
+        <nav class="gx-pagination mt-4" aria-label="Leaderboard pages">
+          <ul>
+            <li><button class="gx-page" data-page="prev" aria-label="Previous page">◀</button></li>
+            <li><button class="gx-page" data-page="1" aria-current="page">1</button></li>
+            <li><button class="gx-page" data-page="2">2</button></li>
+            <li><button class="gx-page" data-page="3">3</button></li>
+            <li><button class="gx-page" data-page="next" aria-label="Next page">▶</button></li>
+          </ul>
+        </nav>
+      </section>
+
+      <section class="gx-panel" aria-labelledby="hud-title">
+        <h2 id="hud-title" class="gx-panel-title" data-i18n="hudTitle">HUD</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="gx-counter" aria-label="Gold" data-i18n-label="gold" id="gold-counter">
+                <span class="gx-counter-icon"><span class="gx-icon gx-icon-sm gx-i-coin" aria-hidden="true"></span></span>
+                <span class="gx-counter-value" id="gold">1250</span>
+              </span>
+              <span class="gx-counter gx-counter-xp" aria-label="Experience" data-i18n-label="xp">
+                <span class="gx-counter-icon"><span class="gx-icon gx-icon-sm gx-i-bolt" aria-hidden="true"></span></span>
+                <span class="gx-counter-value">340</span>
+              </span>
+              <button id="earn-gold" class="gx-btn gx-btn-warning gx-btn-sm" data-i18n="earnGold">+250 gold</button>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="gx-rating" id="hearts" role="img" aria-label="5 of 5 hearts" style="--gx-value: 5"></span>
+              <span class="gx-rating gx-rating-stars gx-rating-sm" role="img" aria-label="4 of 5 stars" style="--gx-value: 4"></span>
+            </div>
+            <section class="gx-quest" aria-labelledby="quest-title">
+              <h3 id="quest-title" class="gx-quest-title" data-i18n="q1Title">The iron ore</h3>
+              <ul class="gx-quest-list">
+                <li class="gx-objective" data-done>
+                  <span class="gx-objective-text" data-i18n="obj1">Talk to the blacksmith</span><span class="sr-only">(done)</span>
+                </li>
+                <li class="gx-objective" id="ore-objective">
+                  <span class="gx-objective-text" data-i18n="obj2">Mine iron ore</span><span class="gx-objective-count" id="ore-count">1/3</span>
+                </li>
+                <li class="gx-objective">
+                  <span class="gx-objective-text" data-i18n="obj3">Return to the village</span>
+                </li>
+              </ul>
+            </section>
+            <div class="flex flex-wrap gap-3">
+              <button id="mine" class="gx-btn gx-btn-sm" data-i18n="mine">Mine ore</button>
+              <button id="open-reward" class="gx-btn gx-btn-success gx-btn-sm" data-i18n="openReward">Open chest</button>
+            </div>
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="gx-float-layer flex h-28 items-end justify-center" id="target-layer">
+              <span class="gx-avatar gx-avatar-lg gx-rarity-epic"><img id="target-slime" alt="Slime, the training target" /></span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2" role="group" aria-label="Skills">
+              <button class="gx-skill" data-skill="slash" aria-label="Slash, key 1">
+                <span class="gx-skill-key" aria-hidden="true">1</span>
+                <span class="gx-icon gx-i-sword" aria-hidden="true"></span>
+                <span class="gx-skill-timer" aria-hidden="true"></span>
+              </button>
+              <button class="gx-skill gx-rarity-epic" data-skill="fire" aria-label="Fireball, key 2">
+                <span class="gx-skill-key" aria-hidden="true">2</span>
+                <span class="gx-icon gx-icon-danger gx-i-fire" aria-hidden="true"></span>
+                <span class="gx-skill-timer" aria-hidden="true"></span>
+              </button>
+              <button class="gx-skill gx-rarity-rare" data-skill="heal" aria-label="Heal, key 3">
+                <span class="gx-skill-key" aria-hidden="true">3</span>
+                <span class="gx-icon gx-icon-hp gx-i-heart" aria-hidden="true"></span>
+                <span class="gx-skill-timer" aria-hidden="true"></span>
+              </button>
+            </div>
+            <p class="text-center text-sm" data-i18n="skillHint">Press 1, 2 or 3, or click a skill.</p>
+            <p class="sr-only" aria-live="polite" id="combat-log"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="gx-panel" aria-labelledby="fx-title">
+        <h2 id="fx-title" class="gx-panel-title" data-i18n="fxTitle">Particles</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="flex flex-col gap-3">
+            <div class="relative grid h-40 place-items-center bg-gx-ink" id="burst-stage">
+              <span class="gx-icon gx-icon-xl gx-icon-legendary gx-icon-shadow gx-i-gift" aria-hidden="true"></span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button class="gx-btn gx-btn-sm" data-burst="spark" data-i18n="burstSpark">Sparkles</button>
+              <button class="gx-btn gx-btn-warning gx-btn-sm" data-burst="coin" data-i18n="burstCoin">Coins</button>
+              <button class="gx-btn gx-btn-danger gx-btn-sm" data-burst="heart" data-i18n="burstHeart">Hearts</button>
+              <button class="gx-btn gx-btn-ghost gx-btn-sm" data-burst="petal" data-i18n="burstPetal">Bauhinia</button>
+            </div>
+          </div>
+          <div class="flex flex-col gap-3">
+            <div class="relative h-40 overflow-hidden bg-gx-ink" id="ambient-stage">
+              <div class="gx-ambient gx-ambient-snow" id="ambient" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <div class="absolute inset-x-0 bottom-0 flex items-end justify-around text-gx-on-surface" aria-hidden="true">
+                <span class="gx-icon gx-icon-xl gx-i-lion-rock"></span>
+                <span class="gx-icon gx-icon-lg gx-i-tram"></span>
+                <span class="gx-icon gx-icon-lg gx-icon-danger gx-i-minibus"></span>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-2" role="group" aria-label="Weather">
+              <button class="gx-chip" data-ambient="snow" aria-pressed="true" data-i18n="snow">Snow</button>
+              <button class="gx-chip" data-ambient="rain" aria-pressed="false" data-i18n="rain">Rain</button>
+              <button class="gx-chip" data-ambient="embers" aria-pressed="false" data-i18n="embers">Embers</button>
+              <button class="gx-chip" data-ambient="petals" aria-pressed="false" data-i18n="petals">Petals</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="gx-panel" aria-labelledby="icons-title">
+        <h2 id="icons-title" class="gx-panel-title" data-i18n="iconsTitle">Icons</h2>
+        <p class="mb-4 text-sm" data-i18n="iconsIntro">56 pixel icons on a 16px grid, including a Hong Kong set. Each one is a single CSS class.</p>
+        <ul id="icon-gallery" class="grid grid-cols-[repeat(auto-fill,minmax(5.5rem,1fr))] gap-2"></ul>
+      </section>
+
       <section aria-labelledby="dialogue-title">
         <h2 id="dialogue-title" class="sr-only">Dialogue</h2>
         <div class="gx-textbox" id="textbox">
@@ -233,6 +470,30 @@
         <form method="dialog" class="mt-4 flex flex-wrap justify-end gap-3">
           <button class="gx-btn gx-btn-ghost gx-btn-sm" value="cancel" data-i18n="cancel">Cancel</button>
           <button class="gx-btn gx-btn-success gx-btn-sm" value="save" data-i18n="save">Save</button>
+        </form>
+      </dialog>
+
+      <dialog id="drawer" class="gx-drawer" aria-labelledby="drawer-title">
+        <h2 id="drawer-title" class="gx-panel-title" data-i18n="paused">Paused</h2>
+        <form method="dialog">
+          <ul class="gx-menu">
+            <li><button class="gx-menu-item" aria-current="true" data-i18n="resume">Resume</button></li>
+            <li><button class="gx-menu-item" data-i18n="options">Options</button></li>
+            <li><button class="gx-menu-item" data-i18n="save">Save</button></li>
+            <li><button class="gx-menu-item" data-i18n="quitTitle">Quit to title</button></li>
+          </ul>
+        </form>
+      </dialog>
+
+      <dialog id="reward" class="gx-dialog gx-reward" aria-labelledby="reward-title">
+        <h2 id="reward-title" class="gx-reward-title" data-i18n="rewardTitle">Treasure!</h2>
+        <div class="gx-reward-item gx-rarity-legendary" aria-hidden="true">
+          <span class="gx-icon gx-icon-xl gx-icon-legendary gx-icon-shadow gx-i-trophy"></span>
+        </div>
+        <p class="gx-reward-name gx-rarity-legendary" data-i18n="rewardName">Sun trophy</p>
+        <p class="text-sm" data-i18n="rewardBody">Legendary. Added to your bag.</p>
+        <form method="dialog" class="mt-4">
+          <button class="gx-btn gx-btn-success" data-i18n="claim">Claim</button>
         </form>
       </dialog>
     </main>

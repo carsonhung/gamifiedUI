@@ -1,0 +1,39 @@
+{
+  "name": "gamifiedui-icons",
+  "version": "0.1.0",
+  "description": "16x16 pixel icons for gamifiedUI: common UI icons plus a Hong Kong set. Tailwind v4 utilities or plain CSS.",
+  "license": "Apache-2.0",
+  "author": "Carson Hung (https://github.com/carsonhung)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carsonhung/gamifiedUI.git",
+    "directory": "packages/gamifiedui-icons"
+  },
+  "keywords": ["icons", "pixel-art", "tailwindcss", "game-ui", "hong-kong"],
+  "type": "module",
+  "style": "./src/index.css",
+  "unpkg": "./src/all.css",
+  "jsdelivr": "./src/all.css",
+  "exports": {
+    ".": {
+      "style": "./src/index.css",
+      "default": "./src/index.css"
+    },
+    "./all.css": "./src/all.css",
+    "./icons.json": "./icons.json",
+    "./svg/*": "./svg/*"
+  },
+  "files": ["src", "svg", "icons.json", "LICENSE", "NOTICE"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.1.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  }
+}

@@ -1,0 +1,96 @@
+/* <input type="range" class="gx-slider">. WebKit has no progress pseudo-element, so set
+   style="--gx-value: 0.6" (0 to 1) from an input listener; Firefox fills natively. */
+@layer components {
+  .gx-slider {
+    --gx-slider-fill: var(--color-gx-primary);
+    --gx-slider-track: calc(var(--gx-px) * 3);
+    --gx-slider-thumb-w: calc(var(--gx-px) * 4);
+    --gx-slider-thumb-h: calc(var(--gx-px) * 6);
+
+    width: 100%;
+    height: 2.75rem;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+  }
+
+  .gx-slider:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: var(--gx-px);
+  }
+
+  .gx-slider:disabled {
+    cursor: not-allowed;
+    filter: grayscale(1) contrast(0.8);
+  }
+
+  .gx-slider::-webkit-slider-runnable-track {
+    height: var(--gx-slider-track);
+    background: linear-gradient(
+      to right,
+      var(--gx-slider-fill) 0 calc(clamp(0, var(--gx-value, 0.5), 1) * 100%),
+      var(--color-gx-track) 0
+    );
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+  }
+
+  .gx-slider::-webkit-slider-thumb {
+    width: var(--gx-slider-thumb-w);
+    height: var(--gx-slider-thumb-h);
+    margin-top: calc((var(--gx-slider-track) - var(--gx-slider-thumb-h)) / 2);
+    border: 0;
+    background: var(--color-gx-on-surface);
+    box-shadow:
+      inset calc(-1 * var(--gx-px)) calc(-1 * var(--gx-px)) 0 0 color-mix(in oklab, var(--color-gx-on-surface) 70%, black),
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+    appearance: none;
+  }
+
+  .gx-slider::-moz-range-track {
+    height: var(--gx-slider-track);
+    background: var(--color-gx-track);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+  }
+
+  .gx-slider::-moz-range-progress {
+    height: var(--gx-slider-track);
+    background: var(--gx-slider-fill);
+  }
+
+  .gx-slider::-moz-range-thumb {
+    width: var(--gx-slider-thumb-w);
+    height: var(--gx-slider-thumb-h);
+    border: 0;
+    border-radius: 0;
+    background: var(--color-gx-on-surface);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+  }
+
+  .gx-slider-hp {
+    --gx-slider-fill: var(--color-gx-hp);
+  }
+
+  .gx-slider-mp {
+    --gx-slider-fill: var(--color-gx-mp);
+  }
+
+  .gx-slider-xp {
+    --gx-slider-fill: var(--color-gx-xp);
+  }
+}

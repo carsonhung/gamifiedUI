@@ -17,3 +17,5 @@ alwaysApply: false
 - Demo video is generated (ffmpeg filter graphs) or CC0, kept under 100 KB per clip, with WebM +
   MP4 sources, a poster, and captions. Never stock footage or ripped game clips.
 - Sounds for `gamifiedui-sfx` are synthesised in code; no sample files.
+- Icons are original 16×16 grids in `gamifiedui-icons`; never trace or import another icon set.
+  Particles are pure CSS shapes or `gx-i-*` icons, never image files.

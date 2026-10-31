@@ -24,7 +24,15 @@ npm i gamifiedui-css tailwindcss @tailwindcss/vite
      aria-valuemin="0" aria-valuemax="100" aria-valuenow="64" style="--gx-value: 0.64"></div>
 ```
 
+No build step? Link the prebuilt stylesheet instead:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.1/dist/gamifiedui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.1/src/all.css">
+```
+
 See the [package README](packages/gamifiedui-css/README.md) for every component and utility.
+The [live demo](https://carsonhung.github.io/gamifiedUI/) shows all of them in English, 繁中 and 简中.
 
 ## Principles
 
@@ -39,19 +47,23 @@ See the [package README](packages/gamifiedui-css/README.md) for every component 
 
 | Package | Status |
 |---|---|
-| [`gamifiedui-css`](packages/gamifiedui-css) | 0.1.0: tokens, themes, button, panel, bar, badge, dialog, textbox, sprite and iso utilities |
+| [`gamifiedui-css`](packages/gamifiedui-css) | 0.1.0: tokens, themes, 40+ components, particles, sprite and iso utilities, CDN build |
+| [`gamifiedui-icons`](packages/gamifiedui-icons) | 0.1.0: 56 pixel icons on a 16px grid, including a Hong Kong set |
+| [`gamifiedui-utils`](packages/gamifiedui-utils) | 0.1.0: optional JS for toasts, typewriter, counters, cooldowns, floating text, bursts, tabs |
 | `gamifiedui-sfx` | Planned: procedural UI sounds, no audio files |
-| `gamifiedui-utils` | Planned: whole-number zoom, sprite frame style, label fit |
-| `gamifiedui-vue`, `gamifiedui-react` | Planned: typewriter dialogue and other behaviour |
+| `gamifiedui-vue`, `gamifiedui-react` | Planned: component wrappers |
 
 ## Development
 
 ```bash
 npm install
-npm test        # compile the package through Tailwind and check the motion/theming rules
-npm run demo    # playground at http://localhost:5173
-npm run build   # build the demo
+npm test               # Tailwind compile and rule checks, plus a check that icons, CDN CSS and utils dist are fresh
+npm run build:packages # rebuild icons, CDN CSS and utils dist (commit the results)
+npm run demo           # playground at http://localhost:5173
+npm run build          # packages, then the demo
 ```
+
+`dist/` folders are committed so jsDelivr's GitHub mirror can serve them from any tag.
 
 ## License
 

@@ -1,0 +1,89 @@
+/* Sizes any icon on a pixel grid: `gx-icon gx-i-heart` (gamifiedui-icons), an inline <svg>, or any
+   mask-based icon class. Sizes are whole multiples of the 16px icon grid (16 / 32 / 48 / 64) so
+   pixels stay square. Decorative icons get aria-hidden="true"; meaningful ones role="img" + label. */
+@layer components {
+  .gx-icon {
+    --gx-icon-size: calc(var(--gx-px) * 8);
+
+    display: inline-block;
+    flex: none;
+    width: var(--gx-icon-size);
+    height: var(--gx-icon-size);
+    font-size: var(--gx-icon-size);
+    line-height: 1;
+    vertical-align: middle;
+    color: var(--gx-icon-color, currentColor);
+  }
+
+  .gx-icon > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+    shape-rendering: crispEdges;
+  }
+
+  .gx-icon-sm {
+    --gx-icon-size: calc(var(--gx-px) * 4);
+  }
+
+  .gx-icon-lg {
+    --gx-icon-size: calc(var(--gx-px) * 12);
+  }
+
+  .gx-icon-xl {
+    --gx-icon-size: calc(var(--gx-px) * 16);
+  }
+
+  .gx-icon-primary {
+    --gx-icon-color: var(--color-gx-primary);
+  }
+
+  .gx-icon-accent {
+    --gx-icon-color: var(--color-gx-accent);
+  }
+
+  .gx-icon-hp {
+    --gx-icon-color: var(--color-gx-hp);
+  }
+
+  .gx-icon-mp {
+    --gx-icon-color: var(--color-gx-mp);
+  }
+
+  .gx-icon-success {
+    --gx-icon-color: var(--color-gx-success);
+  }
+
+  .gx-icon-danger {
+    --gx-icon-color: var(--color-gx-danger);
+  }
+
+  .gx-icon-warning {
+    --gx-icon-color: var(--color-gx-warning);
+  }
+
+  .gx-icon-legendary {
+    --gx-icon-color: var(--color-gx-legendary);
+  }
+
+  .gx-icon-shadow {
+    filter: drop-shadow(calc(var(--gx-px) / 2) calc(var(--gx-px) / 2) 0 var(--color-gx-ink));
+  }
+
+  /* Framed tile around an icon, for hotbars and achievement lists. */
+  .gx-icon-tile {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: calc(var(--gx-px) * 13);
+    height: calc(var(--gx-px) * 13);
+    margin: var(--gx-px);
+    background: color-mix(in oklab, var(--color-gx-surface) 85%, white);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      0 var(--gx-px) 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      var(--gx-px) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-ink));
+  }
+}

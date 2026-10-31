@@ -1,0 +1,92 @@
+/* Skill button with a cooldown sweep. Set --gx-cooldown from 1 (just used) to 0 (ready) in
+   whole steps from your script, aria-disabled="true" while cooling, and put the remaining
+   seconds in .gx-skill-timer. data-ready plays a one-shot pop when it comes back. */
+@layer components {
+  .gx-skill {
+    --gx-cooldown: 0;
+    --gx-skill-lift: var(--gx-depth);
+
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: calc(var(--gx-px) * 14);
+    height: calc(var(--gx-px) * 14);
+    margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) + var(--gx-depth));
+    padding: 0;
+    border: 0;
+    font-size: 1.5rem;
+    color: var(--color-gx-on-surface);
+    background: color-mix(in oklab, var(--color-gx-surface) 80%, white);
+    cursor: pointer;
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      0 var(--gx-px) 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      var(--gx-px) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      0 calc(var(--gx-px) + var(--gx-skill-lift)) 0 0 var(--color-gx-ink);
+    transition: translate var(--gx-motion-fast) steps(2, end);
+  }
+
+  .gx-skill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(
+      color-mix(in oklab, var(--color-gx-ink) 72%, transparent) calc(var(--gx-cooldown) * 1turn),
+      transparent 0
+    );
+    pointer-events: none;
+  }
+
+  .gx-skill:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * 2);
+  }
+
+  .gx-skill:active:not([aria-disabled="true"], :disabled) {
+    --gx-skill-lift: 0px;
+    translate: 0 var(--gx-depth);
+  }
+
+  .gx-skill[aria-disabled="true"],
+  .gx-skill:disabled {
+    cursor: not-allowed;
+  }
+
+  .gx-skill[data-ready] {
+    animation: gx-bump var(--gx-motion-base) steps(2, end);
+  }
+
+  .gx-skill-key {
+    position: absolute;
+    z-index: 1;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    padding: 0.125rem 0.25rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-ink);
+  }
+
+  .gx-skill-timer {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-md);
+    color: var(--color-gx-on-surface);
+    text-shadow:
+      var(--gx-px) 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 var(--color-gx-ink),
+      0 calc(-1 * var(--gx-px)) 0 var(--color-gx-ink);
+  }
+
+  .gx-skill-timer:empty {
+    display: none;
+  }
+}

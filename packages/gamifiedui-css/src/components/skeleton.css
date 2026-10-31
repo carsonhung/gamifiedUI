@@ -1,0 +1,43 @@
+/* Loading placeholders. Mark the loading region aria-busy="true" and keep one sr-only
+   "Loading" message; the blocks themselves are aria-hidden. */
+@layer components {
+  .gx-skeleton {
+    display: block;
+    min-height: 1rem;
+    background: color-mix(in oklab, var(--color-gx-on-surface) 18%, transparent);
+    animation: gx-skeleton-pulse 1.2s steps(2, jump-none) infinite alternate;
+  }
+
+  .gx-skeleton-text {
+    width: var(--gx-skeleton-w, 100%);
+    height: 0.875rem;
+    min-height: 0;
+    margin-block: 0.375rem;
+  }
+
+  .gx-skeleton-avatar {
+    width: calc(var(--gx-px) * 16);
+    aspect-ratio: 1;
+  }
+
+  .gx-skeleton-block {
+    width: 100%;
+    aspect-ratio: var(--gx-frame-ratio, 16 / 9);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-skeleton {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-skeleton {
+    animation: none;
+  }
+}
+
+@keyframes gx-skeleton-pulse {
+  to {
+    opacity: 0.45;
+  }
+}

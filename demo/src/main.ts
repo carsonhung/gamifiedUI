@@ -2,16 +2,17 @@ import '@fontsource/press-start-2p';
 import '@fontsource/fusion-pixel-12px-proportional-tc';
 import '@fontsource/fusion-pixel-12px-proportional-sc';
 
+import { tabs, toast, typewriter, videoPlayOverlay, type TypewriterHandle } from 'gamifiedui-utils';
+
 import './style.css';
-import { isLocale, MESSAGES, type Line, type Locale, type ToastKind } from './i18n';
+import { byId, locale, notifyLocaleChange, onLocaleChange, setLocale, t } from './core';
+import { isLocale, MESSAGES, type Line, type ToastKind } from './i18n';
+import { setupGameWidgets } from './widgets';
 
 const HP_MAX = 100;
 const HIT_DAMAGE = 23;
 const HEAL_AMOUNT = 30;
 const CRITICAL_RATIO = 0.25;
-const CHARS_PER_SECOND = 40;
-/** CJK glyphs carry a word each, so they type slower to stay readable. */
-const CJK_CHARS_PER_SECOND = 16;
 const SPRITE_FRAME = 16;
 const SPRITE_FRAMES = 8;
 const ISO_TILES = 16;
@@ -19,46 +20,8 @@ const TOAST_DURATION_MS = 4000;
 const TOAST_LIMIT = 4;
 const LANDSCAPE_W = 80;
 const LANDSCAPE_H = 45;
+const HEART_COUNT = 5;
 
-const TOAST_STYLES: Record<ToastKind, { className: string; icon: string }> = {
-  info: { className: 'gx-toast gx-toast-info', icon: 'i' },
-  success: { className: 'gx-toast gx-toast-success', icon: '+' },
-  danger: { className: 'gx-toast gx-toast-danger', icon: 'x' },
-  achievement: { className: 'gx-toast gx-toast-achievement', icon: '★' },
-};
-
-let locale: Locale = 'en';
-const localeListeners: Array<() => void> = [];
-
-function t(key: string): string {
-  return MESSAGES[locale].ui[key] ?? MESSAGES.en.ui[key] ?? key;
-}
-
-function isCjk(): boolean {
-  return locale !== 'en';
-}
-
-/** Splits into user-perceived characters so emoji and CJK never break mid-glyph. */
-function graphemes(text: string): string[] {
-  if ('Segmenter' in Intl) {
-    const segmenter = new Intl.Segmenter(locale, { granularity: 'grapheme' });
-    return Array.from(segmenter.segment(text), (s) => s.segment);
-  }
-  return Array.from(text);
-}
-
-function byId<T extends HTMLElement>(id: string): T {
-  const el = document.getElementById(id);
-  if (!el) throw new Error(`[demo] missing #${id}`);
-  return el as T;
-}
-
-function isReducedMotion(): boolean {
-  return (
-    document.documentElement.dataset.gxMotion === 'reduce' ||
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  );
-}
 
 function setupThemeAndMotion(): void {
   const themeButtons = document.querySelectorAll<HTMLButtonElement>('[data-theme-option]');
@@ -84,6 +47,7 @@ function setupHealth(): void {
   const bar = byId('hp-bar');
   const label = byId('hp-label');
   const badge = byId('status-badge');
+  const hearts = byId('hearts');
   let hp = HP_MAX;
 
   const render = (): void => {
@@ -93,6 +57,9 @@ function setupHealth(): void {
     bar.setAttribute('aria-valuenow', String(hp));
     bar.classList.toggle('gx-bar-critical', isCritical);
     label.textContent = `${hp} / ${HP_MAX}`;
+    const heartCount = Math.round(ratio * HEART_COUNT * 2) / 2;
+    hearts.style.setProperty('--gx-value', String(heartCount));
+    hearts.setAttribute('aria-label', t('hearts', { n: heartCount }));
     badge.textContent = hp === 0 ? 'KO' : isCritical ? t('statusDanger') : t('statusOk');
     badge.className = `gx-badge ${hp === 0 || isCritical ? 'gx-badge-danger' : 'gx-badge-success'}`;
   };
@@ -105,7 +72,7 @@ function setupHealth(): void {
     hp = Math.min(HP_MAX, hp + HEAL_AMOUNT);
     render();
   });
-  localeListeners.push(render);
+  onLocaleChange(render);
   render();
 }
 
@@ -185,20 +152,7 @@ function setupMedia(): void {
   byId<HTMLImageElement>('landscape').src = createLandscape();
 
   const video = byId<HTMLVideoElement>('cutscene');
-  const play = byId<HTMLButtonElement>('cutscene-play');
-  video.controls = false;
-  play.addEventListener('click', () => {
-    video.controls = true;
-    void video.play();
-  });
-  video.addEventListener('play', () => {
-    play.hidden = true;
-  });
-  video.addEventListener('ended', () => {
-    play.hidden = false;
-    video.controls = false;
-    video.currentTime = 0;
-  });
+  videoPlayOverlay(video, byId<HTMLButtonElement>('cutscene-play'));
 
   const syncCaptions = (): void => {
     const wanted = locale === 'en' ? 'en' : 'zh-Hant';
@@ -206,7 +160,7 @@ function setupMedia(): void {
       track.mode = track.language === wanted ? 'showing' : 'disabled';
     });
   };
-  localeListeners.push(syncCaptions);
+  onLocaleChange(syncCaptions);
   syncCaptions();
 }
 
@@ -225,14 +179,14 @@ function setupLanguage(): void {
       el.setAttribute('aria-label', t(el.dataset.i18nLabel ?? ''));
     });
     buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.langOption === locale)));
-    localeListeners.forEach((listener) => listener());
+    notifyLocaleChange();
   };
 
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
       const next = button.dataset.langOption;
       if (!isLocale(next) || next === locale) return;
-      locale = next;
+      setLocale(next);
       apply();
     });
   });
@@ -261,19 +215,11 @@ function setupDialogue(): void {
   const choices = byId('choices');
   const next = byId('next');
   let lineIndex = 0;
-  let glyphs: string[] = [];
-  let shownCount = 0;
-  let timer: number | null = null;
+  let typing: TypewriterHandle | null = null;
 
   const line = (): Line => {
     const lines = MESSAGES[locale].lines;
     return lines[lineIndex % lines.length] as Line;
-  };
-  const isDoneTyping = (): boolean => shownCount >= glyphs.length;
-
-  const stopTyping = (): void => {
-    if (timer !== null) window.clearInterval(timer);
-    timer = null;
   };
 
   const renderEnd = (): void => {
@@ -297,38 +243,18 @@ function setupDialogue(): void {
   };
 
   const startLine = (): void => {
-    stopTyping();
+    typing?.cancel();
     const current = line();
     speaker.textContent = current.speaker;
     full.textContent = current.text;
     next.hidden = true;
     choices.hidden = true;
-    glyphs = graphemes(current.text);
-    shownCount = isReducedMotion() ? glyphs.length : 0;
-    shown.textContent = glyphs.slice(0, shownCount).join('');
-    if (isDoneTyping()) {
-      renderEnd();
-      return;
-    }
-    timer = window.setInterval(
-      () => {
-        shownCount++;
-        shown.textContent = glyphs.slice(0, shownCount).join('');
-        if (isDoneTyping()) {
-          stopTyping();
-          renderEnd();
-        }
-      },
-      1000 / (isCjk() ? CJK_CHARS_PER_SECOND : CHARS_PER_SECOND),
-    );
+    typing = typewriter(shown, current.text, { locale, onDone: renderEnd });
   };
 
   const interact = (): void => {
-    if (!isDoneTyping()) {
-      stopTyping();
-      shownCount = glyphs.length;
-      shown.textContent = line().text;
-      renderEnd();
+    if (typing && !typing.done) {
+      typing.skip();
       return;
     }
     if (line().choices) return;
@@ -344,7 +270,7 @@ function setupDialogue(): void {
     e.preventDefault();
     interact();
   });
-  localeListeners.push(() => {
+  onLocaleChange(() => {
     lineIndex = 0;
     startLine();
   });
@@ -353,84 +279,24 @@ function setupDialogue(): void {
 
 function setupToasts(): void {
   const stack = byId('toasts');
-
-  const dismiss = (toast: HTMLElement): void => {
-    if (toast.dataset.leaving !== undefined) return;
-    if (isReducedMotion()) {
-      toast.remove();
-      return;
-    }
-    toast.dataset.leaving = '';
-    toast.addEventListener('animationend', (e) => {
-      if (e.animationName === 'gx-toast-out') toast.remove();
-    });
-  };
-
-  const show = (kind: ToastKind): void => {
-    const config = { ...TOAST_STYLES[kind], ...MESSAGES[locale].toasts[kind] };
-    const toast = document.createElement('div');
-    toast.className = config.className;
-    toast.setAttribute('role', kind === 'danger' ? 'alert' : 'status');
-
-    const icon = document.createElement('span');
-    icon.className = 'gx-toast-icon';
-    icon.setAttribute('aria-hidden', 'true');
-    icon.textContent = config.icon;
-    const title = document.createElement('p');
-    title.className = 'gx-toast-title';
-    title.textContent = config.title;
-    const body = document.createElement('p');
-    body.className = 'gx-toast-body';
-    body.textContent = config.body;
-    const close = document.createElement('button');
-    close.className = 'gx-toast-close';
-    close.setAttribute('aria-label', t('dismiss'));
-    close.textContent = 'x';
-    close.addEventListener('click', () => dismiss(toast));
-
-    toast.append(icon, title, body, close);
-    stack.append(toast);
-    while (stack.children.length > TOAST_LIMIT) stack.firstElementChild?.remove();
-
-    let timer = window.setTimeout(() => dismiss(toast), TOAST_DURATION_MS);
-    const pause = (): void => window.clearTimeout(timer);
-    const resume = (): void => {
-      timer = window.setTimeout(() => dismiss(toast), TOAST_DURATION_MS);
-    };
-    toast.addEventListener('pointerenter', pause);
-    toast.addEventListener('pointerleave', resume);
-    toast.addEventListener('focusin', pause);
-    toast.addEventListener('focusout', resume);
-  };
-
   document.querySelectorAll<HTMLButtonElement>('[data-toast]').forEach((button) => {
-    button.addEventListener('click', () => show(button.dataset.toast as ToastKind));
+    button.addEventListener('click', () => {
+      const tone = button.dataset.toast as ToastKind;
+      toast({
+        ...MESSAGES[locale].toasts[tone],
+        tone,
+        stack,
+        duration: TOAST_DURATION_MS,
+        limit: TOAST_LIMIT,
+        dismissLabel: t('dismiss'),
+      });
+    });
   });
 }
 
 function setupTabs(): void {
-  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
-
-  const select = (tab: HTMLButtonElement): void => {
-    tabs.forEach((t) => {
-      const isSelected = t === tab;
-      t.setAttribute('aria-selected', String(isSelected));
-      t.tabIndex = isSelected ? 0 : -1;
-      const panel = document.getElementById(t.getAttribute('aria-controls') ?? '');
-      if (panel) panel.hidden = !isSelected;
-    });
-    tab.focus();
-  };
-
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => select(tab));
-    tab.addEventListener('keydown', (e) => {
-      const delta = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (!delta) return;
-      e.preventDefault();
-      select(tabs[(i + delta + tabs.length) % tabs.length] as HTMLButtonElement);
-    });
-  });
+  const tablist = document.querySelector<HTMLElement>('[role="tablist"]');
+  if (tablist) tabs(tablist);
 
   const slots = Array.from(document.querySelectorAll<HTMLButtonElement>('button.gx-slot'));
   slots.forEach((slot) => {
@@ -453,4 +319,5 @@ setupDialogue();
 setupDialog();
 setupToasts();
 setupTabs();
+setupGameWidgets(byId<HTMLImageElement>('avatar-slime').src);
 setupLanguage();

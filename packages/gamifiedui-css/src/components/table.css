@@ -1,0 +1,94 @@
+/* Leaderboards and stat tables on a real <table> with <caption> and <th scope>.
+   Wrap wide tables in .gx-table-wrap so they scroll instead of the page. */
+@layer components {
+  .gx-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .gx-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 var(--gx-px);
+    font-family: var(--font-gx-body);
+    font-size: 0.875rem;
+    color: var(--color-gx-on-surface);
+  }
+
+  .gx-table caption {
+    padding-bottom: 0.5rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    text-align: start;
+    text-transform: uppercase;
+    color: var(--color-gx-accent);
+  }
+
+  .gx-table th {
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    font-weight: normal;
+    text-align: start;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--color-gx-on-surface) 75%, transparent);
+  }
+
+  .gx-table td {
+    padding: 0.625rem 0.75rem;
+    background: color-mix(in oklab, var(--color-gx-surface) 88%, white);
+  }
+
+  .gx-table tbody tr:nth-child(even) td {
+    background: color-mix(in oklab, var(--color-gx-surface) 94%, white);
+  }
+
+  .gx-table tbody tr[aria-current]:not([aria-current="false"]) td {
+    background: color-mix(in oklab, var(--color-gx-accent) 30%, var(--color-gx-surface));
+  }
+
+  .gx-table tbody tr[aria-current]:not([aria-current="false"]) td:first-child {
+    box-shadow: inset var(--gx-px) 0 0 0 var(--color-gx-accent);
+  }
+
+  .gx-table .gx-table-num {
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .gx-rank {
+    --gx-rank-bg: var(--color-gx-track);
+    --gx-rank-fg: var(--color-gx-on-surface);
+
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.75rem;
+    height: 1.75rem;
+    margin: var(--gx-px);
+    padding: 0 0.25rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    color: var(--gx-rank-fg);
+    background: var(--gx-rank-bg);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+  }
+
+  .gx-rank-1 {
+    --gx-rank-bg: var(--color-gx-legendary);
+    --gx-rank-fg: var(--color-gx-ink);
+  }
+
+  .gx-rank-2 {
+    --gx-rank-bg: var(--color-gx-common);
+    --gx-rank-fg: var(--color-gx-ink);
+  }
+
+  .gx-rank-3 {
+    --gx-rank-bg: color-mix(in oklab, var(--color-gx-legendary) 55%, var(--color-gx-danger));
+    --gx-rank-fg: var(--color-gx-ink);
+  }
+}

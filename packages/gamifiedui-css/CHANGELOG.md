@@ -20,4 +20,15 @@
   `zh`, `ja` and `ko`, and `line-break: strict`.
 - Utilities: `gx-depth-*`, `gx-pixel-frame`, `gx-pixelated`, `gx-iso`, `gx-sprite` with
   `gx-sprite-{w,h,frames,scale,ms}-*`.
+- Menus and navigation: `gx-menu` (blinking ▶ cursor), `gx-dropdown`, `gx-accordion`,
+  `gx-pagination`, `gx-breadcrumb`, `gx-drawer`, `gx-stepper`.
+- Data display: `gx-slider`, `gx-table` with `gx-rank-{1,2,3}`, `gx-chip`, `gx-divider`,
+  `gx-skeleton`.
+- Game UI: `gx-rating` (hearts or stars), `gx-counter`, `gx-reward` (level-up / loot modal),
+  `gx-quest` / `gx-objective`, `gx-skill` (cooldown sweep), `gx-float` (damage and heal numbers).
+- `gx-icon` sizes snap to the 16px icon grid (16 / 32 / 48 / 64px), plus tones,
+  `gx-icon-shadow` and `gx-icon-tile`. Icons themselves come from `gamifiedui-icons`.
+- Particles: `gx-burst` / `gx-particle` bursts and CSS-only `gx-ambient` snow, rain, embers and petals.
+- Prebuilt CDN stylesheets in `dist/` (`gamifiedui.min.css`, `gamifiedui-core.min.css`) that
+  need no Tailwind.
 - All motion follows `prefers-reduced-motion` and `data-gx-motion="reduce"`.

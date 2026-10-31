@@ -1,0 +1,51 @@
+/* Currency / score readout. Roll the number in your script (whole steps, not every frame) and
+   toggle data-bump to pop it. Give it an accessible name: aria-label="Gold". */
+@layer components {
+  .gx-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: var(--gx-px);
+    padding: 0.375rem 0.75rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-md);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-gx-on-surface);
+    background: color-mix(in oklab, var(--color-gx-ink) 60%, var(--color-gx-surface));
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+  }
+
+  .gx-counter-icon {
+    display: inline-grid;
+    place-items: center;
+    color: var(--color-gx-legendary);
+  }
+
+  .gx-counter-value {
+    display: inline-block;
+    min-width: calc(var(--gx-counter-digits, 5) * 1ch);
+    text-align: end;
+  }
+
+  .gx-counter[data-bump] .gx-counter-value {
+    animation: gx-bump var(--gx-motion-fast) steps(2, end);
+  }
+
+  .gx-counter-xp .gx-counter-icon {
+    color: var(--color-gx-xp);
+  }
+
+  .gx-counter-hp .gx-counter-icon {
+    color: var(--color-gx-hp);
+  }
+}
+
+@keyframes gx-bump {
+  50% {
+    scale: 1.25;
+  }
+}

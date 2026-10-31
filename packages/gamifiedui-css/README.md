@@ -18,6 +18,31 @@ npm i @fontsource/fusion-pixel-12px-proportional-sc   # optional, Chinese (Simpl
 The stylesheet is a Tailwind v4 entry point, so Tailwind must process it (Vite or PostCSS
 plugin). Without that the build succeeds but `@theme` and `@utility` stay unprocessed.
 
+## CDN (no build step)
+
+`dist/` holds prebuilt stylesheets that need no Tailwind:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/press-start-2p/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.1/dist/gamifiedui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.1/src/all.css">
+```
+
+| File | Contains |
+|---|---|
+| `dist/gamifiedui.min.css` | Tailwind preflight (reset), every token, all components and utilities |
+| `dist/gamifiedui-core.min.css` | the same without preflight, for pages that bring their own reset |
+
+Both have an unminified `.css` twin, and `unpkg.com/gamifiedui-css` serves the same files.
+Before the npm release, or to pin a commit, use jsDelivr's GitHub mirror:
+`https://cdn.jsdelivr.net/gh/carsonhung/gamifiedUI@<tag>/packages/gamifiedui-css/dist/gamifiedui.min.css`.
+
+The prebuilt files can't generate arbitrary values. They include `gx-depth-0` to `-8`,
+`gx-sprite-{w,h}-{8,12,16,24,32,48,64,96,128}`, `gx-sprite-frames-1` to `-16`,
+`gx-sprite-scale-1` to `-8`, `gx-sprite-ms-100` to `-2000` (in steps of 100) and `sr-only`.
+Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese, also load
+`@fontsource/fusion-pixel-12px-proportional-tc` (or `-sc`) the same way.
+
 ## Components
 
 | Class | Markup | Modifiers |
@@ -42,6 +67,42 @@ plugin). Without that the build succeeds but `@theme` and `@utility` stay unproc
 | `gx-frame` | `<figure>` around `<img>`, `<picture>`, `<canvas>` or `<video>` | `gx-frame-caption`, `gx-frame-pixelated`, `gx-frame-cover` + `gx-frame-{square,wide,portrait}`, `gx-rarity-*` |
 | `gx-avatar` | `<span>` with an `<img alt>`, or initials + `role="img" aria-label` | `gx-avatar-{sm,lg}`, `gx-rarity-*` |
 | `gx-video` | `gx-frame gx-video` > `gx-video-screen` > `<video controls>` with `<track kind="captions">` | `gx-video-play` start overlay (a real `<button>`) |
+| `gx-menu` / `gx-menu-item` | `<ul>` of `<button>`s or links; blinking ▶ cursor on hover, focus and `aria-current` | `gx-menu-hint` |
+| `gx-dropdown` | `<details>` > `<summary>` + `gx-dropdown-panel` | `gx-dropdown-end` |
+| `gx-accordion` | `<details>` (share a `name` for one-open-at-a-time) | `gx-accordion-meta`, `gx-accordion-body` |
+| `gx-slider` | `<input type="range">`; script sets `--gx-value` (0..1) for the WebKit fill | `gx-slider-{hp,mp,xp}` |
+| `gx-table` | `<table>` in `gx-table-wrap`; `tr[aria-current]` highlights a row | `gx-table-num`, `gx-rank` + `gx-rank-{1,2,3}` |
+| `gx-pagination` / `gx-page` | `<ul>` of buttons or links, `aria-current="page"` | `gx-breadcrumb` (`<nav><ol>`) |
+| `gx-drawer` | `<dialog>` opened with `showModal()` | `gx-drawer-start` |
+| `gx-stepper` / `gx-step` | `<ol>`; `data-state="cleared\|current\|locked"` | `gx-step-node` |
+| `gx-chip` | `<span>`, or `<button aria-pressed>` for a filter | tones as buttons |
+| `gx-divider` | `<hr>` | `gx-divider-text` (a labelled divider) |
+| `gx-skeleton` | placeholder inside `aria-busy="true"` | `gx-skeleton-{text,avatar,block}`, `--gx-skeleton-w` |
+| `gx-rating` | `role="img"` + `aria-label`, `style="--gx-value: 3"` | `gx-rating-stars`, `gx-rating-{sm,lg}`, `--gx-rating-max` |
+| `gx-counter` | icon + `gx-counter-value`; `data-bump` plays a pop | `gx-counter-{xp,hp}` |
+| `gx-reward` | `gx-dialog gx-reward` with `gx-reward-item` (spinning rays) | `gx-reward-{title,name}` |
+| `gx-quest` / `gx-objective` | HUD quest tracker; `data-done` ticks an objective | `gx-quest-{title,list}`, `gx-objective-{text,count}` |
+| `gx-skill` | `<button>`; `--gx-cooldown` (1..0) sweeps, `aria-disabled` while cooling | `gx-skill-key`, `gx-skill-timer`, `data-ready` |
+| `gx-float` | short text in a `gx-float-layer`; rises and fades once | `gx-float-{damage,heal,xp,crit}` |
+| `gx-icon` | `<span aria-hidden="true">` + an icon class from `gamifiedui-icons` | `gx-icon-{sm,lg,xl}` (16/48/64px; default 32), tones, `gx-icon-shadow`, `gx-icon-tile` |
+
+## Particles
+
+- **Bursts:** a `gx-burst` inside any positioned element, holding `gx-particle` children.
+  Each child gets `--gx-dx`, `--gx-dy` (in rem), `--gx-rot` and `--gx-delay`. Colours are
+  `gx-particle-{coin,heart,xp,petal,rarity}` and `gx-particle-lg`. Add an icon class such as
+  `gx-i-coin` to use that shape. `burst()` in `gamifiedui-utils` builds all of this for you.
+- **Ambient:** `<div class="gx-ambient gx-ambient-snow" aria-hidden="true">` with 12 empty
+  `<i>`, placed inside a positioned element. It needs no script. Kinds are
+  `snow`, `rain`, `embers` and `petals`.
+
+Both are hidden under reduced motion, since they are decoration.
+
+## JavaScript
+
+Every component works without script. A few effects only make sense when driven, so
+[`gamifiedui-utils`](../gamifiedui-utils) ships small optional helpers for them: toasts,
+typewriter, number roll, skill cooldown, floating text, bursts, tabs and the slider fill.
 
 ## Utilities
 

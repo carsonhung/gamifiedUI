@@ -1,0 +1,87 @@
+/* Level-up / loot modal: <dialog class="gx-dialog gx-reward"> with a .gx-reward-item that
+   drops in and spins rays in its rarity colour (gx-rarity-*). Name the item in text too. */
+@layer components {
+  .gx-reward {
+    text-align: center;
+  }
+
+  .gx-reward-title {
+    margin: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-lg);
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--color-gx-accent);
+  }
+
+  .gx-reward-item {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    width: calc(var(--gx-px) * 20);
+    aspect-ratio: 1;
+    margin: 2.5rem auto 1.5rem;
+    font-size: 2.5rem;
+    background: color-mix(in oklab, var(--color-gx-surface) 85%, white);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      0 var(--gx-px) 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      var(--gx-px) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
+      0 calc(var(--gx-px) * 3) 0 0 var(--color-gx-ink);
+  }
+
+  .gx-reward-item::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -40%;
+    background: repeating-conic-gradient(
+      color-mix(in oklab, var(--gx-rarity, var(--color-gx-accent)) 55%, transparent) 0 15deg,
+      transparent 15deg 30deg
+    );
+    mask: radial-gradient(closest-side, black 70%, transparent 71%);
+    animation: gx-rays 6s steps(24) infinite;
+  }
+
+  .gx-reward[open] .gx-reward-item {
+    animation: gx-reward-drop var(--gx-motion-slow) steps(4, end) both;
+  }
+
+  .gx-reward-name {
+    margin: 0 0 0.25rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-md);
+    color: var(--gx-rarity, var(--color-gx-on-surface));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-reward-item::before {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-reward-item::before {
+    animation: none;
+  }
+}
+
+@keyframes gx-rays {
+  to {
+    rotate: 1turn;
+  }
+}
+
+@keyframes gx-reward-drop {
+  from {
+    opacity: 0;
+    translate: 0 -2rem;
+    scale: 0.5;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}

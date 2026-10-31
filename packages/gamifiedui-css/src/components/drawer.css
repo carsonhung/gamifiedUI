@@ -1,0 +1,62 @@
+/* Pause-menu side panel on a native <dialog class="gx-drawer"> opened with showModal().
+   Slides in from the end edge; .gx-drawer-start slides in from the start edge. */
+@layer components {
+  .gx-drawer {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(22rem, calc(100vw - 3rem));
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    padding-inline-end: calc(1.5rem + env(safe-area-inset-right));
+    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    border: 0;
+    overflow-y: auto;
+    font-family: var(--font-gx-body);
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
+      calc(var(--gx-px) * -3) 0 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+  }
+
+  .gx-drawer[open] {
+    animation: gx-drawer-in var(--gx-motion-base) steps(4, end) both;
+  }
+
+  .gx-drawer::backdrop {
+    background: color-mix(in oklab, var(--color-gx-ink) 70%, transparent);
+  }
+
+  .gx-drawer-start {
+    inset: 0 auto 0 0;
+    padding-inline: calc(1.5rem + env(safe-area-inset-left)) 1.5rem;
+    box-shadow:
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(var(--gx-px) * 3) 0 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+  }
+
+  .gx-drawer-start[open] {
+    animation-name: gx-drawer-in-start;
+  }
+}
+
+@keyframes gx-drawer-in {
+  from {
+    translate: 100% 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes gx-drawer-in-start {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}

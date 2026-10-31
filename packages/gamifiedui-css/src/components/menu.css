@@ -1,0 +1,126 @@
+/* Start-screen menu: a list of buttons or links with a ▶ cursor on the focused or current item.
+   Dropdown: <details class="gx-dropdown"><summary class="gx-btn">...</summary>
+   <div class="gx-dropdown-panel"><ul class="gx-menu">...</ul></div></details>.
+   This is a disclosure list, not role="menu"; add role="menu" only with full arrow-key handling. */
+@layer components {
+  .gx-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0.5rem;
+    list-style: none;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-md);
+  }
+
+  .gx-menu-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+    border: 0;
+    font: inherit;
+    line-height: 1.25;
+    text-align: start;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-gx-on-surface);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .gx-menu-item::before {
+    content: "▶";
+    content: "▶" / "";
+    position: absolute;
+    inset-inline-start: 0.75rem;
+    color: var(--color-gx-accent);
+    opacity: 0;
+  }
+
+  @media (hover: hover) {
+    .gx-menu-item:hover::before {
+      opacity: 1;
+    }
+  }
+
+  .gx-menu-item:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * -1);
+  }
+
+  .gx-menu-item:focus-visible::before,
+  .gx-menu-item[aria-current]:not([aria-current="false"])::before,
+  .gx-menu-item[aria-checked="true"]::before {
+    opacity: 1;
+    animation: gx-blink 800ms steps(1, end) infinite;
+  }
+
+  .gx-menu-item[aria-current]:not([aria-current="false"]),
+  .gx-menu-item[aria-checked="true"] {
+    color: var(--color-gx-accent);
+  }
+
+  .gx-menu-item:disabled,
+  .gx-menu-item[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .gx-menu-hint {
+    margin-inline-start: auto;
+    font-size: var(--gx-text-sm);
+    opacity: 0.7;
+  }
+
+  .gx-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .gx-dropdown > summary {
+    list-style: none;
+  }
+
+  .gx-dropdown > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .gx-dropdown-panel {
+    position: absolute;
+    z-index: var(--gx-z-hud-raised);
+    inset-block-start: calc(100% + var(--gx-px));
+    inset-inline-start: var(--gx-px);
+    min-width: max(100%, 12rem);
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
+      0 calc(var(--gx-px) * 3) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+  }
+
+  .gx-dropdown[open] > .gx-dropdown-panel {
+    animation: gx-pop var(--gx-motion-fast) steps(3, end) both;
+  }
+
+  .gx-dropdown-end > .gx-dropdown-panel {
+    inset-inline: auto var(--gx-px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-menu-item::before {
+      animation: none !important;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-menu-item::before {
+    animation: none !important;
+  }
+}

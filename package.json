@@ -12,8 +12,9 @@
     "demo"
   ],
   "scripts": {
-    "build": "npm run build --workspace=gamifiedui-demo",
-    "test": "node scripts/check-css.mjs",
+    "build": "npm run build:packages && npm run build --workspace=gamifiedui-demo",
+    "build:packages": "npm run build --workspace=gamifiedui-icons && npm run build --workspace=gamifiedui-css && npm run build --workspace=gamifiedui-utils",
+    "test": "node scripts/check-css.mjs && npm run check --workspace=gamifiedui-icons && npm run check --workspace=gamifiedui-css && npm run check --workspace=gamifiedui-utils",
     "demo": "npm run dev --workspace=gamifiedui-demo"
   },
   "devDependencies": {

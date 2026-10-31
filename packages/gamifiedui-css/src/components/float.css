@@ -1,0 +1,96 @@
+/* Floating combat text. Append <span class="gx-float gx-float-damage" aria-hidden="true">-23</span>
+   inside a .gx-float-layer, remove it on animationend, and announce the change in a live region.
+   Reduced motion keeps the number in place and only fades it. */
+@layer components {
+  .gx-float-layer {
+    position: relative;
+  }
+
+  .gx-float {
+    position: absolute;
+    z-index: var(--gx-z-hud);
+    inset-inline-start: var(--gx-float-x, 50%);
+    inset-block-start: var(--gx-float-y, 0);
+    translate: -50% 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-lg);
+    white-space: nowrap;
+    color: var(--gx-float-color, var(--color-gx-on-surface));
+    pointer-events: none;
+    text-shadow:
+      var(--gx-px) 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 var(--color-gx-ink),
+      0 calc(-1 * var(--gx-px)) 0 var(--color-gx-ink);
+    animation: gx-float-up calc(var(--gx-motion-slow) * 2.5) steps(8, end) forwards;
+  }
+
+  .gx-float-damage {
+    --gx-float-color: var(--color-gx-danger);
+  }
+
+  .gx-float-heal {
+    --gx-float-color: var(--color-gx-success);
+  }
+
+  .gx-float-xp {
+    --gx-float-color: var(--color-gx-xp);
+  }
+
+  .gx-float-crit {
+    --gx-float-color: var(--color-gx-legendary);
+    animation-name: gx-float-crit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-float {
+      animation: gx-float-fade 900ms steps(3, end) forwards;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-float {
+    animation: gx-float-fade 900ms steps(3, end) forwards;
+  }
+}
+
+@keyframes gx-float-up {
+  from {
+    translate: -50% 0;
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  to {
+    translate: -50% -2.5rem;
+    opacity: 0;
+  }
+}
+
+@keyframes gx-float-crit {
+  from {
+    translate: -50% 0;
+    scale: 1.6;
+    opacity: 1;
+  }
+  25% {
+    scale: 1.2;
+  }
+  70% {
+    opacity: 1;
+  }
+  to {
+    translate: -50% -2.5rem;
+    scale: 1.2;
+    opacity: 0;
+  }
+}
+
+@keyframes gx-float-fade {
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

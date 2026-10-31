@@ -1,0 +1,394 @@
+[
+  {
+    "name": "heart",
+    "set": "common",
+    "en": "Heart",
+    "hant": "心",
+    "hans": "心"
+  },
+  {
+    "name": "star",
+    "set": "common",
+    "en": "Star",
+    "hant": "星",
+    "hans": "星"
+  },
+  {
+    "name": "coin",
+    "set": "common",
+    "en": "Coin",
+    "hant": "金幣",
+    "hans": "金币"
+  },
+  {
+    "name": "check",
+    "set": "common",
+    "en": "Check",
+    "hant": "完成",
+    "hans": "完成"
+  },
+  {
+    "name": "close",
+    "set": "common",
+    "en": "Close",
+    "hant": "關閉",
+    "hans": "关闭"
+  },
+  {
+    "name": "plus",
+    "set": "common",
+    "en": "Plus",
+    "hant": "加",
+    "hans": "加"
+  },
+  {
+    "name": "minus",
+    "set": "common",
+    "en": "Minus",
+    "hant": "減",
+    "hans": "减"
+  },
+  {
+    "name": "chevron-right",
+    "set": "common",
+    "en": "Chevron right",
+    "hant": "向右",
+    "hans": "向右"
+  },
+  {
+    "name": "chevron-left",
+    "set": "common",
+    "en": "Chevron left",
+    "hant": "向左",
+    "hans": "向左"
+  },
+  {
+    "name": "chevron-down",
+    "set": "common",
+    "en": "Chevron down",
+    "hant": "向下",
+    "hans": "向下"
+  },
+  {
+    "name": "chevron-up",
+    "set": "common",
+    "en": "Chevron up",
+    "hant": "向上",
+    "hans": "向上"
+  },
+  {
+    "name": "menu",
+    "set": "common",
+    "en": "Menu",
+    "hant": "選單",
+    "hans": "菜单"
+  },
+  {
+    "name": "search",
+    "set": "common",
+    "en": "Search",
+    "hant": "搜尋",
+    "hans": "搜索"
+  },
+  {
+    "name": "home",
+    "set": "common",
+    "en": "Home",
+    "hant": "主頁",
+    "hans": "主页"
+  },
+  {
+    "name": "gear",
+    "set": "common",
+    "en": "Settings",
+    "hant": "設定",
+    "hans": "设置"
+  },
+  {
+    "name": "user",
+    "set": "common",
+    "en": "Player",
+    "hant": "玩家",
+    "hans": "玩家"
+  },
+  {
+    "name": "lock",
+    "set": "common",
+    "en": "Locked",
+    "hant": "鎖定",
+    "hans": "锁定"
+  },
+  {
+    "name": "bell",
+    "set": "common",
+    "en": "Notifications",
+    "hant": "通知",
+    "hans": "通知"
+  },
+  {
+    "name": "mail",
+    "set": "common",
+    "en": "Mail",
+    "hant": "郵件",
+    "hans": "邮件"
+  },
+  {
+    "name": "play",
+    "set": "common",
+    "en": "Play",
+    "hant": "播放",
+    "hans": "播放"
+  },
+  {
+    "name": "pause",
+    "set": "common",
+    "en": "Pause",
+    "hant": "暫停",
+    "hans": "暂停"
+  },
+  {
+    "name": "sound",
+    "set": "common",
+    "en": "Sound",
+    "hant": "聲音",
+    "hans": "声音"
+  },
+  {
+    "name": "info",
+    "set": "common",
+    "en": "Info",
+    "hant": "資訊",
+    "hans": "信息"
+  },
+  {
+    "name": "warning",
+    "set": "common",
+    "en": "Warning",
+    "hant": "警告",
+    "hans": "警告"
+  },
+  {
+    "name": "sword",
+    "set": "common",
+    "en": "Sword",
+    "hant": "劍",
+    "hans": "剑"
+  },
+  {
+    "name": "shield",
+    "set": "common",
+    "en": "Shield",
+    "hant": "盾",
+    "hans": "盾"
+  },
+  {
+    "name": "potion",
+    "set": "common",
+    "en": "Potion",
+    "hant": "藥水",
+    "hans": "药水"
+  },
+  {
+    "name": "key",
+    "set": "common",
+    "en": "Key",
+    "hant": "鑰匙",
+    "hans": "钥匙"
+  },
+  {
+    "name": "gift",
+    "set": "common",
+    "en": "Gift",
+    "hant": "禮物",
+    "hans": "礼物"
+  },
+  {
+    "name": "trophy",
+    "set": "common",
+    "en": "Trophy",
+    "hant": "獎盃",
+    "hans": "奖杯"
+  },
+  {
+    "name": "clock",
+    "set": "common",
+    "en": "Time",
+    "hant": "時間",
+    "hans": "时间"
+  },
+  {
+    "name": "chat",
+    "set": "common",
+    "en": "Chat",
+    "hant": "對話",
+    "hans": "对话"
+  },
+  {
+    "name": "reload",
+    "set": "common",
+    "en": "Reload",
+    "hant": "重新載入",
+    "hans": "重新加载"
+  },
+  {
+    "name": "fire",
+    "set": "common",
+    "en": "Fire",
+    "hant": "火",
+    "hans": "火"
+  },
+  {
+    "name": "bolt",
+    "set": "common",
+    "en": "Energy",
+    "hant": "能量",
+    "hans": "能量"
+  },
+  {
+    "name": "sparkle",
+    "set": "common",
+    "en": "Sparkle",
+    "hant": "閃光",
+    "hans": "闪光"
+  },
+  {
+    "name": "egg-tart",
+    "set": "hk",
+    "en": "Egg tart",
+    "hant": "蛋撻",
+    "hans": "蛋挞"
+  },
+  {
+    "name": "milk-tea",
+    "set": "hk",
+    "en": "Milk tea",
+    "hant": "奶茶",
+    "hans": "奶茶"
+  },
+  {
+    "name": "pineapple-bun",
+    "set": "hk",
+    "en": "Pineapple bun",
+    "hant": "菠蘿包",
+    "hans": "菠萝包"
+  },
+  {
+    "name": "dim-sum",
+    "set": "hk",
+    "en": "Dim sum steamer",
+    "hant": "點心",
+    "hans": "点心"
+  },
+  {
+    "name": "egg-waffle",
+    "set": "hk",
+    "en": "Egg waffle",
+    "hant": "雞蛋仔",
+    "hans": "鸡蛋仔"
+  },
+  {
+    "name": "fishball",
+    "set": "hk",
+    "en": "Fish balls",
+    "hant": "魚蛋",
+    "hans": "鱼蛋"
+  },
+  {
+    "name": "tram",
+    "set": "hk",
+    "en": "Tram",
+    "hant": "電車",
+    "hans": "电车"
+  },
+  {
+    "name": "minibus",
+    "set": "hk",
+    "en": "Red minibus",
+    "hant": "小巴",
+    "hans": "小巴"
+  },
+  {
+    "name": "ferry",
+    "set": "hk",
+    "en": "Star Ferry",
+    "hant": "天星小輪",
+    "hans": "天星小轮"
+  },
+  {
+    "name": "junk-boat",
+    "set": "hk",
+    "en": "Junk boat",
+    "hant": "帆船",
+    "hans": "帆船"
+  },
+  {
+    "name": "bauhinia",
+    "set": "hk",
+    "en": "Bauhinia",
+    "hant": "洋紫荊",
+    "hans": "洋紫荆"
+  },
+  {
+    "name": "mahjong",
+    "set": "hk",
+    "en": "Mahjong tile",
+    "hant": "麻雀",
+    "hans": "麻将"
+  },
+  {
+    "name": "lai-see",
+    "set": "hk",
+    "en": "Lai see packet",
+    "hant": "利是",
+    "hans": "红包"
+  },
+  {
+    "name": "signal-1",
+    "set": "hk",
+    "en": "Typhoon signal 1",
+    "hant": "一號風球",
+    "hans": "一号风球"
+  },
+  {
+    "name": "signal-3",
+    "set": "hk",
+    "en": "Typhoon signal 3",
+    "hant": "三號風球",
+    "hans": "三号风球"
+  },
+  {
+    "name": "signal-8",
+    "set": "hk",
+    "en": "Typhoon signal 8",
+    "hant": "八號風球",
+    "hans": "八号风球"
+  },
+  {
+    "name": "lantern",
+    "set": "hk",
+    "en": "Lantern",
+    "hant": "燈籠",
+    "hans": "灯笼"
+  },
+  {
+    "name": "mooncake",
+    "set": "hk",
+    "en": "Mooncake",
+    "hant": "月餅",
+    "hans": "月饼"
+  },
+  {
+    "name": "lion-rock",
+    "set": "hk",
+    "en": "Lion Rock",
+    "hant": "獅子山",
+    "hans": "狮子山"
+  },
+  {
+    "name": "rice-bowl",
+    "set": "hk",
+    "en": "Rice bowl",
+    "hant": "飯碗",
+    "hans": "饭碗"
+  }
+]

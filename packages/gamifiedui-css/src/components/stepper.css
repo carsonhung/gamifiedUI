@@ -1,0 +1,117 @@
+/* Level-select path. <ol class="gx-stepper"><li class="gx-step" data-state="cleared|current|locked">
+   <a class="gx-step-node" aria-current="step" aria-label="Level 2, current">2</a></li></ol>
+   State is shown by the node symbol as well as colour (✓, number, lock). */
+@layer components {
+  .gx-stepper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .gx-step {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    color: var(--color-gx-on-surface);
+  }
+
+  .gx-step + .gx-step::before {
+    content: "";
+    width: calc(var(--gx-px) * 6);
+    height: var(--gx-px);
+    margin-inline: calc(var(--gx-px) * 2);
+    background: repeating-linear-gradient(
+      to right,
+      currentColor 0 var(--gx-px),
+      transparent 0 calc(var(--gx-px) * 2)
+    );
+    opacity: 0.6;
+  }
+
+  .gx-step[data-state="cleared"] + .gx-step::before {
+    background: var(--color-gx-success);
+    opacity: 1;
+  }
+
+  .gx-step-node {
+    --gx-step-bg: var(--color-gx-track);
+    --gx-step-fg: var(--color-gx-on-surface);
+    --gx-step-lift: var(--gx-depth);
+
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) + var(--gx-depth));
+    padding: 0;
+    border: 0;
+    font: inherit;
+    text-decoration: none;
+    color: var(--gx-step-fg);
+    background: var(--gx-step-bg);
+    box-shadow:
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
+      0 var(--gx-px) 0 0 var(--color-gx-ink),
+      var(--gx-px) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
+      0 calc(var(--gx-px) + var(--gx-step-lift)) 0 0 var(--color-gx-ink);
+    transition: translate var(--gx-motion-fast) steps(2, end);
+  }
+
+  a.gx-step-node,
+  button.gx-step-node {
+    cursor: pointer;
+  }
+
+  a.gx-step-node:active,
+  button.gx-step-node:active:not(:disabled) {
+    --gx-step-lift: 0px;
+    translate: 0 var(--gx-depth);
+  }
+
+  .gx-step-node:focus-visible {
+    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * 2);
+  }
+
+  .gx-step[data-state="cleared"] .gx-step-node {
+    --gx-step-bg: var(--color-gx-success);
+    --gx-step-fg: var(--color-gx-on-success);
+  }
+
+  .gx-step[data-state="current"] .gx-step-node {
+    --gx-step-bg: var(--color-gx-accent);
+    --gx-step-fg: var(--color-gx-ink);
+    animation: gx-step-hop 1s steps(2, jump-none) infinite;
+  }
+
+  .gx-step[data-state="locked"] .gx-step-node {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .gx-step-label {
+    margin-inline-start: 0.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-step[data-state="current"] .gx-step-node {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-step[data-state="current"] .gx-step-node {
+    animation: none;
+  }
+}
+
+@keyframes gx-step-hop {
+  50% {
+    translate: 0 calc(var(--gx-px) * -1);
+  }
+}
