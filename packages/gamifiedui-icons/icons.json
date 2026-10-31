@@ -472,6 +472,86 @@
     "motion": "bob"
   },
   {
+    "name": "zoom-in",
+    "set": "common",
+    "en": "Zoom in",
+    "hant": "放大",
+    "hans": "放大",
+    "motion": "pulse"
+  },
+  {
+    "name": "zoom-out",
+    "set": "common",
+    "en": "Zoom out",
+    "hant": "縮小",
+    "hans": "缩小",
+    "motion": "pulse"
+  },
+  {
+    "name": "stop",
+    "set": "common",
+    "en": "Stop",
+    "hant": "停止",
+    "hans": "停止",
+    "motion": "pulse"
+  },
+  {
+    "name": "go",
+    "set": "common",
+    "en": "Go",
+    "hant": "出發",
+    "hans": "出发",
+    "motion": "nudge-right"
+  },
+  {
+    "name": "volume-up",
+    "set": "common",
+    "en": "Volume up",
+    "hant": "調高音量",
+    "hans": "调高音量",
+    "motion": "pulse"
+  },
+  {
+    "name": "volume-down",
+    "set": "common",
+    "en": "Volume down",
+    "hant": "調低音量",
+    "hans": "调低音量",
+    "motion": "pulse"
+  },
+  {
+    "name": "photos",
+    "set": "common",
+    "en": "Photo library",
+    "hant": "相簿",
+    "hans": "相册",
+    "motion": "float"
+  },
+  {
+    "name": "phone",
+    "set": "common",
+    "en": "Phone",
+    "hant": "電話",
+    "hans": "电话",
+    "motion": "shake"
+  },
+  {
+    "name": "mobile",
+    "set": "common",
+    "en": "Mobile",
+    "hant": "手機",
+    "hans": "手机",
+    "motion": "shake"
+  },
+  {
+    "name": "mute",
+    "set": "common",
+    "en": "Mute",
+    "hant": "靜音",
+    "hans": "静音",
+    "motion": "blink"
+  },
+  {
     "name": "camera",
     "set": "common",
     "en": "Camera",

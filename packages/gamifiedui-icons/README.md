@@ -1,6 +1,6 @@
 # gamifiedui-icons
 
-97 pixel icons drawn on a 16×16 grid for [gamifiedui-css](../gamifiedui-css): 67 common UI and
+107 pixel icons drawn on a 16×16 grid for [gamifiedui-css](../gamifiedui-css): 77 common UI and
 game icons, 10 emoji faces and 20 Hong Kong icons. Every icon also has an animated version.
 Each icon is one CSS class. It is a mask filled with `currentColor`, so it takes the text
 colour and any `gx-icon` tone.
@@ -73,7 +73,8 @@ search, home, gear, user, lock, bell, mail, play, pause, sound, info, warning, s
 potion, key, gift, trophy, clock, chat, reload, fire, bolt, sparkle, calendar, hourglass,
 arrow-{right,left,down,up}, upload, download, file, folder, image, trash, edit, copy, link,
 share, eye, filter, logout, cart, pin, flag, bookmark, camera, globe, cloud, sun, moon, music,
-thumb-up, thumb-down.
+thumb-up, thumb-down, zoom-in, zoom-out, photos, phone, mobile, mute, stop, go,
+volume-up, volume-down.
 
 **Emoji:** smile, laugh, wink, sad, cry, angry, surprised, love, cool, neutral.
 

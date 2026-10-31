@@ -352,6 +352,66 @@
   background-color: currentColor;
 }
 
+.gx-i-zoom-in,
+.gx-ia-zoom-in {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M5 0h3v1H5zM3 1h7v1H3zM2 2h2v1H2zM9 2h2v1H9zM1 3h2v1H1zM10 3h2v1H10zM1 4h1v1H1zM6 4h1v1H6zM11 4h1v1H11zM0 5h2v1H0zM6 5h1v1H6zM11 5h2v1H11zM0 6h2v1H0zM4 6h5v1H4zM11 6h2v1H11zM0 7h2v1H0zM6 7h1v1H6zM11 7h2v1H11zM1 8h1v1H1zM6 8h1v1H6zM11 8h1v1H11zM1 9h2v1H1zM10 9h2v1H10zM2 10h2v1H2zM9 10h3v1H9zM3 11h10v1H3zM5 12h3v1H5zM11 12h3v1H11zM12 13h3v1H12zM13 14h2v1H13z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: currentColor;
+}
+
+.gx-i-zoom-out,
+.gx-ia-zoom-out {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M5 0h3v1H5zM3 1h7v1H3zM2 2h2v1H2zM9 2h2v1H9zM1 3h2v1H1zM10 3h2v1H10zM1 4h1v1H1zM11 4h1v1H11zM0 5h2v1H0zM11 5h2v1H11zM0 6h2v1H0zM4 6h5v1H4zM11 6h2v1H11zM0 7h2v1H0zM11 7h2v1H11zM1 8h1v1H1zM11 8h1v1H11zM1 9h2v1H1zM10 9h2v1H10zM2 10h2v1H2zM9 10h3v1H9zM3 11h10v1H3zM5 12h3v1H5zM11 12h3v1H11zM12 13h3v1H12zM13 14h2v1H13z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: currentColor;
+}
+
+.gx-i-stop,
+.gx-ia-stop {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M3 3h10v1H3zM3 4h10v1H3zM3 5h10v1H3zM3 6h10v1H3zM3 7h10v1H3zM3 8h10v1H3zM3 9h10v1H3zM3 10h10v1H3zM3 11h10v1H3zM3 12h10v1H3z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: currentColor;
+}
+
+.gx-i-go,
+.gx-ia-go {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M4 1h8v1H4zM3 2h10v1H3zM2 3h12v1H2zM1 4h14v1H1zM1 5h4v1H1zM7 5h8v1H7zM1 6h4v1H1zM9 6h6v1H9zM1 7h4v1H1zM11 7h4v1H11zM1 8h4v1H1zM11 8h4v1H11zM1 9h4v1H1zM9 9h6v1H9zM1 10h4v1H1zM7 10h8v1H7zM1 11h14v1H1zM2 12h12v1H2zM3 13h10v1H3zM4 14h8v1H4z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: currentColor;
+}
+
+.gx-i-volume-up,
+.gx-ia-volume-up {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M7 3h1v1H7zM6 4h2v1H6zM5 5h3v1H5zM1 6h7v1H1zM12 6h1v1H12zM1 7h7v1H1zM12 7h1v1H12zM1 8h7v1H1zM10 8h5v1H10zM1 9h7v1H1zM12 9h1v1H12zM5 10h3v1H5zM12 10h1v1H12zM6 11h2v1H6zM7 12h1v1H7z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: currentColor;
+}
+
+.gx-i-volume-down,
+.gx-ia-volume-down {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M7 3h1v1H7zM6 4h2v1H6zM5 5h3v1H5zM1 6h7v1H1zM1 7h7v1H1zM1 8h7v1H1zM10 8h5v1H10zM1 9h7v1H1zM5 10h3v1H5zM6 11h2v1H6zM7 12h1v1H7z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: currentColor;
+}
+
+.gx-i-photos,
+.gx-ia-photos {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M4 1h11v1H4zM4 2h1v1H4zM14 2h1v1H14zM1 3h11v1H1zM14 3h1v1H14zM1 4h1v1H1zM11 4h1v1H11zM14 4h1v1H14zM1 5h1v1H1zM8 5h2v1H8zM11 5h1v1H11zM14 5h1v1H14zM1 6h1v1H1zM8 6h2v1H8zM11 6h1v1H11zM14 6h1v1H14zM1 7h1v1H1zM11 7h1v1H11zM14 7h1v1H14zM1 8h1v1H1zM5 8h1v1H5zM11 8h1v1H11zM14 8h1v1H14zM1 9h1v1H1zM4 9h3v1H4zM11 9h1v1H11zM14 9h1v1H14zM1 10h1v1H1zM3 10h5v1H3zM9 10h1v1H9zM11 10h4v1H11zM1 11h1v1H1zM3 11h9v1H3zM1 12h11v1H1z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: currentColor;
+}
+
+.gx-i-phone,
+.gx-ia-phone {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M2 1h3v1H2zM1 2h5v1H1zM1 3h5v1H1zM1 4h4v1H1zM1 5h3v1H1zM1 6h3v1H1zM2 7h3v1H2zM2 8h4v1H2zM3 9h5v1H3zM4 10h6v1H4zM11 10h3v1H11zM5 11h10v1H5zM7 12h8v1H7zM9 13h5v1H9z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: currentColor;
+}
+
+.gx-i-mobile,
+.gx-ia-mobile {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M5 0h6v1H5zM4 1h2v1H4zM10 1h2v1H10zM4 2h8v1H4zM4 3h1v1H4zM11 3h1v1H11zM4 4h1v1H4zM11 4h1v1H11zM4 5h1v1H4zM11 5h1v1H11zM4 6h1v1H4zM11 6h1v1H11zM4 7h1v1H4zM11 7h1v1H11zM4 8h1v1H4zM11 8h1v1H11zM4 9h1v1H4zM11 9h1v1H11zM4 10h1v1H4zM11 10h1v1H11zM4 11h1v1H4zM11 11h1v1H11zM4 12h8v1H4zM4 13h3v1H4zM9 13h3v1H9zM5 14h6v1H5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: currentColor;
+}
+
+.gx-i-mute,
+.gx-ia-mute {
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M7 3h1v1H7zM6 4h2v1H6zM5 5h3v1H5zM1 6h7v1H1zM10 6h1v1H10zM14 6h1v1H14zM1 7h7v1H1zM11 7h1v1H11zM13 7h1v1H13zM1 8h7v1H1zM12 8h1v1H12zM1 9h7v1H1zM11 9h1v1H11zM13 9h1v1H13zM5 10h3v1H5zM10 10h1v1H10zM14 10h1v1H14zM6 11h2v1H6zM7 12h1v1H7z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background-color: currentColor;
+}
+
 .gx-i-camera,
 .gx-ia-camera {
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Cpath d='M5 2h4v1H5zM1 3h14v1H1zM1 4h6v1H1zM9 4h6v1H9zM1 5h4v1H1zM11 5h4v1H11zM1 6h3v1H1zM6 6h4v1H6zM12 6h3v1H12zM1 7h3v1H1zM5 7h6v1H5zM12 7h3v1H12zM1 8h3v1H1zM5 8h6v1H5zM12 8h3v1H12zM1 9h3v1H1zM6 9h4v1H6zM12 9h3v1H12zM1 10h4v1H1zM11 10h4v1H11zM1 11h6v1H1zM9 11h6v1H9zM1 12h14v1H1z'/%3E%3C/svg%3E") center / contain no-repeat;
@@ -615,6 +675,7 @@
 .gx-im-float,
 .gx-ia-image,
 .gx-ia-pin,
+.gx-ia-photos,
 .gx-ia-cloud,
 .gx-ia-dim-sum,
 .gx-ia-ferry,
@@ -649,6 +710,11 @@
 .gx-ia-sound,
 .gx-ia-link,
 .gx-ia-share,
+.gx-ia-zoom-in,
+.gx-ia-zoom-out,
+.gx-ia-stop,
+.gx-ia-volume-up,
+.gx-ia-volume-down,
 .gx-ia-mooncake {
   animation-name: gx-im-pulse;
   animation-duration: 800ms;
@@ -885,6 +951,8 @@
 .gx-ia-lock,
 .gx-ia-gift,
 .gx-ia-trash,
+.gx-ia-phone,
+.gx-ia-mobile,
 .gx-ia-cry,
 .gx-ia-angry {
   animation-name: gx-im-shake;
@@ -918,7 +986,8 @@
 .gx-ia-chevron-right,
 .gx-ia-arrow-right,
 .gx-ia-logout,
-.gx-ia-cart {
+.gx-ia-cart,
+.gx-ia-go {
   animation-name: gx-im-nudge-right;
   animation-duration: 900ms;
   animation-timing-function: steps(1, end);
@@ -1027,6 +1096,7 @@
 .gx-ia-info,
 .gx-ia-warning,
 .gx-ia-bolt,
+.gx-ia-mute,
 .gx-ia-camera,
 .gx-ia-signal-1,
 .gx-ia-signal-3,

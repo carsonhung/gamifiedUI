@@ -37,6 +37,8 @@ export const PRESETS = {
 /* Default preset per icon for gx-ia-<name>; unlisted icons bob. */
 export const DEFAULTS = {
   'thumb-up': 'pop', 'thumb-down': 'nudge-down',
+  'zoom-in': 'pulse', 'zoom-out': 'pulse', photos: 'float', phone: 'shake', mobile: 'shake', mute: 'blink',
+  stop: 'pulse', go: 'nudge-right', 'volume-up': 'pulse', 'volume-down': 'pulse',
   smile: 'bob', sad: 'nudge-down', cry: 'shake', angry: 'shake', surprised: 'pop', love: 'beat', cool: 'wiggle', neutral: 'bob',
   heart: 'beat', star: 'pop', coin: 'flip', check: 'pop', close: 'shake', plus: 'pulse', minus: 'pulse',
   'chevron-right': 'nudge-right', 'chevron-left': 'nudge-left', 'chevron-down': 'nudge-down', 'chevron-up': 'nudge-up',

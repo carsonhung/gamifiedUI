@@ -3,7 +3,7 @@
 ## 0.1.0
 
 - First release, under the Apache License 2.0.
-- 97 icons on a 16×16 grid: 67 common (including thumb-up and thumb-down), 10 emoji faces and
+- 107 icons on a 16×16 grid: 77 common (including thumbs, zoom, media and volume controls), 10 emoji faces and
   20 Hong Kong icons. Shipped as Tailwind `@utility` classes (`src/index.css`), plain CSS
   (`src/all.css`), SVG files and `icons.json` with 繁體 and 简体 labels.
 - Every icon has an animated `gx-ia-*` version, driven by 20 pixel-snapped motion presets
