@@ -1,7 +1,7 @@
 # gamifiedui-icons
 
-97 pixel icons drawn on a 16×16 grid for [gamifiedui-css](../gamifiedui-css): 67 common UI and
-game icons, 10 emoji faces and 22 Hong Kong icons. Every icon also has an animated version.
+349 pixel icons drawn on a 16×16 grid for [gamifiedui-css](../gamifiedui-css): 317 common UI and
+game icons in 23 categories, 10 emoji faces and 22 Hong Kong icons. Every icon also has an animated version.
 Each icon is one CSS class. It is a mask filled with `currentColor`, so it takes the text
 colour and any `gx-icon` tone.
 
