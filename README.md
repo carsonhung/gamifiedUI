@@ -6,6 +6,8 @@
 
 **Game-style 2D / 2.5D UI for Tailwind CSS v4. Free and open source.**
 
+Initiated by [Carson Hung](https://github.com/carsonhung). *Game for a better world together.*
+
 Turn everyday components into game parts:
 
 - buttons that press into the page
@@ -18,7 +20,11 @@ Turn everyday components into game parts:
 
 The core is CSS only, so it works with Vue, React, Svelte or plain HTML.
 
-**[Live demo](https://carsonhung.github.io/gamifiedUI/)**, in English, 繁中 and 简中.
+**[Live demo](https://carsonhung.github.io/gamifiedUI/)**, in English, 繁中 and 简中. It includes
+**[Egg Waffle Warrior (雞蛋仔戰士)](https://carsonhung.github.io/gamifiedUI/eggette.html)**, a small
+Hong Kong egg waffle shop game built only from gamifiedUI classes, so you can play it in each theme.
+The full street game **[掃街 · 夜繽紛 (EatWellHK)](https://carsonks.itch.io/eatwellhk)** is also made
+with gamifiedUI.
 
 ## Quick start
 
@@ -123,7 +129,7 @@ See the [gamifiedui-sfx README](packages/gamifiedui-sfx/README.md) for the sound
 - **Plain HTML first.** Components use real `<button>`s and native `<dialog>`s. State comes from `aria-*` and `data-*` attributes, so no JavaScript is required.
 - **Game feel without jank.** Only `translate`, `scale`, `rotate` and `opacity` animate, in pixel-snapped `steps()`.
 - **Reduced motion built in.** `prefers-reduced-motion` or `data-gx-motion="reduce"` stops every animation.
-- **Themeable.** Everything comes from tokens. Era themes are set with `data-gx-theme`: `gameboy` and `parchment`.
+- **Themeable.** Everything comes from tokens. Themes are set with `data-gx-theme`: `arcade` (default), `vintage` (classic Windows PC game desktop), and `glass` (modern XR-style spatial glass).
 - **Accessible.** Components keep visible focus, meters use ARIA, and decorative icons are hidden from screen readers.
 
 ## Packages
@@ -150,9 +156,25 @@ Icons are drawn as ASCII grids in [`packages/gamifiedui-icons/icons/`](packages/
 
 The `dist/` folders are committed so that jsDelivr's GitHub mirror can serve them from any tag. The demo is deployed to GitHub Pages on every push to `master`.
 
-## Support
+## Support and contribute
 
-gamifiedUI is free. If it helps your project, you can [sponsor the work on GitHub](https://github.com/sponsors/carsonhung). Bug reports, icon requests and pull requests are welcome too.
+gamifiedUI is free. If it helps your project:
+
+- **Sponsor** the work on [GitHub Sponsors](https://github.com/sponsors/carsonhung).
+- **Contribute your design back.** Built a look for your game? Turn it into a theme so other
+  games can use it: follow the checklist in [CONTRIBUTING.md](CONTRIBUTING.md#contribute-your-theme),
+  or [propose a theme](https://github.com/carsonhung/gamifiedUI/issues/new?template=theme.yml)
+  with screenshots and we'll build it together.
+- **Credit the packages.** A small credit is welcome but never required, for example
+  `<p class="gx-credit">Made with <a href="https://github.com/carsonhung/gamifiedUI">gamifiedUI</a></p>`
+  (the open-source `gamifiedui-css`, `gamifiedui-icons`, `gamifiedui-utils` and `gamifiedui-sfx`).
+
+Bug reports, icon requests and pull requests are welcome too.
+
+## Author
+
+gamifiedUI was started by [Carson Hung](https://github.com/carsonhung) and is built with
+everyone who contributes. *Game for a better world together.*
 
 ## License
 
