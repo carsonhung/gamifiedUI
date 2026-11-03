@@ -20,11 +20,11 @@
     background: color-mix(in oklab, var(--color-gx-surface) 80%, white);
     cursor: pointer;
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      0 var(--gx-px) 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      var(--gx-px) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      0 calc(var(--gx-px) + var(--gx-skill-lift)) 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      0 calc(var(--gx-line, var(--gx-px)) + var(--gx-skill-lift)) 0 0 var(--color-gx-ink);
     transition: translate var(--gx-motion-fast) steps(2, end);
   }
 
@@ -40,7 +40,7 @@
   }
 
   .gx-skill:focus-visible {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * 2);
   }
 
@@ -66,8 +66,8 @@
     padding: 0.125rem 0.25rem;
     font-family: var(--font-gx);
     font-size: var(--gx-text-sm);
-    color: var(--color-gx-on-surface);
-    background: var(--color-gx-ink);
+    color: var(--color-gx-on-page);
+    background: var(--color-gx-page);
   }
 
   .gx-skill-timer {
@@ -78,7 +78,7 @@
     place-items: center;
     font-family: var(--font-gx);
     font-size: var(--gx-text-md);
-    color: var(--color-gx-on-surface);
+    color: var(--color-gx-on-ink);
     text-shadow:
       var(--gx-px) 0 0 var(--color-gx-ink),
       calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),

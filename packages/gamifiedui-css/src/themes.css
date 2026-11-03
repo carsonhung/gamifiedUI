@@ -1,50 +1,146 @@
 /* Era themes. Apply with data-gx-theme on any element; themes nest. The default (no attribute) is "arcade". */
 @layer base {
-  [data-gx-theme="gameboy"] {
-    --color-gx-ink: #0f380f;
-    --color-gx-surface: #9bbc0f;
-    --color-gx-on-surface: #0f380f;
-    --color-gx-accent: #306230;
-    --color-gx-focus: #0f380f;
-    --color-gx-primary: #306230;
-    --color-gx-on-primary: #e0f8d0;
-    --color-gx-danger: #0f380f;
-    --color-gx-on-danger: #e0f8d0;
-    --color-gx-success: #306230;
-    --color-gx-on-success: #e0f8d0;
-    --color-gx-warning: #8bac0f;
-    --color-gx-on-warning: #0f380f;
-    --color-gx-hp: #0f380f;
-    --color-gx-mp: #306230;
-    --color-gx-xp: #5f7f0f;
-    --color-gx-track: #c5d86d;
-    --color-gx-common: #8bac0f;
-    --color-gx-rare: #306230;
-    --color-gx-epic: #0f380f;
-    --color-gx-legendary: #0f380f;
+  /* Arcade by name, so it can be nested inside another theme. Repeats the tokens.css defaults
+     and resets every shape hook to its pixel fallback; keep in sync with tokens.css. */
+  [data-gx-theme="arcade"] {
+    --color-gx-ink: #0d0d1a;
+    --color-gx-page: #0d0d1a;
+    --color-gx-on-page: #f4efe2;
+    --color-gx-on-ink: #f4efe2;
+    --color-gx-surface: #24244a;
+    --color-gx-on-surface: #f4efe2;
+    --color-gx-accent: #f5c542;
+    --color-gx-focus: #f5c542;
+    --color-gx-primary: #2563eb;
+    --color-gx-on-primary: #ffffff;
+    --color-gx-danger: #c62828;
+    --color-gx-on-danger: #ffffff;
+    --color-gx-success: #2e7d32;
+    --color-gx-on-success: #ffffff;
+    --color-gx-warning: #f5a524;
+    --color-gx-on-warning: #0d0d1a;
+    --color-gx-hp: #e5484d;
+    --color-gx-mp: #3b82f6;
+    --color-gx-xp: #a3e635;
+    --color-gx-track: #3a3a5c;
+    --color-gx-selected: #5c5c66;
+    --color-gx-on-selected: #ffffff;
+    --font-gx: "Press Start 2P", "Fusion Pixel 12px Proportional TC", ui-monospace, monospace;
+    --gx-depth: 4px;
+    --color-gx-frame: initial;
+    --gx-line: initial;
+    --gx-focus-width: initial;
+    --gx-bevel: initial;
+    --gx-radius: initial;
+    --gx-radius-control: initial;
+    --gx-radius-field: initial;
+    --gx-radius-check: initial;
+    --gx-backdrop: initial;
+    --gx-titlebar-bg: initial;
+    --gx-taskbar-bg: initial;
+    --gx-elevation: initial;
+    --gx-case: initial;
+    --gx-bar-height: initial;
+    --gx-bar-texture: initial;
+    --gx-bar-easing: initial;
+    --gx-sheen: initial;
+    --gx-stripe: initial;
   }
 
-  [data-gx-theme="parchment"] {
-    --color-gx-ink: #3b2414;
-    --color-gx-surface: #f4e4c1;
-    --color-gx-on-surface: #3b2414;
-    --color-gx-accent: #8b2e16;
-    --color-gx-focus: #8b2e16;
-    --color-gx-primary: #8b2e16;
-    --color-gx-on-primary: #fff8e7;
-    --color-gx-danger: #9b1c1c;
-    --color-gx-on-danger: #fff8e7;
-    --color-gx-success: #3f6212;
-    --color-gx-on-success: #fff8e7;
-    --color-gx-warning: #b45309;
-    --color-gx-on-warning: #fff8e7;
-    --color-gx-hp: #b91c1c;
-    --color-gx-mp: #1d4ed8;
-    --color-gx-xp: #4d7c0f;
-    --color-gx-track: #d9c49a;
-    --color-gx-common: #8a7a5c;
-    --color-gx-rare: #1d4ed8;
-    --color-gx-epic: #7e22ce;
-    --color-gx-legendary: #b45309;
+  /* Vintage desktop: a classic Windows PC game. White window frames with thin grey borders,
+     soft drop shadows, lightly rounded tiles, a light blue taskbar tone (track / primary) and
+     sentence-case labels in the system UI face. */
+  [data-gx-theme="vintage"] {
+    --color-gx-ink: #1f2937;
+    --color-gx-page: #dfe8f5;
+    --color-gx-on-page: #1f2937;
+    --color-gx-on-ink: #f8fafc;
+    --color-gx-frame: rgb(15 23 42 / 0.14);
+    --color-gx-surface: rgb(255 255 255 / 0.94);
+    --color-gx-on-surface: #1f2937;
+    --color-gx-accent: #3f51b5;
+    --color-gx-focus: #2563eb;
+    --color-gx-primary: #4a6fd8;
+    --color-gx-on-primary: #ffffff;
+    --color-gx-danger: #d93a3a;
+    --color-gx-on-danger: #ffffff;
+    --color-gx-success: #2f9e5b;
+    --color-gx-on-success: #ffffff;
+    --color-gx-warning: #e8a317;
+    --color-gx-on-warning: #1f2937;
+    --color-gx-hp: #e04848;
+    --color-gx-mp: #4a6fd8;
+    --color-gx-xp: #59a832;
+    --color-gx-track: #c7d6f2;
+    --color-gx-selected: #d6e2fb;
+    --color-gx-on-selected: #1f2937;
+
+    --font-gx-body: "Segoe UI", system-ui, sans-serif;
+    --font-gx: var(--font-gx-body);
+    --gx-line: 1px;
+    --gx-focus-width: 2px;
+    --gx-bevel: 0px;
+    --gx-depth: 0px;
+    --gx-radius: 0.5rem;
+    --gx-radius-control: 0.5rem;
+    --gx-radius-field: 0.375rem;
+    --gx-radius-check: 0.25rem;
+    --gx-backdrop: blur(12px);
+    --gx-elevation: 0 8px 24px -8px rgb(15 23 42 / 0.3);
+    --gx-case: none;
+    --gx-bar-height: 0.5rem;
+    --gx-bar-texture: 0;
+    --gx-bar-easing: ease-out;
+    --gx-sheen: 0;
+    --gx-stripe: 0;
+  }
+
+  /* Spatial glass, after XR headset UIs: lightly translucent flat surfaces with a thin light rim,
+     soft depth instead of a pixel slab, no bevels or gradients, pill controls and sentence-case
+     labels in the body face. Sizes keep the 4px grid; only lines get thinner. */
+  [data-gx-theme="glass"] {
+    --color-gx-ink: #05060b;
+    --color-gx-page: #0a0c13;
+    --color-gx-on-page: #eef1f8;
+    --color-gx-on-ink: #eef1f8;
+    --color-gx-frame: rgb(255 255 255 / 0.16);
+    --color-gx-surface: rgb(22 26 40 / 0.84);
+    --color-gx-on-surface: #eef1f8;
+    --color-gx-accent: #5eead4;
+    --color-gx-focus: #5eead4;
+    --color-gx-primary: #ff5c8a;
+    --color-gx-on-primary: #1d0611;
+    --color-gx-danger: #f8566b;
+    --color-gx-on-danger: #1f0408;
+    --color-gx-success: #34d399;
+    --color-gx-on-success: #03140d;
+    --color-gx-warning: #fbbf24;
+    --color-gx-on-warning: #1f1300;
+    --color-gx-hp: #f8566b;
+    --color-gx-mp: #60a5fa;
+    --color-gx-xp: #a3e635;
+    --color-gx-track: rgb(255 255 255 / 0.1);
+    --color-gx-selected: rgb(94 234 212 / 0.22);
+    --color-gx-on-selected: #eef1f8;
+
+    --font-gx: var(--font-gx-body);
+    --gx-line: 1px;
+    --gx-focus-width: 2px;
+    --gx-bevel: 0px;
+    --gx-depth: 0px;
+    --gx-radius: 1.25rem;
+    --gx-radius-control: 999px;
+    --gx-radius-field: 0.75rem;
+    --gx-radius-check: 0.375rem;
+    --gx-backdrop: blur(20px);
+    --gx-titlebar-bg: rgb(255 255 255 / 0.05);
+    --gx-taskbar-bg: rgb(22 26 40 / 0.9);
+    --gx-elevation: 0 24px 48px -16px rgb(0 0 0 / 0.65);
+    --gx-case: none;
+    --gx-bar-height: 0.5rem;
+    --gx-bar-texture: 0;
+    --gx-bar-easing: ease-out;
+    --gx-sheen: 0;
+    --gx-stripe: 0;
   }
 }

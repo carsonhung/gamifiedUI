@@ -46,12 +46,13 @@
     color: var(--color-gx-on-surface);
     background: var(--color-gx-surface);
     box-shadow:
-      inset calc(var(--gx-px) * 2) 0 0 0 var(--gx-toast-tone),
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
-      0 calc(var(--gx-px) + var(--gx-depth)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+      inset calc(var(--gx-line, var(--gx-px)) * 2) 0 0 0 var(--gx-toast-tone),
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 calc(var(--gx-line, var(--gx-px)) + var(--gx-depth)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent),
+      var(--gx-elevation, 0 0 transparent);
     animation: gx-toast-in var(--gx-motion-base) steps(4, end) both;
   }
 
@@ -80,7 +81,7 @@
     font-family: var(--font-gx);
     font-size: 0.75rem;
     line-height: 1.6;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
   }
 
   .gx-toast-body {
@@ -117,7 +118,7 @@
   }
 
   .gx-toast-close:focus-visible {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * -1);
   }
 
@@ -156,6 +157,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
+    opacity: var(--gx-sheen, 1);
     background: linear-gradient(
       100deg,
       transparent 35%,

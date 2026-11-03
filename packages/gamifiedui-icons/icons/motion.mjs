@@ -59,7 +59,7 @@ export const DEFAULTS = {
   smile: 'bob', sad: 'nudge-down', cry: 'shake', angry: 'shake', surprised: 'pop', love: 'beat', cool: 'wiggle', neutral: 'bob',
   heart: 'beat', star: 'pop', coin: 'flip', check: 'pop', close: 'shake', plus: 'pulse', minus: 'pulse',
   'chevron-right': 'nudge-right', 'chevron-left': 'nudge-left', 'chevron-down': 'nudge-down', 'chevron-up': 'nudge-up',
-  menu: 'pulse', search: 'wiggle', gear: 'spin-slow', lock: 'shake', bell: 'ring', play: 'pulse', pause: 'blink',
+  menu: 'pulse', search: 'wiggle', gear: 'spin-slow', lock: 'shake', bell: 'ring', play: 'pulse', pause: 'blink', 'fast-forward': 'nudge-right',
   sound: 'pulse', info: 'blink', warning: 'blink', sword: 'swing', potion: 'wiggle', key: 'wiggle', gift: 'shake',
   fighter: 'shake', warrior: 'bob', wizard: 'wiggle', priest: 'bob', 'black-magic': 'pulse', 'white-magic': 'spin-slow', cure: 'pulse', zombie: 'wiggle', dinosaur: 'bob', remote: 'shake', 'game-console': 'shake', ball: 'bob', slippers: 'wiggle', contract: 'wiggle', 'door-open': 'pulse', umbrella: 'swing', bus: 'drive', pointer: 'nudge-up', chalk: 'wiggle', 'pointer-stick': 'tick', boat: 'float',
   thief: 'nudge-left', ninja: 'nudge-right', bard: 'wiggle', necromancer: 'pulse', glove: 'shake', grave: 'wiggle',

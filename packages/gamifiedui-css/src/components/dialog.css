@@ -10,12 +10,13 @@
     color: var(--color-gx-on-surface);
     background: var(--color-gx-surface);
     box-shadow:
-      inset 0 0 0 var(--gx-px) color-mix(in oklab, var(--color-gx-surface) 80%, white),
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
-      0 calc(var(--gx-px) * 3) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+      inset 0 0 0 var(--gx-line, var(--gx-px)) color-mix(in oklab, var(--color-gx-surface) 80%, white),
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 calc(var(--gx-line, var(--gx-px)) * 3) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent),
+      var(--gx-elevation, 0 0 transparent);
   }
 
   .gx-dialog[open] {

@@ -20,7 +20,7 @@
     font-family: var(--font-gx);
     font-size: var(--gx-text-sm);
     text-align: start;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
     color: var(--color-gx-accent);
   }
 
@@ -30,7 +30,7 @@
     font-size: var(--gx-text-sm);
     font-weight: normal;
     text-align: start;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
     color: color-mix(in oklab, var(--color-gx-on-surface) 75%, transparent);
   }
 
@@ -48,7 +48,7 @@
   }
 
   .gx-table tbody tr[aria-current]:not([aria-current="false"]) td:first-child {
-    box-shadow: inset var(--gx-px) 0 0 0 var(--color-gx-accent);
+    box-shadow: inset var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-accent);
   }
 
   .gx-table .gx-table-num {
@@ -71,10 +71,10 @@
     color: var(--gx-rank-fg);
     background: var(--gx-rank-bg);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
   }
 
   .gx-rank-1 {

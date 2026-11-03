@@ -15,14 +15,14 @@
     font-family: var(--font-gx);
     font-size: var(--gx-text-sm);
     line-height: 1.25;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
     color: var(--gx-chip-fg);
     background: var(--gx-chip-bg);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      0 var(--gx-px) 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      var(--gx-px) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-ink));
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink)));
   }
 
   button.gx-chip {
@@ -31,7 +31,7 @@
   }
 
   button.gx-chip:focus-visible {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * 2);
   }
 
@@ -83,7 +83,7 @@
     margin: 1rem 0;
     font-family: var(--font-gx);
     font-size: var(--gx-text-sm);
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
     color: color-mix(in oklab, var(--color-gx-on-surface) 70%, transparent);
   }
 

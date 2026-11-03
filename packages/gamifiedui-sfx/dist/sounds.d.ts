@@ -26,6 +26,7 @@ export declare const SOUNDS: {
     select: Tone[];
     confirm: Tone[];
     cancel: Tone[];
+    success: Tone[];
     error: ({
         wave: "sawtooth";
         freq: number;

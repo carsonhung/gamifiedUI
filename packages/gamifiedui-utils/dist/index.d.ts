@@ -1,10 +1,13 @@
 export { prefersReducedMotion, replay } from './motion.js';
+export { gridSvg, mirrorGrid, painter, type Painter, type Palette, type PixelGrid } from './pixel.js';
+export { spamGuard, type SpamGuardHandle, type SpamGuardOptions } from './spam.js';
 export { toast, type ToastHandle, type ToastOptions, type ToastTone } from './toast.js';
-export { graphemes, typewriter, type TypewriterHandle, type TypewriterOptions } from './typewriter.js';
+export { autoAdvanceMs, graphemes, TEXT_SPEEDS, typewriter, type TextSpeed, type TypewriterHandle, type TypewriterOptions, } from './typewriter.js';
 export { rollNumber, type RollOptions } from './counter.js';
 export { cooldown, isCoolingDown, type CooldownHandle, type CooldownOptions } from './cooldown.js';
 export { burst, floatText, type BurstKind, type BurstOptions, type FloatKind, type FloatOptions } from './effects.js';
 export { sliderFill, tabs, videoPlayOverlay, type TabsHandle } from './controls.js';
+export { fitMapPlates, fitWidthZoom, mapZoom, zoomAround, type MapZoomHandle, type MapZoomOptions, type ScrollPoint } from './map.js';
 export { formatDuration, timer, type TimerHandle, type TimerMode, type TimerOptions, type TimerState, } from './timer.js';
 export { calendar, datePicker, parseISODate, toISODate, type CalendarHandle, type CalendarMode, type CalendarOptions, type DatePickerHandle, type DatePickerOptions, type DateRange, } from './calendar.js';
 export { dropzone, formatBytes, matchesAccept, type DropzoneHandle, type DropzoneOptions, type FileRejection, } from './upload.js';

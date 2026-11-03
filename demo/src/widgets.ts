@@ -1,4 +1,5 @@
 import categories from 'gamifiedui-icons/categories.json';
+import groups from 'gamifiedui-icons/groups.json';
 import icons from 'gamifiedui-icons/icons.json';
 import {
   burst,
@@ -260,39 +261,80 @@ function setupIconGallery(): void {
   const framedList = byId('icon-gallery-animated');
   const nav = byId('icon-categories');
   const galleries = [{ list: allList }, { list: framedList }];
+  const search = byId<HTMLInputElement>('icon-search');
+  const count = byId('icon-count');
+  const chip = (category: (typeof categories)[number], size: number): HTMLAnchorElement => {
+    const link = document.createElement('a');
+    link.className = 'gx-chip';
+    link.href = `#icons-cat-${category.id}`;
+    link.textContent = `${labelOf(category)} ${size}`;
+    return link;
+  };
+  const tileList = (members: IconMeta[], animateAll: boolean): HTMLUListElement => {
+    const list = document.createElement('ul');
+    list.className = GRID_CLASS;
+    list.append(...members.map((icon) => iconTile(icon, animateAll, TILE_CLASSES[icon.set] ?? 'gx-icon-tile')));
+    return list;
+  };
   const render = (): void => {
     const animateAll = animateChip.getAttribute('aria-pressed') === 'true';
-    const shown = icons.filter((icon) => animateAll || icon.set !== 'animated');
-    const groups = categories
-      .map((category) => ({ category, members: shown.filter((icon) => icon.category === category.id) }))
-      .filter(({ members }) => members.length > 0);
+    const query = search.value.trim().toLowerCase();
+    const shown = icons.filter(
+      (icon) =>
+        (animateAll || icon.set !== 'animated') &&
+        (!query || [icon.name, icon.en, icon.hant, icon.hans].some((text) => text.toLowerCase().includes(query))),
+    );
+    const sections = groups
+      .map((group) => ({
+        group,
+        cats: categories
+          .filter((category) => category.group === group.id)
+          .map((category) => ({ category, members: shown.filter((icon) => icon.category === category.id) }))
+          .filter(({ members }) => members.length > 0),
+      }))
+      .filter(({ cats }) => cats.length > 0);
+    count.textContent = t('iconCount', { n: shown.length });
 
     nav.replaceChildren(
-      ...groups.map(({ category, members }) => {
-        const link = document.createElement('a');
-        link.className = 'gx-chip';
-        link.href = `#icons-cat-${category.id}`;
-        link.textContent = `${labelOf(category)} ${members.length}`;
-        return link;
+      ...sections.map(({ group, cats }) => {
+        const row = document.createElement('div');
+        row.className = 'grid items-start gap-2 sm:grid-cols-[12rem_minmax(0,1fr)]';
+        const label = document.createElement('span');
+        label.className = 'pt-1 font-gx text-xs uppercase opacity-70';
+        label.textContent = labelOf(group);
+        const chips = document.createElement('div');
+        chips.className = 'flex flex-wrap gap-2';
+        chips.append(...cats.map(({ category, members }) => chip(category, members.length)));
+        row.append(label, chips);
+        return row;
       }),
     );
     allList.replaceChildren(
-      ...groups.map(({ category, members }) => {
-        const section = document.createElement('section');
-        section.className = 'mb-4';
-        section.setAttribute('aria-labelledby', `icons-cat-${category.id}`);
+      ...sections.map(({ group, cats }) => {
+        const block = document.createElement('section');
+        block.className = 'mb-8';
+        block.setAttribute('aria-labelledby', `icons-group-${group.id}`);
         const heading = document.createElement('h4');
-        heading.id = `icons-cat-${category.id}`;
-        heading.className = 'mb-2 scroll-mt-4 font-gx text-xs uppercase';
-        heading.textContent = labelOf(category);
-        const list = document.createElement('ul');
-        list.className = GRID_CLASS;
-        list.append(...members.map((icon) => iconTile(icon, animateAll, TILE_CLASSES[icon.set] ?? 'gx-icon-tile')));
-        section.append(heading, list);
-        return section;
+        heading.id = `icons-group-${group.id}`;
+        heading.className = 'mb-4 border-b border-gx-on-surface/20 pb-2 font-gx text-sm uppercase';
+        heading.textContent = labelOf(group);
+        block.append(
+          heading,
+          ...cats.map(({ category, members }) => {
+            const section = document.createElement('section');
+            section.className = 'mb-5';
+            section.setAttribute('aria-labelledby', `icons-cat-${category.id}`);
+            const title = document.createElement('h5');
+            title.id = `icons-cat-${category.id}`;
+            title.className = 'mb-2 scroll-mt-20 text-sm font-semibold';
+            title.textContent = labelOf(category);
+            section.append(title, tileList(members, animateAll));
+            return section;
+          }),
+        );
+        return block;
       }),
-    );
-    framedList.replaceChildren(
+    );    framedList.replaceChildren(
       ...icons.filter((icon) => icon.motion === 'frames').map((icon) => iconTile(icon, true, TILE_CLASSES.animated ?? 'gx-icon-tile')),
     );
   };
@@ -305,6 +347,7 @@ function setupIconGallery(): void {
     toggle(animateChip);
     render();
   });
+  search.addEventListener('input', render);
   pauseChip.addEventListener('click', () => {
     const paused = toggle(pauseChip);
     galleries.forEach(({ list }) => list.classList.toggle('gx-icons-paused', paused));

@@ -12,6 +12,9 @@ const ALLOWED_TRANSITION_PROPS = new Set(['translate', 'scale', 'rotate', 'trans
 
 const COMPONENT_SELECTORS = [
   '.gx-btn',
+  '.gx-btn-tint',
+  '.gx-btn-tile',
+  '.gx-btn-art',
   '.gx-panel',
   '.gx-bar',
   '.gx-badge',
@@ -73,6 +76,18 @@ const COMPONENT_SELECTORS = [
   '.gx-dropzone',
   '.gx-file',
   '.gx-file-remove',
+  '.gx-desktop',
+  '.gx-desktop-icon',
+  '.gx-window',
+  '.gx-window-titlebar',
+  '.gx-taskbar',
+  '.gx-start-menu',
+  '.gx-map',
+  '.gx-map-viewport',
+  '.gx-map-place',
+  '.gx-hint',
+  '.gx-credit',
+  '.gx-statusbar',
 ];
 const UTILITY_CASES = {
   'gx-depth-2': '--gx-depth: calc(var(--gx-px) * 2)',

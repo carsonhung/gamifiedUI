@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Egg Waffle Warrior · gamifiedUI</title>
+    <script type="module" src="/src/eggette/main.ts"></script>
+  </head>
+  <body class="min-h-dvh bg-gx-page font-gx-body text-gx-on-page">
+    <header class="ew-topbar">
+      <a class="gx-btn gx-btn-ghost gx-btn-sm" href="./index.html#overview-title" data-t-label="back">
+        <span class="gx-icon gx-icon-sm gx-i-arrow-left" aria-hidden="true"></span><span class="max-md:sr-only" data-t="back">gamifiedUI docs</span>
+      </a>
+      <h1 class="ew-title"><span class="gx-icon gx-i-egg-waffle" aria-hidden="true"></span><span data-t="title">Egg Waffle Warrior</span></h1>
+      <div class="ew-topbar-end">
+        <div class="ew-themes" role="group" data-t-label="theme">
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="" aria-pressed="true">Arcade</button>
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="vintage" aria-pressed="false">Vintage</button>
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="glass" aria-pressed="false">Glass</button>
+        </div>
+        <div class="flex gap-1" role="group" data-t-label="language">
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-locale="en" lang="en" aria-pressed="false">EN</button>
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-locale="zh-Hant" lang="zh-Hant" aria-pressed="false">繁</button>
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-locale="zh-Hans" lang="zh-Hans" aria-pressed="false">简</button>
+        </div>
+        <button id="sound" class="gx-btn gx-btn-ghost gx-btn-sm" aria-pressed="true" aria-label="Sound">
+          <span class="gx-icon gx-icon-sm gx-i-volume" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="ew-main">
+      <section class="ew-hud gx-panel" aria-label="Shop status">
+        <div class="ew-warrior" id="warrior"></div>
+        <div class="ew-hud-body">
+          <div class="ew-stats">
+            <span class="gx-chip" id="day">Day 1</span>
+            <span class="gx-chip" id="level">Street stall</span>
+            <span class="gx-counter ew-coins" data-t-label="coins">
+              <span class="gx-counter-icon"><span class="gx-icon gx-icon-sm gx-i-coin" aria-hidden="true"></span></span>
+              <span class="gx-counter-value" id="coins">0</span>
+            </span>
+            <span class="gx-rating gx-rating-stars gx-rating-sm" id="reputation" role="img" style="--gx-value: 3"></span>
+            <div class="ew-clock">
+              <span class="gx-icon gx-icon-sm gx-i-clock" aria-hidden="true"></span>
+              <span id="clock-text" class="tabular-nums">12:00</span>
+              <div class="gx-bar gx-bar-xp gx-bar-smooth ew-clock-bar" id="clock-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-t-label="clock" style="--gx-value: 0"></div>
+            </div>
+            <button id="pause" class="gx-btn gx-btn-ghost gx-btn-sm" aria-pressed="false" data-t="pause">Pause</button>
+            <button id="new-game" class="gx-btn gx-btn-ghost gx-btn-sm" data-t="newGame">New game</button>
+          </div>
+          <div class="gx-textbox ew-speech">
+            <p class="gx-textbox-speaker" data-t="warrior">Egg Waffle Warrior</p>
+            <p class="sr-only" id="line-full" aria-live="polite"></p>
+            <p class="gx-textbox-text" id="line" aria-hidden="true"></p>
+            <div class="ew-intro-actions" id="intro-actions">
+              <button id="intro-next" class="gx-btn gx-btn-sm" data-t="next">Next</button>
+              <button id="open-shop" class="gx-btn gx-btn-success gx-btn-sm" data-t="skipIntro">Open the shop</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="ew-floor">
+        <div class="ew-col">
+          <section class="gx-panel" aria-labelledby="queue-title">
+            <h2 id="queue-title" class="gx-panel-title ew-panel-title"><span data-t="queue">Queue</span><span class="ew-panel-meta" id="queue-seats"></span></h2>
+            <ol class="ew-queue" id="queue"></ol>
+          </section>
+          <section class="gx-panel ew-cashier" aria-labelledby="cashier-title">
+            <h2 id="cashier-title" class="gx-panel-title" data-t="cashier">Cashier</h2>
+            <div id="cashier"></div>
+          </section>
+        </div>
+
+        <div class="ew-col">
+          <section class="gx-panel" aria-labelledby="stove-title">
+            <h2 id="stove-title" class="gx-panel-title" data-t="stove">Stove</h2>
+            <div class="ew-pans" id="pans"></div>
+          </section>
+          <section class="gx-panel" aria-labelledby="mixer-title">
+            <h2 id="mixer-title" class="gx-panel-title" data-t="mixer">Mixer</h2>
+            <div id="mixer"></div>
+          </section>
+        </div>
+
+        <div class="ew-col">
+          <section class="gx-panel" aria-labelledby="counter-title">
+            <h2 id="counter-title" class="gx-panel-title" data-t="counter">Counter</h2>
+            <div id="tray"></div>
+          </section>
+          <section class="gx-panel" aria-labelledby="stock-title">
+            <h2 id="stock-title" class="gx-panel-title" data-t="stock">Stock</h2>
+            <ul class="ew-stock" id="stock"></ul>
+          </section>
+          <p class="gx-hint" data-t="hintKeys">Tip: every control is a button, so you can play with Tab and Enter.</p>
+        </div>
+      </div>
+    </main>
+
+    <dialog id="summary" class="gx-dialog ew-summary" aria-labelledby="summary-title">
+      <h2 id="summary-title" class="gx-panel-title"></h2>
+      <dl class="ew-summary-stats" id="summary-stats"></dl>
+      <p class="ew-won" id="won" hidden></p>
+      <h3 class="ew-subtitle" data-t="upgrades">Upgrades</h3>
+      <div class="ew-upgrades" id="upgrades"></div>
+      <div class="mt-4 flex justify-end">
+        <button id="next-day" class="gx-btn gx-btn-success"></button>
+      </div>
+    </dialog>
+
+    <div class="gx-toast-stack" id="toasts" role="region" aria-label="Notifications"></div>
+  </body>
+</html>

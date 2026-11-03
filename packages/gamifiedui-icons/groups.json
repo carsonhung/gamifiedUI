@@ -1,0 +1,32 @@
+[
+  {
+    "id": "interface",
+    "en": "Interface",
+    "hant": "介面",
+    "hans": "界面"
+  },
+  {
+    "id": "game",
+    "en": "Game",
+    "hant": "遊戲",
+    "hans": "游戏"
+  },
+  {
+    "id": "world",
+    "en": "World and places",
+    "hant": "世界與地點",
+    "hans": "世界与地点"
+  },
+  {
+    "id": "life",
+    "en": "People and daily life",
+    "hant": "人物與生活",
+    "hans": "人物与生活"
+  },
+  {
+    "id": "culture",
+    "en": "Culture and expression",
+    "hant": "文化與表達",
+    "hans": "文化与表达"
+  }
+]

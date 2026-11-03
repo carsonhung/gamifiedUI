@@ -2,6 +2,8 @@ import { SOUNDS, type SoundName, type SoundSpec, type Tone } from './sounds.js';
 
 export { SOUNDS };
 export type { SoundName, SoundSpec, Tone, Wave } from './sounds.js';
+export { createMusic, noteFrequency, type Music, type MusicOptions, type MusicTheme } from './music.js';
+export { createVoice, type SayOptions, type Voice, type VoiceStyle } from './voice.js';
 
 export interface PlayOptions {
   /** 0 to 1, multiplied with the master volume. */

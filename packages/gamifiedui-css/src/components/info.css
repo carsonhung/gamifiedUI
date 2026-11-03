@@ -1,0 +1,88 @@
+/* Quiet information around the play area.
+   - .gx-hint: a one-line control hint over the scene ("Press <kbd class="gx-kbd">E</kbd> to talk").
+     It fades with opacity; toggle data-hidden to hide it (keep the node so screen readers are not
+     spammed: put it in a polite live region only if the hint changes because of something the
+     player did).
+   - .gx-credit: a small chip for credits or build info in a corner (.gx-credit-end pins it
+     bottom-right inside a positioned parent).
+   - .gx-statusbar: a status line along the bottom of a .gx-window or panel; give it
+     role="status" when its text changes (Saved, 3 selected). */
+@layer components {
+  .gx-hint {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    margin: 0;
+    padding: 0.375rem 0.875rem;
+    font-family: var(--font-gx-body);
+    font-size: var(--gx-text-md);
+    line-height: 1.4;
+    color: var(--color-gx-on-page);
+    background: color-mix(in oklab, var(--color-gx-page) 72%, transparent);
+    backdrop-filter: var(--gx-backdrop, none);
+    box-shadow:
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
+    transition:
+      opacity var(--gx-motion-base) steps(4, end),
+      translate var(--gx-motion-base) steps(4, end);
+  }
+
+  .gx-hint[data-hidden] {
+    opacity: 0;
+    translate: 0 var(--gx-px);
+    pointer-events: none;
+  }
+
+  .gx-hint .gx-kbd {
+    font-size: var(--gx-text-sm);
+  }
+
+  .gx-credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin: 0;
+    padding: 0.125rem 0.625rem;
+    font-family: var(--font-gx-body);
+    font-size: 0.6875rem;
+    line-height: 1.6;
+    color: var(--color-gx-on-page);
+    background: color-mix(in oklab, var(--color-gx-page) 65%, transparent);
+    backdrop-filter: var(--gx-backdrop, none);
+  }
+
+  .gx-credit a {
+    color: inherit;
+    text-underline-offset: 0.15em;
+  }
+
+  .gx-credit-end {
+    position: absolute;
+    inset-block-end: calc(var(--gx-px) * 2);
+    inset-inline-end: calc(var(--gx-px) * 2);
+  }
+
+  .gx-statusbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 1rem;
+    min-height: 1.75rem;
+    margin: 0;
+    padding: 0.25rem 0.75rem;
+    font-family: var(--font-gx-body);
+    font-size: var(--gx-text-sm);
+    color: color-mix(in oklab, var(--color-gx-on-surface) 75%, transparent);
+    background: color-mix(in oklab, var(--color-gx-surface) 92%, var(--color-gx-page));
+    box-shadow: inset 0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink));
+  }
+
+  .gx-statusbar-end {
+    margin-inline-start: auto;
+  }
+}

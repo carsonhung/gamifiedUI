@@ -32,7 +32,7 @@
     "en": "Check",
     "hant": "完成",
     "hans": "完成",
-    "category": "interface",
+    "category": "actions",
     "motion": "pop"
   },
   {
@@ -41,7 +41,7 @@
     "en": "Close",
     "hant": "關閉",
     "hans": "关闭",
-    "category": "interface",
+    "category": "actions",
     "motion": "shake"
   },
   {
@@ -50,7 +50,7 @@
     "en": "Plus",
     "hant": "加",
     "hans": "加",
-    "category": "interface",
+    "category": "actions",
     "motion": "pulse"
   },
   {
@@ -59,7 +59,7 @@
     "en": "Minus",
     "hant": "減",
     "hans": "减",
-    "category": "interface",
+    "category": "actions",
     "motion": "pulse"
   },
   {
@@ -68,7 +68,7 @@
     "en": "Chevron right",
     "hant": "向右",
     "hans": "向右",
-    "category": "interface",
+    "category": "navigation",
     "motion": "nudge-right"
   },
   {
@@ -77,7 +77,7 @@
     "en": "Chevron left",
     "hant": "向左",
     "hans": "向左",
-    "category": "interface",
+    "category": "navigation",
     "motion": "nudge-left"
   },
   {
@@ -86,7 +86,7 @@
     "en": "Chevron down",
     "hant": "向下",
     "hans": "向下",
-    "category": "interface",
+    "category": "navigation",
     "motion": "nudge-down"
   },
   {
@@ -95,7 +95,7 @@
     "en": "Chevron up",
     "hant": "向上",
     "hans": "向上",
-    "category": "interface",
+    "category": "navigation",
     "motion": "nudge-up"
   },
   {
@@ -104,7 +104,7 @@
     "en": "Menu",
     "hant": "選單",
     "hans": "菜单",
-    "category": "interface",
+    "category": "navigation",
     "motion": "pulse"
   },
   {
@@ -113,7 +113,7 @@
     "en": "Search",
     "hant": "搜尋",
     "hans": "搜索",
-    "category": "interface",
+    "category": "navigation",
     "motion": "wiggle"
   },
   {
@@ -122,7 +122,7 @@
     "en": "Home",
     "hant": "主頁",
     "hans": "主页",
-    "category": "interface",
+    "category": "navigation",
     "motion": "bob"
   },
   {
@@ -131,7 +131,7 @@
     "en": "Settings",
     "hant": "設定",
     "hans": "设置",
-    "category": "interface",
+    "category": "actions",
     "motion": "spin-slow"
   },
   {
@@ -140,7 +140,7 @@
     "en": "Player",
     "hant": "玩家",
     "hans": "玩家",
-    "category": "interface",
+    "category": "actions",
     "motion": "bob"
   },
   {
@@ -149,7 +149,7 @@
     "en": "Locked",
     "hant": "鎖定",
     "hans": "锁定",
-    "category": "interface",
+    "category": "actions",
     "motion": "shake"
   },
   {
@@ -189,6 +189,15 @@
     "motion": "blink"
   },
   {
+    "name": "fast-forward",
+    "set": "common",
+    "en": "Fast forward",
+    "hant": "快轉",
+    "hans": "快进",
+    "category": "media",
+    "motion": "nudge-right"
+  },
+  {
     "name": "sound",
     "set": "common",
     "en": "Sound",
@@ -203,7 +212,7 @@
     "en": "Info",
     "hant": "資訊",
     "hans": "信息",
-    "category": "interface",
+    "category": "alerts-time",
     "motion": "blink"
   },
   {
@@ -212,7 +221,7 @@
     "en": "Warning",
     "hant": "警告",
     "hans": "警告",
-    "category": "interface",
+    "category": "alerts-time",
     "motion": "blink"
   },
   {
@@ -257,7 +266,7 @@
     "en": "Gift",
     "hant": "禮物",
     "hans": "礼物",
-    "category": "awards",
+    "category": "celebrations",
     "motion": "shake"
   },
   {
@@ -275,7 +284,7 @@
     "en": "Time",
     "hant": "時間",
     "hans": "时间",
-    "category": "interface",
+    "category": "alerts-time",
     "motion": "tick"
   },
   {
@@ -293,7 +302,7 @@
     "en": "Reload",
     "hant": "重新載入",
     "hans": "重新加载",
-    "category": "interface",
+    "category": "actions",
     "motion": "spin"
   },
   {
@@ -329,7 +338,7 @@
     "en": "Calendar",
     "hant": "日曆",
     "hans": "日历",
-    "category": "interface",
+    "category": "alerts-time",
     "motion": "bob"
   },
   {
@@ -338,7 +347,7 @@
     "en": "Timer",
     "hant": "計時",
     "hans": "计时",
-    "category": "interface",
+    "category": "alerts-time",
     "motion": "spin-slow"
   },
   {
@@ -347,7 +356,7 @@
     "en": "Arrow right",
     "hant": "向右箭頭",
     "hans": "向右箭头",
-    "category": "interface",
+    "category": "navigation",
     "motion": "nudge-right"
   },
   {
@@ -356,7 +365,7 @@
     "en": "Arrow left",
     "hant": "向左箭頭",
     "hans": "向左箭头",
-    "category": "interface",
+    "category": "navigation",
     "motion": "nudge-left"
   },
   {
@@ -365,7 +374,7 @@
     "en": "Arrow down",
     "hant": "向下箭頭",
     "hans": "向下箭头",
-    "category": "interface",
+    "category": "navigation",
     "motion": "nudge-down"
   },
   {
@@ -374,7 +383,7 @@
     "en": "Arrow up",
     "hant": "向上箭頭",
     "hans": "向上箭头",
-    "category": "interface",
+    "category": "navigation",
     "motion": "nudge-up"
   },
   {
@@ -428,7 +437,7 @@
     "en": "Delete",
     "hant": "刪除",
     "hans": "删除",
-    "category": "interface",
+    "category": "actions",
     "motion": "shake"
   },
   {
@@ -437,7 +446,7 @@
     "en": "Edit",
     "hant": "編輯",
     "hans": "编辑",
-    "category": "interface",
+    "category": "actions",
     "motion": "wiggle"
   },
   {
@@ -446,7 +455,7 @@
     "en": "Copy",
     "hant": "複製",
     "hans": "复制",
-    "category": "interface",
+    "category": "actions",
     "motion": "bob"
   },
   {
@@ -455,7 +464,7 @@
     "en": "Link",
     "hant": "連結",
     "hans": "链接",
-    "category": "interface",
+    "category": "navigation",
     "motion": "pulse"
   },
   {
@@ -464,7 +473,7 @@
     "en": "Share",
     "hant": "分享",
     "hans": "分享",
-    "category": "interface",
+    "category": "actions",
     "motion": "pulse"
   },
   {
@@ -473,7 +482,7 @@
     "en": "Show",
     "hant": "顯示",
     "hans": "显示",
-    "category": "interface",
+    "category": "actions",
     "motion": "squint"
   },
   {
@@ -482,7 +491,7 @@
     "en": "Filter",
     "hant": "篩選",
     "hans": "筛选",
-    "category": "interface",
+    "category": "actions",
     "motion": "bob"
   },
   {
@@ -491,7 +500,7 @@
     "en": "Log out",
     "hant": "登出",
     "hans": "退出",
-    "category": "interface",
+    "category": "navigation",
     "motion": "nudge-right"
   },
   {
@@ -509,7 +518,7 @@
     "en": "Location",
     "hant": "地點",
     "hans": "地点",
-    "category": "interface",
+    "category": "navigation",
     "motion": "float"
   },
   {
@@ -518,7 +527,7 @@
     "en": "Flag",
     "hant": "旗幟",
     "hans": "旗帜",
-    "category": "interface",
+    "category": "actions",
     "motion": "wiggle"
   },
   {
@@ -527,7 +536,7 @@
     "en": "Bookmark",
     "hant": "書籤",
     "hans": "书签",
-    "category": "interface",
+    "category": "actions",
     "motion": "bob"
   },
   {
@@ -536,7 +545,7 @@
     "en": "Zoom in",
     "hant": "放大",
     "hans": "放大",
-    "category": "interface",
+    "category": "navigation",
     "motion": "pulse"
   },
   {
@@ -545,7 +554,7 @@
     "en": "Zoom out",
     "hant": "縮小",
     "hans": "缩小",
-    "category": "interface",
+    "category": "navigation",
     "motion": "pulse"
   },
   {
@@ -788,7 +797,7 @@
     "en": "Fishing rod",
     "hant": "魚竿",
     "hans": "鱼竿",
-    "category": "equipment",
+    "category": "tools",
     "motion": "swing"
   },
   {
@@ -797,7 +806,7 @@
     "en": "Stick",
     "hant": "樹枝",
     "hans": "树枝",
-    "category": "equipment",
+    "category": "tools",
     "motion": "swing"
   },
   {
@@ -833,7 +842,7 @@
     "en": "Axe",
     "hant": "斧頭",
     "hans": "斧头",
-    "category": "equipment",
+    "category": "tools",
     "motion": "swing"
   },
   {
@@ -842,7 +851,7 @@
     "en": "Christmas tree",
     "hant": "聖誕樹",
     "hans": "圣诞树",
-    "category": "awards",
+    "category": "celebrations",
     "motion": "frames"
   },
   {
@@ -923,7 +932,7 @@
     "en": "Dig",
     "hant": "挖掘",
     "hans": "挖掘",
-    "category": "equipment",
+    "category": "tools",
     "motion": "nudge-down"
   },
   {
@@ -1337,7 +1346,7 @@
     "en": "Create",
     "hant": "新增",
     "hans": "新建",
-    "category": "interface",
+    "category": "actions",
     "motion": "pop"
   },
   {
@@ -1463,7 +1472,7 @@
     "en": "Hammer",
     "hant": "鎚",
     "hans": "锤子",
-    "category": "equipment",
+    "category": "tools",
     "motion": "swing"
   },
   {
@@ -1535,7 +1544,7 @@
     "en": "Pointer",
     "hant": "游標",
     "hans": "光标",
-    "category": "interface",
+    "category": "navigation",
     "motion": "nudge-up"
   },
   {
@@ -1859,7 +1868,7 @@
     "en": "Balloon",
     "hant": "氣球",
     "hans": "气球",
-    "category": "awards",
+    "category": "celebrations",
     "motion": "float"
   },
   {
@@ -2408,7 +2417,7 @@
     "en": "Kite",
     "hant": "風箏",
     "hans": "风筝",
-    "category": "awards",
+    "category": "celebrations",
     "motion": "float"
   },
   {
@@ -3142,7 +3151,7 @@
     "hans": "加载中",
     "fps": 10,
     "frames": 8,
-    "category": "interface",
+    "category": "alerts-time",
     "motion": "frames"
   },
   {

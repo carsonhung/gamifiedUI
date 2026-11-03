@@ -1,0 +1,42 @@
+name: Propose a theme
+description: Share a look from your game so it can become a gamifiedUI theme.
+title: "Theme: "
+labels: [theme]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing your design. Screenshots or a palette are enough; we can turn it into
+        tokens together. See CONTRIBUTING.md for the full checklist if you want to open a pull
+        request yourself.
+  - type: input
+    id: name
+    attributes:
+      label: Theme name
+      description: Name it by the look (for example "glass" or "vintage"), not by your app.
+    validations:
+      required: true
+  - type: textarea
+    id: look
+    attributes:
+      label: Describe the look
+      description: Shape (pixel, rounded, pill), translucency, light or dark, fonts, anything that defines it.
+    validations:
+      required: true
+  - type: textarea
+    id: palette
+    attributes:
+      label: Palette
+      description: Page, surface, text, primary, accent, success, warning and danger colours if you have them.
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or a link
+      description: Paste images of the UI you built, or link to your game.
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights
+      options:
+        - label: I made this design or have the right to share it under the Apache License 2.0.
+          required: true

@@ -1,10 +1,13 @@
 export { prefersReducedMotion, replay } from './motion.js';
+export { gridSvg, mirrorGrid, painter } from './pixel.js';
+export { spamGuard } from './spam.js';
 export { toast } from './toast.js';
-export { graphemes, typewriter } from './typewriter.js';
+export { autoAdvanceMs, graphemes, TEXT_SPEEDS, typewriter, } from './typewriter.js';
 export { rollNumber } from './counter.js';
 export { cooldown, isCoolingDown } from './cooldown.js';
 export { burst, floatText } from './effects.js';
 export { sliderFill, tabs, videoPlayOverlay } from './controls.js';
+export { fitMapPlates, fitWidthZoom, mapZoom, zoomAround } from './map.js';
 export { formatDuration, timer, } from './timer.js';
 export { calendar, datePicker, parseISODate, toISODate, } from './calendar.js';
 export { dropzone, formatBytes, matchesAccept, } from './upload.js';

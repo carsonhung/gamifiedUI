@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "description": "Tailwind CSS v4 game UI: pixel-framed 2.5D buttons, panels, HP/MP/XP bars, dialogs, sprite and isometric utilities.",
   "license": "Apache-2.0",
+  "author": "Carson Hung (https://github.com/carsonhung)",
+  "funding": "https://github.com/sponsors/carsonhung",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/carsonhung/gamifiedUI.git",

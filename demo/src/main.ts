@@ -2,7 +2,17 @@ import '@fontsource/press-start-2p';
 import '@fontsource/fusion-pixel-12px-proportional-tc';
 import '@fontsource/fusion-pixel-12px-proportional-sc';
 
-import { tabs, toast, typewriter, videoPlayOverlay, type TypewriterHandle } from 'gamifiedui-utils';
+import {
+  autoAdvanceMs,
+  fitMapPlates,
+  mapZoom,
+  tabs,
+  TEXT_SPEEDS,
+  toast,
+  typewriter,
+  videoPlayOverlay,
+  type TypewriterHandle,
+} from 'gamifiedui-utils';
 
 import './style.css';
 import { byId, locale, notifyLocaleChange, onLocaleChange, setLocale, t } from './core';
@@ -10,6 +20,7 @@ import { isLocale, MESSAGES, type Line, type ToastKind } from './i18n';
 import { setupSound } from './sound';
 import { setupTime } from './time';
 import { setupUpload } from './upload';
+import { refreshPageTitle, setupPages } from './pages';
 import { setupGameWidgets } from './widgets';
 
 const HP_MAX = 100;
@@ -24,18 +35,29 @@ const TOAST_LIMIT = 4;
 const LANDSCAPE_W = 80;
 const LANDSCAPE_H = 45;
 const HEART_COUNT = 5;
+const SKIP_DELAY_MS = 150;
+const TEXT_SPEED_KEY = 'gx-demo-text-speed-step';
+const AUTO_WAIT_KEY = 'gx-demo-auto-wait';
+/** Slider steps per 1x; the speed slider's last step means instant. */
+const SLIDER_STEPS_PER_X = 4;
+const THEME_KEY = 'gx-demo-theme';
 
 
 function setupThemeAndMotion(): void {
   const themeButtons = document.querySelectorAll<HTMLButtonElement>('[data-theme-option]');
+  const applyTheme = (theme: string): void => {
+    if (theme) document.documentElement.dataset.gxTheme = theme;
+    else delete document.documentElement.dataset.gxTheme;
+    themeButtons.forEach((b) => b.setAttribute('aria-pressed', String((b.dataset.themeOption ?? '') === theme)));
+  };
   themeButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const theme = button.dataset.themeOption ?? '';
-      if (theme) document.documentElement.dataset.gxTheme = theme;
-      else delete document.documentElement.dataset.gxTheme;
-      themeButtons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      applyTheme(theme);
+      localStorage.setItem(THEME_KEY, theme);
     });
   });
+  applyTheme(localStorage.getItem(THEME_KEY) ?? '');
 
   const motionToggle = byId<HTMLButtonElement>('motion-toggle');
   motionToggle.addEventListener('click', () => {
@@ -181,8 +203,12 @@ function setupLanguage(): void {
     document.querySelectorAll<HTMLElement>('[data-i18n-label]').forEach((el) => {
       el.setAttribute('aria-label', t(el.dataset.i18nLabel ?? ''));
     });
+    document.querySelectorAll<HTMLInputElement>('[data-i18n-placeholder]').forEach((el) => {
+      el.placeholder = t(el.dataset.i18nPlaceholder ?? '');
+    });
     buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.langOption === locale)));
     notifyLocaleChange();
+    refreshPageTitle();
   };
 
   buttons.forEach((button) => {
@@ -217,16 +243,72 @@ function setupDialogue(): void {
   const shown = byId('line-shown');
   const choices = byId('choices');
   const next = byId('next');
+  const autoButton = byId<HTMLButtonElement>('auto-play');
+  const skipButton = byId<HTMLButtonElement>('skip-read');
+  const mode = byId('reader-mode');
+  const logList = byId('log-list');
+  const settingsToggle = byId<HTMLButtonElement>('reader-settings-toggle');
+  const settings = byId('reader-settings');
+  const speedInput = byId<HTMLInputElement>('text-speed');
+  const speedValue = byId('text-speed-value');
+  const waitInput = byId<HTMLInputElement>('auto-wait');
+  const waitValue = byId('auto-wait-value');
   let lineIndex = 0;
   let typing: TypewriterHandle | null = null;
+  let advanceTimer: number | undefined;
+  let isAuto = false;
+  let isSkipping = false;
 
   const line = (): Line => {
     const lines = MESSAGES[locale].lines;
     return lines[lineIndex % lines.length] as Line;
   };
 
+  const speedMultiplier = (): number => {
+    const step = Number(speedInput.value);
+    return step >= Number(speedInput.max) ? TEXT_SPEEDS.instant : step / SLIDER_STEPS_PER_X;
+  };
+  const waitMultiplier = (): number => Number(waitInput.value) / SLIDER_STEPS_PER_X;
+
+  const renderSettings = (): void => {
+    const speedX = speedMultiplier();
+    speedValue.textContent = Number.isFinite(speedX) ? `${speedX}×` : t('speedInstant');
+    waitValue.textContent = `${waitMultiplier()}×`;
+  };
+
+  const renderMode = (): void => {
+    mode.textContent = isSkipping ? t('modeSkip') : isAuto ? t('modeAuto') : '';
+  };
+
+  const setSkipping = (on: boolean): void => {
+    isSkipping = on;
+    skipButton.setAttribute('aria-pressed', String(on));
+    renderMode();
+  };
+
+  const logLine = (current: Line): void => {
+    const item = document.createElement('li');
+    const who = document.createElement('span');
+    who.className = 'gx-textbox-log-speaker';
+    who.textContent = current.speaker;
+    item.append(who, current.text);
+    logList.append(item);
+  };
+
+  const scheduleAdvance = (): void => {
+    window.clearTimeout(advanceTimer);
+    if (line().choices) {
+      setSkipping(false);
+      return;
+    }
+    if (isSkipping) advanceTimer = window.setTimeout(advance, SKIP_DELAY_MS);
+    else if (isAuto) advanceTimer = window.setTimeout(advance, autoAdvanceMs(line().text, locale) * waitMultiplier());
+  };
+
   const renderEnd = (): void => {
     const current = line();
+    logLine(current);
+    scheduleAdvance();
     next.hidden = Boolean(current.choices);
     choices.hidden = !current.choices;
     choices.replaceChildren(
@@ -247,23 +329,88 @@ function setupDialogue(): void {
 
   const startLine = (): void => {
     typing?.cancel();
+    window.clearTimeout(advanceTimer);
     const current = line();
     speaker.textContent = current.speaker;
     full.textContent = current.text;
     next.hidden = true;
     choices.hidden = true;
-    typing = typewriter(shown, current.text, { locale, onDone: renderEnd });
+    typing = typewriter(shown, current.text, {
+      locale,
+      speed: isSkipping ? TEXT_SPEEDS.instant : speedMultiplier(),
+      onDone: renderEnd,
+    });
   };
 
+  function advance(): void {
+    if (line().choices) return;
+    lineIndex++;
+    startLine();
+  }
+
   const interact = (): void => {
+    setSkipping(false);
     if (typing && !typing.done) {
       typing.skip();
       return;
     }
-    if (line().choices) return;
-    lineIndex++;
-    startLine();
+    advance();
   };
+
+  const setSettingsOpen = (open: boolean): void => {
+    settings.hidden = !open;
+    settingsToggle.setAttribute('aria-expanded', String(open));
+  };
+
+  byId('reader-quick').addEventListener('click', (e) => e.stopPropagation());
+  byId('line-back').addEventListener('click', () => {
+    setSkipping(false);
+    lineIndex = Math.max(0, lineIndex - 1);
+    startLine();
+  });
+  autoButton.addEventListener('click', () => {
+    isAuto = !isAuto;
+    autoButton.setAttribute('aria-pressed', String(isAuto));
+    renderMode();
+    if (typing?.done) scheduleAdvance();
+    else window.clearTimeout(advanceTimer);
+  });
+  skipButton.addEventListener('click', () => {
+    setSkipping(!isSkipping);
+    if (!isSkipping) window.clearTimeout(advanceTimer);
+    else if (typing && !typing.done) typing.skip();
+    else scheduleAdvance();
+  });
+  settingsToggle.addEventListener('click', () => setSettingsOpen(settings.hidden));
+  settings.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    setSettingsOpen(false);
+    settingsToggle.focus();
+  });
+  document.addEventListener('click', (e) => {
+    if (!settings.hidden && !settings.contains(e.target as Node) && e.target !== settingsToggle) setSettingsOpen(false);
+  });
+  for (const [input, key] of [
+    [speedInput, TEXT_SPEED_KEY],
+    [waitInput, AUTO_WAIT_KEY],
+  ] as const) {
+    const saved = localStorage.getItem(key);
+    if (saved) input.value = saved;
+    input.addEventListener('input', () => {
+      localStorage.setItem(key, input.value);
+      renderSettings();
+    });
+  }
+  renderSettings();
+  const logDialog = byId<HTMLDialogElement>('log-dialog');
+  byId('open-log').addEventListener('click', () => {
+    window.clearTimeout(advanceTimer);
+    logDialog.showModal();
+    logList.scrollTop = logList.scrollHeight;
+  });
+  logDialog.addEventListener('close', () => {
+    if (typing?.done) scheduleAdvance();
+  });
 
   byId('advance').addEventListener('click', interact);
   byId('textbox').addEventListener('click', interact);
@@ -309,41 +456,58 @@ function setupTabs(): void {
   });
 }
 
+function setupInfoAndMap(): void {
+  const hint = byId('demo-hint');
+  const toggle = byId<HTMLButtonElement>('toggle-hint');
+  toggle.addEventListener('click', () => {
+    const isShown = hint.toggleAttribute('data-hidden') === false;
+    toggle.setAttribute('aria-pressed', String(isShown));
+  });
+  mapZoom(byId('map-viewport'), { min: 1, max: 3, step: 0.25, initial: 1.5 });
+
+  const route = byId('route-viewport');
+  fitMapPlates(route);
+  onLocaleChange(() => fitMapPlates(route));
+  mapZoom(route, { min: 0.5, max: 2.5, step: 0.25, initial: 'fit-width', wheel: 'modifier' });
+}
+
 function setupDialog(): void {
   const dialog = byId<HTMLDialogElement>('dialog');
   byId('open-dialog').addEventListener('click', () => dialog.showModal());
 }
 
-function setupToc(): void {
-  const pairs = Array.from(document.querySelectorAll<HTMLAnchorElement>('#toc a[href^="#"]')).flatMap((link) => {
-    const target = document.getElementById(link.hash.slice(1));
-    if (!target) return [];
-    const isGroup = target.classList.contains('demo-group');
-    return [{ link, isGroup, watched: isGroup ? target : (target.closest('section') ?? target) }];
-  });
-  const visible = new Set<Element>();
-
-  const mark = (): void => {
-    const panel = pairs.find((p) => !p.isGroup && visible.has(p.watched));
-    const group = panel ? panel.watched.closest('.demo-group') : pairs.find((p) => p.isGroup && visible.has(p.watched))?.watched;
-    pairs.forEach(({ link, watched }) => {
-      if (watched === panel?.watched || watched === group) link.setAttribute('aria-current', 'true');
-      else link.removeAttribute('aria-current');
-    });
+function setupDesktop(): void {
+  const start = byId<HTMLButtonElement>('start-button');
+  const menu = byId<HTMLElement>('start-menu');
+  const setOpen = (isOpen: boolean): void => {
+    menu.hidden = !isOpen;
+    start.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) menu.querySelector<HTMLElement>('button')?.focus();
   };
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => (entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target)));
-      mark();
-    },
-    { rootMargin: '0px 0px -70% 0px' },
+  start.addEventListener('click', () => setOpen(menu.hidden));
+  menu.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    setOpen(false);
+    start.focus();
+  });
+  document.addEventListener('click', (e) => {
+    const target = e.target as Node;
+    if (!menu.hidden && !menu.contains(target) && !start.contains(target)) setOpen(false);
+  });
+
+  const wallpapers = Array.from(menu.querySelectorAll<HTMLButtonElement>('.gx-start-menu-grid button'));
+  wallpapers.forEach((button) =>
+    button.addEventListener('click', () => {
+      wallpapers.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+    }),
   );
-  pairs.forEach(({ watched }) => observer.observe(watched));
 }
 
-setupToc();
+setupPages();
 setupThemeAndMotion();
+setupDesktop();
+setupInfoAndMap();
 setupHealth();
 setupSpriteAndIso();
 setupMedia();

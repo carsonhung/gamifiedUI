@@ -73,3 +73,17 @@
     background-position-x: calc(var(--gx-sprite-cell) * var(--gx-sprite-frames, 1) * -1);
   }
 }
+
+/* A plain line border in the theme's frame colour. Arcade leaves --color-gx-frame unset on
+   purpose (its frames are pixel shadows), so this falls back to the track colour there. */
+@utility gx-border {
+  border: var(--gx-line, 2px) solid var(--color-gx-frame, var(--color-gx-track));
+}
+
+@utility gx-border-t {
+  border-top: var(--gx-line, 2px) solid var(--color-gx-frame, var(--color-gx-track));
+}
+
+@utility gx-border-b {
+  border-bottom: var(--gx-line, 2px) solid var(--color-gx-frame, var(--color-gx-track));
+}

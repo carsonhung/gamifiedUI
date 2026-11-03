@@ -14,9 +14,26 @@ export function graphemes(text: string, locale?: string): string[] {
   return Array.from(text);
 }
 
+/** Reader-facing text speed presets, as multipliers of the default rate. */
+export const TEXT_SPEEDS = { slow: 0.5, normal: 1, fast: 2, instant: Infinity } as const;
+export type TextSpeed = keyof typeof TEXT_SPEEDS;
+
+const AUTO_BASE_MS = 1200;
+const AUTO_LATIN_MS_PER_CHAR = 45;
+const AUTO_CJK_MS_PER_CHAR = 110;
+const AUTO_MAX_MS = 8000;
+
+/** Pause before "Auto" advances a finished line: long enough to read it, capped for long lines. */
+export function autoAdvanceMs(text: string, locale?: string): number {
+  const perChar = CJK.test(text) ? AUTO_CJK_MS_PER_CHAR : AUTO_LATIN_MS_PER_CHAR;
+  return Math.min(AUTO_MAX_MS, AUTO_BASE_MS + graphemes(text, locale).length * perChar);
+}
+
 export interface TypewriterOptions {
   /** Defaults to 40, or 16 when the text contains CJK. */
   charsPerSecond?: number;
+  /** Multiplies the rate; pass a TEXT_SPEEDS value. Infinity shows the line at once. */
+  speed?: number;
   locale?: string;
   onDone?: () => void;
 }
@@ -31,7 +48,7 @@ export interface TypewriterHandle {
 /** Types text into el. Put the full line in a separate aria-live element; mark el aria-hidden. */
 export function typewriter(el: HTMLElement, text: string, options: TypewriterOptions = {}): TypewriterHandle {
   const glyphs = graphemes(text, options.locale);
-  const cps = options.charsPerSecond ?? (CJK.test(text) ? CJK_CPS : LATIN_CPS);
+  const cps = (options.charsPerSecond ?? (CJK.test(text) ? CJK_CPS : LATIN_CPS)) * (options.speed ?? 1);
   let shown = 0;
   let timer: number | undefined;
   let finished = false;
@@ -46,7 +63,7 @@ export function typewriter(el: HTMLElement, text: string, options: TypewriterOpt
     }
   };
 
-  if (prefersReducedMotion(el) || glyphs.length === 0) {
+  if (prefersReducedMotion(el) || glyphs.length === 0 || !Number.isFinite(cps)) {
     finish();
   } else {
     el.textContent = '';

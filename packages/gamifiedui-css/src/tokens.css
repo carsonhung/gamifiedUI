@@ -1,6 +1,9 @@
 /* Theme tokens. `--color-gx-*` and `--font-gx*` generate utilities (bg-gx-primary, font-gx). */
 @theme {
   --color-gx-ink: #0d0d1a;
+  --color-gx-page: #0d0d1a;
+  --color-gx-on-page: #f4efe2;
+  --color-gx-on-ink: #f4efe2;
   --color-gx-surface: #24244a;
   --color-gx-on-surface: #f4efe2;
   --color-gx-accent: #f5c542;
@@ -17,6 +20,8 @@
   --color-gx-mp: #3b82f6;
   --color-gx-xp: #a3e635;
   --color-gx-track: #3a3a5c;
+  --color-gx-selected: #5c5c66;
+  --color-gx-on-selected: #ffffff;
   --color-gx-common: #9ca3af;
   --color-gx-rare: #3b82f6;
   --color-gx-epic: #a855f7;

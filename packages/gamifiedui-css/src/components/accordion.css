@@ -6,10 +6,10 @@
     color: var(--color-gx-on-surface);
     background: var(--color-gx-surface);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
   }
 
   .gx-accordion + .gx-accordion {
@@ -25,7 +25,7 @@
     font-family: var(--font-gx);
     font-size: var(--gx-text-md);
     line-height: 1.25;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
     list-style: none;
     cursor: pointer;
   }
@@ -47,7 +47,7 @@
   }
 
   .gx-accordion > summary:focus-visible {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * -1);
   }
 

@@ -21,10 +21,10 @@
     color: var(--color-gx-on-surface);
     background: var(--color-gx-surface);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
     opacity: 0;
     translate: -50% var(--gx-px);
     pointer-events: none;

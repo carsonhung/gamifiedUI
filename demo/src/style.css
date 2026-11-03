@@ -3,39 +3,175 @@
 @import "gamifiedui-icons/all.css";
 
 @layer components {
-  .demo-group {
-    @apply flex scroll-mt-20 flex-col gap-8 lg:scroll-mt-6;
+  .demo-skip {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-gx-accent focus:px-3 focus:py-2 focus:text-gx-ink;
   }
 
-  .demo-group-title {
-    @apply border-b-4 border-gx-accent pb-2 font-gx text-lg text-gx-accent uppercase;
+  .demo-topbar {
+    @apply sticky top-0 z-40 flex h-14 items-center gap-2 border-b border-gx-on-page/15 bg-gx-page px-3 sm:gap-3 sm:px-5;
   }
 
-  .demo-group [id$="-title"] {
-    @apply scroll-mt-20 lg:scroll-mt-6;
+  .demo-brand {
+    @apply shrink-0 font-gx text-sm text-gx-accent no-underline focus-visible:outline-4 focus-visible:outline-gx-focus;
   }
 
-  .demo-toc {
-    @apply sticky top-0 z-10 -mx-4 mb-8 bg-gx-ink px-4 py-2 sm:-mx-8 sm:px-8 lg:top-6 lg:mx-0 lg:mb-0 lg:max-h-[calc(100dvh-3rem)] lg:self-start lg:overflow-y-auto lg:bg-transparent lg:p-0;
+  .demo-search {
+    @apply relative flex min-w-0 flex-1 items-center sm:max-w-sm sm:min-w-32;
   }
 
-  .demo-toc > ul {
-    @apply flex gap-5 overflow-x-auto py-1 [scrollbar-width:none] lg:flex-col lg:gap-4 lg:overflow-visible;
+  .demo-search > .gx-icon {
+    @apply pointer-events-none absolute left-3 opacity-70;
   }
 
-  .demo-toc ul ul {
-    @apply mt-2 hidden flex-col gap-1 border-l-4 border-gx-surface pl-3 lg:flex;
+  .demo-search > .gx-input {
+    @apply w-full py-1.5 pl-9 text-sm;
   }
 
-  .demo-toc a {
-    @apply block text-sm whitespace-nowrap text-gx-on-surface/70 hover:text-gx-on-surface focus-visible:outline-4 focus-visible:outline-gx-focus lg:whitespace-normal;
+  .demo-topbar-end {
+    @apply ml-auto flex shrink-0 items-center gap-1 sm:gap-2;
   }
 
-  .demo-toc a.demo-toc-group {
-    @apply font-gx text-xs text-gx-on-surface uppercase;
+  .demo-themes {
+    @apply hidden gap-1 xl:flex;
   }
 
-  .demo-toc a[aria-current="true"] {
-    @apply text-gx-accent;
+  .demo-settings-panel {
+    @apply right-0 left-auto w-64 p-4;
+  }
+
+  .demo-shell {
+    @apply lg:grid lg:grid-cols-[15rem_minmax(0,1fr)];
+  }
+
+  .demo-sidebar {
+    @apply fixed inset-x-0 top-14 bottom-0 z-30 hidden overflow-y-auto bg-gx-page px-4 py-6 lg:sticky lg:block lg:h-[calc(100dvh-3.5rem)] lg:border-r lg:border-gx-on-page/15;
+  }
+
+  [data-sidebar-open="true"] .demo-sidebar {
+    @apply block;
+  }
+
+  .demo-nav {
+    @apply flex flex-col gap-6;
+  }
+
+  .demo-nav-heading {
+    @apply mb-2 font-gx text-xs text-gx-on-page/60 uppercase;
+  }
+
+  .demo-nav ul {
+    @apply m-0 flex list-none flex-col gap-0.5 p-0;
+  }
+
+  .demo-nav-link {
+    @apply block border-l-4 border-transparent px-3 py-1.5 text-sm text-gx-on-page/80 no-underline hover:text-gx-on-page focus-visible:outline-4 focus-visible:outline-gx-focus;
+  }
+
+  .demo-nav-link[aria-current="page"] {
+    @apply border-gx-accent bg-gx-surface font-semibold text-gx-on-surface;
+  }
+
+  .demo-nav-empty {
+    @apply text-sm text-gx-on-page/70;
+  }
+
+  .demo-content {
+    @apply min-w-0 px-4 py-8 sm:px-8 lg:px-12;
+  }
+
+  .demo-main {
+    @apply mx-auto max-w-5xl focus:outline-none;
+  }
+
+  .demo-page-header {
+    @apply mb-6;
+  }
+
+  .demo-eyebrow {
+    @apply mb-2 font-gx text-xs text-gx-accent uppercase;
+  }
+
+  .demo-page-title {
+    @apply m-0 font-gx text-2xl focus:outline-none;
+  }
+
+  .demo-page-desc {
+    @apply mt-3 max-w-prose text-gx-on-page/80;
+  }
+
+  .demo-tablist {
+    @apply mb-4 flex gap-1 border-b border-gx-on-page/15;
+  }
+
+  .demo-tab {
+    @apply -mb-px cursor-pointer border-0 border-b-4 border-transparent bg-transparent px-4 py-2 text-sm text-gx-on-page/70 hover:text-gx-on-page focus-visible:outline-4 focus-visible:outline-gx-focus;
+  }
+
+  .demo-tab[aria-selected="true"] {
+    @apply border-gx-accent font-semibold text-gx-on-page;
+  }
+
+  .demo-code {
+    @apply relative;
+  }
+
+  .demo-code-copy {
+    @apply absolute top-2 right-2;
+  }
+
+  .demo-code-status {
+    @apply absolute top-3 right-24 text-xs;
+  }
+
+  .demo-code pre {
+    @apply m-0 max-h-[36rem] overflow-auto border border-gx-on-page/15 bg-gx-ink p-4 pt-12 text-xs leading-relaxed text-gx-on-ink focus-visible:outline-4 focus-visible:outline-gx-focus;
+  }
+
+  .demo-pager {
+    @apply mt-12 grid gap-3 border-t border-gx-on-page/15 pt-6 sm:grid-cols-2;
+  }
+
+  .demo-pager-link {
+    @apply flex flex-col gap-1 border border-gx-on-page/15 p-4 no-underline hover:border-gx-accent focus-visible:outline-4 focus-visible:outline-gx-focus;
+  }
+
+  .demo-pager-next {
+    @apply text-right sm:col-start-2;
+  }
+
+  .demo-pager-dir {
+    @apply text-xs text-gx-on-page/70;
+  }
+
+  .demo-pager-title {
+    @apply font-semibold;
+  }
+
+  .demo-overview-heading {
+    @apply mb-3 font-gx text-sm text-gx-accent uppercase;
+  }
+
+  .demo-cards {
+    @apply grid gap-4 sm:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .demo-card {
+    @apply flex flex-col gap-2 no-underline transition-[translate] duration-150 hover:-translate-y-0.5 focus-visible:outline-4 focus-visible:outline-gx-focus motion-reduce:transition-none;
+  }
+
+  .demo-card-title {
+    @apply font-semibold;
+  }
+
+  .demo-card-desc {
+    @apply text-sm opacity-80;
+  }
+
+  .demo-theme-card {
+    @apply bg-gx-page text-gx-on-page;
+  }
+
+  .demo-footer {
+    @apply mx-auto mt-16 flex max-w-5xl flex-col items-center gap-1 border-t border-gx-on-page/15 pt-6 text-center text-sm;
   }
 }

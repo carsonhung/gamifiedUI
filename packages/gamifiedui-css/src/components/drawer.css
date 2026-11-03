@@ -18,8 +18,8 @@
     color: var(--color-gx-on-surface);
     background: var(--color-gx-surface);
     box-shadow:
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
-      calc(var(--gx-px) * -3) 0 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(var(--gx-line, var(--gx-px)) * -3) 0 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
   }
 
   .gx-drawer[open] {
@@ -34,8 +34,8 @@
     inset: 0 auto 0 0;
     padding-inline: calc(1.5rem + env(safe-area-inset-left)) 1.5rem;
     box-shadow:
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(var(--gx-px) * 3) 0 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(var(--gx-line, var(--gx-px)) * 3) 0 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
   }
 
   .gx-drawer-start[open] {

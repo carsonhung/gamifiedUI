@@ -10,7 +10,7 @@
     font-family: var(--font-gx);
     font-size: var(--gx-text-lg);
     line-height: 1.4;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
     color: var(--color-gx-accent);
   }
 
@@ -25,11 +25,11 @@
     font-size: 2.5rem;
     background: color-mix(in oklab, var(--color-gx-surface) 85%, white);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      0 var(--gx-px) 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      var(--gx-px) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      0 calc(var(--gx-px) * 3) 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      0 calc(var(--gx-line, var(--gx-px)) * 3) 0 0 var(--color-gx-ink);
   }
 
   .gx-reward-item::before {
@@ -37,6 +37,7 @@
     position: absolute;
     z-index: -1;
     inset: -40%;
+    opacity: var(--gx-sheen, 1);
     background: repeating-conic-gradient(
       color-mix(in oklab, var(--gx-rarity, var(--color-gx-accent)) 55%, transparent) 0 15deg,
       transparent 15deg 30deg

@@ -7,15 +7,15 @@
 
     position: relative;
     display: block;
-    height: calc(var(--gx-px) * 4);
+    height: var(--gx-bar-height, calc(var(--gx-px) * 4));
     margin: var(--gx-px);
     overflow: hidden;
     background: var(--color-gx-track);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-px) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-px) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
   }
 
   .gx-bar::before {
@@ -28,13 +28,16 @@
       inset 0 var(--gx-px) 0 0 color-mix(in oklab, var(--gx-bar-fill) 70%, white);
     transform-origin: left center;
     scale: clamp(0, var(--gx-value, 1), 1) 1;
-    transition: scale var(--gx-motion-base) steps(6, end);
+    transition-property: scale;
+    transition-duration: var(--gx-motion-base);
+    transition-timing-function: var(--gx-bar-easing, steps(6, end));
   }
 
   .gx-bar::after {
     content: "";
     position: absolute;
     inset: 0;
+    opacity: var(--gx-bar-texture, 1);
     background: repeating-linear-gradient(
       90deg,
       transparent 0,

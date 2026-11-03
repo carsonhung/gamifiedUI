@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Procedural chiptune UI sound effects for gamifiedUI. Web Audio only: no audio files, no dependencies.",
   "license": "Apache-2.0",
+  "funding": "https://github.com/sponsors/carsonhung",
   "author": "Carson Hung (https://github.com/carsonhung)",
   "repository": {
     "type": "git",

@@ -1,0 +1,344 @@
+/* PC-desktop shell for menu screens and hub worlds: a .gx-desktop wallpaper holding
+   .gx-desktop-icon launchers and .gx-window frames, over a .gx-taskbar with a .gx-start-menu.
+   Desktop icons are <a> or <button>. A window is a <section aria-labelledby> (or a native
+   <dialog class="gx-dialog gx-window"> when it must be modal). The start button is a
+   <button aria-expanded aria-controls> and the menu a sibling element with [hidden]; the app
+   toggles it and closes it on Escape. Themes may set --gx-desktop-wallpaper, --gx-titlebar-bg
+   and --gx-taskbar-bg. */
+@layer components {
+  .gx-desktop {
+    position: relative;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    min-height: 0;
+    color: var(--color-gx-on-page);
+    background: var(--gx-desktop-wallpaper, var(--color-gx-page)) center / cover no-repeat;
+  }
+
+  .gx-desktop-icons {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: calc(var(--gx-px) * 2);
+    padding: calc(var(--gx-px) * 4);
+  }
+
+  .gx-desktop-icon {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--gx-px) * 1.5);
+    width: calc(var(--gx-px) * 20);
+    padding: var(--gx-px);
+    border: 0;
+    font-family: var(--font-gx-body);
+    font-size: var(--gx-text-sm);
+    color: inherit;
+    text-align: center;
+    text-decoration: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  .gx-desktop-icon-tile {
+    display: grid;
+    place-items: center;
+    width: calc(var(--gx-px) * 13);
+    height: calc(var(--gx-px) * 13);
+    overflow: hidden;
+    font-size: 1.75rem;
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-elevation, 0 0 transparent);
+    transition: translate var(--gx-motion-fast) steps(2, end);
+  }
+
+  .gx-desktop-icon-tile > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Round launchers, like numbered stage or level buttons. */
+  .gx-desktop-icon-round .gx-desktop-icon-tile {
+    border-radius: 50%;
+  }
+
+  .gx-desktop-icon-label {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    text-shadow: 0 0 var(--gx-px) color-mix(in oklab, var(--color-gx-page) 80%, transparent);
+  }
+
+  @media (hover: hover) {
+    .gx-desktop-icon:hover .gx-desktop-icon-tile {
+      translate: 0 calc(var(--gx-px) * -0.5);
+    }
+  }
+
+  .gx-desktop-icon:focus-visible {
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
+    outline-offset: var(--gx-px);
+  }
+
+  .gx-desktop-icon[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  .gx-window {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    font-family: var(--font-gx-body);
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 calc(var(--gx-line, var(--gx-px)) + var(--gx-depth)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent),
+      var(--gx-elevation, 0 0 transparent);
+  }
+
+  .gx-window-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding-inline: 0.75rem 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    text-transform: var(--gx-case, uppercase);
+    background: var(--gx-titlebar-bg, color-mix(in oklab, var(--color-gx-surface) 88%, var(--color-gx-primary)));
+    box-shadow: 0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink));
+  }
+
+  .gx-window-title {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    font: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .gx-window-control {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  @media (hover: hover) {
+    .gx-window-control:hover {
+      background: color-mix(in oklab, var(--color-gx-on-surface) 12%, transparent);
+    }
+
+    .gx-window-close:hover {
+      color: var(--color-gx-on-danger);
+      background: var(--color-gx-danger);
+    }
+  }
+
+  .gx-window-control:focus-visible {
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-focus-width, var(--gx-px)) * -1);
+  }
+
+  .gx-window-body {
+    flex: 1;
+    min-height: 0;
+    padding: 1rem 1.25rem;
+    overflow: auto;
+  }
+
+  .gx-taskbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--gx-px) * 2);
+    min-height: 3rem;
+    padding: var(--gx-px) calc(var(--gx-px) * 2);
+    color: var(--color-gx-on-surface);
+    background: var(--gx-taskbar-bg, color-mix(in oklab, var(--color-gx-primary) 45%, var(--color-gx-surface)));
+    backdrop-filter: var(--gx-backdrop, none);
+    box-shadow: 0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink));
+  }
+
+  .gx-taskbar-start,
+  .gx-taskbar-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex: none;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0 0.5rem;
+    border: 0;
+    font-family: var(--font-gx-body);
+    font-size: var(--gx-text-sm);
+    color: inherit;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .gx-taskbar-start[aria-expanded="true"],
+  .gx-taskbar-item[aria-current="true"],
+  .gx-taskbar-item[aria-current="page"] {
+    background: color-mix(in oklab, var(--color-gx-surface) 70%, transparent);
+    box-shadow: inset 0 calc(var(--gx-line, var(--gx-px)) * -2) 0 0 var(--color-gx-accent);
+  }
+
+  @media (hover: hover) {
+    .gx-taskbar-start:hover,
+    .gx-taskbar-item:hover {
+      background: color-mix(in oklab, var(--color-gx-surface) 55%, transparent);
+    }
+  }
+
+  .gx-taskbar-start:focus-visible,
+  .gx-taskbar-item:focus-visible {
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-focus-width, var(--gx-px)) * -1);
+  }
+
+  .gx-taskbar-items {
+    display: flex;
+    flex: 1;
+    gap: var(--gx-px);
+    min-width: 0;
+    overflow-x: auto;
+  }
+
+  .gx-taskbar-tray {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--gx-px) * 2);
+    margin-inline-start: auto;
+    padding-inline: calc(var(--gx-px) * 2);
+    font-size: var(--gx-text-sm);
+  }
+
+  .gx-start-menu {
+    position: absolute;
+    z-index: var(--gx-z-hud-raised);
+    bottom: calc(100% + var(--gx-px) * 2);
+    inset-inline-start: calc(var(--gx-px) * 2);
+    display: flex;
+    flex-direction: column;
+    width: min(20rem, calc(100vw - 1rem));
+    max-height: min(32rem, 70vh);
+    overflow: auto;
+    font-family: var(--font-gx-body);
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-elevation, 0 0 transparent);
+    animation: gx-pop var(--gx-motion-fast) steps(3, end) both;
+  }
+
+  /* display: flex above would otherwise beat the UA rule for [hidden]. */
+  .gx-start-menu[hidden] {
+    display: none;
+  }
+
+  .gx-start-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    box-shadow: 0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink));
+  }
+
+  .gx-start-menu-section {
+    padding: 0.75rem 1rem;
+  }
+
+  .gx-start-menu-heading {
+    margin: 0 0 0.5rem;
+    font-size: var(--gx-text-sm);
+    color: color-mix(in oklab, var(--color-gx-on-surface) 70%, transparent);
+  }
+
+  .gx-start-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .gx-start-menu-footer {
+    margin-top: auto;
+    padding: 0.5rem;
+    box-shadow: inset 0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink));
+  }
+
+  .gx-start-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.25rem 0.75rem;
+    border: 0;
+    font: inherit;
+    font-size: var(--gx-text-md);
+    color: inherit;
+    text-align: start;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .gx-start-menu-grid .gx-start-menu-item {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.25rem;
+    font-size: var(--gx-text-sm);
+    text-align: center;
+  }
+
+  .gx-start-menu-item > img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .gx-start-menu-item[aria-pressed="true"],
+  .gx-start-menu-item[aria-current="true"] {
+    box-shadow: inset 0 0 0 calc(var(--gx-line, var(--gx-px)) * 2) var(--color-gx-primary);
+  }
+
+  @media (hover: hover) {
+    .gx-start-menu-item:hover {
+      background: color-mix(in oklab, var(--color-gx-on-surface) 8%, transparent);
+    }
+  }
+
+  .gx-start-menu-item:focus-visible {
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-focus-width, var(--gx-px)) * -1);
+  }
+}

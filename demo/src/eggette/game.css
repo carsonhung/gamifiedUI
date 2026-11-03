@@ -1,0 +1,326 @@
+@import "tailwindcss";
+@import "gamifiedui-css";
+@import "gamifiedui-icons/all.css";
+
+@layer components {
+  .ew-topbar {
+    @apply sticky top-0 z-40 flex flex-wrap items-center gap-3 border-b border-gx-on-page/15 bg-gx-page px-3 py-2 sm:px-6;
+  }
+
+  .ew-title {
+    @apply m-0 flex items-center gap-2 font-gx text-base text-gx-accent;
+  }
+
+  .ew-topbar-end {
+    @apply ml-auto flex flex-wrap items-center gap-2;
+  }
+
+  .ew-main {
+    @apply mx-auto flex max-w-7xl flex-col gap-6 px-3 py-6 sm:px-6;
+  }
+
+  .ew-hud {
+    @apply grid items-center gap-4 sm:grid-cols-[8rem_minmax(0,1fr)];
+  }
+
+  .ew-warrior {
+    @apply mx-auto size-32;
+  }
+
+  .ew-warrior svg {
+    @apply size-full;
+  }
+
+  /* Two-frame bob; steps keep it pixel-snapped. */
+  .ew-warrior[data-pose="cheer"] svg {
+    animation: ew-hop 0.5s steps(2) infinite;
+  }
+
+  .ew-warrior[data-pose="hurt"] svg {
+    animation: ew-shake 0.3s steps(2) 2;
+  }
+
+  .ew-hud-body {
+    @apply flex min-w-0 flex-col gap-3;
+  }
+
+  .ew-stats {
+    @apply flex flex-wrap items-center gap-3;
+  }
+
+  .ew-clock {
+    @apply flex items-center gap-2 text-sm;
+  }
+
+  .ew-clock-bar {
+    @apply w-28;
+  }
+
+  .ew-speech {
+    @apply min-h-28;
+  }
+
+  .ew-intro-actions {
+    @apply mt-3 flex flex-wrap gap-2;
+  }
+
+  .ew-intro-actions[hidden] {
+    @apply hidden;
+  }
+
+  .ew-floor {
+    @apply grid gap-6 md:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .ew-col {
+    @apply flex min-w-0 flex-col gap-6;
+  }
+
+  .ew-panel-title {
+    @apply flex items-baseline justify-between gap-2;
+  }
+
+  .ew-panel-meta {
+    @apply text-xs font-normal normal-case opacity-80;
+  }
+
+  .ew-empty {
+    @apply m-0 text-sm opacity-75;
+  }
+
+  .ew-queue {
+    @apply m-0 flex list-none flex-col gap-3 p-0;
+  }
+
+  .ew-customer {
+    @apply grid grid-cols-[3rem_minmax(0,1fr)] items-center gap-3;
+  }
+
+  .ew-customer-front {
+    @apply grid-cols-[3rem_minmax(0,1fr)_auto] border-l-4 border-gx-accent pl-2;
+  }
+
+  .ew-face {
+    @apply relative grid size-12 place-items-center rounded-[var(--gx-radius-control,0)] bg-gx-track text-gx-on-surface;
+  }
+
+  .ew-mood {
+    @apply absolute -right-1 -bottom-1 grid size-6 place-items-center rounded-full bg-gx-gold text-gx-ink;
+  }
+
+  .ew-customer-body {
+    @apply flex min-w-0 flex-col gap-1.5;
+  }
+
+  .ew-order,
+  .ew-tray,
+  .ew-flavours {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .ew-flavour {
+    @apply inline-flex items-center gap-1;
+  }
+
+  .ew-flavour {
+    --ew-flavour: var(--color-gx-gold);
+  }
+
+  .ew-flavour[data-flavour="chocolate"] {
+    --ew-flavour: var(--color-gx-bronze);
+  }
+
+  .ew-flavour[data-flavour="matcha"] {
+    --ew-flavour: var(--color-gx-success);
+  }
+
+  .ew-flavour .gx-i-egg-waffle {
+    color: var(--ew-flavour);
+  }
+
+  .ew-pans {
+    @apply grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .ew-pan {
+    @apply flex flex-col items-stretch gap-2 bg-gx-page p-2 text-gx-on-page;
+  }
+
+  .ew-pan[data-phase="flip"],
+  .ew-pan[data-phase="ready"] {
+    @apply outline-4 outline-gx-accent;
+  }
+
+  .ew-pan-art {
+    --ew-batter: color-mix(in oklab, var(--color-gx-gold) 35%, var(--color-gx-on-page));
+    @apply mx-auto grid size-16 grid-cols-3 gap-0.5 rounded-full bg-gx-ink p-2;
+  }
+
+  .ew-pan[data-flavour="chocolate"] .ew-pan-art {
+    --ew-batter: color-mix(in oklab, var(--color-gx-bronze) 60%, var(--color-gx-ink));
+  }
+
+  .ew-pan[data-flavour="matcha"] .ew-pan-art {
+    --ew-batter: color-mix(in oklab, var(--color-gx-success) 70%, var(--color-gx-on-page));
+  }
+
+  .ew-bubble {
+    @apply rounded-full bg-gx-track;
+  }
+
+  .ew-pan[data-phase="sideA"] .ew-bubble,
+  .ew-pan[data-phase="sideB"] .ew-bubble {
+    background: var(--ew-batter);
+  }
+
+  .ew-pan[data-phase="flip"] .ew-bubble {
+    background: color-mix(in oklab, var(--ew-batter) 70%, var(--color-gx-gold));
+    animation: ew-sizzle 0.4s steps(2) infinite;
+  }
+
+  .ew-pan[data-phase="ready"] .ew-bubble {
+    background: color-mix(in oklab, var(--ew-batter) 30%, var(--color-gx-gold));
+  }
+
+  .ew-pan[data-phase="burnt"] .ew-bubble {
+    background: color-mix(in oklab, var(--color-gx-ink) 80%, var(--color-gx-bronze));
+  }
+
+  .ew-pan-label {
+    @apply m-0 flex flex-col text-center text-xs leading-tight;
+  }
+
+  .ew-pan-name {
+    @apply opacity-70;
+  }
+
+  .ew-pan-state {
+    @apply font-semibold;
+  }
+
+  .ew-mix-row {
+    @apply mt-3 flex flex-wrap items-center gap-3;
+  }
+
+  .ew-mix-bar {
+    @apply min-w-24 flex-1;
+  }
+
+  .ew-recipe {
+    @apply mt-2 mb-0 text-xs opacity-75;
+  }
+
+  .ew-warn {
+    @apply mt-1 mb-0 text-sm text-gx-warning;
+  }
+
+  .ew-cashier {
+    @apply relative;
+  }
+
+  .ew-bill {
+    @apply m-0 grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 text-sm;
+  }
+
+  .ew-bill dd {
+    @apply m-0 text-right font-semibold;
+  }
+
+  .ew-bill .ew-ok {
+    @apply text-gx-success;
+  }
+
+  .ew-pay-note {
+    @apply my-3 text-sm;
+  }
+
+  .ew-coins-row {
+    @apply mt-3 flex flex-wrap gap-2;
+  }
+
+  .ew-pay-actions {
+    @apply mt-3 flex flex-wrap justify-end gap-2;
+  }
+
+  .ew-stock {
+    @apply m-0 flex list-none flex-col gap-2 p-0;
+  }
+
+  .ew-stock-row {
+    @apply grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3;
+  }
+
+  .ew-slot {
+    @apply text-xl;
+  }
+
+  .ew-stock-name {
+    @apply text-sm;
+  }
+
+  .ew-summary {
+    @apply w-[min(40rem,calc(100vw-2rem))];
+  }
+
+  .ew-summary-stats {
+    @apply m-0 grid grid-cols-3 gap-3;
+  }
+
+  .ew-stat {
+    @apply flex flex-col;
+  }
+
+  .ew-stat dt {
+    @apply text-xs opacity-75;
+  }
+
+  .ew-stat dd {
+    @apply m-0 font-gx text-lg;
+  }
+
+  .ew-won {
+    @apply mt-4 font-semibold text-gx-accent;
+  }
+
+  .ew-subtitle {
+    @apply mt-5 mb-3 font-gx text-sm uppercase;
+  }
+
+  .ew-upgrades {
+    @apply grid max-h-[50vh] gap-3 overflow-y-auto sm:grid-cols-2;
+  }
+
+  .ew-upgrade {
+    @apply flex flex-col items-start gap-2 text-left;
+  }
+}
+
+@keyframes ew-hop {
+  50% {
+    translate: 0 -4px;
+  }
+}
+
+@keyframes ew-shake {
+  50% {
+    translate: 3px 0;
+  }
+}
+
+@keyframes ew-sizzle {
+  50% {
+    scale: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ew-warrior svg,
+  .ew-pan .ew-bubble {
+    animation: none !important;
+  }
+}
+
+[data-gx-motion="reduce"] .ew-warrior svg,
+[data-gx-motion="reduce"] .ew-pan .ew-bubble {
+  animation: none;
+}

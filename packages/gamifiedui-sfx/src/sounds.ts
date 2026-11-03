@@ -21,6 +21,7 @@ export const SOUNDS = {
   select: arp('square', [660, 990], 0.05, 0.16, 0.07),
   confirm: arp('square', [523.25, 783.99], 0.07, 0.18, 0.12),
   cancel: arp('square', [440, 329.63], 0.06, 0.16, 0.1),
+  success: arp('square', [523.25, 659.25, 783.99], 0.07, 0.16, 0.16),
   error: [
     { wave: 'sawtooth', freq: 160, dur: 0.12, gain: 0.16 },
     { wave: 'sawtooth', freq: 140, at: 0.15, dur: 0.18, gain: 0.16 },

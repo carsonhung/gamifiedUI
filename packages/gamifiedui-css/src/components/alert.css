@@ -15,11 +15,11 @@
     color: var(--color-gx-on-surface);
     background: color-mix(in oklab, var(--color-gx-surface) 85%, var(--gx-alert-tone));
     box-shadow:
-      inset calc(var(--gx-px) * 2) 0 0 0 var(--gx-alert-tone),
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+      inset calc(var(--gx-line, var(--gx-px)) * var(--gx-stripe, 2)) 0 0 0 var(--gx-alert-tone),
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
   }
 
   .gx-alert:not(:has(.gx-alert-icon)) {
@@ -43,7 +43,7 @@
     font-family: var(--font-gx);
     font-size: 0.75rem;
     line-height: 1.6;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
   }
 
   .gx-alert-body {

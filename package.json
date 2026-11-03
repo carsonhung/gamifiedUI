@@ -3,6 +3,8 @@
   "private": true,
   "description": "Game-style 2D / 2.5D UI components for Tailwind CSS v4: pixel frames, depth, sprites, isometric and animation.",
   "license": "Apache-2.0",
+  "author": "Carson Hung (https://github.com/carsonhung)",
+  "funding": "https://github.com/sponsors/carsonhung",
   "repository": {
     "type": "git",
     "url": "https://github.com/carsonhung/gamifiedUI.git"

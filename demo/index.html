@@ -6,7 +6,7 @@
     <title>gamifiedUI demo</title>
     <script type="module" src="/src/main.ts"></script>
   </head>
-  <body class="min-h-dvh bg-gx-ink font-gx-body text-gx-on-surface">
+  <body class="min-h-dvh bg-gx-page font-gx-body text-gx-on-page">
     <div class="mx-auto max-w-7xl p-4 sm:p-8">
       <header class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
@@ -21,11 +21,16 @@
         </div>
         <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Theme">
           <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="" aria-pressed="true">Arcade</button>
-          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="gameboy" aria-pressed="false">Game Boy</button>
-          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="parchment" aria-pressed="false">Parchment</button>
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="vintage" aria-pressed="false">Vintage</button>
+          <button class="gx-btn gx-btn-ghost gx-btn-sm" data-theme-option="glass" aria-pressed="false">Glass (XR)</button>
+        </div>
+        <div class="flex w-full flex-wrap items-center gap-2" role="group" aria-label="Settings">
           <button id="motion-toggle" class="gx-btn gx-btn-ghost gx-btn-sm" aria-pressed="false">Reduce motion</button>
           <button id="sound-toggle" class="gx-btn gx-btn-ghost gx-btn-sm" aria-pressed="true" data-i18n="soundToggle">Sound</button>
+          <button id="expand-all" class="gx-btn gx-btn-ghost gx-btn-sm" data-i18n="expandAll">Expand all</button>
+          <button id="collapse-all" class="gx-btn gx-btn-ghost gx-btn-sm" data-i18n="collapseAll">Collapse all</button>
           <a class="gx-btn gx-btn-ghost gx-btn-sm" href="https://github.com/carsonhung/gamifiedUI">GitHub</a>
+          <a class="gx-btn gx-btn-ghost gx-btn-sm" href="https://github.com/sponsors/carsonhung"><span class="gx-icon gx-icon-sm gx-i-heart" aria-hidden="true"></span><span data-i18n="sponsor">Sponsor</span></a>
         </div>
         </div>
       </header>
@@ -60,6 +65,7 @@
               <a class="demo-toc-group" href="#group-feedback" data-i18n="groupFeedback">Feedback</a>
               <ul>
                 <li><a href="#feedback-title" data-i18n="feedbackTitle">Alerts and notifications</a></li>
+                <li><a href="#info-title" data-i18n="infoTitle">Hints and status</a></li>
                 <li><a href="#dialogue-title" data-i18n="dialogueTitle">Dialogue</a></li>
                 <li><a href="#fx-title" data-i18n="fxTitle">Particles</a></li>
               <li><a href="#sfx-title" data-i18n="sfxTitle">Sound effects</a></li>
@@ -70,6 +76,8 @@
               <ul>
                 <li><a href="#sprite-title" data-i18n="spriteTitle">Sprite and isometric</a></li>
                 <li><a href="#media-title" data-i18n="mediaTitle">Images and video</a></li>
+                <li><a href="#desktop-title">Desktop shell</a></li>
+                <li><a href="#map-title" data-i18n="mapTitle">World map</a></li>
               </ul>
             </li>
             <li>
@@ -81,10 +89,10 @@
         <main id="app" class="flex min-w-0 flex-col gap-14">
         <section id="group-start" class="demo-group" aria-labelledby="group-start-title">
           <h2 id="group-start-title" class="demo-group-title" data-i18n="groupStart">Get started</h2>
-          <section class="gx-panel" aria-labelledby="start-title">
+          <section class="gx-panel" aria-labelledby="start-title" data-code="off">
             <h3 id="start-title" class="sr-only" data-i18n="startTitle">Get started</h3>
             <p class="mb-3 text-sm" data-i18n="startIntro">Install with npm, then import the styles after Tailwind. Every class starts with gx-.</p>
-            <pre class="overflow-x-auto bg-gx-ink p-3 text-xs leading-relaxed"><code>npm i gamifiedui-css gamifiedui-icons
+            <pre class="overflow-x-auto bg-gx-page text-gx-on-page p-3 text-xs leading-relaxed"><code>npm i gamifiedui-css gamifiedui-icons
 
 @import "tailwindcss";
 @import "gamifiedui-css";
@@ -104,6 +112,35 @@
               <button class="gx-btn gx-btn-ghost" data-gx-sfx="select" data-i18n="options">Options</button>
               <button class="gx-btn gx-btn-lg gx-depth-2" data-gx-sfx="powerUp" data-i18n="bigPress">Big press</button>
               <button class="gx-btn" disabled data-i18n="locked">Locked</button>
+            </div>
+            <div class="mt-4 flex flex-wrap items-center gap-3">
+              <button class="gx-btn gx-btn-tint" style="--gx-btn-tint: var(--color-gx-common)" data-i18n="tintCommon">Common</button>
+              <button class="gx-btn gx-btn-tint" style="--gx-btn-tint: var(--color-gx-rare)" data-i18n="tintRare">Rare</button>
+              <button class="gx-btn gx-btn-tint" style="--gx-btn-tint: var(--color-gx-epic)" data-i18n="tintEpic">Epic</button>
+              <button class="gx-btn gx-btn-tint" style="--gx-btn-tint: var(--color-gx-legendary)" data-i18n="tintLegendary">Legendary</button>
+            </div>
+            <div class="mt-4 grid items-start gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <button class="gx-btn gx-btn-tile gx-btn-tint" style="--gx-btn-tint: color-mix(in oklab, var(--color-gx-success) 45%, var(--color-gx-surface))" data-gx-sfx="select">
+                <span class="gx-btn-art"><span class="gx-icon gx-icon-lg gx-i-potion" aria-hidden="true"></span></span>
+                <span class="gx-btn-label" data-i18n="tilePotion">Green potion</span>
+                <span class="gx-btn-meta" data-i18n="tilePotionMeta">+20 HP</span>
+              </button>
+              <button class="gx-btn gx-btn-tile gx-btn-tint" style="--gx-btn-tint: color-mix(in oklab, var(--color-gx-epic) 45%, var(--color-gx-surface))" data-gx-sfx="select">
+                <span class="gx-btn-art"><span class="gx-icon gx-icon-lg gx-i-sword" aria-hidden="true"></span></span>
+                <span class="gx-btn-label" data-i18n="tileSword">Moon blade</span>
+                <span class="gx-btn-meta" data-i18n="tileSwordMeta">Epic · 120 gold</span>
+              </button>
+              <button class="gx-btn gx-btn-tile gx-btn-tint" style="--gx-btn-tint: color-mix(in oklab, var(--color-gx-rare) 45%, var(--color-gx-surface))" disabled>
+                <span class="gx-btn-art"><span class="gx-icon gx-icon-lg gx-i-shield" aria-hidden="true"></span></span>
+                <span class="gx-btn-label" data-i18n="tileShield">Tower shield</span>
+                <span class="gx-btn-meta" data-i18n="locked">Locked</span>
+              </button>
+              <button class="gx-btn gx-btn-tile gx-btn-tile-stacked gx-btn-ghost" data-gx-sfx="select">
+                <span class="gx-btn-art"><img src="/media/cutscene-poster.png" alt="" /></span>
+                <span class="gx-icon gx-i-map" aria-hidden="true"></span>
+                <span class="gx-btn-label" data-i18n="tileLevel">World 1-1</span>
+                <span class="gx-btn-meta" data-i18n="tileLevelMeta">3 of 3 stars</span>
+              </button>
             </div>
           </section>
           <div class="grid gap-8 xl:grid-cols-2">
@@ -172,7 +209,7 @@
               </div>
             </section>
           </div>
-          <section class="gx-panel" aria-labelledby="menu-title">
+          <section class="gx-panel" aria-labelledby="menu-title" data-code-extra="drawer">
             <h3 id="menu-title" class="gx-panel-title" data-i18n="menuTitle">Menus and navigation</h3>
             <nav class="gx-breadcrumb mb-4" aria-label="Breadcrumb">
               <ol>
@@ -370,7 +407,7 @@
               </div>
             </section>
           </div>
-          <section class="gx-panel" aria-labelledby="hud-title">
+          <section class="gx-panel" aria-labelledby="hud-title" data-code-extra="reward">
             <h3 id="hud-title" class="gx-panel-title" data-i18n="hudTitle">HUD</h3>
             <div class="grid gap-6 md:grid-cols-2">
               <div class="flex flex-col gap-4">
@@ -519,7 +556,25 @@
               </span>
             </div>
           </section>
-          <section aria-labelledby="dialogue-title">
+          <section class="gx-panel" aria-labelledby="info-title">
+            <h3 id="info-title" class="gx-panel-title" data-i18n="infoTitle">Hints and status</h3>
+            <div class="relative grid min-h-40 place-items-end justify-center bg-gx-page p-4 pb-10">
+              <p class="gx-hint" id="demo-hint"><kbd class="gx-kbd">E</kbd> <span data-i18n="hintTalk">Talk to the Old Sage</span> <kbd class="gx-kbd">Esc</kbd> <span data-i18n="hintMenu">Menu</span></p>
+              <p class="gx-credit gx-credit-end"><span data-i18n="madeWith">Made with</span> <a href="https://github.com/carsonhung/gamifiedUI">gamifiedUI</a> · <a href="https://github.com/sponsors/carsonhung" data-i18n="sponsor">Sponsor</a> · <a href="https://github.com/carsonhung/gamifiedUI/blob/master/CONTRIBUTING.md#contribute-your-theme" data-i18n="shareTheme">Share your theme</a></p>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-3">
+              <button id="toggle-hint" class="gx-btn gx-btn-ghost gx-btn-sm" aria-controls="demo-hint" aria-pressed="true" data-i18n="showHint">Show hint</button>
+            </div>
+            <section class="gx-window mt-4" aria-labelledby="save-window-title">
+              <div class="gx-window-titlebar">
+                <span class="gx-icon gx-icon-sm gx-i-save" aria-hidden="true"></span>
+                <h4 id="save-window-title" class="gx-window-title" data-i18n="saveSlots">Save slots</h4>
+              </div>
+              <div class="gx-window-body" data-i18n="saveSlotsBody">Slot 1 · Meadow · Level 12</div>
+              <p class="gx-statusbar" role="status"><span data-i18n="statusSaved">Saved</span><span class="gx-statusbar-end">3 / 10</span></p>
+            </section>
+          </section>
+          <section aria-labelledby="dialogue-title" data-code-extra="dialog,log-dialog">
             <h3 id="dialogue-title" class="sr-only" data-i18n="dialogueTitle">Dialogue</h3>
             <div class="gx-textbox" id="textbox">
               <p class="gx-textbox-speaker" id="speaker"></p>
@@ -527,8 +582,28 @@
               <p class="gx-textbox-text" aria-hidden="true" id="line-shown"></p>
               <div class="gx-textbox-choices" id="choices" hidden></div>
               <span class="gx-textbox-next" id="next" aria-hidden="true" hidden>▼</span>
+              <span class="gx-textbox-mode" id="reader-mode" role="status"></span>
+              <div class="gx-textbox-quick" id="reader-quick" role="toolbar" aria-label="Reader controls" data-i18n-label="readerControls">
+                <button class="gx-textbox-quick-btn" id="line-back" aria-label="Back" data-i18n-label="lineBack"><span class="gx-icon gx-icon-sm gx-i-arrow-left" aria-hidden="true"></span></button>
+                <button class="gx-textbox-quick-btn" id="open-log" aria-haspopup="dialog" aria-label="Log" data-i18n-label="logOpen"><span class="gx-icon gx-icon-sm gx-i-notebook" aria-hidden="true"></span></button>
+                <button class="gx-textbox-quick-btn" id="skip-read" aria-pressed="false" aria-label="Skip" data-i18n-label="skipRead"><span class="gx-icon gx-icon-sm gx-i-fast-forward" aria-hidden="true"></span></button>
+                <button class="gx-textbox-quick-btn" id="auto-play" aria-pressed="false" aria-label="Auto" data-i18n-label="autoPlay"><span class="gx-icon gx-icon-sm gx-i-play" aria-hidden="true"></span></button>
+                <button class="gx-textbox-quick-btn" id="reader-settings-toggle" aria-expanded="false" aria-controls="reader-settings" aria-label="Text settings" data-i18n-label="textSettings"><span class="gx-icon gx-icon-sm gx-i-gear" aria-hidden="true"></span></button>
+                <div class="gx-textbox-settings" id="reader-settings" role="group" aria-label="Text settings" data-i18n-label="textSettings" hidden>
+                  <label class="gx-textbox-setting">
+                    <span data-i18n="textSpeed">Text speed</span>
+                    <output id="text-speed-value" for="text-speed">1×</output>
+                    <input class="gx-slider" type="range" id="text-speed" min="1" max="10" step="1" value="4" />
+                  </label>
+                  <label class="gx-textbox-setting">
+                    <span data-i18n="autoWait">Auto wait</span>
+                    <output id="auto-wait-value" for="auto-wait">1×</output>
+                    <input class="gx-slider" type="range" id="auto-wait" min="2" max="8" step="1" value="4" />
+                  </label>
+                </div>
+              </div>
             </div>
-            <div class="mt-2 flex flex-wrap gap-3">
+            <div class="mt-3 flex flex-wrap gap-3">
               <button id="advance" data-gx-sfx="blip" class="gx-btn gx-btn-sm" data-i18n="advance">Next (Enter)</button>
               <button id="open-dialog" class="gx-btn gx-btn-ghost gx-btn-sm" data-i18n="openDialog">Open dialog</button>
             </div>
@@ -537,7 +612,7 @@
             <h3 id="fx-title" class="gx-panel-title" data-i18n="fxTitle">Particles</h3>
             <div class="grid gap-6 md:grid-cols-2">
               <div class="flex flex-col gap-3">
-                <div class="relative grid h-40 place-items-center bg-gx-ink" id="burst-stage">
+                <div class="relative grid h-40 place-items-center bg-gx-page" id="burst-stage">
                   <span class="gx-icon gx-icon-xl gx-icon-legendary gx-icon-shadow gx-i-gift" aria-hidden="true"></span>
                 </div>
                 <div class="flex flex-wrap gap-2">
@@ -548,7 +623,7 @@
                 </div>
               </div>
               <div class="flex flex-col gap-3">
-                <div class="relative h-40 overflow-hidden bg-gx-ink" id="ambient-stage">
+                <div class="relative h-40 overflow-hidden bg-gx-page" id="ambient-stage">
                   <div class="gx-ambient gx-ambient-snow" id="ambient" aria-hidden="true">
                     <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
                   </div>
@@ -613,11 +688,181 @@
               </figure>
             </div>
           </section>
+          <section class="gx-panel" aria-labelledby="desktop-title">
+            <h3 id="desktop-title" class="gx-panel-title">Desktop shell</h3>
+            <section class="gx-window h-[28rem]" aria-labelledby="desktop-window-title">
+              <div class="gx-window-titlebar">
+                <span class="gx-icon gx-icon-sm gx-i-desktop" aria-hidden="true"></span>
+                <h4 id="desktop-window-title" class="gx-window-title">Adventure Hub</h4>
+                <button class="gx-window-control gx-window-close" aria-label="Close window">
+                  <span class="gx-icon gx-icon-sm gx-i-close" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="gx-desktop flex-1">
+                <nav class="gx-desktop-icons" aria-label="Desktop">
+                  <a class="gx-desktop-icon gx-desktop-icon-round" href="#desktop-title"><span class="gx-desktop-icon-tile" aria-hidden="true">1</span><span class="gx-desktop-icon-label">Stage 1</span></a>
+                  <a class="gx-desktop-icon gx-desktop-icon-round" href="#desktop-title"><span class="gx-desktop-icon-tile" aria-hidden="true">2</span><span class="gx-desktop-icon-label">Stage 2</span></a>
+                  <a class="gx-desktop-icon gx-desktop-icon-round" href="#desktop-title" aria-disabled="true"><span class="gx-desktop-icon-tile" aria-hidden="true">3</span><span class="gx-desktop-icon-label">Stage 3 (locked)</span></a>
+                  <a class="gx-desktop-icon" href="#desktop-title"><span class="gx-desktop-icon-tile"><span class="gx-icon gx-i-book" aria-hidden="true"></span></span><span class="gx-desktop-icon-label">Glossary</span></a>
+                  <a class="gx-desktop-icon" href="#desktop-title"><span class="gx-desktop-icon-tile"><span class="gx-icon gx-i-castle" aria-hidden="true"></span></span><span class="gx-desktop-icon-label">Castle</span></a>
+                </nav>
+                <div class="gx-taskbar">
+                  <button class="gx-taskbar-start" id="start-button" aria-expanded="false" aria-controls="start-menu" aria-label="Start">
+                    <span class="gx-icon gx-icon-sm gx-i-menu" aria-hidden="true"></span>
+                  </button>
+                  <div class="gx-start-menu" id="start-menu" hidden>
+                    <div class="gx-start-menu-header">
+                      <span class="gx-avatar gx-avatar-sm" role="img" aria-label="Ayla">AY</span>
+                      <div>
+                        <p class="m-0 font-semibold">Ayla</p>
+                        <p class="m-0 text-sm opacity-70">Level 12 knight</p>
+                      </div>
+                    </div>
+                    <div class="gx-start-menu-section">
+                      <p class="gx-start-menu-heading">Wallpaper</p>
+                      <div class="gx-start-menu-grid">
+                        <button class="gx-start-menu-item" aria-pressed="false">Forest</button>
+                        <button class="gx-start-menu-item" aria-pressed="true">Harbour</button>
+                        <button class="gx-start-menu-item" aria-pressed="false">Desert</button>
+                        <button class="gx-start-menu-item" aria-pressed="false">Night sky</button>
+                      </div>
+                    </div>
+                    <div class="gx-start-menu-footer">
+                      <button class="gx-start-menu-item"><span class="gx-icon gx-icon-sm gx-i-logout" aria-hidden="true"></span>Sign out</button>
+                    </div>
+                  </div>
+                  <nav class="gx-taskbar-items" aria-label="Open windows">
+                    <a class="gx-taskbar-item" href="#desktop-title" aria-current="page"><span class="gx-icon gx-icon-sm gx-i-desktop" aria-hidden="true"></span>Desktop</a>
+                    <a class="gx-taskbar-item" href="#desktop-title"><span class="gx-icon gx-icon-sm gx-i-book" aria-hidden="true"></span>Glossary</a>
+                  </nav>
+                  <div class="gx-taskbar-tray">
+                    <span class="gx-icon gx-icon-sm gx-i-sound" aria-hidden="true"></span>
+                    <time>16:52</time>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
+          <section class="gx-panel" aria-labelledby="map-title">
+            <h3 id="map-title" class="gx-panel-title" data-i18n="mapTitle">World map</h3>
+            <div class="gx-map">
+              <div class="gx-map-controls" role="group" aria-label="Map zoom" data-i18n-label="mapZoom">
+                <button class="gx-map-control" data-gx-map-zoom="in" aria-label="Zoom in" data-i18n-label="zoomIn"><span class="gx-icon gx-icon-sm gx-i-zoom-in" aria-hidden="true"></span></button>
+                <span class="gx-map-readout" data-gx-map-readout aria-live="polite">100%</span>
+                <button class="gx-map-control" data-gx-map-zoom="out" aria-label="Zoom out" data-i18n-label="zoomOut"><span class="gx-icon gx-icon-sm gx-i-zoom-out" aria-hidden="true"></span></button>
+                <button class="gx-map-control" data-gx-map-zoom="reset" aria-label="Reset zoom" data-i18n-label="mapReset"><span class="gx-icon gx-icon-sm gx-i-home" aria-hidden="true"></span></button>
+              </div>
+              <div class="gx-map-viewport" id="map-viewport">
+                <svg viewBox="0 0 360 220" role="group" aria-label="World map">
+                  <defs>
+                    <pattern id="map-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path class="gx-map-grid" d="M20 0H0V20" /></pattern>
+                  </defs>
+                  <rect width="360" height="220" fill="url(#map-grid)" />
+                  <ellipse class="gx-map-land" cx="80" cy="120" rx="62" ry="48" style="--gx-land: var(--color-gx-success)" />
+                  <ellipse class="gx-map-land" cx="180" cy="70" rx="56" ry="40" style="--gx-land: color-mix(in oklab, var(--color-gx-success) 60%, var(--color-gx-ink))" />
+                  <ellipse class="gx-map-land" cx="270" cy="150" rx="64" ry="44" data-state="unexplored" />
+                  <ellipse class="gx-map-land" cx="300" cy="55" rx="44" ry="34" data-state="locked" />
+                  <path class="gx-map-road-casing" d="M80 120 Q130 80 180 70 M180 70 Q240 110 270 150 M180 70 Q250 50 300 55" />
+                  <path class="gx-map-road" d="M80 120 Q130 80 180 70 M180 70 Q240 110 270 150 M180 70 Q250 50 300 55" />
+                  <a class="gx-map-place" data-state="current" href="#map-title" aria-current="location" aria-label="Meadow, you are here">
+                    <circle class="gx-map-marker" cx="80" cy="120" r="14" style="--gx-land: var(--color-gx-success)" />
+                    <text class="gx-map-glyph" x="80" y="121" text-anchor="middle" dominant-baseline="central">🏡</text>
+                    <path class="gx-map-pin" d="M80 82 a9 9 0 0 1 9 9 c0 7 -9 15 -9 15 s-9 -8 -9 -15 a9 9 0 0 1 9 -9z" />
+                    <circle class="gx-map-pin-dot" cx="80" cy="91" r="3" />
+                    <rect class="gx-map-plate" x="48" y="140" width="64" height="26" rx="4" />
+                    <text class="gx-map-name" x="80" y="152" text-anchor="middle">Meadow</text>
+                    <text class="gx-map-status" x="80" y="162" text-anchor="middle">You are here</text>
+                  </a>
+                  <a class="gx-map-place" data-state="visited" href="#map-title" aria-label="Pine Woods, visited: travel here">
+                    <circle class="gx-map-marker" cx="180" cy="70" r="14" style="--gx-land: color-mix(in oklab, var(--color-gx-success) 60%, var(--color-gx-ink))" />
+                    <text class="gx-map-glyph" x="180" y="71" text-anchor="middle" dominant-baseline="central">🌲</text>
+                    <rect class="gx-map-plate" x="146" y="90" width="68" height="26" rx="4" />
+                    <text class="gx-map-name" x="180" y="102" text-anchor="middle">Pine Woods</text>
+                    <text class="gx-map-status" x="180" y="112" text-anchor="middle">Travel</text>
+                  </a>
+                  <a class="gx-map-place" data-state="unexplored" aria-disabled="true" aria-label="Unknown land, unexplored">
+                    <circle class="gx-map-marker" cx="270" cy="150" r="14" />
+                    <text class="gx-map-glyph" x="270" y="151" text-anchor="middle" dominant-baseline="central">?</text>
+                    <rect class="gx-map-plate" x="236" y="170" width="68" height="26" rx="4" />
+                    <text class="gx-map-name" x="270" y="182" text-anchor="middle">???</text>
+                    <text class="gx-map-status" x="270" y="192" text-anchor="middle">Unexplored</text>
+                  </a>
+                  <a class="gx-map-place" data-state="locked" aria-disabled="true" aria-label="Ice Peak, locked until level 20">
+                    <circle class="gx-map-marker" cx="300" cy="55" r="14" />
+                    <text class="gx-map-glyph" x="300" y="56" text-anchor="middle" dominant-baseline="central">🔒</text>
+                    <rect class="gx-map-plate" x="266" y="75" width="68" height="26" rx="4" />
+                    <text class="gx-map-name" x="300" y="87" text-anchor="middle">Ice Peak</text>
+                    <text class="gx-map-status" x="300" y="97" text-anchor="middle">Level 20</text>
+                  </a>
+                </svg>
+              </div>
+            </div>
+          </section>
+          <section class="gx-panel" aria-labelledby="route-title">
+            <h3 id="route-title" class="gx-panel-title" data-i18n="routeTitle">Route map</h3>
+            <p class="mb-3 text-sm" data-i18n="routeHint">Starts fitted to the width. A plain wheel scrolls the page; hold Ctrl (⌘ on Mac) to zoom. Plates size themselves to the labels in each language.</p>
+            <div class="gx-map">
+              <div class="gx-map-controls" role="group" aria-label="Map zoom" data-i18n-label="mapZoom">
+                <button class="gx-map-control" data-gx-map-zoom="in" aria-label="Zoom in" data-i18n-label="zoomIn"><span class="gx-icon gx-icon-sm gx-i-zoom-in" aria-hidden="true"></span></button>
+                <span class="gx-map-readout" data-gx-map-readout aria-live="polite">100%</span>
+                <button class="gx-map-control" data-gx-map-zoom="out" aria-label="Zoom out" data-i18n-label="zoomOut"><span class="gx-icon gx-icon-sm gx-i-zoom-out" aria-hidden="true"></span></button>
+                <button class="gx-map-control" data-gx-map-zoom="reset" aria-label="Reset zoom" data-i18n-label="mapReset"><span class="gx-icon gx-icon-sm gx-i-home" aria-hidden="true"></span></button>
+              </div>
+              <div class="gx-map-viewport" id="route-viewport">
+                <svg viewBox="0 0 520 220" width="520" height="220" role="group" aria-label="Route map" data-i18n-label="routeTitle">
+                  <path class="gx-map-road-casing" d="M20 60 H440 A45 45 0 0 1 440 150 H20" />
+                  <path class="gx-map-road" d="M20 60 H440 A45 45 0 0 1 440 150 H20" />
+                  <a class="gx-map-place" data-state="current" href="#route-title" aria-current="location">
+                    <circle class="gx-map-marker" cx="80" cy="60" r="13" />
+                    <text class="gx-map-glyph" x="80" y="61" text-anchor="middle" dominant-baseline="central">1</text>
+                    <rect class="gx-map-plate" x="40" y="78" width="80" height="26" rx="4" />
+                    <text class="gx-map-name" x="80" y="90" text-anchor="middle" data-i18n="routeStop1">Harbour Gate</text>
+                    <text class="gx-map-status" x="80" y="100" text-anchor="middle" data-i18n="routeHere">You are here</text>
+                  </a>
+                  <a class="gx-map-place" data-state="visited" href="#route-title">
+                    <circle class="gx-map-marker" cx="220" cy="60" r="13" />
+                    <text class="gx-map-glyph" x="220" y="61" text-anchor="middle" dominant-baseline="central">2</text>
+                    <rect class="gx-map-plate" x="180" y="78" width="80" height="26" rx="4" />
+                    <text class="gx-map-name" x="220" y="90" text-anchor="middle" data-i18n="routeStop2">Wet Market</text>
+                    <text class="gx-map-status" x="220" y="100" text-anchor="middle" data-i18n="routeOpen">Open</text>
+                  </a>
+                  <a class="gx-map-place" data-state="visited" href="#route-title">
+                    <circle class="gx-map-marker" cx="360" cy="60" r="13" />
+                    <text class="gx-map-glyph" x="360" y="61" text-anchor="middle" dominant-baseline="central">3</text>
+                    <rect class="gx-map-plate" x="320" y="78" width="80" height="26" rx="4" />
+                    <text class="gx-map-name" x="360" y="90" text-anchor="middle" data-i18n="routeStop3">Temple Street</text>
+                    <text class="gx-map-status" x="360" y="100" text-anchor="middle" data-i18n="routeOpen">Open</text>
+                  </a>
+                  <a class="gx-map-place" data-state="visited" href="#route-title">
+                    <circle class="gx-map-marker" cx="360" cy="150" r="13" />
+                    <text class="gx-map-glyph" x="360" y="151" text-anchor="middle" dominant-baseline="central">4</text>
+                    <rect class="gx-map-plate" x="320" y="168" width="80" height="26" rx="4" />
+                    <text class="gx-map-name" x="360" y="180" text-anchor="middle" data-i18n="routeStop4">Tram Stop</text>
+                    <text class="gx-map-status" x="360" y="190" text-anchor="middle" data-i18n="routeOpen">Open</text>
+                  </a>
+                  <a class="gx-map-place" data-state="unexplored" aria-disabled="true">
+                    <circle class="gx-map-marker" cx="220" cy="150" r="13" />
+                    <text class="gx-map-glyph" x="220" y="151" text-anchor="middle" dominant-baseline="central">5</text>
+                    <rect class="gx-map-plate" x="180" y="168" width="80" height="26" rx="4" />
+                    <text class="gx-map-name" x="220" y="180" text-anchor="middle" data-i18n="routeStop5">Night Market</text>
+                    <text class="gx-map-status" x="220" y="190" text-anchor="middle" data-i18n="routeLater">Opens at 8 pm</text>
+                  </a>
+                  <a class="gx-map-place" data-state="locked" aria-disabled="true">
+                    <circle class="gx-map-marker" cx="80" cy="150" r="13" />
+                    <text class="gx-map-glyph" x="80" y="151" text-anchor="middle" dominant-baseline="central">6</text>
+                    <rect class="gx-map-plate" x="40" y="168" width="80" height="26" rx="4" />
+                    <text class="gx-map-name" x="80" y="180" text-anchor="middle" data-i18n="routeStop6">Neon Arch</text>
+                    <text class="gx-map-status" x="80" y="190" text-anchor="middle" data-i18n="routeLocked">Locked</text>
+                  </a>
+                </svg>
+              </div>
+            </div>
+          </section>
         </section>
 
         <section id="group-icons" class="demo-group" aria-labelledby="group-icons-title">
           <h2 id="group-icons-title" class="demo-group-title" data-i18n="iconsTitle">Icons</h2>
-          <section class="gx-panel" aria-labelledby="icons-title">
+          <section class="gx-panel" aria-labelledby="icons-title" data-code="off">
             <h3 id="icons-title" class="sr-only" data-i18n="iconsTitle">Icons</h3>
             <p class="mb-4 text-sm" data-i18n="iconsIntro">341 pixel icons on a 16px grid, including emoji and a Hong Kong set. Each one is a single CSS class.</p>
             <h4 class="mb-2 font-gx text-sm uppercase" data-i18n="animatedIcons">Animated</h4>
@@ -650,6 +895,14 @@
             </form>
           </dialog>
 
+          <dialog id="log-dialog" class="gx-dialog" aria-labelledby="log-dialog-title">
+            <h2 id="log-dialog-title" class="gx-panel-title" data-i18n="dialogueLog">Dialogue log</h2>
+            <ol id="log-list" class="gx-textbox-log"></ol>
+            <form method="dialog" class="mt-4 flex justify-end">
+              <button class="gx-btn gx-btn-ghost gx-btn-sm" data-i18n="close">Close</button>
+            </form>
+          </dialog>
+
           <dialog id="drawer" class="gx-drawer" aria-labelledby="drawer-title">
             <h2 id="drawer-title" class="gx-panel-title" data-i18n="paused">Paused</h2>
             <form method="dialog">
@@ -675,6 +928,10 @@
           </dialog>
         </main>
       </div>
+      <footer class="mt-16 flex flex-col items-center gap-1 border-t-4 border-gx-surface pt-6 text-center text-sm">
+        <p class="m-0"><span data-i18n="initiatedBy">Initiated by</span> <a class="underline underline-offset-2" href="https://github.com/carsonhung">Carson Hung</a> · <a class="underline underline-offset-2" href="https://github.com/sponsors/carsonhung" data-i18n="sponsor">Sponsor</a> · <a class="underline underline-offset-2" href="https://github.com/carsonhung/gamifiedUI/blob/master/CONTRIBUTING.md#contribute-your-theme" data-i18n="shareTheme">Share your theme</a></p>
+        <p class="m-0 font-gx text-xs text-gx-accent" data-i18n="motto">Game for a better world together</p>
+      </footer>
     </div>
     <div class="gx-toast-stack" id="toasts" role="region" aria-label="Notifications"></div>
   </body>

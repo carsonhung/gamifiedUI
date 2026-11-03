@@ -32,11 +32,11 @@
     background: var(--color-gx-surface);
     cursor: pointer;
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
-      0 calc(var(--gx-px) + var(--gx-toggle-lift)) 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 calc(var(--gx-line, var(--gx-px)) + var(--gx-toggle-lift)) 0 0 var(--color-gx-ink);
     transition: translate var(--gx-motion-fast) steps(2, end);
   }
 
@@ -47,7 +47,7 @@
   }
 
   .gx-datepicker-toggle:focus-visible {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * 2);
   }
 

@@ -1,0 +1,222 @@
+/* World map / atlas. The app draws the SVG (it owns layout and game rules); these classes only
+   colour it from theme tokens, so one map follows arcade, vintage or glass.
+   <div class="gx-map">
+     <div class="gx-map-controls" role="group" aria-label="Map zoom">
+       <button class="gx-map-control" data-gx-map-zoom="in" aria-label="Zoom in">
+         <span class="gx-icon gx-icon-sm gx-i-zoom-in" aria-hidden="true"></span></button>
+       <span class="gx-map-readout" data-gx-map-readout aria-live="polite">100%</span>
+       ...zoom-out, and data-gx-map-zoom="reset" with gx-i-home
+     </div>
+   (.gx-map-toolbar is a plain row above the map, for filters or a legend.)
+     <div class="gx-map-viewport"><svg viewBox="..." role="img" aria-label="World map">...</svg></div>
+   </div>
+   SVG parts: .gx-map-grid (pattern lines), .gx-map-land (set --gx-land per place for its biome),
+   .gx-map-road + .gx-map-road-casing, and per place an <a class="gx-map-place"
+   data-state="current|visited|unexplored|locked"> holding .gx-map-marker, .gx-map-plate,
+   .gx-map-name, .gx-map-status and, on the current place, .gx-map-pin + .gx-map-pin-dot.
+   Unexplored and locked are also stated in the place's aria-label, never by colour alone.
+   gamifiedui-utils' mapZoom() adds wheel zoom around the cursor and wires the toolbar. */
+@layer components {
+  .gx-map {
+    position: relative;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .gx-map-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--gx-text-sm);
+  }
+
+  /* Floating zoom stack over the viewport's top-right corner. It sits on .gx-map, not inside the
+     scrolling viewport, so it stays put while the map pans. */
+  .gx-map-controls {
+    position: absolute;
+    z-index: 1;
+    inset-block-start: 0.5rem;
+    inset-inline-end: 0.5rem;
+    display: grid;
+    gap: 0.25rem;
+    justify-items: center;
+  }
+
+  .gx-map-control {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 0;
+    color: var(--color-gx-on-surface);
+    background: color-mix(in oklab, var(--color-gx-surface) 88%, transparent);
+    backdrop-filter: var(--gx-backdrop, none);
+    box-shadow:
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (hover: hover) {
+    .gx-map-control:hover:not(:disabled) {
+      background: var(--color-gx-selected);
+      color: var(--color-gx-on-selected);
+    }
+  }
+
+  .gx-map-control:focus-visible {
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
+    outline-offset: var(--gx-px);
+  }
+
+  .gx-map-control:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  .gx-map-readout {
+    padding: 0.125rem 0.375rem;
+    font-size: 0.6875rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-gx-on-surface);
+    background: color-mix(in oklab, var(--color-gx-surface) 88%, transparent);
+  }
+
+  .gx-map-viewport {
+    max-height: min(28rem, 60vh);
+    overflow: auto;
+    background: var(--gx-map-sea, color-mix(in oklab, var(--color-gx-page) 85%, var(--color-gx-mp)));
+    box-shadow:
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
+  }
+
+  .gx-map-viewport > svg {
+    display: block;
+    margin-inline: auto;
+    font-family: var(--font-gx-body);
+  }
+
+  .gx-map-grid {
+    fill: none;
+    stroke: color-mix(in oklab, var(--color-gx-on-page) 12%, transparent);
+    stroke-width: 0.6;
+  }
+
+  .gx-map-land {
+    fill: var(--gx-land, var(--color-gx-success));
+    stroke: var(--color-gx-frame, var(--color-gx-ink));
+    stroke-width: 2;
+  }
+
+  .gx-map-land[data-state="unexplored"],
+  .gx-map-land[data-state="locked"] {
+    fill: var(--color-gx-track);
+    opacity: 0.45;
+  }
+
+  .gx-map-road-casing {
+    fill: none;
+    stroke: color-mix(in oklab, var(--color-gx-ink) 70%, var(--color-gx-bronze));
+    stroke-width: 7;
+    stroke-linecap: round;
+  }
+
+  .gx-map-road {
+    fill: none;
+    stroke: var(--color-gx-bronze);
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-dasharray: 6 5;
+  }
+
+  .gx-map-place {
+    cursor: pointer;
+    outline: none;
+  }
+
+  .gx-map-place[data-state="current"],
+  .gx-map-place[data-state="unexplored"],
+  .gx-map-place[data-state="locked"],
+  .gx-map-place[aria-disabled="true"] {
+    cursor: default;
+  }
+
+  .gx-map-marker {
+    fill: var(--gx-land, var(--color-gx-surface));
+    stroke: var(--color-gx-frame, var(--color-gx-ink));
+    stroke-width: 1.5;
+  }
+
+  .gx-map-place[data-state="unexplored"] .gx-map-marker,
+  .gx-map-place[data-state="locked"] .gx-map-marker {
+    fill: var(--color-gx-track);
+  }
+
+  .gx-map-place[data-state="current"] .gx-map-marker {
+    stroke: var(--color-gx-primary);
+    stroke-width: 3;
+  }
+
+  @media (hover: hover) {
+    .gx-map-place[data-state="visited"]:hover .gx-map-marker {
+      stroke: var(--color-gx-accent);
+      stroke-width: 3;
+    }
+  }
+
+  .gx-map-place:focus-visible .gx-map-marker {
+    stroke: var(--color-gx-focus);
+    stroke-width: 4;
+  }
+
+  .gx-map-pin {
+    fill: var(--color-gx-primary);
+    stroke: var(--color-gx-ink);
+    stroke-width: 1;
+  }
+
+  .gx-map-pin-dot {
+    fill: var(--color-gx-on-primary);
+  }
+
+  .gx-map-plate {
+    fill: var(--color-gx-surface);
+    stroke: var(--color-gx-frame, var(--color-gx-ink));
+    stroke-width: 1;
+  }
+
+  .gx-map-place[data-state="unexplored"] .gx-map-plate,
+  .gx-map-place[data-state="locked"] .gx-map-plate {
+    opacity: 0.7;
+  }
+
+  .gx-map-name {
+    fill: var(--color-gx-on-surface);
+    font-size: 10px;
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+  .gx-map-status {
+    fill: color-mix(in oklab, var(--color-gx-on-surface) 65%, transparent);
+    font-size: 9px;
+    pointer-events: none;
+  }
+
+  .gx-map-place[data-state="current"] .gx-map-status {
+    fill: var(--color-gx-primary);
+  }
+
+  .gx-map-glyph {
+    font-size: 12px;
+    pointer-events: none;
+  }
+}

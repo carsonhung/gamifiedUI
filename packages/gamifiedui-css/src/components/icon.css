@@ -110,7 +110,7 @@
   }
 
   .gx-icon-shadow {
-    filter: drop-shadow(calc(var(--gx-px) / 2) calc(var(--gx-px) / 2) 0 var(--color-gx-ink));
+    filter: drop-shadow(calc(var(--gx-line, var(--gx-px)) / 2) calc(var(--gx-line, var(--gx-px)) / 2) 0 var(--color-gx-ink));
   }
 
   /* Framed tile around an icon, for hotbars and achievement lists. */
@@ -123,9 +123,9 @@
     margin: var(--gx-px);
     background: color-mix(in oklab, var(--color-gx-surface) 85%, white);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      0 var(--gx-px) 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      var(--gx-px) 0 0 0 var(--gx-rarity, var(--color-gx-ink)),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-ink));
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink))),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink)));
   }
 }

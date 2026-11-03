@@ -1,0 +1,70 @@
+/* Shape hooks for themes. Every hook falls back to the square pixel look, and :where() keeps
+   specificity at zero so component and app rules still win. A theme sets, on any element:
+   --gx-radius (surfaces), --gx-radius-control (buttons, tabs, bars, chips, radios, switches),
+   --gx-radius-field (text inputs), --gx-radius-check (checkboxes), --gx-backdrop
+   (a backdrop-filter value for surfaces), --gx-elevation (an extra box-shadow on raised
+   surfaces), --gx-case (label text-transform), --color-gx-frame (outline colour, default ink),
+   --gx-line (outline thickness, default --gx-px, which stays the sizing grid),
+   --gx-focus-width, --gx-bevel (shaded inner edge on buttons, bars and slider thumbs),
+   --gx-sheen (0..1, decorative shine and rays), --gx-stripe (tone edge on alerts and toasts,
+   in multiples of --gx-line; set 0 with a large radius, where an inset edge bends into a crescent), --gx-bar-height, --gx-bar-texture (0..1
+   segment overlay) and --gx-bar-easing. */
+@layer components {
+  :where(
+      .gx-panel,
+      .gx-textbox,
+      .gx-dialog,
+      .gx-drawer,
+      .gx-toast,
+      .gx-alert,
+      .gx-menu,
+      .gx-dropdown-panel,
+      .gx-datepicker-panel,
+      .gx-tooltip-content,
+      .gx-card,
+      .gx-slot,
+      .gx-frame,
+      .gx-quest,
+      .gx-reward,
+      .gx-calendar,
+      .gx-table-wrap,
+      .gx-accordion,
+      .gx-dropzone,
+      .gx-window,
+      .gx-start-menu,
+      .gx-map-viewport
+    ) {
+    border-radius: var(--gx-radius, 0);
+    backdrop-filter: var(--gx-backdrop, none);
+  }
+
+  :where(
+      .gx-btn,
+      .gx-tab,
+      .gx-bar,
+      .gx-bar::before,
+      .gx-chip,
+      .gx-badge,
+      .gx-kbd,
+      .gx-input,
+      .gx-page,
+      .gx-skill,
+      .gx-counter,
+      .gx-icon-tile,
+      .gx-avatar,
+      .gx-avatar > img,
+      .gx-desktop-icon-tile,
+      .gx-window-control,
+      .gx-taskbar-start,
+      .gx-taskbar-item,
+      .gx-start-menu-item,
+      .gx-start-menu-item > img,
+      .gx-hint,
+      .gx-credit,
+      .gx-alert-icon,
+      .gx-toast-icon,
+      .gx-toast-close
+    ) {
+    border-radius: var(--gx-radius-control, 0);
+  }
+}

@@ -47,7 +47,7 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 
 | Class | Markup | Modifiers |
 |---|---|---|
-| `gx-btn` | `<button>` | `gx-btn-{primary,danger,success,warning,ghost}`, `gx-btn-{sm,lg}`, `aria-pressed="true"` |
+| `gx-btn` | `<button>` | `gx-btn-{primary,danger,success,warning,ghost}`, `gx-btn-{sm,lg}`, `aria-pressed="true"`, `gx-btn-tint` + `--gx-btn-tint`, `gx-btn-tile` (`gx-btn-art`, `gx-btn-label`, `gx-btn-meta`), `gx-btn-tile-stacked` |
 | `gx-panel` | any block | `gx-panel-title`, `gx-panel-flat` |
 | `gx-bar` | `role="meter"` + `style="--gx-value: 0.6"` | `gx-bar-{hp,mp,xp}`, `gx-bar-smooth`, `gx-bar-critical` |
 | `gx-badge` | `<span>` | `gx-badge-{primary,danger,success}` |
@@ -112,6 +112,26 @@ calendars and date (range) pickers, and drag-and-drop upload.
 
 A file button needs no script: `<label class="gx-btn">Choose file<input type="file" class="sr-only"></label>`.
 
+Any colour for a button, with hover and a readable black or white label worked out for you:
+
+```html
+<button class="gx-btn gx-btn-tint" style="--gx-btn-tint: #8a3ab9">Epic</button>
+```
+
+Item, shop or level buttons with a picture (an `<img>`, `<svg>` or `gx-icon`):
+
+```html
+<button class="gx-btn gx-btn-tile gx-btn-tint" style="--gx-btn-tint: #3a6b4a">
+  <span class="gx-btn-art"><img src="potion.png" alt=""></span>
+  <span class="gx-btn-label">Green potion</span>
+  <span class="gx-btn-meta">+20 HP</span>
+</button>
+```
+
+`gx-btn-tile-stacked` puts the picture on top as a postcard (`--gx-btn-art-ratio`, default
+16 / 9); an optional `gx-icon` after it sits beside the label. `--gx-btn-art-size` sets the side
+picture (default 2.5rem), and `--gx-btn-tint-fg` overrides the automatic label colour.
+
 ## Utilities
 
 - `gx-depth-{n}`: depth of raised components, in pixel units (`--gx-px`, default 4px).
@@ -123,8 +143,19 @@ A file button needs no script: `<label class="gx-btn">Choose file<input type="fi
 
 ## Themes and motion
 
-Set `data-gx-theme="gameboy"` or `"parchment"` on any element (themes nest). Override any
-`--color-gx-*` token to make your own. Every animation stops under
+Set `data-gx-theme="vintage"` or `"glass"` on any element (themes nest); no attribute means
+`arcade`. Override any `--color-gx-*` token to make your own. `vintage` is a classic Windows PC
+game desktop: white window frames, thin grey borders, soft shadows, lightly rounded tiles, a
+light blue taskbar tone and sentence-case labels in the system UI face.
+
+`glass` is a modern, XR-style spatial look rather than a pixel one: lightly translucent flat
+surfaces with a thin light rim, soft depth, no bevels or gradients, pill controls and
+sentence-case labels in `--font-gx-body`. It is built on shape hooks any theme can set, each
+defaulting to the square pixel look: `--gx-radius`, `--gx-radius-control`, `--gx-backdrop`,
+`--gx-radius-field`, `--gx-radius-check`, `--gx-elevation`, `--gx-case`, `--color-gx-frame`,
+`--gx-line`, `--gx-focus-width`,
+`--gx-bevel`, `--gx-sheen`, `--gx-bar-height`, `--gx-bar-texture` and `--gx-bar-easing`.
+`--gx-px` stays the sizing grid, so thinner lines never shrink icons or spacing. Every animation stops under
 `prefers-reduced-motion: reduce` or inside `data-gx-motion="reduce"` (for an in-app setting).
 
 ## Chinese, Japanese and Korean

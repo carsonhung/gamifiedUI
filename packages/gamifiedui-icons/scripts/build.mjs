@@ -8,7 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import animated from '../icons/animated.mjs';
-import categories from '../icons/categories.mjs';
+import categories, { groups } from '../icons/categories.mjs';
 import common from '../icons/common.mjs';
 import emoji from '../icons/emoji.mjs';
 import hk from '../icons/hk.mjs';
@@ -186,8 +186,10 @@ outputs.set(
     REDUCED_PLAIN,
 );
 const SET_CATEGORY = { emoji: 'emoji', hk: 'hong-kong' };
+const groupIds = new Set(groups.map((g) => g.id));
 const categoryOf = new Map();
 for (const category of categories) {
+  if (!groupIds.has(category.group)) throw new Error(`category "${category.id}" needs a group from icons/categories.mjs`);
   for (const name of category.icons) {
     if (categoryOf.has(name)) throw new Error(`"${name}" is in both ${categoryOf.get(name)} and ${category.id}`);
     categoryOf.set(name, category.id);
@@ -222,6 +224,7 @@ outputs.set(
   'categories.json',
   `${JSON.stringify(categories.map(({ icons: _, ...meta }) => meta), null, 2)}\n`,
 );
+outputs.set('groups.json', `${JSON.stringify(groups, null, 2)}\n`);
 for (const icon of icons) outputs.set(`svg/${icon.name}.svg`, `${icon.svg}\n`);
 for (const icon of moving) outputs.set(`svg/ia-${icon.name}.svg`, `${icon.svg}\n`);
 

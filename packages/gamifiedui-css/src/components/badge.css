@@ -11,14 +11,14 @@
     font-family: var(--font-gx);
     font-size: 0.75rem;
     line-height: 1.25;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
     color: var(--gx-badge-fg);
     background: var(--gx-badge-bg);
     box-shadow:
-      0 calc(-1 * var(--gx-px) / 2) 0 0 var(--color-gx-ink),
-      0 calc(var(--gx-px) / 2) 0 0 var(--color-gx-ink),
-      calc(var(--gx-px) / 2) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px) / 2) 0 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-line, var(--gx-px)) / 2) 0 0 var(--color-gx-ink),
+      0 calc(var(--gx-line, var(--gx-px)) / 2) 0 0 var(--color-gx-ink),
+      calc(var(--gx-line, var(--gx-px)) / 2) 0 0 0 var(--color-gx-ink),
+      calc(-1 * var(--gx-line, var(--gx-px)) / 2) 0 0 0 var(--color-gx-ink);
   }
 
   .gx-badge-primary {
@@ -34,5 +34,20 @@
   .gx-badge-success {
     --gx-badge-bg: var(--color-gx-success);
     --gx-badge-fg: var(--color-gx-on-success);
+  }
+
+  .gx-badge-warning {
+    --gx-badge-bg: var(--color-gx-warning);
+    --gx-badge-fg: var(--color-gx-on-warning);
+  }
+
+  .gx-badge-gold {
+    --gx-badge-bg: var(--color-gx-gold);
+    --gx-badge-fg: var(--color-gx-ink);
+  }
+
+  .gx-badge-ghost {
+    --gx-badge-bg: transparent;
+    --gx-badge-fg: currentColor;
   }
 }

@@ -1,0 +1,48 @@
+/* Currency and shop. Amount: <span class="gx-currency"><i class="gx-icon gx-i-coin"></i>120</span>.
+   Shop item: an <article class="gx-card gx-shop-item" data-state="owned|locked"> holding a
+   .gx-shop-price and a buy button. Always print the state too; the dimming alone is not enough. */
+@layer components {
+  .gx-currency {
+    --gx-currency-color: var(--color-gx-gold);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-family: var(--font-gx);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--gx-currency-color);
+    text-shadow: 0 var(--gx-px) 0 var(--color-gx-ink);
+    white-space: nowrap;
+  }
+
+  .gx-currency-gem {
+    --gx-currency-color: var(--color-gx-diamond);
+  }
+
+  .gx-shop-item {
+    align-items: stretch;
+  }
+
+  .gx-shop-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+
+  .gx-shop-item[data-state="owned"] .gx-shop-price .gx-currency,
+  .gx-shop-item[data-state="locked"] {
+    opacity: 0.55;
+  }
+
+  .gx-shop-item[data-state="owned"] .gx-shop-price .gx-currency {
+    text-decoration: line-through;
+  }
+
+  /* Short on currency: the price turns red so the reason is visible before the click. */
+  .gx-shop-item[data-state="short"] .gx-shop-price .gx-currency {
+    --gx-currency-color: var(--color-gx-danger);
+  }
+}

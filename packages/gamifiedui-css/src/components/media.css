@@ -3,7 +3,7 @@
    Videos keep native controls (keyboard, captions menu, fullscreen) and need a <track kind="captions">. */
 @layer components {
   .gx-frame {
-    --gx-frame-color: var(--gx-rarity, var(--color-gx-ink));
+    --gx-frame-color: var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink)));
     --gx-frame-matte: var(--color-gx-surface);
 
     position: relative;
@@ -13,11 +13,12 @@
     padding: var(--gx-px);
     background: var(--gx-frame-matte);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-frame-color),
-      0 var(--gx-px) 0 0 var(--gx-frame-color),
-      var(--gx-px) 0 0 0 var(--gx-frame-color),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-frame-color),
-      0 calc(var(--gx-px) + var(--gx-depth)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--gx-frame-color),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--gx-frame-color),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--gx-frame-color),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--gx-frame-color),
+      0 calc(var(--gx-line, var(--gx-px)) + var(--gx-depth)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent),
+      var(--gx-elevation, 0 0 transparent);
   }
 
   .gx-frame > img,
@@ -71,7 +72,7 @@
   /* Character portrait: square, pixelated, sits next to dialogue or in a party list. */
   .gx-avatar {
     --gx-avatar-size: calc(var(--gx-px) * 16);
-    --gx-avatar-frame: var(--gx-rarity, var(--color-gx-ink));
+    --gx-avatar-frame: var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink)));
 
     position: relative;
     display: inline-grid;
@@ -86,11 +87,11 @@
     color: var(--color-gx-on-primary);
     background: var(--color-gx-primary);
     box-shadow:
-      inset 0 0 0 var(--gx-px) var(--color-gx-surface),
-      0 calc(-1 * var(--gx-px)) 0 0 var(--gx-avatar-frame),
-      0 var(--gx-px) 0 0 var(--gx-avatar-frame),
-      var(--gx-px) 0 0 0 var(--gx-avatar-frame),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--gx-avatar-frame);
+      inset 0 0 0 var(--gx-line, var(--gx-px)) var(--color-gx-surface),
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--gx-avatar-frame),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--gx-avatar-frame),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--gx-avatar-frame),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--gx-avatar-frame);
   }
 
   .gx-avatar > img {
@@ -133,7 +134,7 @@
     padding: 0;
     font-family: var(--font-gx);
     font-size: var(--gx-text-lg);
-    color: var(--color-gx-on-surface);
+    color: var(--color-gx-on-ink);
     background: color-mix(in oklab, var(--color-gx-ink) 55%, transparent);
     cursor: pointer;
   }
@@ -147,11 +148,11 @@
     color: var(--color-gx-on-primary);
     background: var(--color-gx-primary);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
-      0 calc(var(--gx-px) + var(--gx-depth)) 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 calc(var(--gx-line, var(--gx-px)) + var(--gx-depth)) 0 0 var(--color-gx-ink);
     transition: translate var(--gx-motion-fast) steps(2, end);
   }
 
@@ -166,7 +167,7 @@
   }
 
   .gx-video-play:focus-visible {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * -2);
   }
 
@@ -177,7 +178,7 @@
   /* Native caption cues in the pixel look where the browser allows styling them. */
   .gx-video-screen > video::cue {
     font-family: var(--font-gx-body);
-    color: var(--color-gx-on-surface);
+    color: var(--color-gx-on-ink);
     background: color-mix(in oklab, var(--color-gx-ink) 80%, transparent);
   }
 }

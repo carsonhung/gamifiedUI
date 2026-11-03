@@ -30,7 +30,7 @@
         0 0 / var(--gx-px) 100% repeat-y,
       repeating-linear-gradient(0deg, var(--gx-dropzone-color) 0 var(--gx-dropzone-dash), transparent 0 calc(var(--gx-dropzone-dash) * 2))
         100% 0 / var(--gx-px) 100% repeat-y,
-      color-mix(in oklab, var(--color-gx-surface) 75%, var(--color-gx-ink));
+      color-mix(in oklab, var(--color-gx-surface) 75%, var(--color-gx-page));
   }
 
   .gx-dropzone > input[type="file"] {
@@ -43,7 +43,7 @@
   }
 
   .gx-dropzone:focus-within:has(> input:focus-visible) {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * 2);
   }
 
@@ -57,7 +57,7 @@
     font-family: var(--font-gx);
     font-size: var(--gx-text-md);
     line-height: 1.6;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
   }
 
   .gx-dropzone-hint {
@@ -86,7 +86,7 @@
   }
 
   .gx-btn:has(> input[type="file"]:focus-visible) {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * 2);
   }
 
@@ -110,10 +110,10 @@
     color: var(--color-gx-on-surface);
     background: var(--color-gx-surface);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
   }
 
   .gx-file-name {
@@ -151,7 +151,7 @@
   }
 
   .gx-file-remove:focus-visible {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * -1);
   }
 
@@ -167,18 +167,18 @@
 
   .gx-file[data-state="done"] {
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-success),
-      0 var(--gx-px) 0 0 var(--color-gx-success),
-      var(--gx-px) 0 0 0 var(--color-gx-success),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-success);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-success),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-success),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-success),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-success);
   }
 
   .gx-file[data-state="error"] {
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-danger),
-      0 var(--gx-px) 0 0 var(--color-gx-danger),
-      var(--gx-px) 0 0 0 var(--color-gx-danger),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-danger);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-danger),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-danger),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-danger),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-danger);
   }
 
   .gx-file[data-state="error"] .gx-file-status::before {

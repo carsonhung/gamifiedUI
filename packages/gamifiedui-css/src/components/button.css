@@ -19,20 +19,20 @@
     font-family: var(--font-gx);
     font-size: 0.875rem;
     line-height: 1.25;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
     color: var(--gx-btn-fg);
     background: var(--gx-btn-bg);
     cursor: pointer;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     box-shadow:
-      inset calc(-1 * var(--gx-px)) calc(-1 * var(--gx-px)) 0 0 var(--gx-btn-shade),
-      inset var(--gx-px) var(--gx-px) 0 0 var(--gx-btn-shine),
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
-      0 calc(var(--gx-px) + var(--gx-btn-lift)) 0 0 var(--color-gx-ink);
+      inset calc(-1 * var(--gx-bevel, var(--gx-line, var(--gx-px)))) calc(-1 * var(--gx-bevel, var(--gx-line, var(--gx-px)))) 0 0 var(--gx-btn-shade),
+      inset var(--gx-bevel, var(--gx-line, var(--gx-px))) var(--gx-bevel, var(--gx-line, var(--gx-px))) 0 0 var(--gx-btn-shine),
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 calc(var(--gx-line, var(--gx-px)) + var(--gx-btn-lift)) 0 0 var(--color-gx-ink);
     transition: translate var(--gx-motion-fast) steps(2, end);
   }
 
@@ -43,7 +43,7 @@
   }
 
   .gx-btn:focus-visible {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * 2);
   }
 
@@ -91,6 +91,12 @@
     --gx-btn-fg: var(--color-gx-on-surface);
   }
 
+  /* Flat themes have no depth to sink into, so a toggled ghost button also takes an accent tint. */
+  .gx-btn-ghost[aria-pressed="true"] {
+    --gx-btn-base: color-mix(in oklab, var(--color-gx-surface) 70%, var(--color-gx-accent));
+    --gx-btn-bg: var(--gx-btn-base);
+  }
+
   .gx-btn-sm {
     padding: 0.5rem 0.875rem;
     font-size: 0.75rem;
@@ -99,5 +105,91 @@
   .gx-btn-lg {
     padding: 0.875rem 1.75rem;
     font-size: 1rem;
+  }
+
+  /* One colour in, every part out: base and hover follow it, and the label turns black or white
+     by the tint's lightness so item rarities or team colours stay readable. */
+  .gx-btn-tint {
+    --gx-btn-base: var(--gx-btn-tint, var(--color-gx-primary));
+    --gx-btn-bg: var(--gx-btn-base);
+    --gx-btn-fg: var(--gx-btn-tint-fg, var(--color-gx-on-primary));
+  }
+
+  @supports (color: oklch(from red l c h)) {
+    .gx-btn-tint {
+      --gx-btn-fg: var(--gx-btn-tint-fg, oklch(from var(--gx-btn-base) clamp(0, (0.68 - l) * 1000, 1) 0 0));
+    }
+  }
+
+  /* Item, shop and level-select buttons: a picture beside a label and a meta line. */
+  .gx-btn-tile {
+    --gx-btn-art-size: 2.5rem;
+
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    align-content: center;
+    justify-content: stretch;
+    column-gap: 0.625rem;
+    row-gap: 0.125rem;
+    min-height: calc(var(--gx-btn-art-size) + 1rem);
+    padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+    text-align: start;
+    text-transform: none;
+  }
+
+  .gx-btn-art {
+    display: grid;
+    place-items: center;
+    width: var(--gx-btn-art-size);
+    height: var(--gx-btn-art-size);
+    overflow: hidden;
+    grid-row: span 2;
+    color: var(--color-gx-on-ink);
+    background: var(--gx-btn-art-bg, color-mix(in oklab, var(--gx-btn-base, var(--color-gx-primary)) 45%, var(--color-gx-ink)));
+    border-radius: calc(var(--gx-radius-control, 0px) / 2);
+    image-rendering: pixelated;
+  }
+
+  .gx-btn-art > :is(img, svg, video, canvas) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .gx-btn-label {
+    grid-column: 2;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .gx-btn-meta {
+    grid-column: 2;
+    font-size: 0.75em;
+    opacity: 0.85;
+  }
+
+  /* Postcard layout: the picture fills the top and the words sit under it. */
+  .gx-btn-tile-stacked {
+    padding: 0.375rem;
+  }
+
+  .gx-btn-tile-stacked:not(:has(> .gx-icon)) {
+    column-gap: 0;
+  }
+
+  .gx-btn-tile-stacked > .gx-btn-art {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--gx-btn-art-ratio, 16 / 9);
+    margin-bottom: 0.25rem;
+    background: transparent;
+  }
+
+  .gx-btn-tile-stacked > .gx-icon {
+    grid-row: span 2;
   }
 }

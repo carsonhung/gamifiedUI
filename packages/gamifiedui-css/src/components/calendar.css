@@ -15,11 +15,11 @@
     color: var(--color-gx-on-surface);
     background: var(--color-gx-surface);
     box-shadow:
-      0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-ink),
-      0 var(--gx-px) 0 0 var(--color-gx-ink),
-      var(--gx-px) 0 0 0 var(--color-gx-ink),
-      calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-ink),
-      0 calc(var(--gx-px) + var(--gx-depth)) 0 0 var(--color-gx-ink);
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 calc(var(--gx-line, var(--gx-px)) + var(--gx-depth)) 0 0 var(--color-gx-ink);
   }
 
   .gx-calendar-header {
@@ -34,7 +34,7 @@
     font-family: var(--font-gx);
     font-size: var(--gx-text-sm);
     text-align: center;
-    text-transform: uppercase;
+    text-transform: var(--gx-case, uppercase);
     color: var(--color-gx-accent);
   }
 
@@ -60,7 +60,7 @@
   }
 
   .gx-calendar-nav:focus-visible {
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * -1);
   }
 
@@ -111,7 +111,7 @@
 
   .gx-day:focus-visible {
     z-index: 1;
-    outline: var(--gx-px) solid var(--color-gx-focus);
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * -1);
   }
 
@@ -127,7 +127,7 @@
   }
 
   .gx-day[aria-current="date"] {
-    box-shadow: inset 0 0 0 var(--gx-px) var(--color-gx-accent);
+    box-shadow: inset 0 0 0 var(--gx-line, var(--gx-px)) var(--color-gx-accent);
   }
 
   .gx-day[data-range="middle"] {
@@ -141,13 +141,13 @@
   .gx-day[aria-pressed="true"]:not([data-range="middle"]) {
     color: var(--color-gx-on-primary);
     background: var(--color-gx-primary);
-    box-shadow: inset var(--gx-px) var(--gx-px) 0 0 color-mix(in oklab, var(--color-gx-ink) 45%, transparent);
+    box-shadow: inset var(--gx-line, var(--gx-px)) var(--gx-line, var(--gx-px)) 0 0 color-mix(in oklab, var(--color-gx-ink) 45%, transparent);
   }
 
   .gx-day[aria-pressed="true"][aria-current="date"]:not([data-range="middle"]) {
     box-shadow:
-      inset 0 0 0 var(--gx-px) var(--color-gx-accent),
-      inset calc(var(--gx-px) * 2) calc(var(--gx-px) * 2) 0 0 color-mix(in oklab, var(--color-gx-ink) 45%, transparent);
+      inset 0 0 0 var(--gx-line, var(--gx-px)) var(--color-gx-accent),
+      inset calc(var(--gx-line, var(--gx-px)) * 2) calc(var(--gx-line, var(--gx-px)) * 2) 0 0 color-mix(in oklab, var(--color-gx-ink) 45%, transparent);
   }
 
   .gx-day[data-event]::after {

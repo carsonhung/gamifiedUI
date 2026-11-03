@@ -1,5 +1,7 @@
 import { SOUNDS } from './sounds.js';
 export { SOUNDS };
+export { createMusic, noteFrequency } from './music.js';
+export { createVoice } from './voice.js';
 const ATTACK = 0.005;
 const SILENT = 0.0001;
 const clamp01 = (n) => Math.min(1, Math.max(0, n));
