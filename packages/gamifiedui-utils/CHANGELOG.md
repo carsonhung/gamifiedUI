@@ -1,6 +1,6 @@
 # gamifiedui-utils
 
-## 0.2.0 (unreleased)
+## 0.2.0
 
 - `typewriter` takes a `speed` multiplier; `TEXT_SPEEDS` (slow, normal, fast, instant) and
   `autoAdvanceMs(text)` (reading pause for an Auto mode, longer for CJK).
@@ -11,6 +11,9 @@
   (`fitWidthZoom()` is the maths), and the handle reports the resolved `initial`.
 - `fitMapPlates(root, padding?)` sizes each `gx-map-plate` to its name and status text, for
   labels whose length changes with the language.
+- `painter` / pixel helpers: paint a grid from shapes or text rows, auto-outline it and render
+  merged pixel runs as SVG.
+- `spamGuard(form)`: honeypot field plus a minimum fill time for captcha-free form spam checks.
 
 ## 0.1.0
 

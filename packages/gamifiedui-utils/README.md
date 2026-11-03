@@ -17,7 +17,7 @@ Or from a CDN, with no build step:
 
 ```html
 <script type="module">
-  import { toast } from 'https://cdn.jsdelivr.net/npm/gamifiedui-utils@0.1/+esm';
+  import { toast } from 'https://cdn.jsdelivr.net/npm/gamifiedui-utils@0.2/+esm';
   toast({ title: 'Saved', body: 'Progress written to slot 1.', tone: 'success' });
 </script>
 ```

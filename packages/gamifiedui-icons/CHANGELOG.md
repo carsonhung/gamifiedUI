@@ -1,6 +1,6 @@
 # gamifiedui-icons
 
-## 0.2.0 (unreleased)
+## 0.2.0
 
 - Breaking: the `interface` category is split into `navigation`, `actions` and `alerts-time`.
   Tools (hammer, axe, rod, dig, stick) move from `equipment` to a new `tools` category, and
@@ -11,6 +11,7 @@
 - New `fast-forward` icon, animated with `nudge-right`.
 - `egg-waffle` is redrawn as staggered round bubbles on a scalloped sheet, so it no longer
   looks like a square grid waffle.
+
 ## 0.1.0
 
 - First release, under the Apache License 2.0.

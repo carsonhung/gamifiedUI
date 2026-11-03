@@ -1,6 +1,6 @@
 # gamifiedui-icons
 
-349 pixel icons drawn on a 16×16 grid for [gamifiedui-css](../gamifiedui-css): 317 common UI and
+342 pixel icons drawn on a 16��16 grid for [gamifiedui-css](../gamifiedui-css): 310 common UI and
 game icons in 29 categories (grouped into interface, game, world, life and culture), 10 emoji faces and 22 Hong Kong icons. Every icon also has an animated version.
 Each icon is one CSS class. It is a mask filled with `currentColor`, so it takes the text
 colour and any `gx-icon` tone.
@@ -18,7 +18,7 @@ npm i gamifiedui-icons
 
 ```html
 <!-- No build step: every icon as plain CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.1/src/all.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.2/src/all.css">
 ```
 
 ```html
@@ -33,7 +33,7 @@ Icons are decorative, so mark them `aria-hidden="true"` and put the meaning in t
 Also shipped:
 
 - `svg/<name>.svg` files using `fill="currentColor"`, and `svg/ia-<name>.svg` frame strips.
-- `icons.json`, with the name, set, motion and English / 繁體 / 简体 labels for each icon.
+- `icons.json`, with the name, set, motion and English / �c�� / ?�^ labels for each icon.
 
 ## Animated icons
 
@@ -79,26 +79,26 @@ thumb-up, thumb-down.
 
 **Hong Kong:**
 
-| Class | 繁體 | English |
+| Class | �c�� | English |
 |---|---|---|
-| `gx-i-egg-tart` | 蛋撻 | Egg tart |
-| `gx-i-milk-tea` | 奶茶 | Milk tea |
-| `gx-i-pineapple-bun` | 菠蘿包 | Pineapple bun |
-| `gx-i-dim-sum` | 點心 | Dim sum steamer |
-| `gx-i-egg-waffle` | 雞蛋仔 | Egg waffle |
-| `gx-i-fishball` | 魚蛋 | Fish balls |
-| `gx-i-tram` | 電車 | Tram |
-| `gx-i-minibus` | 小巴 | Red minibus |
-| `gx-i-ferry` | 天星小輪 | Star Ferry |
-| `gx-i-junk-boat` | 帆船 | Junk boat |
-| `gx-i-bauhinia` | 洋紫荊 | Bauhinia |
-| `gx-i-mahjong` | 麻雀 | Mahjong tile |
-| `gx-i-lai-see` | 利是 | Lai see packet |
-| `gx-i-signal-1`, `-3`, `-8` | 風球 | Typhoon signals |
-| `gx-i-lantern` | 燈籠 | Lantern |
-| `gx-i-mooncake` | 月餅 | Mooncake |
-| `gx-i-lion-rock` | 獅子山 | Lion Rock |
-| `gx-i-rice-bowl` | 飯碗 | Rice bowl |
+| `gx-i-egg-tart` | �J�� | Egg tart |
+| `gx-i-milk-tea` | ���� | Milk tea |
+| `gx-i-pineapple-bun` | ���ڥ] | Pineapple bun |
+| `gx-i-dim-sum` | �I�� | Dim sum steamer |
+| `gx-i-egg-waffle` | ���J�J | Egg waffle |
+| `gx-i-fishball` | ���J | Fish balls |
+| `gx-i-tram` | �q�� | Tram |
+| `gx-i-minibus` | �p�� | Red minibus |
+| `gx-i-ferry` | �ѬP�p�� | Star Ferry |
+| `gx-i-junk-boat` | �|�� | Junk boat |
+| `gx-i-bauhinia` | �v���� | Bauhinia |
+| `gx-i-mahjong` | �³� | Mahjong tile |
+| `gx-i-lai-see` | �Q�O | Lai see packet |
+| `gx-i-signal-1`, `-3`, `-8` | ���y | Typhoon signals |
+| `gx-i-lantern` | �OŢ | Lantern |
+| `gx-i-mooncake` | ��� | Mooncake |
+| `gx-i-lion-rock` | ��l�s | Lion Rock |
+| `gx-i-rice-bowl` | ���J | Rice bowl |
 
 ## Adding an icon
 

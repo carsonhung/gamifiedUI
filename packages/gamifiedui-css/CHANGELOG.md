@@ -1,6 +1,6 @@
 # gamifiedui-css
 
-## 0.2.0 (unreleased)
+## 0.2.0
 
 - New `glass` theme (XR-style): lightly translucent flat surfaces, a thin light rim, soft
   depth, no bevels or gradients, pill controls and sentence-case labels.

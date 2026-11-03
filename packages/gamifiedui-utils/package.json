@@ -1,6 +1,6 @@
 {
   "name": "gamifiedui-utils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Optional, dependency-free JS helpers for gamifiedUI: toasts, typewriter, counters, cooldowns, floating text, particle bursts, tabs.",
   "license": "Apache-2.0",
   "funding": "https://github.com/sponsors/carsonhung",
@@ -10,7 +10,13 @@
     "url": "git+https://github.com/carsonhung/gamifiedUI.git",
     "directory": "packages/gamifiedui-utils"
   },
-  "keywords": ["game-ui", "toast", "typewriter", "particles", "tailwindcss"],
+  "keywords": [
+    "game-ui",
+    "toast",
+    "typewriter",
+    "particles",
+    "tailwindcss"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -24,7 +30,11 @@
     }
   },
   "sideEffects": false,
-  "files": ["dist", "LICENSE", "NOTICE"],
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "check": "node scripts/check-dist.mjs"
