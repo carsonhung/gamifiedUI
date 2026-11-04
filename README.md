@@ -52,8 +52,18 @@ npm i gamifiedui-css gamifiedui-icons tailwindcss @tailwindcss/vite
 No build step? Link the prebuilt stylesheets instead:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.1/dist/gamifiedui.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.1/src/all.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.2/dist/gamifiedui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.2/src/all.css">
+```
+
+Adding gamifiedUI to a site that already has its own styles, such as a Tailwind v3 app? Link
+`gamifiedui-core.min.css` instead. `gamifiedui.min.css` starts with Tailwind's preflight reset,
+which restyles headings, links, lists and tables across the whole page. The core build leaves it
+out: it styles `gx-` classes only, apart from setting gamifiedUI's own variables and
+`line-break: strict` on Chinese, Japanese and Korean pages.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.2/dist/gamifiedui-core.min.css">
 ```
 
 ## What's inside

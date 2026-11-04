@@ -24,14 +24,14 @@ plugin). Without that the build succeeds but `@theme` and `@utility` stay unproc
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/press-start-2p/index.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.1/dist/gamifiedui.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.1/src/all.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.2/dist/gamifiedui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.2/src/all.css">
 ```
 
 | File | Contains |
 |---|---|
 | `dist/gamifiedui.min.css` | Tailwind preflight (reset), every token, all components and utilities |
-| `dist/gamifiedui-core.min.css` | the same without preflight, for pages that bring their own reset |
+| `dist/gamifiedui-core.min.css` | the same without preflight, for pages that bring their own reset (use this one on an existing site, including Tailwind v3 apps, so its headings, links and tables keep their look) |
 
 Both have an unminified `.css` twin, and `unpkg.com/gamifiedui-css` serves the same files.
 Before the npm release, or to pin a commit, use jsDelivr's GitHub mirror:

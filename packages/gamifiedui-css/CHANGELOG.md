@@ -2,6 +2,9 @@
 
 ## 0.2.0 (unreleased)
 
+- Docs: CDN snippets point at `@0.2`, and the READMEs recommend `gamifiedui-core.min.css` when
+  adding gamifiedUI to an existing site, since `gamifiedui.min.css` includes Tailwind preflight.
+
 - `gx-flip`: a card draw / reveal. Each card shows its back, then turns over once when
   inserted; stagger a row with `--gx-flip-delay`, frame it with `gx-rarity-*`. Reduced motion
   shows the face at once. Pair it with the new `flip` sound in gamifiedui-sfx.
