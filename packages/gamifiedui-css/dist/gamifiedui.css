@@ -3074,6 +3074,71 @@
     animation: none;
   }
 
+  .gx-flip-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
+
+  .gx-flip {
+    --gx-flip-frame: var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink)));
+    width: var(--gx-flip-w, 8rem);
+    height: var(--gx-flip-h, 13rem);
+    perspective: 600px;
+    position: relative;
+  }
+
+  .gx-flip-back, .gx-flip-face {
+    text-align: center;
+    border-radius: var(--gx-radius, 0);
+    box-shadow: 0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--gx-flip-frame), 0 var(--gx-line, var(--gx-px)) 0 0 var(--gx-flip-frame), var(--gx-line, var(--gx-px)) 0 0 0 var(--gx-flip-frame), calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--gx-flip-frame), var(--gx-elevation, 0 0 transparent);
+    backface-visibility: hidden;
+    animation: gx-flip-face .5s ease-out var(--gx-flip-delay, 0s) both;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .25rem;
+    padding: .5rem;
+    display: flex;
+    position: absolute;
+    inset: 0;
+  }
+
+  .gx-flip-back {
+    font-family: var(--font-gx);
+    color: var(--color-gx-ink);
+    background: var(--color-gx-accent);
+    font-size: 2.25rem;
+    animation-name: gx-flip-back;
+  }
+
+  .gx-flip-face {
+    color: var(--color-gx-on-page);
+    background: var(--color-gx-page);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-flip-back {
+      display: none;
+    }
+
+    .gx-flip-face {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-flip-back {
+    display: none;
+  }
+
+  [data-gx-motion="reduce"] .gx-flip-face {
+    animation: none;
+  }
+
   .gx-quest {
     color: var(--color-gx-on-page);
     background: #0d0d1ab3;
@@ -5450,6 +5515,26 @@
     opacity: 1;
     translate: 0;
     scale: 1;
+  }
+}
+
+@keyframes gx-flip-face {
+  from {
+    transform: rotateY(180deg);
+  }
+
+  to {
+    transform: rotateY(0);
+  }
+}
+
+@keyframes gx-flip-back {
+  from {
+    transform: rotateY(0);
+  }
+
+  to {
+    transform: rotateY(-180deg);
   }
 }
 

@@ -56,6 +56,43 @@ export declare const SOUNDS: {
         gain: number;
     }[];
     open: Tone[];
+    gift: ({
+        wave: "noise";
+        freq: number;
+        dur: number;
+        gain: number;
+        at?: undefined;
+        to?: undefined;
+    } | {
+        wave: "noise";
+        freq: number;
+        at: number;
+        dur: number;
+        gain: number;
+        to?: undefined;
+    } | {
+        wave: "sine";
+        freq: number;
+        to: number;
+        at: number;
+        dur: number;
+        gain: number;
+    })[];
+    flip: ({
+        wave: "noise";
+        freq: number;
+        to: number;
+        dur: number;
+        gain: number;
+        at?: undefined;
+    } | {
+        wave: "triangle";
+        freq: number;
+        at: number;
+        dur: number;
+        gain: number;
+        to?: undefined;
+    })[];
     jump: {
         wave: "square";
         freq: number;
@@ -128,5 +165,21 @@ export declare const SOUNDS: {
     levelUp: Tone[];
     achievement: Tone[];
     gameOver: Tone[];
+    heartUp: Tone[];
+    heartFade: ({
+        wave: "sine";
+        freq: number;
+        to: number;
+        dur: number;
+        gain: number;
+        at?: undefined;
+    } | {
+        wave: "sine";
+        freq: number;
+        to: number;
+        at: number;
+        dur: number;
+        gain: number;
+    })[];
 };
 export type SoundName = keyof typeof SOUNDS;

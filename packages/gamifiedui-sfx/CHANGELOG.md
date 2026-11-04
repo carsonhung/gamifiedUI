@@ -6,7 +6,8 @@
   `bass`, hat and kick), with `define`, `play(name | null)` and `muted`.
 - `createVoice()`: character lines via speech synthesis (pitched per character) with chiptune
   talk-blip fallback; `say`, `blips`, `cancel` and `muted`.
-- New built-in sound `success`.
+- New built-in sounds: `success`, `gift` (paper rustle and pop), `flip` (a card turning
+  over), `heartUp` (a rising sparkle for affection) and `heartFade` (a soft falling letdown).
 
 ## 0.1.0
 

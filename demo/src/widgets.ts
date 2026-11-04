@@ -206,6 +206,42 @@ function setupReward(): void {
   });
 }
 
+const DRAW_CARDS = [
+  { icon: 'potion', name: 'tilePotion', rarity: 'common' },
+  { icon: 'sword', name: 'tileSword', rarity: 'epic' },
+  { icon: 'shield', name: 'tileShield', rarity: 'rare' },
+] as const;
+const DRAW_STAGGER_MS = 350;
+
+function setupDraw(): void {
+  const row = byId('draw-row');
+  byId('draw-cards').addEventListener('click', () => {
+    // Fresh nodes, so every draw plays the turn again.
+    row.replaceChildren(
+      ...DRAW_CARDS.map((card, i) => {
+        const item = document.createElement('li');
+        item.className = `gx-flip gx-rarity-${card.rarity}`;
+        item.style.setProperty('--gx-flip-delay', `${i * DRAW_STAGGER_MS}ms`);
+        const back = document.createElement('div');
+        back.className = 'gx-flip-back';
+        back.setAttribute('aria-hidden', 'true');
+        back.textContent = '?';
+        const face = document.createElement('div');
+        face.className = 'gx-flip-face';
+        const glyph = document.createElement('span');
+        glyph.className = `gx-icon gx-icon-lg gx-i-${card.icon}`;
+        glyph.setAttribute('aria-hidden', 'true');
+        const name = document.createElement('span');
+        name.className = 'text-sm';
+        name.textContent = t(card.name);
+        face.append(glyph, name);
+        item.append(back, face);
+        return item;
+      }),
+    );
+  });
+}
+
 function setupParticles(): void {
   const stage = byId('burst-stage');
   document.querySelectorAll<HTMLButtonElement>('[data-burst]').forEach((button) => {
@@ -377,6 +413,7 @@ export function setupGameWidgets(targetSrc: string): void {
   setupLeaderboard();
   setupHud(targetSrc);
   setupReward();
+  setupDraw();
   setupParticles();
   setupIconGallery();
 }

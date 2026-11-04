@@ -24,8 +24,8 @@ plugin). Without that the build succeeds but `@theme` and `@utility` stay unproc
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/press-start-2p/index.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.2/dist/gamifiedui.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.2/src/all.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.1/dist/gamifiedui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.1/src/all.css">
 ```
 
 | File | Contains |
@@ -67,7 +67,7 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 | `gx-frame` | `<figure>` around `<img>`, `<picture>`, `<canvas>` or `<video>` | `gx-frame-caption`, `gx-frame-pixelated`, `gx-frame-cover` + `gx-frame-{square,wide,portrait}`, `gx-rarity-*` |
 | `gx-avatar` | `<span>` with an `<img alt>`, or initials + `role="img" aria-label` | `gx-avatar-{sm,lg}`, `gx-rarity-*` |
 | `gx-video` | `gx-frame gx-video` > `gx-video-screen` > `<video controls>` with `<track kind="captions">` | `gx-video-play` start overlay (a real `<button>`) |
-| `gx-menu` / `gx-menu-item` | `<ul>` of `<button>`s or links; blinking ? cursor on hover, focus and `aria-current` | `gx-menu-hint` |
+| `gx-menu` / `gx-menu-item` | `<ul>` of `<button>`s or links; blinking ▶ cursor on hover, focus and `aria-current` | `gx-menu-hint` |
 | `gx-dropdown` | `<details>` > `<summary>` + `gx-dropdown-panel` | `gx-dropdown-end` |
 | `gx-accordion` | `<details>` (share a `name` for one-open-at-a-time) | `gx-accordion-meta`, `gx-accordion-body` |
 | `gx-slider` | `<input type="range">`; script sets `--gx-value` (0..1) for the WebKit fill | `gx-slider-{hp,mp,xp}` |
@@ -81,6 +81,7 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 | `gx-rating` | `role="img"` + `aria-label`, `style="--gx-value: 3"` | `gx-rating-stars`, `gx-rating-{sm,lg}`, `--gx-rating-max` |
 | `gx-counter` | icon + `gx-counter-value`; `data-bump` plays a pop | `gx-counter-{xp,hp}` |
 | `gx-reward` | `gx-dialog gx-reward` with `gx-reward-item` (spinning rays) | `gx-reward-{title,name}` |
+| `gx-flip` | `<li>` in a `gx-flip-row` holding `gx-flip-back` (`aria-hidden`) and `gx-flip-face`; turns over once when inserted | `--gx-flip-delay` (stagger), `--gx-flip-w`, `--gx-flip-h`, `gx-rarity-*` |
 | `gx-quest` / `gx-objective` | HUD quest tracker; `data-done` ticks an objective | `gx-quest-{title,list}`, `gx-objective-{text,count}` |
 | `gx-skill` | `<button>`; `--gx-cooldown` (1..0) sweeps, `aria-disabled` while cooling | `gx-skill-key`, `gx-skill-timer`, `data-ready` |
 | `gx-float` | short text in a `gx-float-layer`; rises and fades once | `gx-float-{damage,heal,xp,crit}` |

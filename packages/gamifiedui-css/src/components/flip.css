@@ -1,0 +1,96 @@
+/* Card draw / reveal: <ul class="gx-flip-row"><li class="gx-flip gx-rarity-epic"
+   style="--gx-flip-delay: 400ms"><div class="gx-flip-back" aria-hidden="true">?</div>
+   <div class="gx-flip-face">…</div></li></ul>. Each card turns over once when it is inserted;
+   stagger a row with --gx-flip-delay, and re-insert a card to play it again. The face is in the
+   DOM from the start, so screen readers get it at once; reduced motion skips the turn. */
+@layer components {
+  .gx-flip-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .gx-flip {
+    --gx-flip-frame: var(--gx-rarity, var(--color-gx-frame, var(--color-gx-ink)));
+
+    position: relative;
+    width: var(--gx-flip-w, 8rem);
+    height: var(--gx-flip-h, 13rem);
+    perspective: 600px;
+  }
+
+  .gx-flip-back,
+  .gx-flip-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: var(--gx-radius, 0);
+    box-shadow:
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--gx-flip-frame),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--gx-flip-frame),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--gx-flip-frame),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--gx-flip-frame),
+      var(--gx-elevation, 0 0 transparent);
+    backface-visibility: hidden;
+    animation: gx-flip-face 0.5s ease-out var(--gx-flip-delay, 0ms) both;
+  }
+
+  .gx-flip-back {
+    font-family: var(--font-gx);
+    font-size: 2.25rem;
+    color: var(--color-gx-ink);
+    background: var(--color-gx-accent);
+    animation-name: gx-flip-back;
+  }
+
+  .gx-flip-face {
+    color: var(--color-gx-on-page);
+    background: var(--color-gx-page);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-flip-back {
+      display: none;
+    }
+
+    .gx-flip-face {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-flip-back {
+    display: none;
+  }
+
+  [data-gx-motion="reduce"] .gx-flip-face {
+    animation: none;
+  }
+}
+
+@keyframes gx-flip-face {
+  from {
+    transform: rotateY(180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes gx-flip-back {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-180deg);
+  }
+}

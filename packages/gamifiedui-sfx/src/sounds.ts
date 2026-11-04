@@ -31,6 +31,16 @@ export const SOUNDS = {
   coin: arp('square', [987.77, 1318.51], 0.06, 0.16, 0.25),
   pickup: [{ wave: 'square', freq: 600, to: 1200, dur: 0.1, gain: 0.16 }],
   open: arp('square', [392, 523.25, 659.25, 783.99], 0.08, 0.15, 0.28),
+  gift: [
+    { wave: 'noise', freq: 4000, dur: 0.05, gain: 0.14 },
+    { wave: 'noise', freq: 3200, at: 0.08, dur: 0.06, gain: 0.14 },
+    { wave: 'noise', freq: 4500, at: 0.16, dur: 0.05, gain: 0.14 },
+    { wave: 'sine', freq: 380, to: 900, at: 0.24, dur: 0.08, gain: 0.25 },
+  ],
+  flip: [
+    { wave: 'noise', freq: 2600, to: 900, dur: 0.07, gain: 0.18 },
+    { wave: 'triangle', freq: 880, at: 0.06, dur: 0.03, gain: 0.1 },
+  ],
   jump: [{ wave: 'square', freq: 300, to: 700, dur: 0.15, gain: 0.16 }],
   step: [{ wave: 'noise', freq: 900, dur: 0.04, gain: 0.25 }],
   hit: [
@@ -63,6 +73,14 @@ export const SOUNDS = {
     { wave: 'triangle', freq: 783.99, at: 0.21, dur: 0.35, gain: 0.2 },
   ],
   gameOver: arp('triangle', [392, 369.99, 349.23, 329.63], 0.2, 0.3, 0.6),
+  heartUp: [
+    ...arp('triangle', [1046.5, 1318.51, 1567.98], 0.07, 0.22, 0.1),
+    { wave: 'sine', freq: 2093, to: 2637, at: 0.22, dur: 0.3, gain: 0.16 },
+  ],
+  heartFade: [
+    { wave: 'sine', freq: 659.25, to: 523.25, dur: 0.35, gain: 0.18 },
+    { wave: 'sine', freq: 493.88, to: 392, at: 0.3, dur: 0.55, gain: 0.14 },
+  ],
 } satisfies Record<string, SoundSpec>;
 
 export type SoundName = keyof typeof SOUNDS;

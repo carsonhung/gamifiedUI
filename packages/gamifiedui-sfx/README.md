@@ -53,14 +53,15 @@ Always give players a way to mute. A toggle bound to `sfx.muted` is enough.
 
 ## Sounds
 
-There are 22 built-in sounds:
+There are 27 built-in sounds:
 
 | Group | Sounds |
 |---|---|
-| Interface | `click`, `hover`, `select`, `confirm`, `cancel`, `error`, `blip`, `notify` |
-| Items | `coin`, `pickup`, `open` |
+| Interface | `click`, `hover`, `select`, `confirm`, `cancel`, `success`, `error`, `blip`, `notify` |
+| Items | `coin`, `pickup`, `open`, `gift` (unwrap), `flip` (a card turning over) |
 | Movement and combat | `jump`, `step`, `hit`, `hurt`, `laser`, `explosion`, `heal` |
 | Progress | `powerUp`, `levelUp`, `achievement`, `gameOver` |
+| Feelings | `heartUp` (affection rises), `heartFade` (a gentle letdown) |
 
 `SOUNDS` exports their definitions, and `SoundName` is the type of their names.
 

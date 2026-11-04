@@ -1,6 +1,10 @@
 # gamifiedui-css
 
-## 0.2.0
+## 0.2.0 (unreleased)
+
+- `gx-flip`: a card draw / reveal. Each card shows its back, then turns over once when
+  inserted; stagger a row with `--gx-flip-delay`, frame it with `gx-rarity-*`. Reduced motion
+  shows the face at once. Pair it with the new `flip` sound in gamifiedui-sfx.
 
 - New `glass` theme (XR-style): lightly translucent flat surfaces, a thin light rim, soft
   depth, no bevels or gradients, pill controls and sentence-case labels.
