@@ -23,6 +23,33 @@
     animation: gx-pop var(--gx-motion-base) steps(4, end) both;
   }
 
+  /* A speaker beside a gx-textbox above the question: who is asking, and what is at stake. */
+  @media (min-width: 640px) {
+    .gx-dialog:has(.gx-dialog-scene) {
+      max-width: min(36rem, calc(100vw - 2rem));
+    }
+  }
+
+  .gx-dialog-scene {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    align-items: start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .gx-dialog-text {
+    margin: 0;
+  }
+
+  .gx-dialog-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
   .gx-dialog::backdrop {
     background: color-mix(in oklab, var(--color-gx-ink) 70%, transparent);
   }

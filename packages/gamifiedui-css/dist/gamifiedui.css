@@ -881,6 +881,32 @@
     animation: gx-pop var(--gx-motion-base) steps(4, end) both;
   }
 
+  @media (min-width: 640px) {
+    .gx-dialog:has(.gx-dialog-scene) {
+      max-width: min(36rem, 100vw - 2rem);
+    }
+  }
+
+  .gx-dialog-scene {
+    grid-template-columns: 6rem minmax(0, 1fr);
+    align-items: start;
+    gap: .75rem;
+    margin-bottom: 1rem;
+    display: grid;
+  }
+
+  .gx-dialog-text {
+    margin: 0;
+  }
+
+  .gx-dialog-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: .75rem;
+    margin-top: 1rem;
+    display: flex;
+  }
+
   .gx-dialog::backdrop {
     background: #0d0d1ab3;
   }

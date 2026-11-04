@@ -19,6 +19,8 @@ const COMPONENT_SELECTORS = [
   '.gx-bar',
   '.gx-badge',
   '.gx-dialog',
+  '.gx-dialog-scene',
+  '.gx-dialog-actions',
   '.gx-textbox',
   '.gx-alert',
   '.gx-toast-stack',

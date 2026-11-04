@@ -51,7 +51,7 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 | `gx-panel` | any block | `gx-panel-title`, `gx-panel-flat` |
 | `gx-bar` | `role="meter"` + `style="--gx-value: 0.6"` | `gx-bar-{hp,mp,xp}`, `gx-bar-smooth`, `gx-bar-critical` |
 | `gx-badge` | `<span>` | `gx-badge-{primary,danger,success}` |
-| `gx-dialog` | `<dialog>` opened with `showModal()` | |
+| `gx-dialog` | `<dialog>` opened with `showModal()` | `gx-dialog-{scene,text,actions}` |
 | `gx-textbox` | dialogue box | `gx-textbox-{speaker,text,next,choices}` |
 | `gx-alert` | block, `role="alert"` only if urgent | `gx-alert-{info,success,warning,danger}`, parts `-icon`, `-title`, `-body` |
 | `gx-toast` | inside one `gx-toast-stack` region; `role="status"` / `"alert"` | same tones + `gx-toast-achievement`, parts `-icon`, `-title`, `-body`, `-close`; `data-leaving` plays the exit |

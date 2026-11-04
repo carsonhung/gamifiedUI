@@ -30,6 +30,7 @@ motion, text appears at once, numbers jump, and decorative bursts are skipped.
 | Helper | What it does |
 |---|---|
 | `toast({ title, body?, tone?, icon?, duration?, limit?, dismissLabel?, stack? })` | Adds a `gx-toast` to the `gx-toast-stack` region, creating the region if needed. It pauses on hover and focus, and plays the exit animation before it is removed. `danger` uses `role="alert"`; every other tone uses `role="status"`. Returns `{ element, dismiss }`. |
+| `confirmDialog({ message, title?, confirmLabel?, cancelLabel?, tone?, scene?, className? })` | Asks a yes/no question in a `gx-dialog` and resolves `true` or `false`; use it instead of `window.confirm`, which itch.io and other iframes can block. `scene` goes in a `gx-dialog-scene` above the message (a portrait beside a `gx-textbox`). Cancel has focus first, and Escape cancels. |
 | `typewriter(el, text, { charsPerSecond?, locale?, onDone? })` | Types text grapheme by grapheme (safe for emoji and CJK), slowing down for CJK. Returns `{ skip, cancel, done }`. |
 | `graphemes(text, locale?)` | Splits text into user-perceived characters with `Intl.Segmenter`. |
 | `rollNumber(el, to, { from?, duration?, steps?, format? })` | Steps a number to its new value and bumps the closest `gx-counter`. Returns a Promise. |

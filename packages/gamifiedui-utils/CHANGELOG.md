@@ -2,6 +2,10 @@
 
 ## 0.2.0
 
+- `confirmDialog({ message, title?, confirmLabel?, cancelLabel?, tone?, scene?, className? })`:
+  a yes/no question in a `gx-dialog` instead of `window.confirm`, which itch.io and other
+  iframes can block. Resolves `true` only for the confirm button; Cancel has focus first.
+
 - `typewriter` takes a `speed` multiplier; `TEXT_SPEEDS` (slow, normal, fast, instant) and
   `autoAdvanceMs(text)` (reading pause for an Auto mode, longer for CJK).
 - `mapZoom(viewport, options)`: wheel and toolbar zoom for a `gx-map` that keeps the point

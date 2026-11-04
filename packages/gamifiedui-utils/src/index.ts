@@ -2,6 +2,7 @@ export { prefersReducedMotion, replay } from './motion.js';
 export { gridSvg, mirrorGrid, painter, type Painter, type Palette, type PixelGrid } from './pixel.js';
 export { spamGuard, type SpamGuardHandle, type SpamGuardOptions } from './spam.js';
 export { toast, type ToastHandle, type ToastOptions, type ToastTone } from './toast.js';
+export { confirmDialog, type ConfirmOptions, type ConfirmTone } from './confirm.js';
 export {
   autoAdvanceMs,
   graphemes,

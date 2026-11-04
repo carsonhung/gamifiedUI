@@ -4,6 +4,7 @@ import '@fontsource/fusion-pixel-12px-proportional-sc';
 
 import {
   autoAdvanceMs,
+  confirmDialog,
   fitMapPlates,
   mapZoom,
   tabs,
@@ -474,6 +475,33 @@ function setupInfoAndMap(): void {
 function setupDialog(): void {
   const dialog = byId<HTMLDialogElement>('dialog');
   byId('open-dialog').addEventListener('click', () => dialog.showModal());
+  byId('open-confirm').addEventListener('click', () => {
+    void confirmDialog({
+      message: t('confirmQuitBody'),
+      confirmLabel: t('quitTitle'),
+      cancelLabel: t('cancel'),
+      tone: 'danger',
+      scene: quitScene(),
+    }).then((isSure) => toast({ title: t(isSure ? 'confirmQuitYes' : 'confirmQuitNo'), tone: isSure ? 'warning' : 'info' }));
+  });
+}
+
+function quitScene(): DocumentFragment {
+  const scene = document.createDocumentFragment();
+  const face = document.createElement('span');
+  face.className = 'gx-icon gx-icon-xl gx-i-knight';
+  face.setAttribute('aria-hidden', 'true');
+  const box = document.createElement('div');
+  box.className = 'gx-textbox';
+  const speaker = document.createElement('p');
+  speaker.className = 'gx-textbox-speaker';
+  speaker.textContent = t('confirmQuitSpeaker');
+  const line = document.createElement('p');
+  line.className = 'gx-textbox-text';
+  line.textContent = t('confirmQuitLine');
+  box.append(speaker, line);
+  scene.append(face, box);
+  return scene;
 }
 
 function setupDesktop(): void {

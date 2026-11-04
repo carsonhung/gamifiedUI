@@ -2,6 +2,10 @@
 
 ## 0.2.0 (unreleased)
 
+- `gx-dialog` parts for questions: `gx-dialog-scene` (a portrait beside a `gx-textbox`, which
+  widens the dialog on larger screens), `gx-dialog-text` and `gx-dialog-actions` (buttons
+  aligned right). `confirmDialog()` in gamifiedui-utils builds them.
+
 - Docs: CDN snippets point at `@0.2`, and the READMEs recommend `gamifiedui-core.min.css` when
   adding gamifiedUI to an existing site, since `gamifiedui.min.css` includes Tailwind preflight.
 
