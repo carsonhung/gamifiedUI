@@ -3,6 +3,7 @@ export { gridSvg, mirrorGrid, painter, type Painter, type Palette, type PixelGri
 export { spamGuard, type SpamGuardHandle, type SpamGuardOptions } from './spam.js';
 export { toast, type ToastHandle, type ToastOptions, type ToastTone } from './toast.js';
 export { confirmDialog, type ConfirmOptions, type ConfirmTone } from './confirm.js';
+export { holdButton, type HoldButtonHandle, type HoldButtonOptions } from './hold.js';
 export { autoAdvanceMs, graphemes, TEXT_SPEEDS, typewriter, type TextSpeed, type TypewriterHandle, type TypewriterOptions, } from './typewriter.js';
 export { rollNumber, type RollOptions } from './counter.js';
 export { cooldown, isCoolingDown, type CooldownHandle, type CooldownOptions } from './cooldown.js';

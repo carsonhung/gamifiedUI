@@ -81,6 +81,10 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 | `gx-rating` | `role="img"` + `aria-label`, `style="--gx-value: 3"` | `gx-rating-stars`, `gx-rating-{sm,lg}`, `--gx-rating-max` |
 | `gx-counter` | icon + `gx-counter-value`; `data-bump` plays a pop | `gx-counter-{xp,hp}` |
 | `gx-reward` | `gx-dialog gx-reward` with `gx-reward-item` (spinning rays) | `gx-reward-{title,name}` |
+| `gx-gauge` | timing gauge: `gx-gauge-zone` (with `gx-gauge-sweet`) and `gx-gauge-marker`; `gx-gauge-vertical` with `gx-gauge-fill` for hold-to-fill | `--gx-value`, `--gx-zone-start`, `--gx-zone-size`, `--gx-sweet-start`, `--gx-sweet-size` (0..1) |
+| `gx-lane` | rhythm lane: `gx-lane-line` (the hit line) and `gx-lane-note` (`data-done` hides a hit note) | `--gx-at` on a note (0 on the line, 1 at the far end), `--gx-lane-hit` |
+| `gx-dpad` | four `gx-btn` in a cross: `gx-dpad-{up,right,down,left}`; `data-lit` lights one even while disabled | |
+| `gx-btn-hold` | press-and-hold button without the phone long-press menu; pair with `holdButton()` | |
 | `gx-flip` | `<li>` in a `gx-flip-row` holding `gx-flip-back` (`aria-hidden`) and `gx-flip-face`; turns over once when inserted | `--gx-flip-delay` (stagger), `--gx-flip-w`, `--gx-flip-h`, `gx-rarity-*` |
 | `gx-quest` / `gx-objective` | HUD quest tracker; `data-done` ticks an objective | `gx-quest-{title,list}`, `gx-objective-{text,count}` |
 | `gx-skill` | `<button>`; `--gx-cooldown` (1..0) sweeps, `aria-disabled` while cooling | `gx-skill-key`, `gx-skill-timer`, `data-ready` |

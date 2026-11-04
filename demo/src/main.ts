@@ -23,6 +23,7 @@ import { setupTime } from './time';
 import { setupUpload } from './upload';
 import { refreshPageTitle, setupPages } from './pages';
 import { setupGameWidgets } from './widgets';
+import { setupMinigames } from './minigames';
 
 const HP_MAX = 100;
 const HIT_DAMAGE = 23;
@@ -541,6 +542,7 @@ setupSpriteAndIso();
 setupMedia();
 setupDialogue();
 setupDialog();
+setupMinigames();
 setupToasts();
 setupTabs();
 setupGameWidgets(byId<HTMLImageElement>('avatar-slime').src);

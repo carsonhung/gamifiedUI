@@ -3,6 +3,7 @@ export { gridSvg, mirrorGrid, painter } from './pixel.js';
 export { spamGuard } from './spam.js';
 export { toast } from './toast.js';
 export { confirmDialog } from './confirm.js';
+export { holdButton } from './hold.js';
 export { autoAdvanceMs, graphemes, TEXT_SPEEDS, typewriter, } from './typewriter.js';
 export { rollNumber } from './counter.js';
 export { cooldown, isCoolingDown } from './cooldown.js';

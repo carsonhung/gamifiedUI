@@ -2,6 +2,12 @@
 
 ## 0.2.0 (unreleased)
 
+- Mini-game parts: `gx-gauge` (a timing gauge with a target zone, a sweet spot and a marker;
+  `gx-gauge-vertical` with `gx-gauge-fill` for hold-to-fill), `gx-lane` (a rhythm lane with a
+  hit line and notes), `gx-dpad` (four buttons in a cross that light up to show a pattern) and
+  `gx-btn-hold` (no long-press menu or text selection on phones). The game loop writes
+  `--gx-value`, `--gx-zone-*` and `--gx-at` every frame, so none of them transition.
+
 - `gx-dialog` parts for questions: `gx-dialog-scene` (a portrait beside a `gx-textbox`, which
   widens the dialog on larger screens), `gx-dialog-text` and `gx-dialog-actions` (buttons
   aligned right). `confirmDialog()` in gamifiedui-utils builds them.

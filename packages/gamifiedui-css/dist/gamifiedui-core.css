@@ -4825,6 +4825,173 @@
     opacity: .7;
     font-size: .875rem;
   }
+
+  .gx-gauge, .gx-lane {
+    margin: var(--gx-px);
+    background: var(--color-gx-track);
+    box-shadow: 0 calc(-1 * var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)), 0 var(--gx-px) 0 0 var(--color-gx-frame, var(--color-gx-ink)), var(--gx-px) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)), calc(-1 * var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gx-gauge {
+    --gx-gauge-zone: #f5a52473;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .gx-gauge {
+      --gx-gauge-zone: color-mix(in oklab, var(--color-gx-warning) 45%, transparent);
+    }
+  }
+
+  .gx-gauge {
+    --gx-gauge-sweet: var(--color-gx-warning);
+    --gx-gauge-fill: var(--color-gx-primary);
+    height: var(--gx-gauge-size, calc(var(--gx-px) * 8));
+  }
+
+  .gx-gauge-zone, .gx-gauge-sweet, .gx-gauge-marker, .gx-gauge-fill {
+    position: absolute;
+  }
+
+  .gx-gauge-zone {
+    inset-block: 0;
+    left: calc(var(--gx-zone-start, .4) * 100%);
+    width: calc(var(--gx-zone-size, .2) * 100%);
+    background: var(--gx-gauge-zone);
+  }
+
+  .gx-gauge-sweet {
+    inset-block: 0;
+    left: calc(var(--gx-sweet-start, .3) * 100%);
+    width: calc(var(--gx-sweet-size, .4) * 100%);
+    background: var(--gx-gauge-sweet);
+  }
+
+  .gx-gauge-marker {
+    inset-block: calc(-1 * var(--gx-px));
+    left: calc(clamp(0, var(--gx-value, 0), 1) * 100%);
+    width: var(--gx-px);
+    background: var(--color-gx-on-ink);
+    box-shadow: 0 0 0 calc(var(--gx-px) / 2) var(--color-gx-ink);
+    translate: -50%;
+  }
+
+  .gx-gauge-fill {
+    width: calc(clamp(0, var(--gx-value, 0), 1) * 100%);
+    background: var(--gx-gauge-fill);
+    inset-block: 0;
+    left: 0;
+  }
+
+  .gx-gauge-vertical {
+    width: var(--gx-gauge-size, calc(var(--gx-px) * 10));
+    height: var(--gx-gauge-length, 9rem);
+  }
+
+  .gx-gauge-vertical .gx-gauge-fill {
+    width: auto;
+    height: calc(clamp(0, var(--gx-value, 0), 1) * 100%);
+    inset-block: auto 0;
+    inset-inline: 0;
+  }
+
+  .gx-gauge-vertical .gx-gauge-zone {
+    inset-block: auto calc(var(--gx-zone-start, .4) * 100%);
+    width: auto;
+    height: calc(var(--gx-zone-size, .2) * 100%);
+    background: #f5a52426;
+    inset-inline: 0;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .gx-gauge-vertical .gx-gauge-zone {
+      background: color-mix(in oklab, var(--color-gx-warning) 15%, transparent);
+    }
+  }
+
+  .gx-gauge-vertical .gx-gauge-zone {
+    border-block: calc(var(--gx-px) / 2) dashed var(--gx-gauge-sweet);
+  }
+
+  .gx-gauge-vertical .gx-gauge-sweet {
+    inset-block: auto calc(var(--gx-sweet-start, .3) * 100%);
+    width: auto;
+    height: calc(var(--gx-sweet-size, .4) * 100%);
+    background: var(--gx-gauge-sweet);
+    inset-inline: 0;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .gx-gauge-vertical .gx-gauge-sweet {
+      background: color-mix(in oklab, var(--gx-gauge-sweet) 25%, transparent);
+    }
+  }
+
+  .gx-lane {
+    height: var(--gx-lane-size, 4rem);
+  }
+
+  .gx-lane-line {
+    inset-block: 0;
+    left: calc(var(--gx-lane-hit, .12) * 100%);
+    width: var(--gx-px);
+    background: var(--color-gx-accent);
+    position: absolute;
+  }
+
+  .gx-lane-note {
+    top: 50%;
+    left: calc((var(--gx-lane-hit, .12) + var(--gx-at, 1) * (1 - var(--gx-lane-hit, .12))) * 100%);
+    position: absolute;
+    translate: -50% -50%;
+  }
+
+  .gx-lane-note[data-done] {
+    visibility: hidden;
+  }
+
+  .gx-dpad {
+    gap: calc(var(--gx-px) / 2);
+    grid-template: repeat(3, auto) / repeat(3, auto);
+    display: inline-grid;
+  }
+
+  .gx-dpad > .gx-btn {
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0;
+  }
+
+  .gx-dpad-up {
+    grid-area: 1 / 2;
+  }
+
+  .gx-dpad-right {
+    grid-area: 2 / 3;
+  }
+
+  .gx-dpad-down {
+    grid-area: 3 / 2;
+  }
+
+  .gx-dpad-left {
+    grid-area: 2 / 1;
+  }
+
+  .gx-dpad > .gx-btn[data-lit] {
+    --gx-btn-base: var(--color-gx-warning);
+    --gx-btn-bg: var(--color-gx-warning);
+    --gx-btn-fg: var(--color-gx-on-warning);
+    filter: none;
+  }
+
+  .gx-btn-hold {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
 }
 
 @layer utilities {

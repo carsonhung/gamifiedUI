@@ -2,6 +2,9 @@
 
 ## 0.2.0
 
+- `holdButton(button, { onPress, onRelease?, keys? })`: press-and-hold for mini-games that
+  keeps holding when a thumb slides off the button and blocks the phone long-press menu.
+
 - `confirmDialog({ message, title?, confirmLabel?, cancelLabel?, tone?, scene?, className? })`:
   a yes/no question in a `gx-dialog` instead of `window.confirm`, which itch.io and other
   iframes can block. Resolves `true` only for the confirm button; Cancel has focus first.
