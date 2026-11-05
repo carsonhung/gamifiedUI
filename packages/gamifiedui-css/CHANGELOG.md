@@ -1,23 +1,20 @@
 # gamifiedui-css
 
-## 0.2.0 (unreleased)
+## 0.3.0
 
 - Mini-game parts: `gx-gauge` (a timing gauge with a target zone, a sweet spot and a marker;
   `gx-gauge-vertical` with `gx-gauge-fill` for hold-to-fill), `gx-lane` (a rhythm lane with a
   hit line and notes), `gx-dpad` (four buttons in a cross that light up to show a pattern) and
   `gx-btn-hold` (no long-press menu or text selection on phones). The game loop writes
   `--gx-value`, `--gx-zone-*` and `--gx-at` every frame, so none of them transition.
-
 - `gx-dialog` parts for questions: `gx-dialog-scene` (a portrait beside a `gx-textbox`, which
   widens the dialog on larger screens), `gx-dialog-text` and `gx-dialog-actions` (buttons
   aligned right). `confirmDialog()` in gamifiedui-utils builds them.
-
-- Docs: CDN snippets point at `@0.2`, and the READMEs recommend `gamifiedui-core.min.css` when
-  adding gamifiedUI to an existing site, since `gamifiedui.min.css` includes Tailwind preflight.
-
 - `gx-flip`: a card draw / reveal. Each card shows its back, then turns over once when
   inserted; stagger a row with `--gx-flip-delay`, frame it with `gx-rarity-*`. Reduced motion
   shows the face at once. Pair it with the new `flip` sound in gamifiedui-sfx.
+
+## 0.2.0
 
 - New `glass` theme (XR-style): lightly translucent flat surfaces, a thin light rim, soft
   depth, no bevels or gradients, pill controls and sentence-case labels.

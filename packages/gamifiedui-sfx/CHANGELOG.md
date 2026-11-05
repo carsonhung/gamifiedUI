@@ -1,13 +1,17 @@
 # Changelog
 
+## 0.3.0
+
+- New built-in sounds: `gift` (paper rustle and pop), `flip` (a card turning over),
+  `heartUp` (a rising sparkle for affection) and `heartFade` (a soft falling letdown).
+
 ## 0.2.0
 
 - `createMusic()`: looped chiptune background music from tiny text scores (`lead`, optional
   `bass`, hat and kick), with `define`, `play(name | null)` and `muted`.
 - `createVoice()`: character lines via speech synthesis (pitched per character) with chiptune
   talk-blip fallback; `say`, `blips`, `cancel` and `muted`.
-- New built-in sounds: `success`, `gift` (paper rustle and pop), `flip` (a card turning
-  over), `heartUp` (a rising sparkle for affection) and `heartFade` (a soft falling letdown).
+- New built-in sound `success`.
 
 ## 0.1.0
 

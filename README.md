@@ -52,7 +52,7 @@ npm i gamifiedui-css gamifiedui-icons tailwindcss @tailwindcss/vite
 No build step? Link the prebuilt stylesheets instead:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.2/dist/gamifiedui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.3/dist/gamifiedui.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.2/src/all.css">
 ```
 
@@ -63,7 +63,7 @@ out: it styles `gx-` classes only, apart from setting gamifiedUI's own variables
 `line-break: strict` on Chinese, Japanese and Korean pages.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.2/dist/gamifiedui-core.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.3/dist/gamifiedui-core.min.css">
 ```
 
 ## What's inside
@@ -146,10 +146,10 @@ See the [gamifiedui-sfx README](packages/gamifiedui-sfx/README.md) for the sound
 
 | Package | Version | Contents |
 |---|---|---|
-| [`gamifiedui-css`](packages/gamifiedui-css) | 0.1.0 | Tokens, themes, components, particles, sprite and iso utilities, CDN build |
-| [`gamifiedui-icons`](packages/gamifiedui-icons) | 0.1.0 | 349 pixel icons in 24 categories, animated versions, SVGs, JSON metadata |
-| [`gamifiedui-utils`](packages/gamifiedui-utils) | 0.1.0 | Optional JavaScript helpers |
-| [`gamifiedui-sfx`](packages/gamifiedui-sfx) | 0.1.0 | Optional chiptune sound effects made with Web Audio, no audio files |
+| [`gamifiedui-css`](packages/gamifiedui-css) | 0.3.0 | Tokens, themes, components, particles, sprite and iso utilities, CDN build |
+| [`gamifiedui-icons`](packages/gamifiedui-icons) | 0.2.0 | 349 pixel icons in 24 categories, animated versions, SVGs, JSON metadata |
+| [`gamifiedui-utils`](packages/gamifiedui-utils) | 0.3.0 | Optional JavaScript helpers |
+| [`gamifiedui-sfx`](packages/gamifiedui-sfx) | 0.3.0 | Optional chiptune sound effects made with Web Audio, no audio files |
 | `gamifiedui-vue`, `gamifiedui-react` | Planned | Component wrappers |
 
 ## Development
