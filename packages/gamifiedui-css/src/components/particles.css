@@ -4,6 +4,8 @@
    <i class="gx-particle" style="--gx-dx: 3rem; --gx-dy: -4rem; --gx-rot: 180deg; --gx-delay: 40ms">
    spawned by script inside a positioned parent; remove the burst on its last animationend.
    Add any gx-i-* icon class to a particle to use that icon as its shape.
+   Confetti: gx-particle-confetti cycles five theme colours by position; add gx-particle-ribbon
+   for a zigzag streamer.
    Ambient: <div class="gx-ambient gx-ambient-snow" aria-hidden="true"> with 12 empty <i>, no script. */
 @layer components {
   .gx-burst {
@@ -60,6 +62,47 @@
 
   .gx-particle-rarity {
     --gx-particle-color: var(--gx-rarity, var(--color-gx-accent));
+  }
+
+  .gx-particle-confetti {
+    --gx-particle-ms: 1000ms;
+    --gx-fall: 2.5rem;
+    height: calc(var(--gx-particle-size) + var(--gx-px));
+  }
+
+  .gx-particle-confetti:nth-child(5n + 2),
+  .gx-ambient-confetti > i:nth-child(5n + 2) {
+    --gx-particle-color: var(--color-gx-hp);
+    --gx-ambient-color: var(--color-gx-hp);
+  }
+
+  .gx-particle-confetti:nth-child(5n + 3),
+  .gx-ambient-confetti > i:nth-child(5n + 3) {
+    --gx-particle-color: var(--color-gx-mp);
+    --gx-ambient-color: var(--color-gx-mp);
+  }
+
+  .gx-particle-confetti:nth-child(5n + 4),
+  .gx-ambient-confetti > i:nth-child(5n + 4) {
+    --gx-particle-color: var(--color-gx-xp);
+    --gx-ambient-color: var(--color-gx-xp);
+  }
+
+  .gx-particle-confetti:nth-child(5n),
+  .gx-ambient-confetti > i:nth-child(5n) {
+    --gx-particle-color: var(--color-gx-epic);
+    --gx-ambient-color: var(--color-gx-epic);
+  }
+
+  /* A pixel zigzag streamer: four 2-pixel steps on a 3 x 8 pixel grid. */
+  .gx-particle-ribbon,
+  .gx-ambient-confetti > i:nth-child(4n) {
+    width: calc(var(--gx-px) * 3);
+    height: calc(var(--gx-px) * 8);
+    clip-path: polygon(
+      0 0, 66.67% 0, 66.67% 25%, 100% 25%, 100% 50%, 66.67% 50%, 66.67% 75%, 100% 75%,
+      100% 100%, 33.33% 100%, 33.33% 75%, 0 75%, 0 50%, 33.33% 50%, 33.33% 25%, 0 25%
+    );
   }
 
   .gx-ambient {
@@ -123,6 +166,14 @@
     --gx-ambient-ms: 8s;
   }
 
+  .gx-ambient-confetti > i {
+    --gx-ambient-color: var(--color-gx-accent);
+    --gx-ambient-size: calc(var(--gx-px) * 2);
+    --gx-ambient-ms: 7s;
+    height: calc(var(--gx-ambient-size) + var(--gx-px));
+    animation-name: gx-ambient-confetti;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .gx-particle,
     .gx-ambient {
@@ -161,6 +212,21 @@
   }
   to {
     translate: 0 calc(100cqh + 2rem);
+  }
+}
+
+@keyframes gx-ambient-confetti {
+  from {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+  50% {
+    translate: 0.75rem 50cqh;
+    rotate: 360deg;
+  }
+  to {
+    translate: 0 calc(100cqh + 2rem);
+    rotate: 720deg;
   }
 }
 

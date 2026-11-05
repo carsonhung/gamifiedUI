@@ -38,7 +38,7 @@ motion, text appears at once, numbers jump, and decorative bursts are skipped.
 | `cooldown(button, seconds, { steps?, onReady? })` | Runs a `gx-skill` cooldown: the sweep, the timer text and `aria-disabled`, then the ready flash. Returns `{ cancel }`. |
 | `isCoolingDown(button)` | Returns `true` while a cooldown is running. |
 | `floatText(layer, text, { kind?, x?, y? })` | Spawns a `gx-float` number (`damage`, `heal`, `xp`, `crit`) in a `gx-float-layer`. |
-| `burst(host, { kind?, className?, x?, y?, count?, spread?, largeEvery? })` | Fires a particle burst in a positioned element. Pass `className: 'gx-i-coin'` to use an icon shape. |
+| `burst(host, { kind?, className?, x?, y?, count?, spread?, largeEvery? })` | Fires a particle burst in a positioned element. Pass `className: 'gx-i-coin'` to use an icon shape. `kind: 'confetti'` mixes colours and adds a zigzag ribbon every third piece. |
 | `tabs(tablist)` | Wires up `role="tablist"`: click, the arrow keys, Home and End, roving `tabindex`, and showing the panel. Returns `{ select, destroy }`. |
 | `sliderFill(root?)` | Keeps `--gx-value` in sync on every `gx-slider` (for the WebKit fill). Returns a cleanup function. |
 | `videoPlayOverlay(video, button)` | Shows a `gx-video-play` button until the video starts, then hands over to native controls. |

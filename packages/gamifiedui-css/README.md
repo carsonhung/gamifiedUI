@@ -100,11 +100,13 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 
 - **Bursts:** a `gx-burst` inside any positioned element, holding `gx-particle` children.
   Each child gets `--gx-dx`, `--gx-dy` (in rem), `--gx-rot` and `--gx-delay`. Colours are
-  `gx-particle-{coin,heart,xp,petal,rarity}` and `gx-particle-lg`. Add an icon class such as
-  `gx-i-coin` to use that shape. `burst()` in `gamifiedui-utils` builds all of this for you.
+  `gx-particle-{coin,heart,xp,petal,rarity}` and `gx-particle-lg`. `gx-particle-confetti`
+  cycles five theme colours by position and falls further; add `gx-particle-ribbon` for a pixel
+  zigzag streamer. Add an icon class such as `gx-i-coin` to use that shape. `burst()` in
+  `gamifiedui-utils` builds all of this for you.
 - **Ambient:** `<div class="gx-ambient gx-ambient-snow" aria-hidden="true">` with 12 empty
   `<i>`, placed inside a positioned element. It needs no script. Kinds are
-  `snow`, `rain`, `embers` and `petals`.
+  `snow`, `rain`, `embers`, `petals` and `confetti` (tumbling pieces with a streamer every fourth).
 
 Both are hidden under reduced motion, since they are decoration.
 

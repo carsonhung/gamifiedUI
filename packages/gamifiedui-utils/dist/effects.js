@@ -29,7 +29,10 @@ const PARTICLE_CLASS = {
     xp: 'gx-particle gx-particle-xp',
     petal: 'gx-particle gx-particle-petal',
     rarity: 'gx-particle gx-particle-rarity',
+    confetti: 'gx-particle gx-particle-confetti',
 };
+/** Confetti mixes in a zigzag streamer every this many pieces. */
+const RIBBON_EVERY = 3;
 const BURST_LIFETIME_MS = 1100;
 /** One-shot particle burst inside a positioned host. Skipped entirely under reduced motion. */
 export function burst(host, options = {}) {
@@ -38,7 +41,8 @@ export function burst(host, options = {}) {
     const count = options.count ?? 18;
     const [near, far] = options.spread ?? [2.5, 5];
     const largeEvery = options.largeEvery ?? 3;
-    const base = PARTICLE_CLASS[options.kind ?? 'spark'];
+    const kind = options.kind ?? 'spark';
+    const base = PARTICLE_CLASS[kind];
     const extra = options.className ? ` ${options.className}` : '';
     const layer = document.createElement('div');
     layer.className = 'gx-burst';
@@ -48,7 +52,8 @@ export function burst(host, options = {}) {
     for (let i = 0; i < count; i++) {
         const particle = document.createElement('i');
         const isLarge = largeEvery > 0 && i % largeEvery === 0;
-        particle.className = `${base}${isLarge ? ' gx-particle-lg' : ''}${extra}`;
+        const isRibbon = kind === 'confetti' && i % RIBBON_EVERY === 1;
+        particle.className = `${base}${isLarge ? ' gx-particle-lg' : ''}${isRibbon ? ' gx-particle-ribbon' : ''}${extra}`;
         const angle = (i / count) * Math.PI * 2 + between(-0.3, 0.3);
         const distance = between(near, far);
         particle.style.setProperty('--gx-dx', `${(Math.cos(angle) * distance).toFixed(2)}rem`);

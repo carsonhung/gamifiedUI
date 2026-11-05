@@ -1,5 +1,12 @@
 # gamifiedui-css
 
+## Unreleased
+
+- Confetti: `gx-particle-confetti` (five theme colours by position, a longer fall) and
+  `gx-particle-ribbon` (a 3 x 8 pixel zigzag streamer) for bursts, and a CSS-only
+  `gx-ambient-confetti` loop whose pieces tumble as they fall. Hidden under reduced motion,
+  like the other particles.
+
 ## 0.3.0
 
 - Mini-game parts: `gx-gauge` (a timing gauge with a target zone, a sweet spot and a marker;

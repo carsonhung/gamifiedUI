@@ -8,7 +8,7 @@ export interface FloatOptions {
 }
 /** Floating combat text inside a .gx-float-layer. Decorative: announce the value separately. */
 export declare function floatText(layer: HTMLElement, text: string, options?: FloatOptions): HTMLElement;
-export type BurstKind = 'spark' | 'coin' | 'heart' | 'xp' | 'petal' | 'rarity';
+export type BurstKind = 'spark' | 'coin' | 'heart' | 'xp' | 'petal' | 'rarity' | 'confetti';
 export interface BurstOptions {
     kind?: BurstKind;
     /** Extra classes per particle, e.g. "gx-i-coin" for an icon shape. Write the full class name

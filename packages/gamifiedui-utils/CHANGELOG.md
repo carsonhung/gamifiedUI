@@ -1,5 +1,10 @@
 # gamifiedui-utils
 
+## Unreleased
+
+- `burst(host, { kind: 'confetti' })`: mixed-colour confetti with a zigzag ribbon every third
+  piece, for level-ups, milestones and wins.
+
 ## 0.3.0
 
 - `holdButton(button, { onPress, onRelease?, keys? })`: press-and-hold for mini-games that

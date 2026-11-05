@@ -35,7 +35,7 @@ export function floatText(layer: HTMLElement, text: string, options: FloatOption
   return el;
 }
 
-export type BurstKind = 'spark' | 'coin' | 'heart' | 'xp' | 'petal' | 'rarity';
+export type BurstKind = 'spark' | 'coin' | 'heart' | 'xp' | 'petal' | 'rarity' | 'confetti';
 
 const PARTICLE_CLASS: Record<BurstKind, string> = {
   spark: 'gx-particle',
@@ -44,7 +44,11 @@ const PARTICLE_CLASS: Record<BurstKind, string> = {
   xp: 'gx-particle gx-particle-xp',
   petal: 'gx-particle gx-particle-petal',
   rarity: 'gx-particle gx-particle-rarity',
+  confetti: 'gx-particle gx-particle-confetti',
 };
+
+/** Confetti mixes in a zigzag streamer every this many pieces. */
+const RIBBON_EVERY = 3;
 
 export interface BurstOptions {
   kind?: BurstKind;
@@ -69,7 +73,8 @@ export function burst(host: HTMLElement, options: BurstOptions = {}): void {
   const count = options.count ?? 18;
   const [near, far] = options.spread ?? [2.5, 5];
   const largeEvery = options.largeEvery ?? 3;
-  const base = PARTICLE_CLASS[options.kind ?? 'spark'];
+  const kind = options.kind ?? 'spark';
+  const base = PARTICLE_CLASS[kind];
   const extra = options.className ? ` ${options.className}` : '';
 
   const layer = document.createElement('div');
@@ -81,7 +86,8 @@ export function burst(host: HTMLElement, options: BurstOptions = {}): void {
   for (let i = 0; i < count; i++) {
     const particle = document.createElement('i');
     const isLarge = largeEvery > 0 && i % largeEvery === 0;
-    particle.className = `${base}${isLarge ? ' gx-particle-lg' : ''}${extra}`;
+    const isRibbon = kind === 'confetti' && i % RIBBON_EVERY === 1;
+    particle.className = `${base}${isLarge ? ' gx-particle-lg' : ''}${isRibbon ? ' gx-particle-ribbon' : ''}${extra}`;
     const angle = (i / count) * Math.PI * 2 + between(-0.3, 0.3);
     const distance = between(near, far);
     particle.style.setProperty('--gx-dx', `${(Math.cos(angle) * distance).toFixed(2)}rem`);

@@ -19,13 +19,14 @@ const GOLD_REWARD = 250;
 const ORE_GOAL = 3;
 const CRIT_CHANCE = 0.2;
 
-type AmbientKind = 'snow' | 'rain' | 'embers' | 'petals';
+type AmbientKind = 'snow' | 'rain' | 'embers' | 'petals' | 'confetti';
 
 const BURSTS: Record<string, BurstOptions> = {
   spark: { kind: 'spark' },
   coin: { kind: 'coin', className: 'gx-i-coin' },
   heart: { kind: 'heart', className: 'gx-i-heart' },
   petal: { kind: 'petal', className: 'gx-i-bauhinia', largeEvery: 0 },
+  confetti: { kind: 'confetti', count: 24, largeEvery: 0 },
 };
 
 const AMBIENT_CLASSES: Record<AmbientKind, string> = {
@@ -33,6 +34,7 @@ const AMBIENT_CLASSES: Record<AmbientKind, string> = {
   rain: 'gx-ambient gx-ambient-rain',
   embers: 'gx-ambient gx-ambient-embers',
   petals: 'gx-ambient gx-ambient-petals',
+  confetti: 'gx-ambient gx-ambient-confetti',
 };
 
 interface Skill {
