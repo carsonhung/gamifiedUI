@@ -52,7 +52,7 @@ npm i gamifiedui-css gamifiedui-icons tailwindcss @tailwindcss/vite
 No build step? Link the prebuilt stylesheets instead:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.3/dist/gamifiedui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.4/dist/gamifiedui.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.2/src/all.css">
 ```
 
@@ -63,7 +63,7 @@ out: it styles `gx-` classes only, apart from setting gamifiedUI's own variables
 `line-break: strict` on Chinese, Japanese and Korean pages.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.3/dist/gamifiedui-core.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.4/dist/gamifiedui-core.min.css">
 ```
 
 ## What's inside

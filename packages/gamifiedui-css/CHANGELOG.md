@@ -1,6 +1,6 @@
 # gamifiedui-css
 
-## Unreleased
+## 0.4.0
 
 - Quantity: `gx-quantity`, a `− N +` stepper with raised `gx-quantity-btn` buttons, a recessed
   number field without native spinners, and a `data-bump` pop on change.

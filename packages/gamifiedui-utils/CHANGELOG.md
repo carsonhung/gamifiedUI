@@ -1,6 +1,6 @@
 # gamifiedui-utils
 
-## Unreleased
+## 0.4.0
 
 - `quantity(root, { pageSteps?, onChange? })`: wires a `gx-quantity` stepper with press-and-hold
   repeat, keyboard jumps and min / max / step clamping. Buttons at a limit get `aria-disabled`

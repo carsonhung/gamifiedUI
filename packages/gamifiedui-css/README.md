@@ -24,7 +24,7 @@ plugin). Without that the build succeeds but `@theme` and `@utility` stay unproc
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/press-start-2p/index.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.3/dist/gamifiedui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-css@0.4/dist/gamifiedui.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gamifiedui-icons@0.2/src/all.css">
 ```
 
