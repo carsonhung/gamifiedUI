@@ -16,6 +16,7 @@
 @import "./components/tabs.css";
 @import "./components/form.css";
 @import "./components/item.css";
+@import "./components/layout.css";
 @import "./components/media.css";
 @import "./components/menu.css";
 @import "./components/accordion.css";
@@ -28,6 +29,7 @@
 @import "./components/skeleton.css";
 @import "./components/rating.css";
 @import "./components/counter.css";
+@import "./components/quantity.css";
 @import "./components/reward.css";
 @import "./components/flip.css";
 @import "./components/quest.css";
@@ -36,6 +38,7 @@
 @import "./components/timer.css";
 @import "./components/calendar.css";
 @import "./components/datepicker.css";
+@import "./components/timepicker.css";
 @import "./components/upload.css";
 @import "./components/icon.css";
 @import "./components/particles.css";

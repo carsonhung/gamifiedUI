@@ -62,6 +62,8 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 | `gx-checkbox`, `gx-radio`, `gx-switch` | native inputs (`role="switch"` for the switch) in `label.gx-choice` | |
 | `gx-card` | block, or `<button>` / `<a>` to make it pressable | `gx-card-{title,meta}`, `gx-rarity-*` |
 | `gx-slot` | inventory cell, `<button aria-pressed>` | `gx-slot-count`, `gx-rarity-*` |
+| `gx-card-grid` | `<ul>` of cards (or cards as children); columns fill automatically and cards in a row share a height | `gx-card-grid-{sm,lg}`, `--gx-card-grid-min`, `--gx-card-grid-gap` |
+| `gx-inventory` | recessed tray of `gx-slot` buttons, `role="group"` with `aria-label`; fixed columns that shrink to fit narrow screens, down to a 44px touch target, then the tray scrolls sideways; `aria-disabled` marks locked cells | `--gx-inventory-cols` (set fewer on phones, e.g. `[--gx-inventory-cols:4] sm:[--gx-inventory-cols:6]`), `--gx-inventory-slot`, `--gx-inventory-slot-min` |
 | `gx-kbd` | `<kbd>` key prompt | |
 | `gx-rarity-*` | modifier for cards and slots | `common`, `rare`, `epic`, `legendary` (also print the name) |
 | `gx-frame` | `<figure>` around `<img>`, `<picture>`, `<canvas>` or `<video>` | `gx-frame-caption`, `gx-frame-pixelated`, `gx-frame-cover` + `gx-frame-{square,wide,portrait}`, `gx-rarity-*` |
@@ -80,6 +82,7 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 | `gx-skeleton` | placeholder inside `aria-busy="true"` | `gx-skeleton-{text,avatar,block}`, `--gx-skeleton-w` |
 | `gx-rating` | `role="img"` + `aria-label`, `style="--gx-value: 3"` | `gx-rating-stars`, `gx-rating-{sm,lg}`, `--gx-rating-max` |
 | `gx-counter` | icon + `gx-counter-value`; `data-bump` plays a pop | `gx-counter-{xp,hp}` |
+| `gx-quantity` | `− N +` stepper: two `gx-quantity-btn` around a number `gx-quantity-value`; `aria-disabled` sinks a button at a limit, `data-bump` pops the value | `--gx-quantity-digits` |
 | `gx-reward` | `gx-dialog gx-reward` with `gx-reward-item` (spinning rays) | `gx-reward-{title,name}` |
 | `gx-gauge` | timing gauge: `gx-gauge-zone` (with `gx-gauge-sweet`) and `gx-gauge-marker`; `gx-gauge-vertical` with `gx-gauge-fill` for hold-to-fill | `--gx-value`, `--gx-zone-start`, `--gx-zone-size`, `--gx-sweet-start`, `--gx-sweet-size` (0..1) |
 | `gx-lane` | rhythm lane: `gx-lane-line` (the hit line) and `gx-lane-note` (`data-done` hides a hit note) | `--gx-at` on a note (0 on the line, 1 at the far end), `--gx-lane-hit` |
@@ -92,6 +95,8 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 | `gx-timer` | `role="timer"` with `gx-timer-label` + `<time class="gx-timer-value">`; `--gx-value` (1..0) drains the strip | `data-state="warning\|critical\|done"`, `gx-timer-lg` |
 | `gx-calendar` | month grid of `<button class="gx-day">`; rendered by `calendar()` in `gamifiedui-utils` | day: `aria-current="date"`, `aria-pressed`, `data-range="start\|middle\|end\|preview"`, `data-outside`, `aria-disabled`, `data-event` + `gx-rarity-*`, `data-claimed` |
 | `gx-datepicker` | `.gx-input` + `gx-datepicker-toggle` + `[popover].gx-datepicker-panel` holding a `gx-calendar` | single date or a range; anchored under the field where CSS anchor positioning exists |
+| `gx-time` | scrolling list (`role="listbox"`) of `gx-time-option`; rendered by `timeList()` in `gamifiedui-utils` | option: `aria-selected`, `data-range="start\|middle\|end\|preview"`, `aria-disabled`, `gx-time-tag` (`+1` for next day); `gx-time-title`, `gx-time-summary`, `--gx-time-rows` |
+| `gx-timepicker` | `.gx-input` + `gx-timepicker-toggle` + `[popover].gx-timepicker-panel` holding a `gx-time` | single time or a range (overnight allowed); same anchoring as `gx-datepicker` |
 | `gx-dropzone` | `<label>` wrapping `<input type="file">` (click and keyboard work without JS) | `gx-dropzone-{title,hint}`, `data-dragging`, `data-invalid` |
 | `gx-file-list` / `gx-file` | `<ul>` of uploads | `gx-file-{name,size,remove,status}`, `gx-bar gx-file-progress`, `data-state="uploading\|done\|error"` |
 | `gx-icon` | `<span aria-hidden="true">` + an icon class from `gamifiedui-icons` | `gx-icon-{sm,lg,xl}` (16/48/64px; default 32), tones, `gx-icon-shadow`, `gx-icon-tile` |

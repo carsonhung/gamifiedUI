@@ -304,6 +304,28 @@
                   </div>
                   <p class="gx-field-hint" id="trip-range-hint" data-i18n="rangeHint">Pick the first day, then the last.</p>
                 </div>
+                <div class="gx-field">
+                  <label class="gx-field-label" for="raid-time" data-i18n="raidTime">Raid time</label>
+                  <div class="gx-timepicker">
+                    <input class="gx-input" id="raid-time" inputmode="numeric" autocomplete="off" placeholder="HH:MM" aria-describedby="raid-time-hint" />
+                    <button class="gx-timepicker-toggle" type="button" id="raid-time-toggle" aria-label="Choose raid time" data-i18n-label="chooseTime">
+                      <span class="gx-icon gx-icon-sm gx-i-clock" aria-hidden="true"></span>
+                    </button>
+                    <div class="gx-timepicker-panel" id="raid-time-panel"><div class="gx-time"></div></div>
+                  </div>
+                  <p class="gx-field-hint" id="raid-time-hint" data-i18n="timeHint">Type HH:MM or pick a time. Raids run 08:00 to 23:00.</p>
+                </div>
+                <div class="gx-field">
+                  <label class="gx-field-label" for="shift-range" data-i18n="shiftRange">Guard shift</label>
+                  <div class="gx-timepicker">
+                    <input class="gx-input" id="shift-range" autocomplete="off" placeholder="HH:MM – HH:MM" aria-describedby="shift-range-hint" />
+                    <button class="gx-timepicker-toggle" type="button" id="shift-range-toggle" aria-label="Choose shift times" data-i18n-label="chooseTimeRange">
+                      <span class="gx-icon gx-icon-sm gx-i-clock" aria-hidden="true"></span>
+                    </button>
+                    <div class="gx-timepicker-panel" id="shift-range-panel"><div class="gx-time"></div></div>
+                  </div>
+                  <p class="gx-field-hint" id="shift-range-hint" data-i18n="timeRangeHint">Pick the start, then the end. A night shift can end the next day.</p>
+                </div>
               </div>
               <div class="flex flex-col items-start gap-3">
                 <h4 class="font-gx text-sm uppercase" id="login-title" data-i18n="loginTitle">Daily login</h4>
@@ -379,25 +401,40 @@
                 <button class="gx-tab" role="tab" id="tab-keys" aria-controls="panel-keys" aria-selected="false" tabindex="-1" data-i18n="tabKeys">Controls</button>
               </div>
               <div class="gx-panel gx-tab-panel" role="tabpanel" id="panel-items" aria-labelledby="tab-items">
-                <div class="flex flex-wrap gap-2">
+                <div class="gx-inventory [--gx-inventory-cols:4] sm:[--gx-inventory-cols:6]" id="bag-inventory" role="group" aria-label="Items, use arrow keys to move">
                   <button class="gx-slot gx-rarity-common" aria-pressed="true" aria-label="Apple, 12, common">🍎<span class="gx-slot-count" aria-hidden="true">12</span></button>
                   <button class="gx-slot gx-rarity-rare" aria-pressed="false" aria-label="Mana potion, 3, rare">🧪<span class="gx-slot-count" aria-hidden="true">3</span></button>
                   <button class="gx-slot gx-rarity-epic" aria-pressed="false" aria-label="Crystal, epic">💎</button>
                   <button class="gx-slot gx-rarity-legendary" aria-pressed="false" aria-label="Crown, legendary">👑</button>
-                  <span class="gx-slot" aria-label="Empty slot" role="img"></span>
+                  <button class="gx-slot gx-rarity-common" aria-pressed="false" aria-label="Bread, 4, common">🍞<span class="gx-slot-count" aria-hidden="true">4</span></button>
+                  <button class="gx-slot gx-rarity-rare" aria-pressed="false" aria-label="Key, rare">🗝️</button>
+                  <button class="gx-slot" aria-pressed="false" aria-label="Empty slot"></button>
+                  <button class="gx-slot" aria-pressed="false" aria-label="Empty slot"></button>
+                  <button class="gx-slot" aria-pressed="false" aria-label="Empty slot"></button>
+                  <button class="gx-slot" aria-pressed="false" aria-label="Empty slot"></button>
+                  <button class="gx-slot" aria-disabled="true" aria-label="Locked slot">🔒</button>
+                  <button class="gx-slot" aria-disabled="true" aria-label="Locked slot">🔒</button>
                 </div>
               </div>
               <div class="gx-panel gx-tab-panel" role="tabpanel" id="panel-gear" aria-labelledby="tab-gear" hidden>
-                <div class="grid gap-3 sm:grid-cols-2">
-                  <button class="gx-card gx-rarity-rare">
+                <ul class="gx-card-grid gx-card-grid-sm" id="gear-grid" aria-label="Gear, use arrow keys to move">
+                  <li><button class="gx-card gx-rarity-common">
+                    <span class="gx-card-title">Wood staff</span>
+                    <span class="gx-card-meta">Common · MAG +2</span>
+                  </button></li>
+                  <li><button class="gx-card gx-rarity-rare">
                     <span class="gx-card-title">Iron sword</span>
                     <span class="gx-card-meta">Rare · ATK +8</span>
-                  </button>
-                  <button class="gx-card gx-rarity-legendary">
+                  </button></li>
+                  <li><button class="gx-card gx-rarity-epic">
+                    <span class="gx-card-title">Storm bow</span>
+                    <span class="gx-card-meta">Epic · ATK +14, shocks on hit</span>
+                  </button></li>
+                  <li><button class="gx-card gx-rarity-legendary">
                     <span class="gx-card-title">Sun shield</span>
                     <span class="gx-card-meta">Legendary · DEF +20</span>
-                  </button>
-                </div>
+                  </button></li>
+                </ul>
               </div>
               <div class="gx-panel gx-tab-panel" role="tabpanel" id="panel-keys" aria-labelledby="tab-keys" hidden>
                 <ul class="flex flex-col gap-1">
@@ -422,6 +459,15 @@
                     <span class="gx-counter-value">340</span>
                   </span>
                   <button id="earn-gold" data-gx-sfx="coin" class="gx-btn gx-btn-warning gx-btn-sm" data-i18n="earnGold">+250 gold</button>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <div class="gx-quantity" id="potion-qty" role="group" aria-label="Potions to buy" data-i18n-label="potionsToBuy">
+                    <button type="button" class="gx-quantity-btn" data-step="-1" aria-label="Fewer" data-i18n-label="fewer"></button>
+                    <input class="gx-quantity-value" type="number" inputmode="numeric" min="1" max="20" step="1" value="1" aria-label="Potions" data-i18n-label="potions">
+                    <button type="button" class="gx-quantity-btn" data-step="1" aria-label="More" data-i18n-label="more"></button>
+                  </div>
+                  <button id="buy-potions" type="button" data-gx-sfx="coin" class="gx-btn gx-btn-sm">Buy for 40 gold</button>
+                  <p id="shop-status" class="text-sm" aria-live="polite"></p>
                 </div>
                 <div class="flex flex-wrap items-center gap-4">
                   <span class="gx-rating" id="hearts" role="img" aria-label="5 of 5 hearts" style="--gx-value: 5"></span>
@@ -922,6 +968,11 @@
             <div class="mb-3 flex flex-wrap gap-2">
               <button class="gx-chip" id="icons-animate" data-icons aria-pressed="false" data-i18n="animateAll">Animate all</button>
               <button class="gx-chip" id="icons-pause" data-icons aria-pressed="false" data-i18n="pauseAll">Pause</button>
+            </div>
+            <div class="gx-field mb-4 max-w-sm">
+              <label class="gx-field-label" for="icon-search" data-i18n="iconSearch">Search icons</label>
+              <input class="gx-input" id="icon-search" type="search" autocomplete="off" placeholder="sword, 貓, coin" aria-describedby="icon-count" />
+              <p class="gx-field-hint" id="icon-count" aria-live="polite"></p>
             </div>
             <nav id="icon-categories" class="mb-4 flex flex-wrap gap-2" aria-label="Icon categories" data-i18n-label="iconCategories"></nav>
             <div id="icon-gallery"></div>

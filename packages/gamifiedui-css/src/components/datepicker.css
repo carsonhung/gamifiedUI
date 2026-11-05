@@ -3,21 +3,25 @@
    <button class="gx-datepicker-toggle" popovertarget="p" aria-label="Choose date">icon</button>
    <div id="p" popover class="gx-datepicker-panel"><div class="gx-calendar"></div></div></div>
    The panel sits under the field where CSS anchor positioning exists (gamifiedui-utils
-   datePicker() wires the anchor) and is centred on screen elsewhere. */
+   datePicker() wires the anchor) and is centred on screen elsewhere.
+   gx-timepicker shares the field, toggle and panel rules; its list lives in timepicker.css. */
 @layer components {
-  .gx-datepicker {
+  .gx-datepicker,
+  .gx-timepicker {
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
 
-  .gx-datepicker > .gx-input {
+  .gx-datepicker > .gx-input,
+  .gx-timepicker > .gx-input {
     flex: 1;
     min-width: 0;
     font-variant-numeric: tabular-nums;
   }
 
-  .gx-datepicker-toggle {
+  .gx-datepicker-toggle,
+  .gx-timepicker-toggle {
     --gx-toggle-lift: var(--gx-depth);
 
     display: inline-grid;
@@ -41,23 +45,28 @@
   }
 
   @media (hover: hover) {
-    .gx-datepicker-toggle:hover {
+    .gx-datepicker-toggle:hover,
+    .gx-timepicker-toggle:hover {
       color: var(--color-gx-accent);
     }
   }
 
-  .gx-datepicker-toggle:focus-visible {
+  .gx-datepicker-toggle:focus-visible,
+  .gx-timepicker-toggle:focus-visible {
     outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
     outline-offset: calc(var(--gx-px) * 2);
   }
 
   .gx-datepicker-toggle:active,
-  .gx-datepicker-toggle[aria-expanded="true"] {
+  .gx-datepicker-toggle[aria-expanded="true"],
+  .gx-timepicker-toggle:active,
+  .gx-timepicker-toggle[aria-expanded="true"] {
     --gx-toggle-lift: 0px;
     translate: 0 var(--gx-depth);
   }
 
-  .gx-datepicker-panel {
+  .gx-datepicker-panel,
+  .gx-timepicker-panel {
     margin: auto;
     padding: 0;
     border: 0;
@@ -66,16 +75,19 @@
     background: transparent;
   }
 
-  .gx-datepicker-panel::backdrop {
+  .gx-datepicker-panel::backdrop,
+  .gx-timepicker-panel::backdrop {
     background: transparent;
   }
 
-  .gx-datepicker-panel:popover-open {
+  .gx-datepicker-panel:popover-open,
+  .gx-timepicker-panel:popover-open {
     animation: gx-pop var(--gx-motion-fast) steps(3, end) both;
   }
 
   @supports (position-area: block-end) {
-    .gx-datepicker-panel[data-anchored] {
+    .gx-datepicker-panel[data-anchored],
+    .gx-timepicker-panel[data-anchored] {
       inset: auto;
       margin: calc(var(--gx-px) * 2) 0 0;
       position-area: block-end span-inline-end;

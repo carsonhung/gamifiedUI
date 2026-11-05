@@ -2,10 +2,24 @@
 
 ## Unreleased
 
+- Quantity: `gx-quantity`, a `− N +` stepper with raised `gx-quantity-btn` buttons, a recessed
+  number field without native spinners, and a `data-bump` pop on change.
 - Confetti: `gx-particle-confetti` (five theme colours by position, a longer fall) and
   `gx-particle-ribbon` (a 3 x 8 pixel zigzag streamer) for bursts, and a CSS-only
   `gx-ambient-confetti` loop whose pieces tumble as they fall. Hidden under reduced motion,
   like the other particles.
+- `gx-card-grid`: a responsive grid for `gx-card` (directly or in `<li>`). Columns fill from
+  `--gx-card-grid-min` (12rem; `gx-card-grid-sm` 8rem, `gx-card-grid-lg` 18rem), cards in a row
+  share a height, and the gap leaves room for each card's raised depth.
+- `gx-inventory`: a recessed tray of `gx-slot` cells with a fixed column count
+  (`--gx-inventory-cols`, default 6). Slots shrink rather than wrap on narrow screens, so the
+  layout keeps matching arrow-key movement; below a 44px touch target the tray scrolls
+  sideways instead of the page. `aria-disabled="true"` dims locked cells.
+  Pair either with `gridNav()` in gamifiedui-utils.
+- `gx-time` and `gx-timepicker`: a time list (`gx-time-option` with selected, range, disabled
+  and next-day `gx-time-tag` states, plus `gx-time-summary`) and a field + toggle + popover
+  that shares the `gx-datepicker` look and anchoring. `timeList()` / `timePicker()` in
+  gamifiedui-utils render and wire them.
 
 ## 0.3.0
 

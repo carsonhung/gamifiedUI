@@ -2,8 +2,19 @@
 
 ## Unreleased
 
+- `quantity(root, { pageSteps?, onChange? })`: wires a `gx-quantity` stepper with press-and-hold
+  repeat, keyboard jumps and min / max / step clamping. Buttons at a limit get `aria-disabled`
+  so keyboard focus stays put.
 - `burst(host, { kind: 'confetti' })`: mixed-colour confetti with a zigzag ribbon every third
   piece, for level-ups, milestones and wins.
+- `gridNav(root, { selector?, onMove? })`: an arrow-key cursor over a `gx-inventory` or
+  `gx-card-grid` with a single tab stop. Up and Down move by the columns the browser laid out,
+  so auto-fill grids reflow without config; Home / End and Ctrl+Home / End jump to row and grid
+  ends. Returns `{ focus, refresh, destroy }`.
+- `timeList(el, options)` and `timePicker(input, toggle, panel, options)`: pick a time or a
+  time range in `step`-minute slots, with `min` / `max`, typed digits to jump, an hour per
+  PageUp / PageDown, and overnight ranges (`22:00 – 06:00`, tagged `+1`, with the length in the
+  summary). Plus `parseTime`, `formatTime` and `timeRange`.
 
 ## 0.3.0
 

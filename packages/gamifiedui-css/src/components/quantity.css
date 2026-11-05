@@ -1,0 +1,124 @@
+/* Quantity: <div class="gx-quantity" role="group" aria-label="Potions">
+   <button class="gx-quantity-btn" type="button" data-step="-1" aria-label="Fewer"></button>
+   <input class="gx-quantity-value" type="number" inputmode="numeric" min="1" max="99" value="1"
+   aria-label="Quantity"><button class="gx-quantity-btn" type="button" data-step="1"
+   aria-label="More"></button></div>.
+   Empty buttons draw − / + from the sign of data-step; give one text (e.g. "+10") to label it.
+   Without JS the native number field still types and steps; quantity() in gamifiedui-utils wires
+   the buttons, press-and-hold repeat, clamping and the data-bump pop. */
+@layer components {
+  .gx-quantity {
+    --gx-quantity-digits: 3;
+
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--gx-px) * 2);
+  }
+
+  .gx-quantity-btn {
+    --gx-quantity-lift: var(--gx-depth);
+
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) + var(--gx-depth));
+    padding: 0;
+    border: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-md);
+    line-height: 1;
+    color: var(--color-gx-on-primary);
+    background: var(--color-gx-primary);
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-touch-callout: none;
+    box-shadow:
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 calc(var(--gx-line, var(--gx-px)) + var(--gx-quantity-lift)) 0 0 var(--color-gx-ink);
+    transition: translate var(--gx-motion-fast) steps(2, end);
+  }
+
+  /* Empty buttons draw a pixel − / + so the sign never depends on the font's glyphs. */
+  .gx-quantity-btn:empty::before,
+  .gx-quantity-btn:empty:not([data-step^="-"])::after {
+    content: "";
+    grid-area: 1 / 1;
+    width: calc(var(--gx-px) * 6);
+    height: calc(var(--gx-px) * 2);
+    background: currentColor;
+  }
+
+  .gx-quantity-btn:empty:not([data-step^="-"])::after {
+    rotate: 90deg;
+  }
+
+  @media (hover: hover) {
+    .gx-quantity-btn:hover:not(:disabled, [aria-disabled="true"]) {
+      background: color-mix(in oklab, var(--color-gx-primary) 85%, white);
+    }
+  }
+
+  .gx-quantity-btn:focus-visible {
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * 2);
+  }
+
+  .gx-quantity-btn:active:not(:disabled, [aria-disabled="true"]),
+  .gx-quantity-btn[data-pressed] {
+    --gx-quantity-lift: 0px;
+    translate: 0 var(--gx-depth);
+  }
+
+  /* At a limit the button stays focusable (aria-disabled) so keyboard focus is not dropped. */
+  .gx-quantity-btn:disabled,
+  .gx-quantity-btn[aria-disabled="true"] {
+    --gx-quantity-lift: 0px;
+    translate: 0 var(--gx-depth);
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  .gx-quantity-value {
+    box-sizing: content-box;
+    width: calc(var(--gx-quantity-digits) * 1ch);
+    min-height: 2.75rem;
+    margin: var(--gx-px);
+    padding: 0 0.5rem;
+    border: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-md);
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    color: var(--color-gx-on-page);
+    background: color-mix(in oklab, var(--color-gx-page) 60%, var(--color-gx-surface));
+    box-shadow:
+      inset var(--gx-line, var(--gx-px)) var(--gx-line, var(--gx-px)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent),
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
+  .gx-quantity-value::-webkit-inner-spin-button,
+  .gx-quantity-value::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
+
+  .gx-quantity-value:focus-visible {
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * 2);
+  }
+
+  .gx-quantity[data-bump] .gx-quantity-value {
+    animation: gx-bump var(--gx-motion-fast) steps(2, end);
+  }
+}

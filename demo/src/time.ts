@@ -1,10 +1,23 @@
-import { burst, calendar, datePicker, timer, toISODate, type CalendarHandle } from 'gamifiedui-utils';
+import {
+  burst,
+  calendar,
+  datePicker,
+  timePicker,
+  timer,
+  toISODate,
+  type CalendarHandle,
+  type TimeListHandle,
+  type TimeListLabels,
+} from 'gamifiedui-utils';
 
 import { byId, locale, onLocaleChange, t } from './core';
 import type { Locale } from './i18n';
 
 const RAID_SECONDS = 15;
 const LOGIN_REWARD = 100;
+const RAID_STEP_MINUTES = 15;
+const SHIFT_STEP_MINUTES = 30;
+const MINUTES_PER_HOUR = 60;
 
 const INTL_LOCALES: Record<Locale, string> = {
   en: 'en-HK',
@@ -68,6 +81,37 @@ function setupDatePickers(): CalendarHandle[] {
   return [single.calendar, range.calendar];
 }
 
+function formatLength(minutes: number): string {
+  const h = Math.floor(minutes / MINUTES_PER_HOUR);
+  const m = minutes % MINUTES_PER_HOUR;
+  if (locale === 'en') return [h ? `${h}h` : '', m || !h ? `${m}m` : ''].filter(Boolean).join(' ');
+  const [hour, minute] = locale === 'zh-Hant' ? ['小時', '分鐘'] : ['小时', '分钟'];
+  return [h ? `${h} ${hour}` : '', m || !h ? `${m} ${minute}` : ''].filter(Boolean).join(' ');
+}
+
+const timeLabels = (): TimeListLabels => ({
+  title: t('pickTime'),
+  pickStart: t('pickStartTime'),
+  pickEnd: t('pickEndTime'),
+  nextDayLong: t('nextDay'),
+  duration: formatLength,
+});
+
+function setupTimePickers(): TimeListHandle[] {
+  const raid = timePicker(byId('raid-time'), byId('raid-time-toggle'), byId('raid-time-panel'), {
+    step: RAID_STEP_MINUTES,
+    min: '08:00',
+    max: '23:00',
+    labels: timeLabels(),
+  });
+  const shift = timePicker(byId('shift-range'), byId('shift-range-toggle'), byId('shift-range-panel'), {
+    mode: 'range',
+    step: SHIFT_STEP_MINUTES,
+    labels: timeLabels(),
+  });
+  return [raid.list, shift.list];
+}
+
 function setupLoginCalendar(): CalendarHandle {
   const today = new Date();
   const claimed = new Set<string>();
@@ -118,4 +162,6 @@ export function setupTime(): void {
   const calendars = [...setupDatePickers(), setupLoginCalendar()];
   const roots = ['event-date-panel', 'trip-range-panel', 'login-calendar'].map((id) => byId(id));
   onLocaleChange(() => relabel(calendars, roots));
+  const timeLists = setupTimePickers();
+  onLocaleChange(() => timeLists.forEach((list) => list.setLabels(timeLabels())));
 }

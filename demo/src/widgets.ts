@@ -6,6 +6,7 @@ import {
   cooldown,
   floatText,
   isCoolingDown,
+  quantity,
   rollNumber,
   sliderFill,
   type BurstOptions,
@@ -16,6 +17,7 @@ import { byId, locale, onLocaleChange, t } from './core';
 const PAGE_COUNT = 3;
 const BOARD_LOAD_MS = 1200;
 const GOLD_REWARD = 250;
+const POTION_PRICE = 40;
 const ORE_GOAL = 3;
 const CRIT_CHANCE = 0.2;
 
@@ -144,6 +146,25 @@ function setupHud(targetSrc: string): void {
   byId('earn-gold').addEventListener('click', () => {
     gold += GOLD_REWARD;
     void rollNumber(goldValue, gold);
+  });
+
+  const buy = byId<HTMLButtonElement>('buy-potions');
+  const shopStatus = byId('shop-status');
+  const potions = quantity(byId('potion-qty'), { onChange: () => labelBuy() });
+  const labelBuy = (): void => {
+    buy.textContent = t('buyFor', { n: potions.value * POTION_PRICE });
+  };
+  labelBuy();
+  onLocaleChange(labelBuy);
+  buy.addEventListener('click', () => {
+    const cost = potions.value * POTION_PRICE;
+    if (cost > gold) {
+      shopStatus.textContent = t('notEnoughGold');
+      return;
+    }
+    gold -= cost;
+    void rollNumber(goldValue, gold);
+    shopStatus.textContent = t('boughtPotions', { n: potions.value });
   });
 
   const log = byId('combat-log');

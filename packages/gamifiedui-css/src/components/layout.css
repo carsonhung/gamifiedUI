@@ -1,0 +1,76 @@
+/* Card grid and inventory tray.
+   Cards: <ul class="gx-card-grid"><li><article class="gx-card">…</article></li></ul> (or cards as
+   direct children). Columns fill automatically from --gx-card-grid-min; cards in a row share a height.
+   Inventory: <div class="gx-inventory" role="group" aria-label="Bag" style="--gx-inventory-cols: 8">
+   holding .gx-slot buttons. Columns stay fixed so arrow-key movement (gridNav in gamifiedui-utils)
+   matches what players see; slots shrink rather than wrap on narrow screens, down to a 44px floor. */
+@layer components {
+  .gx-card-grid {
+    --gx-card-grid-min: 12rem;
+    --gx-card-grid-gap: 0.75rem;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--gx-card-grid-min)), 1fr));
+    gap: var(--gx-card-grid-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .gx-card-grid > li {
+    display: grid;
+    min-width: 0;
+  }
+
+  .gx-card-grid-sm {
+    --gx-card-grid-min: 8rem;
+    --gx-card-grid-gap: 0.5rem;
+  }
+
+  .gx-card-grid-lg {
+    --gx-card-grid-min: 18rem;
+    --gx-card-grid-gap: 1rem;
+  }
+
+  .gx-inventory {
+    --gx-inventory-cols: 6;
+    --gx-inventory-slot: calc(var(--gx-px) * 16);
+    /* Touch target floor; below it the tray scrolls sideways instead of the page. */
+    --gx-inventory-slot-min: calc(2.75rem + var(--gx-px) * 2);
+
+    display: grid;
+    grid-template-columns: repeat(var(--gx-inventory-cols), minmax(var(--gx-inventory-slot-min), var(--gx-inventory-slot)));
+    gap: var(--gx-px);
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    box-sizing: border-box;
+    margin: var(--gx-px);
+    padding: calc(var(--gx-px) * 2);
+    list-style: none;
+    background: color-mix(in oklab, var(--color-gx-surface) 60%, var(--color-gx-page));
+    box-shadow:
+      inset var(--gx-line, var(--gx-px)) var(--gx-line, var(--gx-px)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent),
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
+  }
+
+  .gx-inventory > li {
+    display: grid;
+    min-width: 0;
+  }
+
+  .gx-inventory .gx-slot {
+    width: auto;
+    min-width: 0;
+  }
+
+  /* Locked or unused cells: still focusable so the cursor can pass over them. */
+  .gx-inventory .gx-slot[aria-disabled="true"] {
+    cursor: default;
+    opacity: 0.45;
+  }
+}

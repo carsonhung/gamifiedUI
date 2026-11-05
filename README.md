@@ -74,7 +74,7 @@ There are 35 component families, all prefixed `gx-`:
 
 - **Controls:** buttons, chips, forms, sliders, uploads, date pickers and calendars.
 - **Containers:** panels, dialogs, drawers, tabs, accordions, menus, tables, pagination and steppers.
-- **Game parts:** HP / MP / XP bars, skill slots with cooldowns, item and loot cards, quest logs, rewards, ratings, timers and counters.
+- **Game parts:** HP / MP / XP bars, skill slots with cooldowns, item and loot cards, card grids and inventory trays, quest logs, rewards, ratings, timers and counters.
 - **Feedback:** toasts, alerts, tooltips, badges, spinners, skeletons, floating damage text and particle bursts.
 - **Scenes:** sprite-sheet animation and isometric scenes.
 

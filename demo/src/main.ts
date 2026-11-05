@@ -6,6 +6,7 @@ import {
   autoAdvanceMs,
   confirmDialog,
   fitMapPlates,
+  gridNav,
   mapZoom,
   tabs,
   TEXT_SPEEDS,
@@ -450,12 +451,15 @@ function setupTabs(): void {
   const tablist = document.querySelector<HTMLElement>('[role="tablist"]');
   if (tablist) tabs(tablist);
 
-  const slots = Array.from(document.querySelectorAll<HTMLButtonElement>('button.gx-slot'));
+  const inventory = byId('bag-inventory');
+  const slots = Array.from(inventory.querySelectorAll<HTMLButtonElement>('button.gx-slot:not([aria-disabled="true"])'));
   slots.forEach((slot) => {
     slot.addEventListener('click', () => {
       slots.forEach((s) => s.setAttribute('aria-pressed', String(s === slot)));
     });
   });
+  gridNav(inventory);
+  gridNav(byId('gear-grid'));
 }
 
 function setupInfoAndMap(): void {

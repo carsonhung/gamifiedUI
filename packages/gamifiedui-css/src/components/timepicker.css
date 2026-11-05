@@ -1,0 +1,131 @@
+/* Time list: <div class="gx-time"> rendered by timeList() in gamifiedui-utils, inline or inside a
+   [popover].gx-timepicker-panel next to a .gx-input and .gx-timepicker-toggle.
+   Options are <li role="option" class="gx-time-option"> with aria-selected, data-range=
+   "start|middle|end|preview", aria-disabled="true" (outside min / max, still focusable) and an
+   optional .gx-time-tag such as "+1" for a range end on the next day. The selected range is
+   also spelled out in .gx-time-summary, so colour is never the only cue. */
+@layer components {
+  .gx-time {
+    --gx-time-rows: 7;
+    --gx-time-option-h: 2.75rem;
+
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 11rem;
+    margin: var(--gx-px) var(--gx-px) calc(var(--gx-px) + var(--gx-depth));
+    padding: 0.75rem;
+    color: var(--color-gx-on-surface);
+    background: var(--color-gx-surface);
+    box-shadow:
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 calc(var(--gx-line, var(--gx-px)) + var(--gx-depth)) 0 0 color-mix(in oklab, var(--color-gx-ink) 55%, transparent),
+      var(--gx-elevation, 0 0 transparent);
+  }
+
+  .gx-time-title {
+    margin: 0;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    text-align: center;
+    text-transform: var(--gx-case, uppercase);
+    color: var(--color-gx-accent);
+  }
+
+  .gx-time-list {
+    max-height: calc(var(--gx-time-option-h) * var(--gx-time-rows));
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-color: var(--color-gx-accent) transparent;
+    scrollbar-width: thin;
+    list-style: none;
+    background: color-mix(in oklab, var(--color-gx-surface) 75%, var(--color-gx-page));
+    box-shadow: inset var(--gx-line, var(--gx-px)) var(--gx-line, var(--gx-px)) 0 0 color-mix(in oklab, var(--color-gx-ink) 45%, transparent);
+  }
+
+  .gx-time-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-height: var(--gx-time-option-h);
+    padding: 0 0.75rem 0 2rem;
+    font-family: var(--font-gx);
+    font-size: var(--gx-text-sm);
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+  }
+
+  .gx-time-option::before {
+    content: "▶";
+    content: "▶" / "";
+    position: absolute;
+    inset-inline-start: 0.625rem;
+    color: var(--color-gx-accent);
+    opacity: 0;
+  }
+
+  @media (hover: hover) {
+    .gx-time-option:hover:not([aria-disabled="true"]) {
+      color: var(--color-gx-accent);
+    }
+
+    .gx-time-option:hover:not([aria-disabled="true"])::before {
+      opacity: 1;
+    }
+  }
+
+  .gx-time-option:focus-visible {
+    z-index: 1;
+    outline: var(--gx-focus-width, var(--gx-px)) solid var(--color-gx-focus);
+    outline-offset: calc(var(--gx-px) * -1);
+  }
+
+  .gx-time-option:focus-visible::before {
+    opacity: 1;
+  }
+
+  .gx-time-option[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.3;
+    text-decoration: line-through;
+  }
+
+  .gx-time-option[data-range="middle"] {
+    background: color-mix(in oklab, var(--color-gx-primary) 35%, transparent);
+  }
+
+  .gx-time-option[data-range="preview"] {
+    background: color-mix(in oklab, var(--color-gx-primary) 18%, transparent);
+  }
+
+  .gx-time-option[aria-selected="true"] {
+    color: var(--color-gx-on-primary);
+    background: var(--color-gx-primary);
+    box-shadow: inset var(--gx-line, var(--gx-px)) var(--gx-line, var(--gx-px)) 0 0 color-mix(in oklab, var(--color-gx-ink) 45%, transparent);
+  }
+
+  .gx-time-option[aria-selected="true"]::before {
+    opacity: 1;
+    color: currentColor;
+  }
+
+  .gx-time-tag {
+    font-size: var(--gx-text-sm);
+    opacity: 0.85;
+  }
+
+  .gx-time-summary {
+    min-height: 1.5em;
+    margin: 0;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+  }
+}
