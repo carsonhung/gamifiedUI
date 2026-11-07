@@ -45,8 +45,8 @@ export function createSfx(options = {}) {
             data[i] = Math.random() * 2 - 1;
         return noise;
     };
-    const voice = (ctx, out, tone, gain, pitch) => {
-        const start = ctx.currentTime + (tone.at ?? 0);
+    const voice = (ctx, out, tone, gain, pitch, delay) => {
+        const start = ctx.currentTime + delay + (tone.at ?? 0);
         const end = start + tone.dur;
         const env = ctx.createGain();
         env.gain.setValueAtTime(SILENT, start);
@@ -65,7 +65,7 @@ export function createSfx(options = {}) {
             buffer.buffer = noiseBuffer(ctx);
             buffer.loop = true;
             const filter = ctx.createBiquadFilter();
-            filter.type = 'lowpass';
+            filter.type = tone.filter ?? 'lowpass';
             slide(filter.frequency);
             buffer.connect(filter).connect(env);
             source = buffer;
@@ -82,7 +82,7 @@ export function createSfx(options = {}) {
         source.onended = () => env.disconnect();
     };
     const sfx = {
-        play(sound, { volume: gain = 1, pitch = 1 } = {}) {
+        play(sound, { volume: gain = 1, pitch = 1, delay = 0 } = {}) {
             if (muted)
                 return;
             const spec = typeof sound === 'string' ? sounds.get(sound) : sound;
@@ -91,7 +91,7 @@ export function createSfx(options = {}) {
             const graph = audio();
             if (!graph)
                 return;
-            spec.forEach((tone) => voice(graph.ctx, graph.out, tone, clamp01(gain), pitch));
+            spec.forEach((tone) => voice(graph.ctx, graph.out, tone, clamp01(gain), pitch, Math.max(0, delay)));
         },
         define(name, spec) {
             sounds.set(name, spec);

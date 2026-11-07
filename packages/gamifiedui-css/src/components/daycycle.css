@@ -1,0 +1,193 @@
+/* Time of day as a window on the sky: <div class="gx-daycycle" role="img" aria-label="Day 3, afternoon"
+   data-part="afternoon" style="--gx-daycycle-turn: 1140"><span class="gx-daycycle-wheel">
+   <span class="gx-daycycle-sun gx-icon gx-i-sun"></span><span class="gx-daycycle-moon gx-icon gx-i-moon"></span>
+   </span></div>. The wheel's centre sits on the bottom edge, so only the body at the top shows; the
+   other one waits under the hills. --gx-daycycle-turn is in degrees and should only grow (add 360
+   per day; dayCycle() in gamifiedui-utils does this) so the wheel never spins back.
+   data-part="morning|noon|afternoon|evening|night" sets the sky colour. data-weather="cloudy|rain|storm"
+   greys the sky and, with a <span class="gx-daycycle-clouds"></span> after the wheel, draws clouds over
+   it; rain and storm add falling rain, still under reduced motion. */
+@layer components {
+  .gx-daycycle {
+    --gx-daycycle-unit: calc(var(--gx-px) * 0.5);
+    /* Whole icon sizes only, so the sun and moon pixels stay square. */
+    --gx-daycycle-body: calc(var(--gx-px) * 4);
+    --gx-daycycle-sky: var(--color-gx-sky-noon);
+    --gx-daycycle-ground: var(--color-gx-ground);
+    --gx-daycycle-sun: var(--color-gx-sun);
+    --gx-daycycle-moon: var(--color-gx-moon);
+    --gx-daycycle-cloud: var(--color-gx-cloud);
+    --gx-daycycle-overcast: 0%;
+
+    position: relative;
+    isolation: isolate;
+    display: inline-block;
+    flex: none;
+    width: calc(var(--gx-daycycle-unit) * 32);
+    height: calc(var(--gx-daycycle-unit) * 18);
+    margin: var(--gx-px);
+    overflow: hidden;
+    vertical-align: middle;
+    background: color-mix(in srgb, var(--gx-daycycle-sky), var(--color-gx-overcast) var(--gx-daycycle-overcast));
+    box-shadow:
+      0 calc(-1 * var(--gx-line, var(--gx-px))) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      0 var(--gx-line, var(--gx-px)) 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      var(--gx-line, var(--gx-px)) 0 0 0 var(--color-gx-frame, var(--color-gx-ink)),
+      calc(-1 * var(--gx-line, var(--gx-px))) 0 0 0 var(--color-gx-frame, var(--color-gx-ink));
+  }
+
+  /* Hills in front of the wheel hide the body that is down. */
+  .gx-daycycle::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: auto 0 0;
+    height: calc(var(--gx-daycycle-unit) * 4);
+    background: var(--gx-daycycle-ground);
+    clip-path: polygon(0 40%, 20% 0, 40% 50%, 60% 10%, 80% 60%, 100% 20%, 100% 100%, 0 100%);
+  }
+
+  .gx-daycycle-wheel {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: calc(var(--gx-daycycle-unit) * 28);
+    height: calc(var(--gx-daycycle-unit) * 28);
+    translate: -50% -50%;
+    rotate: calc(var(--gx-daycycle-turn, 0) * 1deg);
+    transition: rotate var(--gx-motion-slow) steps(6, end);
+  }
+
+  /* Doubled up to beat .gx-icon, which sets its own size and colour. */
+  .gx-daycycle .gx-daycycle-sun,
+  .gx-daycycle .gx-daycycle-moon {
+    --gx-icon-size: var(--gx-daycycle-body);
+
+    position: absolute;
+    left: 50%;
+    translate: -50% 0;
+  }
+
+  .gx-daycycle .gx-daycycle-sun {
+    --gx-icon-color: var(--gx-daycycle-sun);
+
+    top: 0;
+  }
+
+  .gx-daycycle .gx-daycycle-moon {
+    --gx-icon-color: var(--gx-daycycle-moon);
+
+    bottom: 0;
+    rotate: 180deg;
+  }
+
+  .gx-daycycle[data-part="morning"] {
+    --gx-daycycle-sky: var(--color-gx-sky-morning);
+  }
+
+  .gx-daycycle[data-part="afternoon"] {
+    --gx-daycycle-sky: var(--color-gx-sky-afternoon);
+  }
+
+  .gx-daycycle[data-part="evening"] {
+    --gx-daycycle-sky: var(--color-gx-sky-evening);
+  }
+
+  .gx-daycycle[data-part="night"] {
+    --gx-daycycle-sky: var(--color-gx-sky-night);
+  }
+
+  .gx-daycycle[data-weather="cloudy"] {
+    --gx-daycycle-overcast: 35%;
+  }
+
+  .gx-daycycle[data-weather="rain"] {
+    --gx-daycycle-overcast: 55%;
+  }
+
+  .gx-daycycle[data-weather="storm"] {
+    --gx-daycycle-overcast: 75%;
+    --gx-daycycle-cloud: var(--color-gx-storm-cloud);
+  }
+
+  /* Two stepped pixel clouds, the big one over where the sun or moon stands. */
+  .gx-daycycle-clouds {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    display: none;
+  }
+
+  .gx-daycycle[data-weather] .gx-daycycle-clouds {
+    display: block;
+  }
+
+  .gx-daycycle-clouds::before,
+  .gx-daycycle-clouds::after {
+    content: "";
+    position: absolute;
+    width: calc(var(--gx-daycycle-unit) * 14);
+    height: calc(var(--gx-daycycle-unit) * 6);
+    background: var(--gx-daycycle-cloud);
+    clip-path: polygon(0 100%, 0 50%, 10% 50%, 10% 25%, 25% 25%, 25% 0, 70% 0, 70% 25%, 85% 25%, 85% 50%, 100% 50%, 100% 100%);
+  }
+
+  .gx-daycycle-clouds::before {
+    top: calc(var(--gx-daycycle-unit) * 4);
+    left: calc(50% - var(--gx-daycycle-unit) * 9);
+  }
+
+  .gx-daycycle-clouds::after {
+    top: calc(var(--gx-daycycle-unit) * 8);
+    right: calc(var(--gx-daycycle-unit) * 1);
+    scale: 0.7;
+  }
+
+  /* Rain: rows of dashes masked into columns, one tile taller than the window so a one-tile drop loops. */
+  .gx-daycycle[data-weather="rain"]::before,
+  .gx-daycycle[data-weather="storm"]::before {
+    --gx-daycycle-drop: calc(var(--gx-daycycle-unit) * 6);
+    --gx-daycycle-lane: calc(var(--gx-daycycle-unit) * 4);
+
+    content: "";
+    position: absolute;
+    z-index: 3;
+    inset: calc(-1 * var(--gx-daycycle-drop)) 0 0;
+    background: linear-gradient(to bottom, var(--color-gx-rain) 0 34%, transparent 34%) 0 0 / 100% var(--gx-daycycle-drop);
+    mask: linear-gradient(to right, black 0 25%, transparent 25%) 0 0 / var(--gx-daycycle-lane) 100%;
+    animation: gx-daycycle-rain var(--gx-motion-slow) steps(3, end) infinite;
+  }
+
+  .gx-daycycle[data-weather="storm"]::before {
+    --gx-daycycle-lane: calc(var(--gx-daycycle-unit) * 3);
+
+    inset: calc(-1 * var(--gx-daycycle-drop)) -25% 0;
+    rotate: 15deg;
+    animation-duration: var(--gx-motion-base);
+  }
+
+  @keyframes gx-daycycle-rain {
+    to {
+      translate: 0 var(--gx-daycycle-drop);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gx-daycycle[data-weather]::before {
+      animation: none;
+    }
+  }
+
+  [data-gx-motion="reduce"] .gx-daycycle[data-weather]::before {
+    animation: none;
+  }
+
+  .gx-daycycle-sm {
+    --gx-daycycle-unit: calc(var(--gx-px) * 0.375);
+  }
+
+  .gx-daycycle-lg {
+    --gx-daycycle-unit: var(--gx-px);
+    --gx-daycycle-body: calc(var(--gx-px) * 8);
+  }
+}

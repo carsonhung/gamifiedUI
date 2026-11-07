@@ -30,6 +30,18 @@
   --color-gx-silver: #c0c7d1;
   --color-gx-bronze: #c47a3f;
   --color-gx-diamond: #7dd3fc;
+  --color-gx-sky-morning: #a9c8e0;
+  --color-gx-sky-noon: #7fb7e0;
+  --color-gx-sky-afternoon: #e0b97f;
+  --color-gx-sky-evening: #b0607a;
+  --color-gx-sky-night: #2a2f5c;
+  --color-gx-ground: #2d5531;
+  --color-gx-sun: #ffb13b;
+  --color-gx-moon: #f4f0e0;
+  --color-gx-overcast: #8a93a3;
+  --color-gx-cloud: #eef1f5;
+  --color-gx-storm-cloud: #5b6170;
+  --color-gx-rain: #d6e6ffcc;
 
   --font-gx: "Press Start 2P", "Fusion Pixel 12px Proportional TC", ui-monospace, monospace;
   --font-gx-body: ui-sans-serif, system-ui, sans-serif;

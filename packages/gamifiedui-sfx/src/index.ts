@@ -10,6 +10,8 @@ export interface PlayOptions {
   volume?: number;
   /** Frequency multiplier, e.g. 1.5 for higher. Handy for varying typewriter blips. */
   pitch?: number;
+  /** Seconds to wait, e.g. to let a sizzle finish before the result chime. */
+  delay?: number;
 }
 
 export interface SfxOptions {
@@ -71,8 +73,8 @@ export function createSfx(options: SfxOptions = {}): Sfx {
     return noise;
   };
 
-  const voice = (ctx: AudioContext, out: AudioNode, tone: Tone, gain: number, pitch: number): void => {
-    const start = ctx.currentTime + (tone.at ?? 0);
+  const voice = (ctx: AudioContext, out: AudioNode, tone: Tone, gain: number, pitch: number, delay: number): void => {
+    const start = ctx.currentTime + delay + (tone.at ?? 0);
     const end = start + tone.dur;
     const env = ctx.createGain();
     env.gain.setValueAtTime(SILENT, start);
@@ -92,7 +94,7 @@ export function createSfx(options: SfxOptions = {}): Sfx {
       buffer.buffer = noiseBuffer(ctx);
       buffer.loop = true;
       const filter = ctx.createBiquadFilter();
-      filter.type = 'lowpass';
+      filter.type = tone.filter ?? 'lowpass';
       slide(filter.frequency);
       buffer.connect(filter).connect(env);
       source = buffer;
@@ -109,13 +111,13 @@ export function createSfx(options: SfxOptions = {}): Sfx {
   };
 
   const sfx: Sfx = {
-    play(sound, { volume: gain = 1, pitch = 1 } = {}) {
+    play(sound, { volume: gain = 1, pitch = 1, delay = 0 } = {}) {
       if (muted) return;
       const spec = typeof sound === 'string' ? sounds.get(sound) : sound;
       if (!spec) return;
       const graph = audio();
       if (!graph) return;
-      spec.forEach((tone) => voice(graph.ctx, graph.out, tone, clamp01(gain), pitch));
+      spec.forEach((tone) => voice(graph.ctx, graph.out, tone, clamp01(gain), pitch, Math.max(0, delay)));
     },
     define(name, spec) {
       sounds.set(name, spec);

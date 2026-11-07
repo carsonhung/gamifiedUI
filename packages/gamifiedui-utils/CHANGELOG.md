@@ -1,5 +1,13 @@
 # gamifiedui-utils
 
+## Unreleased
+
+- `dayCycle(el, { day, part, weather?, label? })` and `DAY_PART_ANGLES`: set a `gx-daycycle` so
+  its wheel always turns forward, a full turn per day, with `clear`, `cloudy`, `rain` or `storm`
+  weather (adding the clouds part when needed).
+- `soundControl(root, targets, { onChange? })`: wires a `gx-sound` mute toggle and volume slider
+  to any `{ muted, volume }` targets, keeping them in step with the first.
+
 ## 0.4.0
 
 - `quantity(root, { pageSteps?, onChange? })`: wires a `gx-quantity` stepper with press-and-hold

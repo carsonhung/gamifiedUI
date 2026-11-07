@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Music themes take optional `leadWave` and `bassWave` (balanced per wave), a `drums` score
+  (`k`, `s`, `h`) and `isLoop: false` for one-shot fanfares.
+- Switching themes now fades the old one out (`fade`, 0.4 s by default; 0 cuts as before).
+- `Music` gains a `volume` property, and scores accept flats such as `Bb2`.
+- Noise tones take a `filter` (`lowpass`, `bandpass` or `highpass`), and `play()` takes a
+  `delay` in seconds.
+- The README documents `createMusic()`.
+
 ## 0.3.0
 
 - New built-in sounds: `gift` (paper rustle and pop), `flip` (a card turning over),

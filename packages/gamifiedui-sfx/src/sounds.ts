@@ -1,6 +1,6 @@
 export type Wave = OscillatorType | 'noise';
 
-/** One voice. `freq` slides to `to` over `dur` seconds; `at` delays the start. For noise, `freq` is the low-pass cutoff. */
+/** One voice. `freq` slides to `to` over `dur` seconds; `at` delays the start. For noise, `freq` is the filter cutoff. */
 export interface Tone {
   wave?: Wave;
   freq: number;
@@ -8,6 +8,8 @@ export interface Tone {
   at?: number;
   dur: number;
   gain?: number;
+  /** Filter for noise; `lowpass` by default. `bandpass` gives a hiss or a cash-drawer rattle, `highpass` a hat. */
+  filter?: BiquadFilterType;
 }
 
 export type SoundSpec = readonly Tone[];

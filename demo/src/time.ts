@@ -1,11 +1,14 @@
 import {
   burst,
   calendar,
+  dayCycle,
   datePicker,
   timePicker,
   timer,
   toISODate,
   type CalendarHandle,
+  type DayPart,
+  type DayWeather,
   type TimeListHandle,
   type TimeListLabels,
 } from 'gamifiedui-utils';
@@ -54,6 +57,48 @@ function setupTimers(): void {
     else run.start();
     toggle.setAttribute('aria-pressed', String(run.running));
   });
+}
+
+const DAY_PARTS: readonly DayPart[] = ['morning', 'noon', 'afternoon', 'evening', 'night'];
+const DAY_WEATHERS: readonly DayWeather[] = ['clear', 'cloudy', 'rain', 'storm'];
+
+const capital = (word: string): string => `${word[0]!.toUpperCase()}${word.slice(1)}`;
+const partLabel = (part: DayPart): string => t(`part${capital(part)}`);
+const weatherLabel = (weather: DayWeather): string => t(`weather${capital(weather)}`);
+
+/** One small window per part of the day and per weather, and a large one that steps through them. */
+function setupDayCycle(): void {
+  const big = byId('day-cycle');
+  const small = (rowId: string): HTMLElement => {
+    const node = big.cloneNode(true) as HTMLElement;
+    node.removeAttribute('id');
+    node.classList.replace('gx-daycycle-lg', 'gx-daycycle-sm');
+    byId(rowId).append(node);
+    return node;
+  };
+  const parts = DAY_PARTS.map((part) => ({ node: small('day-parts'), part }));
+  const weathers = DAY_WEATHERS.map((weather) => ({ node: small('day-weathers'), weather }));
+  let step = 0;
+  let weatherStep = 0;
+  const draw = (): void => {
+    const part = DAY_PARTS[step % DAY_PARTS.length]!;
+    const weather = DAY_WEATHERS[weatherStep % DAY_WEATHERS.length]!;
+    const day = Math.floor(step / DAY_PARTS.length);
+    const label = t('dayLabel', { n: day + 1, part: partLabel(part), weather: weatherLabel(weather) });
+    dayCycle(big, { day, part, weather, label });
+    parts.forEach(({ node, part: shown }) => dayCycle(node, { day: 0, part: shown, label: partLabel(shown) }));
+    weathers.forEach(({ node, weather: shown }) => dayCycle(node, { day: 0, part: 'noon', weather: shown, label: weatherLabel(shown) }));
+  };
+  byId('day-next').addEventListener('click', () => {
+    step++;
+    draw();
+  });
+  byId('day-weather').addEventListener('click', () => {
+    weatherStep++;
+    draw();
+  });
+  draw();
+  onLocaleChange(draw);
 }
 
 function relabel(calendars: CalendarHandle[], roots: HTMLElement[]): void {
@@ -159,6 +204,7 @@ function setupLoginCalendar(): CalendarHandle {
 
 export function setupTime(): void {
   setupTimers();
+  setupDayCycle();
   const calendars = [...setupDatePickers(), setupLoginCalendar()];
   const roots = ['event-date-panel', 'trip-range-panel', 'login-calendar'].map((id) => byId(id));
   onLocaleChange(() => relabel(calendars, roots));

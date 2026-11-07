@@ -93,6 +93,8 @@ Any other value can be set inline: `style="--gx-sprite-frames: 24"`. For Chinese
 | `gx-skill` | `<button>`; `--gx-cooldown` (1..0) sweeps, `aria-disabled` while cooling | `gx-skill-key`, `gx-skill-timer`, `data-ready` |
 | `gx-float` | short text in a `gx-float-layer`; rises and fades once | `gx-float-{damage,heal,xp,crit}` |
 | `gx-timer` | `role="timer"` with `gx-timer-label` + `<time class="gx-timer-value">`; `--gx-value` (1..0) drains the strip | `data-state="warning\|critical\|done"`, `gx-timer-lg` |
+| `gx-daycycle` | sky window with a `gx-daycycle-wheel` carrying `gx-daycycle-sun` and `gx-daycycle-moon` icons behind hills; `--gx-daycycle-turn` (degrees, only grows) turns it; set by `dayCycle()` in `gamifiedui-utils` | `data-part="morning\|noon\|afternoon\|evening\|night"`, `data-weather="cloudy\|rain\|storm"` (with a `gx-daycycle-clouds` part), `gx-daycycle-{sm,lg}` |
+| `gx-sound` | mute `gx-sound-toggle` (holds `gx-sound-on` and `gx-sound-off` icons) + `gx-slider gx-sound-volume`; wired by `soundControl()` | toggle: `aria-pressed="true"` (muted, greys the slider); `gx-sound-sm` |
 | `gx-calendar` | month grid of `<button class="gx-day">`; rendered by `calendar()` in `gamifiedui-utils` | day: `aria-current="date"`, `aria-pressed`, `data-range="start\|middle\|end\|preview"`, `data-outside`, `aria-disabled`, `data-event` + `gx-rarity-*`, `data-claimed` |
 | `gx-datepicker` | `.gx-input` + `gx-datepicker-toggle` + `[popover].gx-datepicker-panel` holding a `gx-calendar` | single date or a range; anchored under the field where CSS anchor positioning exists |
 | `gx-time` | scrolling list (`role="listbox"`) of `gx-time-option`; rendered by `timeList()` in `gamifiedui-utils` | option: `aria-selected`, `data-range="start\|middle\|end\|preview"`, `aria-disabled`, `gx-time-tag` (`+1` for next day); `gx-time-title`, `gx-time-summary`, `--gx-time-rows` |
@@ -120,7 +122,7 @@ Both are hidden under reduced motion, since they are decoration.
 Every component works without script. A few effects only make sense when driven, so
 [`gamifiedui-utils`](../gamifiedui-utils) ships small optional helpers for them: toasts,
 typewriter, number roll, skill cooldown, floating text, bursts, tabs, the slider fill, timers,
-calendars and date (range) pickers, and drag-and-drop upload.
+calendars and date (range) pickers, drag-and-drop upload, the day cycle and sound controls.
 
 A file button needs no script: `<label class="gx-btn">Choose file<input type="file" class="sr-only"></label>`.
 

@@ -10,6 +10,8 @@ export { quantity } from './quantity.js';
 export { cooldown, isCoolingDown } from './cooldown.js';
 export { burst, floatText } from './effects.js';
 export { sliderFill, tabs, videoPlayOverlay } from './controls.js';
+export { DAY_PART_ANGLES, dayCycle } from './daycycle.js';
+export { soundControl } from './sound.js';
 export { gridNav } from './grid.js';
 export { fitMapPlates, fitWidthZoom, mapZoom, zoomAround } from './map.js';
 export { formatTime, parseTime, timeList, timePicker, timeRange, } from './timepicker.js';

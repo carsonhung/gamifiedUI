@@ -585,6 +585,15 @@
     "motion": "bob"
   },
   {
+    "name": "basket",
+    "set": "common",
+    "en": "Basket",
+    "hant": "籃",
+    "hans": "篮子",
+    "category": "shopping",
+    "motion": "bob"
+  },
+  {
     "name": "backpack",
     "set": "common",
     "en": "Backpack",

@@ -8,6 +8,8 @@ export interface PlayOptions {
     volume?: number;
     /** Frequency multiplier, e.g. 1.5 for higher. Handy for varying typewriter blips. */
     pitch?: number;
+    /** Seconds to wait, e.g. to let a sizzle finish before the result chime. */
+    delay?: number;
 }
 export interface SfxOptions {
     volume?: number;

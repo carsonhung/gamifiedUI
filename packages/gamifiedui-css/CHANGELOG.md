@@ -1,5 +1,19 @@
 # gamifiedui-css
 
+## Unreleased
+
+- Day cycle: `gx-daycycle`, a framed window on the sky with a `gx-daycycle-wheel` that carries
+  the sun and moon icons round behind a line of hills. `--gx-daycycle-turn` (degrees) turns the
+  wheel in stepped motion, `data-part="morning|noon|afternoon|evening|night"` recolours the sky,
+  and `gx-daycycle-sm` / `-lg` resize it. Its colours are new theme tokens:
+  `--color-gx-sky-{morning,noon,afternoon,evening,night}`, `--color-gx-ground`,
+  `--color-gx-sun` and `--color-gx-moon` (so `bg-gx-sky-night` and friends work too).
+  `data-weather="cloudy|rain|storm"` greys the sky, draws pixel clouds in a `gx-daycycle-clouds`
+  part, and lets rain fall (slanting in a storm; still under reduced motion), with the tokens
+  `--color-gx-overcast`, `--color-gx-cloud`, `--color-gx-storm-cloud` and `--color-gx-rain`.
+- Sound controls: `gx-sound`, a mute `gx-sound-toggle` whose `gx-sound-on` / `gx-sound-off`
+  icons swap on `aria-pressed`, beside a `gx-sound-volume` slider that greys out while muted.
+
 ## 0.4.0
 
 - Quantity: `gx-quantity`, a `− N +` stepper with raised `gx-quantity-btn` buttons, a recessed

@@ -1,0 +1,42 @@
+/* Sound settings: <div class="gx-sound" role="group" aria-label="Sound">
+   <button class="gx-btn gx-btn-ghost gx-btn-sm gx-sound-toggle" aria-pressed="false" aria-label="Mute">
+   <span class="gx-icon gx-i-sound gx-sound-on" aria-hidden="true"></span>
+   <span class="gx-icon gx-i-mute gx-sound-off" aria-hidden="true"></span></button>
+   <input type="range" class="gx-slider gx-sound-volume" min="0" max="1" step="0.05" aria-label="Volume"></div>.
+   aria-pressed="true" means muted: the icon swaps and the slider greys out without losing its level.
+   soundControl() in gamifiedui-utils wires both to an Sfx and Music. */
+@layer components {
+  .gx-sound {
+    --gx-sound-volume-w: 7rem;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .gx-sound-toggle {
+    margin: 0;
+  }
+
+  /* Scoped to the toggle to beat .gx-icon, which sets its own display. */
+  .gx-sound-toggle .gx-sound-off,
+  .gx-sound-toggle[aria-pressed="true"] .gx-sound-on {
+    display: none;
+  }
+
+  .gx-sound-toggle[aria-pressed="true"] .gx-sound-off {
+    display: inline-block;
+  }
+
+  .gx-sound-volume {
+    width: var(--gx-sound-volume-w);
+  }
+
+  .gx-sound:has(.gx-sound-toggle[aria-pressed="true"]) .gx-sound-volume {
+    --gx-slider-fill: var(--color-gx-track);
+  }
+
+  .gx-sound-sm {
+    --gx-sound-volume-w: 5rem;
+  }
+}

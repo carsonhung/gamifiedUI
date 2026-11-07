@@ -74,7 +74,7 @@ export default [
   },
   {
     id: 'shopping', group: 'game', en: 'Shopping and money', hant: '購物與金錢', hans: '购物与金钱',
-    icons: ['cart', 'shop', 'money', 'money-bag', 'pouch', 'coin', 'coin-spin', 'credit-card'],
+    icons: ['cart', 'basket', 'shop', 'money', 'money-bag', 'pouch', 'coin', 'coin-spin', 'credit-card'],
   },
 
   {

@@ -38,7 +38,7 @@ export const PRESETS = {
 export const DEFAULTS = {
   'thumb-up': 'pop', 'thumb-down': 'nudge-down',
   'zoom-in': 'pulse', 'zoom-out': 'pulse', photos: 'float', phone: 'shake', mobile: 'shake', mute: 'blink',
-  money: 'wiggle', 'money-bag': 'bob', pouch: 'bob', backpack: 'bob', helmet: 'pop', armor: 'pulse', bow: 'pulse',
+  money: 'wiggle', 'money-bag': 'bob', pouch: 'bob', basket: 'bob', backpack: 'bob', helmet: 'pop', armor: 'pulse', bow: 'pulse',
   wand: 'swing', spellbook: 'float', stamina: 'nudge-right', mana: 'float', poison: 'pulse',
   dead: 'wiggle', ghost: 'float',
   bottle: 'wiggle', soap: 'bob', toothbrush: 'shake', bread: 'pulse', food: 'bob', meat: 'wiggle', fish: 'wiggle',

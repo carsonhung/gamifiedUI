@@ -36,6 +36,8 @@
 @import "./components/skill.css";
 @import "./components/float.css";
 @import "./components/timer.css";
+@import "./components/daycycle.css";
+@import "./components/sound.css";
 @import "./components/calendar.css";
 @import "./components/datepicker.css";
 @import "./components/timepicker.css";

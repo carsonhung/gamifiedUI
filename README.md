@@ -15,7 +15,7 @@ Turn everyday components into game parts:
 - HP / MP / XP bars that drain in steps
 - dialogue boxes, quest logs and loot cards
 - sprite animation and isometric scenes
-- 349 pixel icons, each with a stoppable animated version
+- 350 pixel icons, each with a stoppable animated version
 - optional chiptune sound effects, generated live with no audio files
 
 The core is CSS only, so it works with Vue, React, Svelte or plain HTML.
@@ -82,7 +82,7 @@ Each family is documented in the [gamifiedui-css README](packages/gamifiedui-css
 
 ### Icons
 
-There are **349 pixel icons** on a 16×16 grid, sorted into 24 categories. Each icon ships as:
+There are **350 pixel icons** on a 16×16 grid, sorted into 24 categories. Each icon ships as:
 
 - a Tailwind utility (`gx-i-heart`)
 - a plain CDN class
@@ -147,7 +147,7 @@ See the [gamifiedui-sfx README](packages/gamifiedui-sfx/README.md) for the sound
 | Package | Version | Contents |
 |---|---|---|
 | [`gamifiedui-css`](packages/gamifiedui-css) | 0.3.0 | Tokens, themes, components, particles, sprite and iso utilities, CDN build |
-| [`gamifiedui-icons`](packages/gamifiedui-icons) | 0.2.0 | 349 pixel icons in 24 categories, animated versions, SVGs, JSON metadata |
+| [`gamifiedui-icons`](packages/gamifiedui-icons) | 0.2.0 | 350 pixel icons in 24 categories, animated versions, SVGs, JSON metadata |
 | [`gamifiedui-utils`](packages/gamifiedui-utils) | 0.3.0 | Optional JavaScript helpers |
 | [`gamifiedui-sfx`](packages/gamifiedui-sfx) | 0.3.0 | Optional chiptune sound effects made with Web Audio, no audio files |
 | `gamifiedui-vue`, `gamifiedui-react` | Planned | Component wrappers |

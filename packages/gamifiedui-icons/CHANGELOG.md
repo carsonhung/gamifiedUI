@@ -1,5 +1,9 @@
 # gamifiedui-icons
 
+## Unreleased
+
+- New `basket` icon (a woven basket with a handle) in the shop category, animated with `bob`.
+
 ## 0.2.0
 
 - Breaking: the `interface` category is split into `navigation`, `actions` and `alerts-time`.

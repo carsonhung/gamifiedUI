@@ -10,6 +10,8 @@ export { quantity, type QuantityHandle, type QuantityOptions } from './quantity.
 export { cooldown, isCoolingDown, type CooldownHandle, type CooldownOptions } from './cooldown.js';
 export { burst, floatText, type BurstKind, type BurstOptions, type FloatKind, type FloatOptions } from './effects.js';
 export { sliderFill, tabs, videoPlayOverlay, type TabsHandle } from './controls.js';
+export { DAY_PART_ANGLES, dayCycle, type DayCycleOptions, type DayPart, type DayWeather } from './daycycle.js';
+export { soundControl, type SoundControlHandle, type SoundControlOptions, type SoundTarget } from './sound.js';
 export { gridNav, type GridNavHandle, type GridNavOptions } from './grid.js';
 export { fitMapPlates, fitWidthZoom, mapZoom, zoomAround, type MapZoomHandle, type MapZoomOptions, type ScrollPoint } from './map.js';
 export { formatTime, parseTime, timeList, timePicker, timeRange, type TimeListHandle, type TimeListLabels, type TimeListOptions, type TimeMode, type TimePickerHandle, type TimePickerOptions, type TimeRange, } from './timepicker.js';

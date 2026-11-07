@@ -21,6 +21,7 @@ const sfx = createSfx({ volume: 0.5 });
 
 sfx.play('coin');
 sfx.play('blip', { pitch: 1.2, volume: 0.5 });
+sfx.play('success', { delay: 0.4 }); // after a short wait, e.g. once a sizzle is over
 ```
 
 ### Declarative sounds
@@ -72,11 +73,12 @@ A sound is a list of tones. Each tone has these fields:
 | Field | Meaning |
 |---|---|
 | `wave` | `square`, `triangle`, `sawtooth`, `sine` or `noise`. Defaults to `square`. |
-| `freq` | Start frequency in Hz. For noise, it is the low-pass cutoff. |
+| `freq` | Start frequency in Hz. For noise, it is the filter cutoff. |
 | `to` | Optional end frequency, reached by sliding over the tone. |
 | `at` | Start time in seconds. Tones can overlap. |
 | `dur` | Length in seconds. |
 | `gain` | Loudness from 0 to 1. Defaults to 0.2. |
+| `filter` | For noise only: `lowpass` (the default), `bandpass` or `highpass`. |
 
 ```ts
 sfx.define('door', [
@@ -88,6 +90,44 @@ sfx.play('door');
 // Or play a one-off spec directly
 sfx.play([{ wave: 'triangle', freq: 880, to: 1760, dur: 0.2 }]);
 ```
+
+## Music
+
+`createMusic()` plays chiptune background music from tiny text scores. There is one token per eighth note:
+
+- a note name such as `C5`, `F#3` or `Bb2` starts a note;
+- `-` holds it, `.` rests, and `|` is a bar line for the reader;
+- in a drum score, `k` is a kick, `s` a snare and `h` a hi-hat.
+
+```ts
+import { createMusic } from 'gamifiedui-sfx';
+
+const music = createMusic({ volume: 0.4 });
+
+music.define('town', {
+  bpm: 120,
+  lead: 'E5 - G5 - | A5 - - . | G5 E5 D5 - | C5 - - .',
+  bass: 'C3 - G2 - | F2 - C3 - | G2 - D3 - | C3 - G2 -',
+  drums: 'k . h . s . h .',
+});
+music.define('fanfare', { bpm: 150, lead: 'C5 E5 G5 C6 - - - .', isLoop: false });
+
+music.play('town'); // safe to call on every render
+music.play(null);   // stop
+music.muted = true;
+```
+
+| Theme field | Meaning |
+|---|---|
+| `bpm` | Beats per minute; each token is half a beat. |
+| `lead` | The melody. Its length sets the loop. |
+| `bass` | Optional. Loops on its own if shorter than the lead. |
+| `leadWave`, `bassWave` | `square` and `triangle` by default. Each wave is balanced to about the same loudness. |
+| `drums` | Optional drum score; loops on its own if shorter than the lead. |
+| `hatEvery`, `hasKick` | A simpler beat when there is no drum score: a hat every n tokens, a kick on every beat. |
+| `isLoop` | `false` plays the theme once (a fanfare) and then stays quiet. Defaults to `true`. |
+
+Switching themes fades the old one out over `fade` seconds (0.4 by default; `createMusic({ fade: 0 })` cuts). Music pauses while the tab is hidden and starts on the first click or key press.
 
 ## Notes
 
